@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class NoteObject : MonoBehaviour {
 	private Note _linkedData = new Note();
@@ -28,10 +29,12 @@ public class NoteObject : MonoBehaviour {
 	{
 		if (_isInitialized) {
 			transform.transform.Translate(0, 0, -_linkedData.speed, Space.Self);
-			if (false /* i dunno how to check if they got too far.... */) {
-				Destroy(gameObject);
-			}
 		}
 	}
-	
+
+	private void OnTriggerExit(Collider other) {
+		if (other.gameObject.CompareTag("despawn")) {
+			Destroy(gameObject);
+		}
+	}
 }

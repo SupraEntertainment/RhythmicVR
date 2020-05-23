@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
-        SpawnTarget(Random.value *2 - 1, /*Random.value *2 - 1*/ 0, Random.value *360, Random.value *360, (int)Math.Floor(Random.value *4));
+    private void FixedUpdate() {
+        SpawnTarget(Random.value *2 - 1, Random.value *2 - 1, Random.value *360, /*Random.value *360*/ 0, (int)Math.Floor(Random.value *4));
     }
 
     public void SpawnTarget(float xCoord, float yCoord, float viewRotation, float playspaceRoation, int hand) {

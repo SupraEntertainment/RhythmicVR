@@ -1523,6 +1523,11 @@ namespace Valve.VR
             return SteamVR_Utils.SanitizePath(path);
         }
 
+        public static string GetActionsFileName()
+        {
+            return SteamVR_Settings.instance.actionsFilePath;
+        }
+
 
         /// <summary>
         /// Deletes the action manifest file and all the default bindings it had listed in the default bindings section
@@ -1636,6 +1641,11 @@ namespace Valve.VR
                 }
                 checkingSetup = false;
             }
+        }
+
+        public static string GetEditorAppKey()
+        {
+            return SteamVR_Settings.instance.editorAppKey;
         }
 
         private static Type FindType(string typeName)
