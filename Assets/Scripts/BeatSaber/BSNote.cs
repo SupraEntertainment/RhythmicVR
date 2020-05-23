@@ -3,12 +3,12 @@
 	public class BSNote {
 		private float _time;
 		private int _lineIndex;
-		private float _lineLayer;
-		private float _type;
-		private float _cutDirection;
+		private int _lineLayer;
+		private int _type;
+		private int _cutDirection;
 
 		public Note ToNote() {
-			return new Note();
+			return new Note(_time, _lineIndex/2 -2, _lineLayer/2f, _type, _cutDirection);
 		}
 	}
 }

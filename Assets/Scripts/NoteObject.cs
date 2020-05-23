@@ -22,13 +22,14 @@ public class NoteObject : MonoBehaviour {
 				break;
 		}
 		transform.RotateAround(new Vector3(0, 0, 0), Vector3.up, _linkedData.rotation);
+		transform.Rotate(transform.forward, _linkedData.cutDirection);
 		_isInitialized = true;
 	}
 
 	private void FixedUpdate()
 	{
 		if (_isInitialized) {
-			transform.transform.Translate(0, 0, -_linkedData.speed, Space.Self);
+			transform.transform.Translate(0, 0, -_linkedData.speed * 0.1f, Space.Self);
 		}
 	}
 
