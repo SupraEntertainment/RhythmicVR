@@ -2,7 +2,7 @@
 
 The following list contains my plans for this Project:
 - [ ] Modularity / support for multiple gamemodes (addable afterwards -> via assetbundles?)
-	- [ ] Beat Saber inspired gamemode (Swords) with support for feet / hip tracker
+	- [ ] Beat Saber inspired gamemode (Hands, feet, hips / Swords) with support for feet / hip tracker
 	- [ ] DDR inspired gamemode (arrow pad on floor)
 	- [ ] Audica inspired gamemode (with Guns)
 	- [ ] kind of Guitar hero on the floor (for feet)
