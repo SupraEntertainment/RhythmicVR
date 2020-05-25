@@ -11,7 +11,7 @@
                                 (_lineIndex != 5 ? _lineIndex/2f - 2 : 0), 
                                 (_type == 0 ? 1.5f : 2f), 
                                 (_type == 0 ? 1 : 3), 
-                                (_type == 0 ? 4f : 1f), 
+                                _width, 
                                 _duration, 
                                 _type );
         }

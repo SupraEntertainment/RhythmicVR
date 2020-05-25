@@ -1,27 +1,26 @@
 ﻿[System.Serializable]
 public class Song {
+	public int id;
 	public string formatVersion;
-	public float version;
-	public float[][] speed;
-	public Event[] events;
-	public Note[] notes;
-	public Obstacle[] obstacles;
+	public string songName;
+	public string songSubName;
+	public string songAuthorName;
+	public string albumName;
+	public string levelAuthorName;
+	public float beatsPerMinute;
+	public float previewStartTime;
+	public string songFile = "song.eeg";
+	public string coverImageFile = "cover.jpg";
+	public string startTimeOffset;
+	public TrackingPoint[] trackingPoints;
+	public string leftHandTool;
+	public string rightHandTool;
+	public string waistTool;
+	public string leftFootTool;
+	public string rightFootTool;
+	public string environment;
+	public string targetObject = "cube";
+	public string obstacleObject;
+	public Difficulty[] difficulties;
 
-	public Song(string formatVersion = "1.0", float version = 1, float[][] speed = null, Event[] events = null, Note[] notes = null, Obstacle[] obstacles = null) {
-		this.formatVersion = formatVersion;
-		this.version = version;
-		if (speed == null) {
-			speed = new []{ new float[]{0, 1} };
-		}
-		this.speed = speed;
-		this.events = events;
-		this.notes = notes;
-		this.obstacles = obstacles;
-	}
-
-	public Song(Event[] events, Note[] notes, Obstacle[] obstacles) {
-		this.events = events;
-		this.notes = notes;
-		this.obstacles = obstacles;
-	}
 }
