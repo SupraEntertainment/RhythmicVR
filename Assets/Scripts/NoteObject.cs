@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NoteObject : MonoBehaviour {
 	private Note _linkedData = new Note();
-	private bool _isInitialized = false;
+	private bool _isInitialized;
 
 	public void InitNote(Note data) {
 		_linkedData = data;

@@ -406,6 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446488767}
   - component: {fileID: 446488766}
+  - component: {fileID: 446488768}
   m_Layer: 0
   m_Name: despawnOutside
   m_TagString: despawn
@@ -441,6 +442,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &446488768
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446488765}
+  serializedVersion: 2
+  m_Mass: 100000
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &521843783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1779,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 454300682107836708, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
         type: 3}
       propertyPath: m_Name
