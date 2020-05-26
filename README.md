@@ -8,10 +8,15 @@ The following list contains my plans for this Project:
 	- [ ] kind of Guitar hero on the floor (for feet)
 
 ### Mechanics
-- Song loading via json file (json specs furth down)
+- Song loading via json file (json specs in code -> Song.cs & Beatmap.cs)
 - dynamic (expandable) systems for anything you could imagine (gamemodes, songs, mods for gamemodes)
-- on the fly loaded assets (swords, guns, avatars, environments, Notes, Walls...)
-- loading of songs / beatmaps from other games (beat saber, audica, osu, ...)
+- on the fly loaded assets 
+    - tracked object models (swords, guns, gloves, shoes) 
+    - avatars / player models
+    - environments
+    - targets
+    - obstacles 
+- loading of songs / beatmaps from other games (beat saber, audica, osu!, guitar hero (and clones), etc...)
 
 ### Screenshots
 --none--
