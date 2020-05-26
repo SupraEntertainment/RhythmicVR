@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
         SpawnTarget(1f, Random.value *2 - 1, Random.value *2, Random.value *360, /*Random.value *360*/ 0, (int)Math.Floor(Random.value *4));
     }
 
-    public void LoadSong() {
+    public void LoadSong(Song song) {
         
     }
 

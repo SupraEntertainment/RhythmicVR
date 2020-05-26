@@ -6,8 +6,8 @@ using UnityEngine;
 namespace BeatSaber {
     public class SongLoader {
 
-        public void ConvertBeatmap(string jsonString, string filePath) {
-            BSSong song = JsonUtility.FromJson<BSSong>(jsonString);
+        public static Song ConvertBeatmap(string filePath) {
+            BSSong song = JsonUtility.FromJson<BSSong>(File.ReadAllText(filePath + "/info.dat"));
 
             Song convertedSong;
             List<Beatmap> convertedBeatmaps = new List<Beatmap>();
@@ -26,17 +26,19 @@ namespace BeatSaber {
                     convertedBeatmaps.Add(bm);
                 }
             }
+
+            return song.ToSong();
         }
         
-        public Beatmap LoadDefaultSong(string jsonString) {
+        public static Beatmap LoadDefaultSong(string jsonString) {
             return JsonUtility.FromJson<BSBeatmap>(jsonString).ToBeatmap();
         }
     
-        public Beatmap LoadMappingExtensionsSong(string jsonString) {
+        public static Beatmap LoadMappingExtensionsSong(string jsonString) {
             return JsonUtility.FromJson<BSMEBeatmap>(jsonString).ToBeatmap();
         }
     
-        public Beatmap LoadNoodleExtensionsSong(string jsonString) {
+        public static Beatmap LoadNoodleExtensionsSong(string jsonString) {
             return JsonUtility.FromJson<BSNEBeatmap>(jsonString).ToBeatmap();
         }
     }

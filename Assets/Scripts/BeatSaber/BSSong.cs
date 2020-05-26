@@ -16,6 +16,10 @@
 		public int _songTimeOffset { get; set; }
 		public CustomData _customData { get; set; }
 		public DifficultyBeatmapSet[] _difficultyBeatmapSets { get; set; }
+
+		public Song ToSong() {
+			return new Song();
+		}
 		
 	}
 	public class CustomData
