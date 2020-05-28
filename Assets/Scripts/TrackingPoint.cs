@@ -1,10 +1,9 @@
 ﻿[System.Serializable]
 public enum TrackingPoint {
-	RightHand,
 	LeftHand,
+	RightHand,
 	Waist,
 	LeftFoot,
 	RightFoot
-	
 
 }

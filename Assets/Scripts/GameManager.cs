@@ -39,6 +39,29 @@ public class GameManager : MonoBehaviour {
         SpawnTarget(1f, Random.value *2 - 1, Random.value *2, Random.value *360, /*Random.value *360*/ 0, (int)Math.Floor(Random.value *4));
     }
 
+    public void SetTrackedObjects(TrackedDevicePair[] tdps) {
+        foreach (var tdp in tdps) {
+            tdp.prefab.GetComponent<GenericTrackedObject>().collider.gameObject.tag = TrackerRoleToTag(tdp.role);
+        }
+    }
+
+    private string TrackerRoleToTag(TrackingPoint role) {
+        switch (role) {
+            case TrackingPoint.LeftHand:
+                return "leftHand";
+            case TrackingPoint.RightHand:
+                return "rightHand";
+            case TrackingPoint.Waist:
+                return "waist";
+            case TrackingPoint.LeftFoot:
+                return "leftFoot";
+            case TrackingPoint.RightFoot:
+                return "rightFoot";
+            default:
+                return null;
+        }
+    }
+
     public void LoadSong(Song song) {
         
     }
