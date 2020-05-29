@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -68,7 +69,17 @@ public class GameManager : MonoBehaviour {
 
     public void StartBeatmap(Song song, Difficulty difficulty) {
         Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.SongSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
-        
+        StartCoroutine(PlayBeatmap(bm));
+    }
+
+    private static IEnumerator PlayBeatmap(Beatmap bm) {
+        var time = Time.time;
+        var beatmapLength = bm.notes[bm.notes.Length].time;
+        while (time <= beatmapLength) {
+            time += Time.deltaTime;
+            
+            yield return null;
+        }
     }
 
     public void SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
@@ -82,7 +93,7 @@ public class GameManager : MonoBehaviour {
 
     public void SpawnTarget(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, int hand) {
         GameObject cube = Instantiate(target, new Vector3(xCoord, yCoord, spawnDistance), new Quaternion(0, 0, viewRotation, 0));
-        cube.GetComponent<NoteObject>().InitNote(new Note(1, xCoord, yCoord, speed, hand, viewRotation, playspaceRoation));
+        cube.GetComponent<TargetObject>().InitNote(new Note(1, xCoord, yCoord, speed, hand, viewRotation, playspaceRoation));
     }
 
     public void SpawnObstacle(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, float width, float height) {

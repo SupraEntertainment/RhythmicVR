@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public abstract class Gamemode : MonoBehaviour {
 
     public TrackedDevicePair[] trackedObjects;
-    protected GameManager _gm;
+    protected GameManager gm;
+    public SpaceMapping targetSpaceMapping; // translates json file positioning into unity coordinates (if needed) e.g. x=0, y=z z=y
 
     private void Start() {
-	    _gm = FindObjectOfType<GameManager>();
-	    _gm.SetTrackedObjects(trackedObjects);
+	    gm = FindObjectOfType<GameManager>();
+	    gm.SetTrackedObjects(trackedObjects);
     }
 }

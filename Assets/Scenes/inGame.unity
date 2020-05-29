@@ -620,6 +620,14 @@ MonoBehaviour:
     role: 3
   - prefab: {fileID: 277143970}
     role: 4
+  targetSpaceMapping:
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    useTransform: 0
+    origin: {fileID: 0}
+    x: 0
+    y: 1
+    z: 2
 --- !u!4 &474139022
 Transform:
   m_ObjectHideFlags: 0
@@ -2328,20 +2336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 454300682107836708, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
         type: 3}
       propertyPath: m_Name
       value: target
-      objectReference: {fileID: 0}
-    - target: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7408167964453527276, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
         type: 3}
