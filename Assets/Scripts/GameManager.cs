@@ -47,15 +47,13 @@ public class GameManager : MonoBehaviour {
         List<Note> notes = new List<Note>();
         for (int i = 0; i < 240; i++) {
             var note = new Note();
-            note.time = Random.Range(i/4f-0.5f,i/4f+0.5f);
+            note.time = Random.Range((i-0.5f)/4f,(i+0.5f)/4f);
             note.rotation = i * 6;
             note.type = (int) Math.Floor(Random.value * 4);
             note.xPos = Random.value * 2 - 1;
             note.yPos = Random.value * 2;
             notes.Add(note);
         }
-
-        Debug.Log("generated notes");
 
         bm.notes = notes.ToArray();
         StartCoroutine(PlayBeatmap(bm));
@@ -101,9 +99,7 @@ public class GameManager : MonoBehaviour {
     private static IEnumerator PlayBeatmap(Beatmap bm) {
         //var beatmapLength = bm.notes[bm.notes.Length-1].time;
         float currentTime = 0;
-        Debug.Log("in front of loop");
         for (int i = 0; i < bm.notes.Length; i++) {
-            Debug.Log("in loop " + i);
             var note = bm.notes[i];
             yield return new WaitForSeconds(note.time - currentTime);
             currentTime = note.time;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public abstract class Gamemode : MonoBehaviour {
 
