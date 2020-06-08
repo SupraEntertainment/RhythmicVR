@@ -3,11 +3,11 @@ public class Beatmap {
 	public string formatVersion;
 	public float version;
 	public float[][] speed;
-	public Event[] events;
+	public MapEvent[] events;
 	public Note[] notes;
 	public Obstacle[] obstacles;
 
-	public Beatmap(string formatVersion = "1.0", float version = 1, float[][] speed = null, Event[] events = null, Note[] notes = null, Obstacle[] obstacles = null) {
+	public Beatmap(string formatVersion = "1.0", float version = 1, float[][] speed = null, MapEvent[] events = null, Note[] notes = null, Obstacle[] obstacles = null) {
 		this.formatVersion = formatVersion;
 		this.version = version;
 		if (speed == null) {
@@ -19,7 +19,7 @@ public class Beatmap {
 		this.obstacles = obstacles;
 	}
 
-	public Beatmap(Event[] events, Note[] notes, Obstacle[] obstacles) {
+	public Beatmap(MapEvent[] events, Note[] notes, Obstacle[] obstacles) {
 		this.events = events;
 		this.notes = notes;
 		this.obstacles = obstacles;

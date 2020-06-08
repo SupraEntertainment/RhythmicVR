@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,14 @@ public class GenericTrackedObject : MonoBehaviour {
     private void CreateRigidbody(Rigidbody rb) {
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<TargetObject>() != null) {
+            if (other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     // Update is called once per frame

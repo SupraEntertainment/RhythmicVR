@@ -52,12 +52,12 @@ namespace Valve.VR
                 bool enabledVR = false;
 
 #if OPENVR_XR_API
-                if (UnityEditor.PlayerSettings.virtualRealitySupported == true)
+                /*if (UnityEditor.PlayerSettings.virtualRealitySupported == true)
                 {
                     UnityEditor.PlayerSettings.virtualRealitySupported = false;
                     enabledVR = true;
                     Debug.Log("<b>[SteamVR Setup]</b> Disabled virtual reality support in Player Settings. <b>Because you're using XR Manager. Make sure OpenVR Loader is enabled in XR Manager UI.</b> (you can disable this by unchecking Assets/SteamVR/SteamVR_Settings.autoEnableVR)");
-                }
+                }*/
 #else
                 if (UnityEditor.PlayerSettings.virtualRealitySupported == false)
                 {

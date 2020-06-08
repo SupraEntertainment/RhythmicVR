@@ -5,8 +5,8 @@
 		private int _type;
 		private int _value;
 
-		public Event ToEvent() {
-			return new Event();
+		public MapEvent ToEvent() {
+			return new MapEvent();
 		}
 	}
 }

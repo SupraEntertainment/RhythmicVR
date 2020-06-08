@@ -8,7 +8,11 @@
 		private int _cutDirection;
 
 		public Note ToNote() {
-			return new Note(_time, _lineIndex/2 -2, _lineLayer/2f, _type, _cutDirection);
+			return new Note(_time, 
+			                _lineIndex/2 -2, 
+			                _lineLayer/2f, 
+			                _type == 0 ? new []{TrackingPoint.LeftHand} : new TrackingPoint[]{TrackingPoint.RightHand}, 
+			                _cutDirection);
 		}
 	}
 }

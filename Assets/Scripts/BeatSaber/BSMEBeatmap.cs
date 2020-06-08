@@ -3,15 +3,15 @@
 namespace BeatSaber {
 	[System.Serializable]
 	public class BSMEBeatmap {
-		private int _time;
-		private int[] _BPMChanges;
-		private BSEvent[] _events;
-		private BSMENote[] _notes;
-		private BSMEObstacle[] _obstacles;
-		private string[] _bookmarks;
+		private int _time = 0;
+		private int[] _BPMChanges = {0};
+		private BSEvent[] _events = new BSEvent[]{};
+		private BSNote[] _notes = new BSNote[]{};
+		private BSObstacle[] _obstacles = new BSObstacle[]{};
+		private string[] _bookmarks = new string[]{};
 
 		public Beatmap ToBeatmap() {
-			List<Event> events = new List<Event>();
+			List<MapEvent> events = new List<MapEvent>();
 			foreach (var bsEvent in _events) {
 				events.Add(bsEvent.ToEvent());
 			}
