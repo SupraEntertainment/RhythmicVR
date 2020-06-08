@@ -20,7 +20,7 @@ public class GenericTrackedObject : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.GetComponent<TargetObject>() != null) {
-            if (other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
+            if (true) { //other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
                 Destroy(other.gameObject);
             }
         }

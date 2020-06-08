@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 public abstract class Gamemode : MonoBehaviour {
+	
+	public string name;
 
 	[Tooltip("place the object here, that has the component \"TargetObject\" or a child of it attatched")]
 	public GameObject targetObject;
