@@ -4,7 +4,7 @@
         private int _lineIndex;
         private int _type;
         private float _duration;
-        private float _width;
+        private int _width;
 
         public Obstacle ToObstacle() {
             return new Obstacle(_time, 

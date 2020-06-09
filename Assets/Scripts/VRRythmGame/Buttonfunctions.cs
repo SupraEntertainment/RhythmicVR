@@ -8,9 +8,9 @@ namespace VRRythmGame {
     
         public void LoadBeatSaberMap() {
         
-            StandaloneFileBrowser.OpenFilePanelAsync("Open beatsaber Beatmap", "", "", true, delegate(string[] strings) {
+            StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
-                    gm.LoadSong(BeatSaber.SongLoader.ConvertBeatmap(path));
+                    gm.LoadSong(BeatSaber.SongLoader.ConvertSong(path, gm));
                 }
             });
         }

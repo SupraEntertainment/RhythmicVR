@@ -1,4 +1,6 @@
-﻿namespace VRRythmGame.BeatSaber {
+﻿using VRRythmGame;
+
+namespace BeatSaber {
 	[System.Serializable]
 	public class BSNote {
 		private float _time;

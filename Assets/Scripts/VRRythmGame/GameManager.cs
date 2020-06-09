@@ -106,8 +106,8 @@ namespace VRRythmGame {
         }
 
         // load a song
-        public void LoadSong(Song song) {
-        
+        public void LoadSong(string songpath) {
+            //StartBeatmap(song.bea);
         }
 
         // start the selected beatmap
@@ -128,13 +128,15 @@ namespace VRRythmGame {
         }
 
         // write song and all beatmaps to their files
-        public void SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
+        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
             string pathToSong = _config.SongSavePath + "/" + songObject.id + "_" + songObject.songName + "/";
             File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject));
             for (var index = 0; index < beatmaps.Length; index++) {
                 var beatmap = beatmaps[index];
                 File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap));
             }
+
+            return null;
         }
 
     

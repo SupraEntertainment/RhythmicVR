@@ -6,7 +6,7 @@ namespace VRRythmGame {
         public TrackingPoint role;
     
         // Start is called before the first frame update
-        void Start() {
+        private void Start() {
             collider.gameObject.AddComponent<Rigidbody>();
             CreateRigidbody(collider.gameObject.GetComponent<Rigidbody>());
         }
@@ -22,12 +22,6 @@ namespace VRRythmGame {
                     Destroy(other.gameObject);
                 }
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
         }
     }
 }
