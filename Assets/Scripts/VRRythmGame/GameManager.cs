@@ -48,14 +48,17 @@ namespace VRRythmGame {
             LEFT_MAT = leftMaterial;
             RIGHT_MAT = rightMaterial;
             CENTER_MAT = centerMaterial;
+            
+            var logdir = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
         
             // load config file / create if it doesn't exist already
             try {
-                _config = JsonUtility.FromJson<Config>(File.ReadAllText(Application.dataPath));
+                _config = JsonUtility.FromJson<Config>(File.ReadAllText(logdir + Path.DirectorySeparatorChar + "config.json"));
             }
             catch (Exception e) {
                 Console.WriteLine(e);
                 _config = new Config();
+                File.WriteAllText(logdir + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(_config));
             }
         
             // create debug beatmap
@@ -107,12 +110,18 @@ namespace VRRythmGame {
 
         // load a song
         public void LoadSong(string songpath) {
-            //StartBeatmap(song.bea);
+            var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath));
+            /*for (var index = 0; index < beatmaps.Length; index++) {
+                var beatmap = beatmaps[index];
+                File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap));
+            }*/
+            StartBeatmap(song, song.difficulties[0]);
         }
 
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty) {
             Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.SongSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
+            StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
 
@@ -178,13 +187,14 @@ namespace VRRythmGame {
     }
 
     /*
- * config object containing all stored values
- */
+     * config object containing all stored values
+     */
+    [Serializable]
     internal class Config {
         public string SongSavePath { get; set; }
 
         public Config() {
-            SongSavePath = Application.consoleLogPath;
+            SongSavePath = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
         }
     }
 }
