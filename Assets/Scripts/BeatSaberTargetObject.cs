@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using VRRythmGame;
+
 public class BeatSaberTargetObject : TargetObject {
 	
 	
