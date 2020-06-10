@@ -63,7 +63,7 @@ namespace VRRythmGame {
             }
         
             // create debug beatmap
-            var bm = new Beatmap();
+            /*var bm = new Beatmap();
             List<TrackingPoint[]> possibleTypes = new List<TrackingPoint[]>(); 
             possibleTypes.Add(new TrackingPoint[]{TrackingPoint.LeftFoot});
             possibleTypes.Add(new TrackingPoint[]{TrackingPoint.LeftHand});
@@ -84,7 +84,7 @@ namespace VRRythmGame {
 
             bm.notes = notes.ToArray();
             // play beatmap
-            StartCoroutine(PlayBeatmap(bm));
+            StartCoroutine(PlayBeatmap(bm));*/
         }
 
         private void FixedUpdate() {
@@ -111,17 +111,13 @@ namespace VRRythmGame {
 
         // load a song
         public void LoadSong(string songpath) {
-            var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath));
-            /*for (var index = 0; index < beatmaps.Length; index++) {
-                var beatmap = beatmaps[index];
-                File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap));
-            }*/
+            var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
             StartBeatmap(song, song.difficulties[0]);
         }
 
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty) {
-            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.songSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
+            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
             StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
@@ -139,14 +135,17 @@ namespace VRRythmGame {
 
         // write song and all beatmaps to their files
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
-            string pathToSong = _config.songSavePath + "/" + songObject.id + "_" + songObject.songName + "/";
-            File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject));
+            string pathToSong = _config.songSavePath + songObject.id + "_" + songObject.songName + Path.DirectorySeparatorChar;
+            if (!Directory.Exists(pathToSong)) {
+                Directory.CreateDirectory(pathToSong);
+            }
+            File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject, true));
             for (var index = 0; index < beatmaps.Length; index++) {
                 var beatmap = beatmaps[index];
-                File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap));
+                File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap, true));
             }
 
-            return null;
+            return pathToSong;
         }
 
     

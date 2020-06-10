@@ -11,7 +11,7 @@ namespace VRRythmGame.BeatSaber.MappingExtensions {
 		private string[] _bookmarks = new string[]{};
 
 		public VRRythmGame.Beatmap ToBeatmap() {
-			List<MapEvent> events = new List<MapEvent>();
+			List<Event> events = new List<Event>();
 			foreach (var bsEvent in _events) {
 				events.Add(bsEvent.ToEvent());
 			}

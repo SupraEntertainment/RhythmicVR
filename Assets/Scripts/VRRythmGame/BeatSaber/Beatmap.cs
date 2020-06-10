@@ -5,15 +5,15 @@ using UnityEngine;
 namespace VRRythmGame.BeatSaber {
 	[System.Serializable]
 	public class Beatmap {
-		private double _time = 0;
-		private object[] _BPMChanges = {0};
-		private Event[] _events = new Event[]{};
-		private Note[] _notes = new Note[]{};
-		private Obstacle[] _obstacles = new Obstacle[]{};
-		private object[] _bookmarks = new object[]{};
+		public float _time = 0;
+		public object[] _BPMChanges = {0};
+		public Event[] _events = new Event[]{};
+		public Note[] _notes = new Note[]{};
+		public Obstacle[] _obstacles = new Obstacle[]{};
+		public object[] _bookmarks = new object[]{};
 
 		public VRRythmGame.Beatmap ToBeatmap() {
-			List<MapEvent> events = new List<MapEvent>();
+			List<VRRythmGame.Event> events = new List<VRRythmGame.Event>();
 			foreach (var bsEvent in _events) {
 				events.Add(bsEvent.ToEvent());
 			}
@@ -32,26 +32,26 @@ namespace VRRythmGame.BeatSaber {
 		
 		[System.Serializable]
 		public class Event {
-			private double _time;
-			private int _type;
-			private double _value;
+			public float _time;
+			public int _type;
+			public int _value;
 
-			public MapEvent ToEvent() {
-				var mapEvent = new MapEvent();
+			public VRRythmGame.Event ToEvent() {
+				var mapEvent = new VRRythmGame.Event();
 				return mapEvent;
 			}
 		}
 		
 		[System.Serializable]
 		public class Note {
-			private double _time;
-			private int _lineIndex;
-			private int _lineLayer;
-			private int _type;
-			private int _cutDirection;
+			public float _time;
+			public int _lineIndex;
+			public int _lineLayer;
+			public int _type;
+			public int _cutDirection;
 
 			public VRRythmGame.Note ToNote() {
-				return new VRRythmGame.Note(float.Parse(_time.ToString()), 
+				return new VRRythmGame.Note(_time, 
 				                            _lineIndex/2 -2, 
 				                            _lineLayer/2f, 
 				                            new []{_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand}, 
@@ -61,14 +61,14 @@ namespace VRRythmGame.BeatSaber {
 		
 		[System.Serializable]
 		public class Obstacle {
-			private double _time;
+			private float _time;
 			private int _lineIndex;
 			private int _type;
 			private double _duration;
 			private int _width;
 
 			public VRRythmGame.Obstacle ToObstacle() {
-				return new VRRythmGame.Obstacle(float.Parse(_time.ToString()), 
+				return new VRRythmGame.Obstacle(_time, 
 				                                (_lineIndex != 5 ? _lineIndex/2f - 2 : 0), 
 				                                (_type == 0 ? 1.5f : 2f), 
 				                                (_type == 0 ? 1 : 3), 

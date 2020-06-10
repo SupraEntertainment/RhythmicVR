@@ -37,24 +37,21 @@ namespace VRRythmGame.BeatSaber {
                 return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray());
             }
             catch (Exception e) {
-                Debug.LogError(e);
+                Console.WriteLine(e);
                 return null;
             }
         }
         
         public static VRRythmGame.Beatmap LoadDefaultSong(string jsonString) {
-            Beatmap beatmap = JsonUtility.FromJson<Beatmap>(jsonString);
-            return beatmap.ToBeatmap();
+            return JsonUtility.FromJson<Beatmap>(jsonString).ToBeatmap();
         }
     
         public static VRRythmGame.Beatmap LoadMappingExtensionsSong(string jsonString) {
-            MappingExtensions.Beatmap beatmap = JsonUtility.FromJson<MappingExtensions.Beatmap>(jsonString);
-            return beatmap.ToBeatmap();
+            return JsonUtility.FromJson<MappingExtensions.Beatmap>(jsonString).ToBeatmap();
         }
     
         public static VRRythmGame.Beatmap LoadNoodleExtensionsSong(string jsonString) {
-            NoodleExtensions.Beatmap beatmap = JsonUtility.FromJson<NoodleExtensions.Beatmap>(jsonString);
-            return beatmap.ToBeatmap();
+            return JsonUtility.FromJson<NoodleExtensions.Beatmap>(jsonString).ToBeatmap();
         }
     }
 }

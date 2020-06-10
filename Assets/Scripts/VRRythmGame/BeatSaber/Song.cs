@@ -1,4 +1,6 @@
-﻿namespace VRRythmGame.BeatSaber {
+﻿using System.Collections.Generic;
+
+namespace VRRythmGame.BeatSaber {
 	
 	[System.Serializable]
 	public class Song {
@@ -20,7 +22,33 @@
 		public DifficultyBeatmapSet[] _difficultyBeatmapSets = new DifficultyBeatmapSet[]{};
 
 		public VRRythmGame.Song ToSong() {
-			return new VRRythmGame.Song();
+			var song = new VRRythmGame.Song();
+			song.songName = _songName;
+			song.environment = _environmentName;
+			song.songAuthorName = _songAuthorName;
+			song.levelAuthorName = _levelAuthorName;
+			song.trackingPoints = new TrackingPoint[] {TrackingPoint.LeftHand, TrackingPoint.RightHand};
+			song.albumName = _songSubName;
+			song.beatsPerMinute = _beatsPerMinute;
+			song.previewStartTime = float.Parse(_previewStartTime.ToString());
+			song.songFile = _songFilename;
+			song.coverImageFile = _coverImageFilename;
+			song.startTimeOffset = (float)_songTimeOffset;
+			List<Difficulty> difficulties = new List<Difficulty>();
+			
+			foreach (var difficulty in _difficultyBeatmapSets) {
+				foreach (var difficultyBeatmap in difficulty._difficultyBeatmaps) {
+					Difficulty diffic = new Difficulty();
+					diffic.name = difficultyBeatmap._difficulty;
+					diffic.difficulty = difficultyBeatmap._difficultyRank;
+					diffic.beatMapAuthor = _levelAuthorName;
+					diffic.beatMapPath = difficultyBeatmap._beatmapFilename;
+					difficulties.Add(diffic);
+				}
+			}
+			song.difficulties = difficulties.ToArray();
+			
+			return song;
 		}
 	}
 	

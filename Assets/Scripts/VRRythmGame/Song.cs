@@ -12,7 +12,7 @@
 		public float previewStartTime;
 		public string songFile = "song.eeg";
 		public string coverImageFile = "cover.jpg";
-		public string startTimeOffset;
+		public float startTimeOffset;
 		public TrackingPoint[] trackingPoints;
 		public string leftHandTool;
 		public string rightHandTool;
