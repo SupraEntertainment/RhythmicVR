@@ -58,6 +58,7 @@ namespace VRRythmGame {
             catch (Exception e) {
                 Console.WriteLine(e);
                 _config = new Config();
+                _config.songSavePath = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
                 File.WriteAllText(logdir + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(_config));
             }
         
@@ -120,7 +121,7 @@ namespace VRRythmGame {
 
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty) {
-            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.SongSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
+            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.songSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
             StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
@@ -138,7 +139,7 @@ namespace VRRythmGame {
 
         // write song and all beatmaps to their files
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
-            string pathToSong = _config.SongSavePath + "/" + songObject.id + "_" + songObject.songName + "/";
+            string pathToSong = _config.songSavePath + "/" + songObject.id + "_" + songObject.songName + "/";
             File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject));
             for (var index = 0; index < beatmaps.Length; index++) {
                 var beatmap = beatmaps[index];
@@ -191,10 +192,6 @@ namespace VRRythmGame {
      */
     [Serializable]
     internal class Config {
-        public string SongSavePath { get; set; }
-
-        public Config() {
-            SongSavePath = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
-        }
+        public string songSavePath;
     }
 }
