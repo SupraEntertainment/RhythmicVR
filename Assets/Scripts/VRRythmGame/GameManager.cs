@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using Valve.VR;
 using Random = UnityEngine.Random;
 
 namespace VRRythmGame {
@@ -87,10 +85,6 @@ namespace VRRythmGame {
             StartCoroutine(PlayBeatmap(bm));*/
         }
 
-        private void FixedUpdate() {
-            //SpawnTarget(1f, Random.value *2 - 1, Random.value *2, Random.value *360, /*Random.value *360*/ 0, );
-        }
-
         // return tag string for tracker role 
         private string TrackerRoleToTag(TrackingPoint role) {
             switch (role) {
@@ -112,13 +106,15 @@ namespace VRRythmGame {
         // load a song
         public void LoadSong(string songpath) {
             var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
+            Debug.Log("Loaded Song " + song.songName + " by " + song.songAuthorName);
+            Debug.Log("Playing Beatmap " + song.difficulties[0].name + " by " + song.difficulties[0].beatMapAuthor);
             StartBeatmap(song, song.difficulties[0]);
         }
 
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty) {
             Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
-            StopCoroutine(PlayBeatmap(bm));
+            //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
 
@@ -127,10 +123,14 @@ namespace VRRythmGame {
             float currentTime = 0;
             for (int i = 0; i < bm.notes.Length; i++) {
                 var note = bm.notes[i];
+                Debug.Log("Wait time: " + (note.time - currentTime));
                 yield return new WaitForSeconds(note.time - currentTime);
                 currentTime = note.time;
+                Debug.Log("Current Time: " + currentTime);
                 SpawnTarget(note.speed, note.xPos, note.yPos, note.cutDirection, note.rotation, note.type);
             }
+
+            Debug.Log("Finnished placing target objects");
         }
 
         // write song and all beatmaps to their files
