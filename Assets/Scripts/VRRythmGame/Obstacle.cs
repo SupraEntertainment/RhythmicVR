@@ -1,4 +1,6 @@
 ﻿namespace VRRythmGame {
+	
+	[System.Serializable]
 	public class Obstacle {
 		public float time = 1;
 		public float xPos = 1;
