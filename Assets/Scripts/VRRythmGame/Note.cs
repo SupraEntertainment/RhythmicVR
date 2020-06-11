@@ -17,12 +17,6 @@
             this.rotation = rotation;
         }
 
-        public Note(float time, float xPos, float yPos, TrackingPoint[] type, float cutDirection) {
-            this.time = time;
-            this.type = type;
-            this.cutDirection = cutDirection;
-        }
-
         public Note() {
         }
     }

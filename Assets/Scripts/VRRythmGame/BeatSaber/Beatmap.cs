@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,11 +51,13 @@ namespace VRRythmGame.BeatSaber {
 			public int _cutDirection;
 
 			public VRRythmGame.Note ToNote() {
-				return new VRRythmGame.Note(_time, 
-				                            _lineIndex/2 -2, 
-				                            _lineLayer/2f, 
-				                            new []{_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand}, 
-				                            _cutDirection);
+				var note = new VRRythmGame.Note();
+				note.time = _time;
+				note.xPos = _lineIndex -2 / 2f;
+				note.yPos = _lineLayer / 2f;
+				note.type = new[] {_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand};
+				note.cutDirection = _cutDirection;
+				return note;
 			}
 		}
 		

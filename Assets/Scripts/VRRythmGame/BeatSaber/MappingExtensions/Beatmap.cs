@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace VRRythmGame.BeatSaber.MappingExtensions {
 	[System.Serializable]
@@ -35,11 +35,13 @@ namespace VRRythmGame.BeatSaber.MappingExtensions {
 			private float _cutDirection;
 
 			public VRRythmGame.Note ToNote() {
-				return new VRRythmGame.Note(_time, 
-				                            _lineIndex/2 -2, 
-				                            _lineLayer/2f, 
-				                            _type == 0 ? new []{TrackingPoint.LeftHand} : new TrackingPoint[]{TrackingPoint.RightHand}, 
-				                            _cutDirection);
+				var note = new VRRythmGame.Note();
+				note.time = _time;
+				note.xPos = _lineIndex / 1000f;
+				note.yPos = _lineLayer / 1000f;
+				note.type = new[] {_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand};
+				note.cutDirection = _cutDirection;
+				return note;
 			}
 		}
 	
