@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,11 +63,11 @@ namespace VRRythmGame.BeatSaber {
 		
 		[System.Serializable]
 		public class Obstacle {
-			private float _time;
-			private int _lineIndex;
-			private int _type;
-			private double _duration;
-			private int _width;
+			public float _time;
+			public int _lineIndex;
+			public int _type;
+			public double _duration;
+			public int _width;
 
 			public VRRythmGame.Obstacle ToObstacle() {
 				return new VRRythmGame.Obstacle(_time, 

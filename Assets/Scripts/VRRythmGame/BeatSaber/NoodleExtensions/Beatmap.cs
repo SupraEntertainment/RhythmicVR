@@ -1,14 +1,14 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace VRRythmGame.BeatSaber.NoodleExtensions {
 	[System.Serializable]
 	public class Beatmap {
-		private int _time = 0;
-		private int[] _BPMChanges = {0};
-		private BeatSaber.Beatmap.Event[] _events = new BeatSaber.Beatmap.Event[]{};
-		private Note[] _notes = new Note[]{};
-		private Obstacle[] _obstacles = new Obstacle[]{};
-		private string[] _bookmarks = new string[]{};
+		public int _time = 0;
+		public int[] _BPMChanges = {0};
+		public BeatSaber.Beatmap.Event[] _events = new BeatSaber.Beatmap.Event[]{};
+		public Note[] _notes = new Note[]{};
+		public Obstacle[] _obstacles = new Obstacle[]{};
+		public string[] _bookmarks = new string[]{};
 
 		public VRRythmGame.Beatmap ToBeatmap() {
 			List<Event> events = new List<Event>();
@@ -28,11 +28,11 @@ namespace VRRythmGame.BeatSaber.NoodleExtensions {
 		
 		[System.Serializable]
 		public class Note {
-			private float _time;
-			private int _lineIndex;
-			private float _lineLayer;
-			private int _type;
-			private float _cutDirection;
+			public float _time;
+			public int _lineIndex;
+			public float _lineLayer;
+			public int _type;
+			public float _cutDirection;
 
 			public VRRythmGame.Note ToNote() {
 				var note = new VRRythmGame.Note();
@@ -47,11 +47,11 @@ namespace VRRythmGame.BeatSaber.NoodleExtensions {
 		
 		[System.Serializable]
 		public class Obstacle {
-			private float _time;
-			private int _lineIndex;
-			private int _type;
-			private float _duration;
-			private int _width;
+			public float _time;
+			public int _lineIndex;
+			public int _type;
+			public float _duration;
+			public int _width;
 
 			public VRRythmGame.Obstacle ToObstacle() {
 				return new VRRythmGame.Obstacle(_time, 
