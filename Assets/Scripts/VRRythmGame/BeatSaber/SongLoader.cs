@@ -20,7 +20,7 @@ namespace VRRythmGame.BeatSaber {
                         var beatmapPath = filePath + Path.DirectorySeparatorChar + difficultyBeatmap._beatmapFilename;
                         string beatmapJson = File.ReadAllText(beatmapPath);
                         VRRythmGame.Beatmap bm;
-                        if (difficultyBeatmap._customData[0]._requirements.Contains("Mapping Extensions")) { //Array.IndexOf(difficultyBeatmap._customData._requirements, "Mapping Extensions") > -1) { 
+                        if (difficultyBeatmap._customData._requirements.Contains("Mapping Extensions")) { //Array.IndexOf(difficultyBeatmap._customData._requirements, "Mapping Extensions") > -1) { 
                             bm = JsonUtility.FromJson<MappingExtensions.Beatmap>(beatmapJson).ToBeatmap();
                         } else if (difficultyBeatmap._customData._requirements.Contains("Noodle Extensions")) {
                             bm = JsonUtility.FromJson<NoodleExtensions.Beatmap>(beatmapJson).ToBeatmap();

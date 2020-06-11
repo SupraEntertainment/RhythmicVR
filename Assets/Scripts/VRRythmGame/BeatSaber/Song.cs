@@ -68,7 +68,7 @@ namespace VRRythmGame.BeatSaber {
 		public string[] _warnings = new string[]{};
 		public string[] _information = new string[]{};
 		public string[] _suggestions = new string[]{};
-		public string[] _requirements = new string[]{""};
+		public string[] _requirements = new string[]{};
 	}
 
 	[System.Serializable]
@@ -79,7 +79,7 @@ namespace VRRythmGame.BeatSaber {
 		public string _beatmapFilename;
 		public int _noteJumpMovementSpeed;
 		public int _noteJumpStartBeatOffset;
-		public CustomDifficultyData[] _customData = new CustomDifficultyData[]{new CustomDifficultyData()};
+		public CustomDifficultyData _customData;
 	}
 
 	[System.Serializable]
