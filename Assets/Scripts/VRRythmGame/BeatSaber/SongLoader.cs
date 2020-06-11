@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using VRRythmGame.BeatSaber.MappingExtensions;
-using VRRythmGame.BeatSaber.NoodleExtensions;
 
 namespace VRRythmGame.BeatSaber {
     public class SongLoader {
@@ -22,12 +20,12 @@ namespace VRRythmGame.BeatSaber {
                         var beatmapPath = filePath + Path.DirectorySeparatorChar + difficultyBeatmap._beatmapFilename;
                         string beatmapJson = File.ReadAllText(beatmapPath);
                         VRRythmGame.Beatmap bm;
-                        if (difficultyBeatmap._customData[0]._requirements.Contains("Mapping Extensions")) { //Array.IndexOf(difficultyBeatmap._customData[0]._requirements, "Mapping Extensions") > -1) {
-                            bm = LoadMappingExtensionsSong(beatmapJson);
-                        } else if (difficultyBeatmap._customData[0]._requirements.Contains("Noodle Extensions")) {
-                            bm = LoadNoodleExtensionsSong(beatmapJson);
+                        if (difficultyBeatmap._customData[0]._requirements.Contains("Mapping Extensions")) { //Array.IndexOf(difficultyBeatmap._customData._requirements, "Mapping Extensions") > -1) { 
+                            bm = JsonUtility.FromJson<MappingExtensions.Beatmap>(beatmapJson).ToBeatmap();
+                        } else if (difficultyBeatmap._customData._requirements.Contains("Noodle Extensions")) {
+                            bm = JsonUtility.FromJson<NoodleExtensions.Beatmap>(beatmapJson).ToBeatmap();
                         }else {
-                            bm = LoadDefaultSong(beatmapJson);
+                            bm = JsonUtility.FromJson<Beatmap>(beatmapJson).ToBeatmap();
                         }
                         convertedBeatmaps.Add(bm);
                     }
@@ -40,18 +38,6 @@ namespace VRRythmGame.BeatSaber {
                 Console.WriteLine(e);
                 return null;
             }
-        }
-        
-        public static VRRythmGame.Beatmap LoadDefaultSong(string jsonString) {
-            return JsonUtility.FromJson<Beatmap>(jsonString).ToBeatmap();
-        }
-    
-        public static VRRythmGame.Beatmap LoadMappingExtensionsSong(string jsonString) {
-            return JsonUtility.FromJson<MappingExtensions.Beatmap>(jsonString).ToBeatmap();
-        }
-    
-        public static VRRythmGame.Beatmap LoadNoodleExtensionsSong(string jsonString) {
-            return JsonUtility.FromJson<NoodleExtensions.Beatmap>(jsonString).ToBeatmap();
         }
     }
 }
