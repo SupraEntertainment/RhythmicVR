@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StereoRenderingMode: 1
   InitializationType: 1
-  EditorAppKey: application.generated.unity.legacy.vrrythmgame.360663328.exe
-  IsLegacy: 1
-  ActionManifestFileRelativeFilePath: E:/Unity/VRRythmGame/Assets/StreamingAssets\SteamVR\legacy_manifest.json
-  MirrorViewMode: 3
+  EditorAppKey: application.generated.unity.vrrythmgame.exe
+  IsLegacy: 0
+  ActionManifestFileRelativeFilePath: E:/Unity/VRRythmGame/Assets/StreamingAssets\SteamVR\actions.json
+  MirrorViewMode: 2
   HasCopiedDefaults: 0
