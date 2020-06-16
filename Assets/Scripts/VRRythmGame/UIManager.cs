@@ -1,9 +1,11 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using SFB;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace VRRythmGame {
-    public class Buttonfunctions : MonoBehaviour {
+    public class UIManager : MonoBehaviour {
 
         public GameManager gm;
     
@@ -21,6 +23,15 @@ namespace VRRythmGame {
                     gm.LoadSong(path + Path.DirectorySeparatorChar);
                 }
             });
+        }
+
+        public void ListAllSongs(RectTransform parent, List<Song> songs, GameObject buttonPrefab) {
+            foreach (var song in songs) {
+                GameObject button = Instantiate(buttonPrefab, parent);
+                button.GetComponentInChildren<Text>().text =
+                    song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
+                
+            }
         }
     }
 }

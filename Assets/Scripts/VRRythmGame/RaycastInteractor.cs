@@ -1,67 +1,57 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using Valve.VR;
 
 namespace VRRythmGame {
     public class RaycastInteractor : MonoBehaviour {
 
-        public Vector3 direction;
-        public SteamVR_Action_Boolean menuClick;
-        public GameObject canvas;
-        public Plane uiPanel;
+        public float defaultLength = 5.0f;
         public GameObject uiDotPrefab;
+        public OpenVRInputModule inputModule;
+        
+        private LineRenderer _lineRenderer = null;
         private GameObject _uiDot;
-        PointerEventData m_PointerEventData;
-        EventSystem m_EventSystem;
 
-        void Start()
-        {
-            
-            uiPanel = new Plane(canvas.transform.forward, -canvas.transform.position.z);
-            //Fetch the Event System from the Scene
-            m_EventSystem = GetComponent<EventSystem>();
+        private void Awake() {
+            _lineRenderer = GetComponent<LineRenderer>();
         }
 
         void Update() {
-            Ray ray = new Ray(new Vector3(0, 0, 1), transform.forward);
-            Debug.DrawRay(transform.position, transform.forward, Color.magenta);
-            
-            float enter;
+            UpdateLine();
+        }
 
-            if (uiPanel.Raycast(ray, out enter)) {
-                Vector3 hit = ray.GetPoint(enter);
-                Debug.Log("hit?");
+        private void UpdateLine() {
+            // get length
+            PointerEventData data = inputModule.GetData();
+            float targetlength = data.pointerCurrentRaycast.distance == 0 ? defaultLength : data.pointerCurrentRaycast.distance;
+
+            RaycastHit hit = CreateRaycast(targetlength);
+            
+            Vector3 hitPoint = transform.position + (transform.forward * targetlength);
+
+            if (hit.collider != null) {
+
+                hitPoint = hit.point;
 
                 if (_uiDot == null) {
-                    _uiDot = Instantiate(uiDotPrefab, hit, Quaternion.Euler(uiPanel.normal));
+                    _uiDot = Instantiate(uiDotPrefab, hitPoint, Quaternion.Euler(hit.collider.gameObject.transform.forward));
                 } else {
-                    _uiDot.transform.position = hit;
-                }
-                
-                //send hit to the canvas
-                //Set up the new Pointer Event
-                m_PointerEventData = new PointerEventData(m_EventSystem);
-                //Set the Pointer Event Position to that of the mouse position
-                m_PointerEventData.position = hit;
-                
-                
-                
-                if (menuClick.state) {
-                    //do the click
-                    Debug.Log("HELP!");
+                    _uiDot.transform.position = hitPoint;
                 }
             }
             else {
                 Destroy(_uiDot);
             }
             
-            
-            //Check if the left Mouse button is clicked
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-            }
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(0, hitPoint);
+        }
+
+        private RaycastHit CreateRaycast(float length) {
+            RaycastHit hit = new RaycastHit();
+            Ray ray = new Ray(transform.position, transform.forward);
+
+            Physics.Raycast(ray, out hit, defaultLength);
+            return hit;
         }
     }
 }
