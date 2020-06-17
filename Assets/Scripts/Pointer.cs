@@ -64,4 +64,9 @@ public class Pointer : MonoBehaviour
 
         return hit;
     }
+
+    public void ToggleLaser(bool state) {
+        dot.SetActive(state);
+        lineRenderer.enabled = state;
+    }
 }

@@ -1,16 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class VRInputModule : BaseInputModule
 {
-    [SerializeField] private Pointer pointer = null;
+    [SerializeField] private List<Pointer> pointers = new List<Pointer>();
+    private Pointer _currentPointer = null;
 
     public PointerEventData Data { get; private set; } = null;
 
-    protected override void Start()
-    {
+    protected override void Start() {
         Data = new PointerEventData(eventSystem);
-        Data.position = new Vector2(pointer.Camera.pixelWidth / 2, pointer.Camera.pixelHeight / 2);
+        SetPointer(0);
+    }
+
+    protected void SetPointer(int id) {
+        foreach (var pointer in pointers) {
+            pointer.ToggleLaser(false);
+        }
+        _currentPointer = pointers[id];
+        _currentPointer.ToggleLaser(true);
+        Data.position = new Vector2(_currentPointer.Camera.pixelWidth / 2f, _currentPointer.Camera.pixelHeight / 2f);
+        Canvas[] canvases = FindObjectsOfType<Canvas>();
+        foreach (var canvas in canvases) {
+            canvas.worldCamera = _currentPointer.Camera;
+        }
     }
 
     public override void Process()
