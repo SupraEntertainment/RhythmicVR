@@ -14,14 +14,14 @@ namespace VRRythmGame {
         public static GameObject OBSTACLE;
     
         [Header("Materials")]
-        public static Material AMBIGUOUS_MAT;
-        public static Material LEFT_MAT;
-        public static Material RIGHT_MAT;
-        public static Material CENTER_MAT;
         public Material ambiguousMaterial;
         public Material leftMaterial;
         public Material rightMaterial;
         public Material centerMaterial;
+        public static Material AMBIGUOUS_MAT;
+        public static Material LEFT_MAT;
+        public static Material RIGHT_MAT;
+        public static Material CENTER_MAT;
 
         [Header("Tracking points")] 
         public Transform leftHand;
@@ -29,8 +29,8 @@ namespace VRRythmGame {
         public Transform leftFoot;
         public Transform rightFoot;
         public Transform waist;
-    
-        [Header("Other Properties")]
+
+        [Header("Other Properties")] 
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
         private Config _config;
@@ -105,10 +105,14 @@ namespace VRRythmGame {
 
         // load a song
         public void LoadSong(string songpath) {
-            var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
+            var song = ReadSongFromFile(songpath);
             Debug.Log("Loaded Song " + song.songName + " by " + song.songAuthorName);
             Debug.Log("Playing Beatmap " + song.difficulties[0].name + " by " + song.difficulties[0].beatMapAuthor);
             StartBeatmap(song, song.difficulties[0]);
+        }
+
+        public static Song ReadSongFromFile(string songpath) {
+            return JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
         }
 
         // start the selected beatmap
