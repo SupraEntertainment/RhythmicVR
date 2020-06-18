@@ -35,8 +35,19 @@ namespace VRRythmGame {
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
         public Config config;
+        public SongList songList = new SongList();
 
-        void Start() {
+        private void Start() {
+            InitStaticVariables();
+
+            InitConfig();
+            
+            LoadSongsIntoSongList();
+
+            //RunATestSong();
+        }
+
+        private void InitStaticVariables() {
             // set all static values
             TARGET = target;
             OBSTACLE = obstacle;
@@ -47,7 +58,9 @@ namespace VRRythmGame {
             LEFT_MAT = leftMaterial;
             RIGHT_MAT = rightMaterial;
             CENTER_MAT = centerMaterial;
-            
+        }
+
+        private void InitConfig() {
             var logdir = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
         
             // load config file / create if it doesn't exist already
@@ -62,7 +75,10 @@ namespace VRRythmGame {
                 config.Save();
             }
             
-            //RunATestSong();
+        }
+
+        private void LoadSongsIntoSongList() {
+            
         }
 
         private void RunATestSong() {
