@@ -14,14 +14,10 @@ namespace VRRythmGame {
         [Header("UI Prefabs")]
         public GameObject songListItem;
 
+        private List<GameObject> _loadedSongs = new List<GameObject>();
+
         public void Start() {
-            List<Song> songs = new List<Song>();
-            string[] paths = Directory.GetDirectories(gm.config.songSavePath);
-            foreach (var path in paths) {
-                songs.Add(GameManager.ReadSongFromFile(path));
-            }
-            
-            ListAllSongs(songListParent, songs, songListItem);
+            ListSongs(gm.songList.GetAllSongs());
         }
 
         public void LoadBeatSaberMap() {
@@ -40,10 +36,27 @@ namespace VRRythmGame {
             });
         }
 
-        public void ListAllSongs(RectTransform parent, List<Song> songs, GameObject buttonPrefab) {
-            foreach (var song in songs) {
+        public void ListSongs(List<Song> songs) {
+            ListAllSongs(songListParent, songs, songListItem);
+        }
+
+        private void ListAllSongs(RectTransform parent, List<Song> songs, GameObject buttonPrefab) {
+            if (_loadedSongs.Count != 0) {
+                RemoveAllListedSongs();
+            }
+            for (var i = 0; i < songs.Count; i++) {
+                var song = songs[i];
                 GameObject button = Instantiate(buttonPrefab, parent);
                 button.GetComponentInChildren<Text>().text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
+                var rt = button.GetComponent<RectTransform>();
+                button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
+                _loadedSongs.Add(button);
+            }
+        }
+
+        private void RemoveAllListedSongs() {
+            foreach (var loadedSong in _loadedSongs) {
+                Destroy(loadedSong);
             }
         }
     }

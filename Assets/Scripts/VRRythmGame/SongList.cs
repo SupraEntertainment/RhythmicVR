@@ -5,7 +5,11 @@ namespace VRRythmGame {
 	public class SongList {
 		private List<Song> _songlist = new List<Song>();
 
-		public void AddSongs(List<Song> songs) {
+		public void Add(Song song) {
+			_songlist.Add(song);
+		}
+
+		public void AddRange(List<Song> songs) {
 			_songlist.AddRange(songs);
 		}
 

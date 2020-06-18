@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -34,6 +34,7 @@ namespace VRRythmGame {
         [Header("Other Properties")] 
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
+        public UIManager uiManager;
         public Config config;
         public SongList songList = new SongList();
 
@@ -78,7 +79,12 @@ namespace VRRythmGame {
         }
 
         private void LoadSongsIntoSongList() {
-            
+            List<Song> songs = new List<Song>();
+            string[] paths = Directory.GetDirectories(config.songSavePath);
+            foreach (var path in paths) {
+                songs.Add(ReadSongFromPath(path + Path.DirectorySeparatorChar));
+            }
+            songList.AddRange(songs);
         }
 
         private void RunATestSong() {
@@ -127,13 +133,16 @@ namespace VRRythmGame {
 
         // load a song
         public void LoadSong(string songpath) {
-            var song = ReadSongFromFile(songpath);
+            var song = ReadSongFromPath(songpath);
             Debug.Log("Loaded Song " + song.songName + " by " + song.songAuthorName);
-            Debug.Log("Playing Beatmap " + song.difficulties[0].name + " by " + song.difficulties[0].beatMapAuthor);
-            StartBeatmap(song, song.difficulties[0]);
+            songList.Add(song);
+            uiManager.ListSongs(songList.GetAllSongs());
+            //directly play the first beatmap from that song
+            //Debug.Log("Playing Beatmap " + song.difficulties[0].name + " by " + song.difficulties[0].beatMapAuthor);
+            //StartBeatmap(song, song.difficulties[0]);
         }
 
-        public static Song ReadSongFromFile(string songpath) {
+        public static Song ReadSongFromPath(string songpath) {
             return JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
         }
 

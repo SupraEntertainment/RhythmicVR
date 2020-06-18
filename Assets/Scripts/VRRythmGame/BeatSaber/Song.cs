@@ -26,9 +26,9 @@ namespace VRRythmGame.BeatSaber {
 			song.songName = _songName;
 			song.environment = _environmentName;
 			song.songAuthorName = _songAuthorName;
+			song.songSubName = _songSubName;
 			song.levelAuthorName = _levelAuthorName;
 			song.trackingPoints = new TrackingPoint[] {TrackingPoint.LeftHand, TrackingPoint.RightHand};
-			song.albumName = _songSubName;
 			song.beatsPerMinute = _beatsPerMinute;
 			song.previewStartTime = float.Parse(_previewStartTime.ToString());
 			song.songFile = _songFilename;
