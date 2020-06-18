@@ -16,7 +16,7 @@ namespace VRRythmGame {
 
         public void Start() {
             List<Song> songs = new List<Song>();
-            string[] paths = {"", ""}; 
+            string[] paths = Directory.GetDirectories(gm.config.songSavePath);
             foreach (var path in paths) {
                 songs.Add(GameManager.ReadSongFromFile(path));
             }

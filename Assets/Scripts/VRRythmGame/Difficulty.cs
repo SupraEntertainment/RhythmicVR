@@ -7,6 +7,7 @@
 		public string beatMapPath = "normal.json";
 		public string beatMapAuthor;
 		public string description;
+		public string gamemode;
 		public string[] information = {};
 		public string[] recommendedExtensions = {};
 		public string[] requiredExtensions = {};

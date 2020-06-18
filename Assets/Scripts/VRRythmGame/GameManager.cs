@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,7 +34,7 @@ namespace VRRythmGame {
         [Header("Other Properties")] 
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
-        private Config _config;
+        public Config config;
 
         void Start() {
             // set all static values
@@ -51,17 +52,22 @@ namespace VRRythmGame {
         
             // load config file / create if it doesn't exist already
             try {
-                _config = JsonUtility.FromJson<Config>(File.ReadAllText(logdir + Path.DirectorySeparatorChar + "config.json"));
+                config = Config.Load(logdir);
             }
             catch (Exception e) {
                 Console.WriteLine(e);
-                _config = new Config();
-                _config.songSavePath = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
-                File.WriteAllText(logdir + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(_config));
+                config = new Config();
+                config.appData = logdir;
+                config.songSavePath = logdir + "songs" + Path.DirectorySeparatorChar;
+                config.Save();
             }
-        
+            
+            //RunATestSong();
+        }
+
+        private void RunATestSong() {
             // create debug beatmap
-            /*var bm = new Beatmap();
+            var bm = new Beatmap();
             List<TrackingPoint[]> possibleTypes = new List<TrackingPoint[]>(); 
             possibleTypes.Add(new TrackingPoint[]{TrackingPoint.LeftFoot});
             possibleTypes.Add(new TrackingPoint[]{TrackingPoint.LeftHand});
@@ -73,7 +79,7 @@ namespace VRRythmGame {
             for (int i = 0; i < 240; i++) {
                 var note = new Note();
                 note.time = Random.Range((i-0.5f)/4f,(i+0.5f)/4f);
-                note.rotation = i * 6;
+                note.cutDirection = i * 6;
                 note.type = possibleTypes[(int) Math.Floor(Random.value * 6)];
                 note.xPos = Random.value * 2 - 1;
                 note.yPos = Random.value * 2;
@@ -82,7 +88,7 @@ namespace VRRythmGame {
 
             bm.notes = notes.ToArray();
             // play beatmap
-            StartCoroutine(PlayBeatmap(bm));*/
+            StartCoroutine(PlayBeatmap(bm));
         }
 
         // return tag string for tracker role 
@@ -117,7 +123,7 @@ namespace VRRythmGame {
 
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty) {
-            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(_config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
+            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
             //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
@@ -139,7 +145,7 @@ namespace VRRythmGame {
 
         // write song and all beatmaps to their files
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
-            string pathToSong = _config.songSavePath + songObject.id + "_" + songObject.songName + Path.DirectorySeparatorChar;
+            string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName + Path.DirectorySeparatorChar;
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }
@@ -194,7 +200,17 @@ namespace VRRythmGame {
      * config object containing all stored values
      */
     [Serializable]
-    internal class Config {
+    public class Config {
+        
+        public string appData;
         public string songSavePath;
+
+        public void Save() {
+            File.WriteAllText(appData + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(this, true));
+        }
+
+        public static Config Load(string path) {
+            return JsonUtility.FromJson<Config>(File.ReadAllText(path + Path.DirectorySeparatorChar + "config.json"));
+        }
     }
 }
