@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -67,12 +67,11 @@ namespace VRRythmGame {
             // load config file / create if it doesn't exist already
             try {
                 config = Config.Load(logdir);
+                config.Save();
             }
             catch (Exception e) {
                 Console.WriteLine(e);
                 config = new Config();
-                config.appData = logdir;
-                config.songSavePath = logdir + "songs" + Path.DirectorySeparatorChar;
                 config.Save();
             }
             
@@ -229,6 +228,16 @@ namespace VRRythmGame {
         
         public string appData;
         public string songSavePath;
+
+        public Config() {
+            if (appData == null) {
+                appData = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
+            }
+
+            if (songSavePath == null) {
+                songSavePath = appData + "songs" + Path.DirectorySeparatorChar;
+            }
+        }
 
         public void Save() {
             File.WriteAllText(appData + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(this, true));
