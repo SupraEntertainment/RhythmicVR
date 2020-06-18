@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using SFB;
@@ -47,6 +47,9 @@ namespace VRRythmGame {
             if (_loadedSongs.Count != 0) {
                 RemoveAllListedSongs();
             }
+
+            var prt = parent.GetComponent<RectTransform>();
+            prt.sizeDelta = new Vector2(0, 20 + songs.Count * (buttonPrefab.GetComponent<RectTransform>().rect.height+20));
             for (var i = 0; i < songs.Count; i++) {
                 var song = songs[i];
                 GameObject button = Instantiate(buttonPrefab, parent);
