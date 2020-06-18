@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Valve.VR;
 
 public class SteamInputModule : VRInputModule
@@ -20,8 +20,8 @@ public class SteamInputModule : VRInputModule
             if (m_Click.GetStateDown(m_Sources[i])) {
                 if (currentPointerId == i) {
                     Press();
-                }
-                else {
+                    Drag();
+                } else {
                     SetPointer(i);
                     currentPointerId = i;
                 }

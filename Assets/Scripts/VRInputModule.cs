@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -57,6 +57,37 @@ public class VRInputModule : BaseInputModule
         Data.pointerPress = null;
 
         Data.pointerCurrentRaycast.Clear();
+    }
+
+    public void Drag(float pixelDragThresholdMultiplier = 1.0f)
+    {
+        if (!Data.IsPointerMoving() ||
+            Cursor.lockState == CursorLockMode.Locked ||
+            Data.pointerDrag == null)
+            return;
+
+        if (!Data.dragging)
+        {
+            if ((Data.pressPosition - Data.position).sqrMagnitude >= ((eventSystem.pixelDragThreshold * eventSystem.pixelDragThreshold) * pixelDragThresholdMultiplier))
+            {
+                ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.beginDragHandler);
+                Data.dragging = true;
+            }
+        }
+
+        if (Data.dragging)
+        {
+            // If we moved from our initial press object, process an up for that object.
+            if (Data.pointerPress != Data.pointerDrag)
+            {
+                ExecuteEvents.Execute(Data.pointerPress, Data, ExecuteEvents.pointerUpHandler);
+
+                Data.eligibleForClick = false;
+                Data.pointerPress = null;
+                Data.rawPointerPress = null;
+            }
+            ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.dragHandler);
+        }
     }
 
     public void Scroll()
