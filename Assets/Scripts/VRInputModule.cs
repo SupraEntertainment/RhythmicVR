@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -57,5 +57,15 @@ public class VRInputModule : BaseInputModule
         Data.pointerPress = null;
 
         Data.pointerCurrentRaycast.Clear();
+    }
+
+    public void Scroll()
+    {
+        var scrollDelta = Data.scrollDelta;
+        if (!Mathf.Approximately(scrollDelta.sqrMagnitude, 0.0f))
+        {
+            var scrollHandler = ExecuteEvents.GetEventHandler<IScrollHandler>(Data.pointerEnter);
+            ExecuteEvents.ExecuteHierarchy(scrollHandler, Data, ExecuteEvents.scrollHandler);
+        }
     }
 }

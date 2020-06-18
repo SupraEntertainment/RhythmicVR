@@ -1,15 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using SFB;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 
 namespace VRRythmGame {
     public class UIManager : MonoBehaviour {
 
         public GameManager gm;
         public RectTransform songListParent;
+        public SteamVR_ActionSet uiActionSet;
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
@@ -17,6 +19,7 @@ namespace VRRythmGame {
         private List<GameObject> _loadedSongs = new List<GameObject>();
 
         public void Start() {
+            uiActionSet.Activate();
             ListSongs(gm.songList.GetAllSongs());
         }
 

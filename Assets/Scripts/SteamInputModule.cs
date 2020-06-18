@@ -1,4 +1,5 @@
-﻿using Valve.VR;
+using UnityEngine;
+using Valve.VR;
 
 public class SteamInputModule : VRInputModule
 {
@@ -29,6 +30,13 @@ public class SteamInputModule : VRInputModule
             // Release
             if (m_Click.GetStateUp(m_Sources[i])) {
                 Release();
+            }
+            
+            // Scroll
+            if (m_Scroll.changed) {
+                Debug.Log("Scrolled " + m_Scroll.delta);
+                Data.scrollDelta = m_Scroll.delta;
+                Scroll();
             }
         }
     }
