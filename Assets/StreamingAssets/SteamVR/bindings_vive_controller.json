@@ -1,5 +1,12 @@
 {
   "bindings": {
+    "/actions/buggy": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [],
+      "skeleton": []
+    },
     "/actions/default": {
       "chords": [],
       "poses": [
@@ -23,16 +30,6 @@
         }
       ],
       "sources": [
-        {
-          "path": "/user/hand/left/input/trigger",
-          "mode": "button",
-          "parameters": {},
-          "inputs": {
-            "click": {
-              "output": "/actions/default/in/interactui"
-            }
-          }
-        },
         {
           "path": "/user/hand/left/input/grip",
           "mode": "button",
@@ -64,16 +61,6 @@
         {
           "path": "/user/hand/right/input/trigger",
           "mode": "button",
-          "parameters": {},
-          "inputs": {
-            "click": {
-              "output": "/actions/default/in/interactui"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/right/input/trigger",
-          "mode": "button",
           "parameters": {
             "click_activate_threshold": "0.75",
             "click_deactivate_threshold": "0.7"
@@ -81,58 +68,6 @@
           "inputs": {
             "click": {
               "output": "/actions/default/in/grabpinch"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/left/input/trackpad",
-          "mode": "dpad",
-          "parameters": {
-            "deadzone_pct": "90",
-            "overlap_pct": "15",
-            "sub_mode": "click"
-          },
-          "inputs": {
-            "center": {
-              "output": "/actions/default/in/teleport"
-            },
-            "east": {
-              "output": "/actions/default/in/snapturnright"
-            },
-            "north": {
-              "output": "/actions/default/in/teleport"
-            },
-            "south": {
-              "output": "/actions/default/in/teleport"
-            },
-            "west": {
-              "output": "/actions/default/in/snapturnleft"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/right/input/trackpad",
-          "mode": "dpad",
-          "parameters": {
-            "deadzone_pct": "90",
-            "overlap_pct": "15",
-            "sub_mode": "click"
-          },
-          "inputs": {
-            "center": {
-              "output": "/actions/default/in/teleport"
-            },
-            "east": {
-              "output": "/actions/default/in/snapturnright"
-            },
-            "north": {
-              "output": "/actions/default/in/teleport"
-            },
-            "south": {
-              "output": "/actions/default/in/teleport"
-            },
-            "west": {
-              "output": "/actions/default/in/snapturnleft"
             }
           }
         },
@@ -183,54 +118,6 @@
       ]
     },
     "/actions/platformer": {
-      "chords": [],
-      "poses": [],
-      "haptics": [],
-      "sources": [
-        {
-          "path": "/user/hand/left/input/trackpad",
-          "mode": "button",
-          "parameters": {},
-          "inputs": {
-            "click": {
-              "output": "/actions/platformer/in/jump"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/right/input/trackpad",
-          "mode": "button",
-          "parameters": {},
-          "inputs": {
-            "click": {
-              "output": "/actions/platformer/in/jump"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/left/input/trackpad",
-          "mode": "trackpad",
-          "parameters": {},
-          "inputs": {
-            "position": {
-              "output": "/actions/platformer/in/move"
-            }
-          }
-        },
-        {
-          "path": "/user/hand/right/input/trackpad",
-          "mode": "trackpad",
-          "parameters": {},
-          "inputs": {
-            "position": {
-              "output": "/actions/platformer/in/move"
-            }
-          }
-        }
-      ],
-      "skeleton": []
-    },
-    "/actions/legacy": {
       "chords": [],
       "poses": [],
       "haptics": [],

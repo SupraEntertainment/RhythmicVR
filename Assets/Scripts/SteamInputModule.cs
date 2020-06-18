@@ -5,6 +5,7 @@ public class SteamInputModule : VRInputModule
     
     public SteamVR_Input_Sources[] m_Sources = new SteamVR_Input_Sources[]{};
     public SteamVR_Action_Boolean m_Click = null;
+    public SteamVR_Action_Vector2 m_Scroll = null;
 
     private int currentPointerId = 0;
     
