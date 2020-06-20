@@ -22,22 +22,22 @@ namespace VRRythmGame {
 		}
 
 		public List<Song> GetSongsWithBeatmapsOfGamemode(string gamemodeName) {
-			List<Song> localsonglist = new List<Song>();
+			List<Song> localSongList = new List<Song>();
 			foreach (var song in _songlist) {
-				Song localsong = song;
-				List<Difficulty> localdifficulties = new List<Difficulty>();
+				Song localSong = song;
+				List<Difficulty> localDifficulties = new List<Difficulty>();
 				foreach (var difficulty in song.difficulties) {
 					if (difficulty.gamemode == gamemodeName) {
-						localdifficulties.Add(difficulty);
+						localDifficulties.Add(difficulty);
 					}
 				}
 
-				if (localdifficulties.Count >= 0) {
-					localsong.difficulties = localdifficulties.ToArray();
-					localsonglist.Add(localsong);
+				if (localDifficulties.Count >= 0) {
+					localSong.difficulties = localDifficulties.ToArray();
+					localSongList.Add(localSong);
 				}
 			}
-			return _songlist;
+			return localSongList;
 		}
 
 	}

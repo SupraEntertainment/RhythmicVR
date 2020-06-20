@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 1315393800}
   - component: {fileID: 1315393799}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Btn_convertBeatsaberMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1877,8 +1877,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    m_NormalColor: {r: 0, g: 0.5566038, b: 0.5566038, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.3207547, b: 0.3207547, a: 1}
     m_PressedColor: {r: 0, g: 0.6509434, b: 0.6145983, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.46666667}
@@ -2091,7 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4018,8 +4018,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    m_NormalColor: {r: 0, g: 0.5566038, b: 0.5566038, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.3207547, b: 0.3207547, a: 1}
     m_PressedColor: {r: 0, g: 0.6509434, b: 0.6145983, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.46666667}

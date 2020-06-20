@@ -51,30 +51,32 @@ namespace VRRythmGame {
 			Vector3 output = new Vector3();
 
 			input = ApplyScale(input);
-		
-			if (x == Coordinate.X) {
-				output.x = input.x;
-			} else if (x == Coordinate.Y) {
-				output.x = input.y;
-			} else {
-				output.x = input.z;
+
+			var coords = new[] {x, y, z};
+			var outCoords = new[] {0f, 0f, 0f};
+			for (var i = 0; i < coords.Length; i++) {
+				switch (coords[i]) {
+					case Coordinate.X:
+						outCoords[i] = input.x;
+						break;
+					case Coordinate.Y:
+						outCoords[i] = input.y;
+						break;
+					case Coordinate.Z:
+						outCoords[i] = input.z;
+						break;
+					case Coordinate.Negative_X:
+						outCoords[i] = -input.x;
+						break;
+					case Coordinate.Negative_Y:
+						outCoords[i] = -input.y;
+						break;
+					case Coordinate.Negative_Z:
+						outCoords[i] = -input.z;
+						break;
+				}
 			}
-		
-			if (y == Coordinate.X) {
-				output.y = input.x;
-			} else if (y == Coordinate.Y) {
-				output.y = input.y;
-			} else {
-				output.y = input.z;
-			}
-		
-			if (z == Coordinate.X) {
-				output.z = input.x;
-			} else if (z == Coordinate.Y) {
-				output.z = input.y;
-			} else {
-				output.z = input.z;
-			}
+			output = new Vector3(outCoords[0], outCoords[1], outCoords[2]);
 
 			output = ApplyPosition(output);
 
