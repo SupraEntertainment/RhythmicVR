@@ -1,4 +1,4 @@
-# VRRythmGame
+# RythmicVR
 
 The following list contains my plans for this Project:
 - [ ] Modularity / support for multiple gamemodes (addable afterwards -> via assetbundles?)
@@ -17,11 +17,30 @@ The following list contains my plans for this Project:
     - [ ] targets
     - [ ] obstacles
 - [ ] loading of songs / beatmaps from other games
-	- [X] beat saber
-	- [ ] audica
-	- [ ] osu!
-	- [ ] guitar hero (and clones)
-	- [ ] etc...
+    - [X] beat saber
+    - [ ] audica
+    - [ ] osu!
+    - [ ] guitar hero (and clones)
+    - [ ] etc...
+    
+### ToDo
+- [ ] start songs from UI
+- [X] list songs in UI
+- [ ] filter songs in songlist
+    - [ ] by gamemode
+    - [ ] by string (search)
+    - [ ] by song & beatmap properties
+        - [ ] length
+        - [ ] difficulty
+        - [ ] etc...
+- [ ] main menu with button to songlist, multiplayer (possibly, future), settings
+- [ ] settings menu with 
+    - [ ] asset selection
+    - [ ] mod management
+    - [ ] audio settings
+    - [ ] UI style settings
+    - [ ] playspace settings
+    - [ ] controller offset (per gamemode?) settings
 
 ### Screenshots
 --none--
