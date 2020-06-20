@@ -12,6 +12,11 @@ namespace VRRythmGame {
         public GameManager gm;
         public RectTransform songListParent;
         public SteamVR_ActionSet uiActionSet;
+
+        [Header("Menus")] 
+        public GameObject songList;
+        public GameObject mainMenu;
+        public GameObject settingsMenu;
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
@@ -20,7 +25,6 @@ namespace VRRythmGame {
 
         public void Start() {
             uiActionSet.Activate();
-            ListSongs(gm.songList.GetAllSongs());
         }
 
         public void LoadBeatSaberMap() {
@@ -38,6 +42,34 @@ namespace VRRythmGame {
                 }
             });
         }
+        
+        // menu navigation
+
+        public void ToMainMenu() {
+            songList.SetActive(false);
+            mainMenu.SetActive(true);
+            settingsMenu.SetActive(false);
+        }
+
+        public void ToSettingsMenu() {
+            songList.SetActive(false);
+            mainMenu.SetActive(false);
+            settingsMenu.SetActive(true);
+        }
+
+        public void ToSongListMenu() {
+            songList.SetActive(true);
+            mainMenu.SetActive(false);
+            settingsMenu.SetActive(false);
+            ListSongs(gm.songList.GetAllSongs());
+        }
+
+        public void Quit() {
+            Application.Quit();
+        }
+        
+        /*-------------------- ^^ button methods ^^ --------------------------*/
+        /*-------------------- vv songlist vv --------------------------*/
 
         public void ListSongs(List<Song> songs) {
             ListAllSongs(songListParent, songs, songListItem);

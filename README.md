@@ -33,8 +33,12 @@ The following list contains my plans for this Project:
         - [ ] length
         - [ ] difficulty
         - [ ] etc...
-- [ ] main menu with button to songlist, multiplayer (possibly, future), settings
-- [ ] settings menu with 
+- [X] main menu with button to 
+    - [X] songlist
+    - [ ] multiplayer (possibly, future)
+    - [X] settings
+    - [X] quit
+- [X] settings menu with 
     - [ ] asset selection
     - [ ] mod management
     - [ ] audio settings

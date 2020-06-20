@@ -22,7 +22,7 @@ public class VRInputModule : BaseInputModule
         _currentPointer = pointers[id];
         _currentPointer.ToggleLaser(true);
         Data.position = new Vector2(_currentPointer.Camera.pixelWidth / 2f, _currentPointer.Camera.pixelHeight / 2f);
-        Canvas[] canvases = FindObjectsOfType<Canvas>();
+        Canvas[] canvases = Resources.FindObjectsOfTypeAll<Canvas>();
         foreach (var canvas in canvases) {
             canvas.worldCamera = _currentPointer.Camera;
         }
