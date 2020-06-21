@@ -22,13 +22,13 @@ The following list contains my plans for this Project:
     - [ ] osu!
     - [ ] guitar hero (and clones)
     - [ ] etc...
-    
+
 ### ToDo
 - [X] start songs from UI
     - [X] play the beatmap
-    - [ ] play the song
-    - [ ] disable menu
-    - [ ] enable pause button listener
+    - [X] play the song
+    - [X] disable menu
+    - [X] enable pause button listener
 - [X] list songs in UI
 - [ ] filter songs in songlist
     - [ ] by gamemode
@@ -37,12 +37,12 @@ The following list contains my plans for this Project:
         - [ ] length
         - [ ] difficulty
         - [ ] etc...
-- [X] main menu with button to 
+- [X] main menu with button to
     - [X] songlist
     - [X] multiplayer (possibly, future)
     - [X] settings
     - [X] quit
-- [X] settings menu with 
+- [X] settings menu with
     - [ ] asset selection
     - [ ] mod management
     - [ ] audio settings

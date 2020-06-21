@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="130c1005-a044-4781-8677-b5ac35cfe9c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_default.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_default.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SteamVR_Input/SteamVR_Input_Actions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SteamVR_Input/SteamVR_Input_Actions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/actions.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/actions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/bindings_knuckles.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/bindings_knuckles.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/uiShape.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/uiShape.png.meta" afterDir="false" />
-    </list>
+    <list default="true" id="130c1005-a044-4781-8677-b5ac35cfe9c2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592664524105</updated>
       <workItem from="1592664536353" duration="5192000" />
-      <workItem from="1592733863773" duration="15330000" />
+      <workItem from="1592733863773" duration="15756000" />
     </task>
     <servers />
   </component>
