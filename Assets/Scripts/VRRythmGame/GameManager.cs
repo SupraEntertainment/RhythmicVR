@@ -146,7 +146,7 @@ namespace VRRythmGame {
         }
 
         // start the selected beatmap
-        public void StartBeatmap(Song song, Difficulty difficulty) {
+        public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
             Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
             //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
@@ -164,12 +164,12 @@ namespace VRRythmGame {
                 SpawnTarget(note.speed, note.xPos, note.yPos, note.cutDirection, note.rotation, note.type);
             }
 
-            Debug.Log("Finnished placing target objects");
+            Debug.Log("Finished placing target objects");
         }
 
         // write song and all beatmaps to their files
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
-            string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName + Path.DirectorySeparatorChar;
+            string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + Path.DirectorySeparatorChar;
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }
@@ -228,6 +228,7 @@ namespace VRRythmGame {
         
         public string appData;
         public string songSavePath;
+        public string latestSongSortSetting;
 
         public Config() {
             if (appData == null) {

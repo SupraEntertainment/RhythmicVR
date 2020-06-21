@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="130c1005-a044-4781-8677-b5ac35cfe9c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.VRRythmGame/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VRRythmGame/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SongListItem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SongListItem.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SteamInputModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SteamInputModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Coordinate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Coordinate.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SongList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SongList.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TrackedObject.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TrackedObject.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open VR Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open VR Settings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unityProject.vrmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/unityProject.vrmanifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +41,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Coordinate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SongList.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRInputModule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Gamemode.cs" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -89,6 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592664524105</updated>
       <workItem from="1592664536353" duration="5192000" />
+      <workItem from="1592733863773" duration="4378000" />
     </task>
     <servers />
   </component>

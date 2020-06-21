@@ -17,6 +17,11 @@ namespace VRRythmGame {
         public GameObject songList;
         public GameObject mainMenu;
         public GameObject settingsMenu;
+
+        public Button playBeatmapButton;
+        public Button deleteBeatmapButton;
+        public Button practiceBeatmapButton;
+        public Text beatmapTitleText;
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
@@ -25,6 +30,7 @@ namespace VRRythmGame {
 
         public void Start() {
             uiActionSet.Activate();
+            ToMainMenu();
         }
 
         public void LoadBeatSaberMap() {
@@ -88,6 +94,7 @@ namespace VRRythmGame {
                 button.GetComponentInChildren<Text>().text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
                 var rt = button.GetComponent<RectTransform>();
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
+                button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
                 _loadedSongs.Add(button);
             }
         }
@@ -96,6 +103,22 @@ namespace VRRythmGame {
             foreach (var loadedSong in _loadedSongs) {
                 Destroy(loadedSong);
             }
+        }
+        
+        /* Display song info */
+
+        public void DisplaySongInfo(Song song) {
+            Debug.Log("Displaying Song " + song.songName + " by " + song.songAuthorName);
+            
+            // remove listeners from previous song
+            playBeatmapButton.onClick.RemoveAllListeners();
+            deleteBeatmapButton.onClick.RemoveAllListeners();
+            practiceBeatmapButton.onClick.RemoveAllListeners();
+            
+            // add listeners
+            playBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
+            deleteBeatmapButton.onClick.AddListener(delegate {  });
+            practiceBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
         }
     }
 }
