@@ -33,6 +33,11 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/default/in/pause",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

@@ -426,7 +426,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1576197619}
-        m_MethodName: LoadBeatmap
+        m_MethodName: LoadSong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1383,6 +1383,9 @@ MonoBehaviour:
     appData: 
     songSavePath: 
     latestSongSortSetting: 
+  pauseButton:
+    actionPath: /actions/default/in/pause
+    needsReinit: 0
 --- !u!4 &263707703
 Transform:
   m_ObjectHideFlags: 0
@@ -2351,8 +2354,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1576197619}
-        m_MethodName: ToMainMenu
+      - m_Target: {fileID: 263707702}
+        m_MethodName: ExitBeatmap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2481,8 +2484,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1576197619}
-        m_MethodName: ToMainMenu
+      - m_Target: {fileID: 263707701}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3928,7 +3931,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1576197619}
-        m_MethodName: LoadBeatmap
+        m_MethodName: LoadSong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5922,6 +5925,7 @@ MonoBehaviour:
   songList: {fileID: 1741253004}
   mainMenu: {fileID: 469291872}
   settingsMenu: {fileID: 100778712}
+  pauseMenu: {fileID: 1222346176}
   playBeatmapButton: {fileID: 268996277}
   deleteBeatmapButton: {fileID: 1367272300}
   practiceBeatmapButton: {fileID: 2138663254}
@@ -7419,8 +7423,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1576197619}
-        m_MethodName: ToMainMenu
+      - m_Target: {fileID: 263707702}
+        m_MethodName: ContinueBeatmap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -20,18 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="130c1005-a044-4781-8677-b5ac35cfe9c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Util.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Util.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SteamInputModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SteamInputModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/SongLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/SongLoader.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Song.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_default.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SteamVR_Input/ActionSetClasses/SteamVR_Input_ActionSet_default.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SteamVR_Input/SteamVR_Input_Actions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SteamVR_Input/SteamVR_Input_Actions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/actions.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/actions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/bindings_knuckles.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SteamVR/bindings_knuckles.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/uiShape.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/uiShape.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,12 +64,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/VRInputModule.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Gamemode.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SteamInputModule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/SongLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Util.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Song.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -114,7 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592664524105</updated>
       <workItem from="1592664536353" duration="5192000" />
-      <workItem from="1592733863773" duration="9722000" />
+      <workItem from="1592733863773" duration="15330000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using SFB;
@@ -17,7 +17,9 @@ namespace VRRythmGame {
         public GameObject songList;
         public GameObject mainMenu;
         public GameObject settingsMenu;
+        public GameObject pauseMenu;
 
+        [Header("Song Info Panel elements")]
         public Button playBeatmapButton;
         public Button deleteBeatmapButton;
         public Button practiceBeatmapButton;
@@ -59,6 +61,31 @@ namespace VRRythmGame {
         }
         
         // menu navigation
+        
+        public void ShowPauseMenu(int reason) {
+            switch (reason) {
+                case 0: // paused
+                    pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(true);
+                    break;
+                case 1: // completed
+                case 2: // failed
+                    pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
+            pauseMenu.SetActive(true);
+        }
+        
+        public void HidePauseMenu() {
+            pauseMenu.SetActive(false);
+        }
+
+        public void NoMenu() {
+            songList.SetActive(false);
+            mainMenu.SetActive(false);
+            settingsMenu.SetActive(false);
+        }
 
         public void ToMainMenu() {
             songList.SetActive(false);

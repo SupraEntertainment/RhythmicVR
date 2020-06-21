@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Valve.VR;
 using Random = UnityEngine.Random;
 
 namespace VRRythmGame {
@@ -37,6 +38,11 @@ namespace VRRythmGame {
         public UIManager uiManager;
         public Config config;
         public SongList songList = new SongList();
+        public SteamVR_Action_Boolean pauseButton;
+
+        private bool allowPause;
+        private bool isPaused;
+        private Beatmap _currentlyPlayingBeatmap;
 
         private void Start() {
             InitStaticVariables();
@@ -46,6 +52,18 @@ namespace VRRythmGame {
             LoadSongsIntoSongList();
 
             //RunATestSong();
+        }
+
+        private void Update() {
+            if (allowPause) {
+                if (pauseButton.changed) {
+                    if (isPaused) {
+                        ContinueBeatmap();
+                    } else {
+                        StopBeatmap(0);
+                    }
+                }
+            }
         }
 
         private void InitStaticVariables() {
@@ -150,6 +168,9 @@ namespace VRRythmGame {
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
             Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
+            uiManager.NoMenu();
+            allowPause = true;
+            _currentlyPlayingBeatmap = bm;
             //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
@@ -167,6 +188,37 @@ namespace VRRythmGame {
             }
 
             Debug.Log("Finished placing target objects");
+        }
+
+        public void StopBeatmap(int reason) {
+            switch (reason) {
+                case 0: // paused
+                    Time.timeScale = 0;
+                    uiManager.ShowPauseMenu(reason);
+                    break;
+                case 1: // completed
+                    ExitBeatmap();
+                    uiManager.ShowPauseMenu(reason);
+                    break;
+                case 2: // failed
+                    ExitBeatmap();
+                    uiManager.ShowPauseMenu(reason);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void ContinueBeatmap() {
+            Time.timeScale = 1;
+            uiManager.HidePauseMenu();
+        }
+
+        public void ExitBeatmap() {
+            StopCoroutine(PlayBeatmap(_currentlyPlayingBeatmap));
+            allowPause = false;
+            uiManager.ToSongListMenu();
+            uiManager.HidePauseMenu();
         }
 
         // write song and all beatmaps to their files
