@@ -1,6 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using SFB;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,17 +35,25 @@ namespace VRRythmGame {
         }
 
         public void LoadBeatSaberMap() {
-            StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", true, delegate(string[] strings) {
-                foreach (var path in strings) {
-                    gm.LoadSong(BeatSaber.SongLoader.ConvertSong(path, gm));
-                }
-            });
+            new Thread(OpenBeatSaberSong).Start();
         }
     
-        public void LoadBeatmap() {
+        public void LoadSong() {
+            new Thread(OpenSongFile).Start();
+        }
+    
+        public void OpenSongFile() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Load and Play Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
                     gm.LoadSong(path + Path.DirectorySeparatorChar);
+                }
+            });
+        }
+
+        private void OpenBeatSaberSong() {
+            StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", true, delegate(string[] strings) {
+                foreach (var path in strings) {
+                    gm.LoadSong(BeatSaber.SongLoader.ConvertSong(path, gm));
                 }
             });
         }
