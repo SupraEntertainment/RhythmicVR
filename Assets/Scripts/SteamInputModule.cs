@@ -34,7 +34,7 @@ public class SteamInputModule : VRInputModule
             
             // Scroll
             if (m_Scroll.changed) {
-                Debug.Log("Scrolled " + m_Scroll.axis);
+                //Debug.Log("Scrolled " + m_Scroll.axis);
                 Data.scrollDelta = m_Scroll.axis * 20;
                 Scroll();
             }

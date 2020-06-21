@@ -50,6 +50,7 @@
             <e p="TrackedDevicePair.cs" t="Include" />
             <e p="TrackingPoint.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
+            <e p="Util.cs" t="Include" />
           </e>
         </e>
         <e p="StandaloneFileBrowser" t="Include">

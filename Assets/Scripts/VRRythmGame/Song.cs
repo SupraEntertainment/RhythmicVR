@@ -23,6 +23,7 @@
 		public string targetObject = "cube";
 		public string obstacleObject;
 		public Difficulty[] difficulties;
+		[System.NonSerialized] public string pathToDir;
 
 	}
 }

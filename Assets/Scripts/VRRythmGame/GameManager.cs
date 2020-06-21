@@ -142,7 +142,9 @@ namespace VRRythmGame {
         }
 
         public static Song ReadSongFromPath(string songpath) {
-            return JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
+            var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
+            song.pathToDir = songpath;
+            return song;
         }
 
         // start the selected beatmap
@@ -168,12 +170,13 @@ namespace VRRythmGame {
         }
 
         // write song and all beatmaps to their files
-        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps) {
+        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Texture2D cover) {
             string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + Path.DirectorySeparatorChar;
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }
             File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject, true));
+            File.WriteAllBytes(pathToSong + songObject.coverImageFile, cover.GetRawTextureData());
             for (var index = 0; index < beatmaps.Length; index++) {
                 var beatmap = beatmaps[index];
                 File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap, true));

@@ -31,8 +31,10 @@ namespace VRRythmGame.BeatSaber {
                     }
                 }
                 convertedSong = song.ToSong();
+                Texture2D cover = new Texture2D(2, 2);
+                cover.LoadImage(File.ReadAllBytes(filePath + Path.DirectorySeparatorChar + song._coverImageFilename));
 
-                return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray());
+                return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray(), cover);
             }
             catch (Exception e) {
                 Console.WriteLine(e);

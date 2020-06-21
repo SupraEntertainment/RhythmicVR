@@ -22,6 +22,7 @@ namespace VRRythmGame {
         public Button deleteBeatmapButton;
         public Button practiceBeatmapButton;
         public Text beatmapTitleText;
+        public Image beatmapCoverImage;
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
@@ -92,6 +93,7 @@ namespace VRRythmGame {
                 var song = songs[i];
                 GameObject button = Instantiate(buttonPrefab, parent);
                 button.GetComponentInChildren<Text>().text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
+                button.transform.Find("Image").GetComponent<Image>().sprite = Util.LoadSprite(song.pathToDir + song.coverImageFile);
                 var rt = button.GetComponent<RectTransform>();
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
@@ -119,6 +121,10 @@ namespace VRRythmGame {
             playBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
             deleteBeatmapButton.onClick.AddListener(delegate {  });
             practiceBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
+            
+            // set text
+            beatmapTitleText.text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
+            beatmapCoverImage.sprite = Util.LoadSprite(song.pathToDir + song.coverImageFile);
         }
     }
 }

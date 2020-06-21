@@ -24,7 +24,11 @@ The following list contains my plans for this Project:
     - [ ] etc...
     
 ### ToDo
-- [ ] start songs from UI
+- [X] start songs from UI
+    - [X] play the beatmap
+    - [ ] play the song
+    - [ ] disable menu
+    - [ ] enable pause button listener
 - [X] list songs in UI
 - [ ] filter songs in songlist
     - [ ] by gamemode
@@ -35,7 +39,7 @@ The following list contains my plans for this Project:
         - [ ] etc...
 - [X] main menu with button to 
     - [X] songlist
-    - [ ] multiplayer (possibly, future)
+    - [X] multiplayer (possibly, future)
     - [X] settings
     - [X] quit
 - [X] settings menu with 
@@ -47,4 +51,4 @@ The following list contains my plans for this Project:
     - [ ] controller offset (per gamemode?) settings
 
 ### Screenshots
---none--
+![Early Screenshot](https://i.imgur.com/KWZKX2P.png)
