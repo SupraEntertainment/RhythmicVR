@@ -12,12 +12,7 @@
           <e p="BeatSaberTargetObject.cs" t="Include" />
           <e p="OculusInputModule.cs" t="Include" />
           <e p="Pointer.cs" t="Include" />
-          <e p="SteamInputModule.cs" t="Include" />
-          <e p="UnityTemplateProjects" t="Include">
-            <e p="SimpleCameraController.cs" t="Include" />
-          </e>
-          <e p="VRInputModule.cs" t="Include" />
-          <e p="VRRythmGame" t="Include">
+          <e p="RhythmicVR" t="Include">
             <e p="AssetPackage.cs" t="Include" />
             <e p="AssetType.cs" t="Include" />
             <e p="Beatmap.cs" t="Include" />
@@ -57,6 +52,11 @@
             <e p="UIManager.cs" t="Include" />
             <e p="Util.cs" t="Include" />
           </e>
+          <e p="SteamInputModule.cs" t="Include" />
+          <e p="UnityTemplateProjects" t="Include">
+            <e p="SimpleCameraController.cs" t="Include" />
+          </e>
+          <e p="VRInputModule.cs" t="Include" />
         </e>
         <e p="StandaloneFileBrowser" t="Include">
           <e p="IStandaloneFileBrowser.cs" t="Include" />

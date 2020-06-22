@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using VRRythmGame;
+using RhythmicVR;
 
 public class BeatSaberTargetObject : TargetObject {
 	
