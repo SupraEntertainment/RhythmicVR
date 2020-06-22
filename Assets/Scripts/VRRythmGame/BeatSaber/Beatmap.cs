@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace VRRythmGame.BeatSaber {
@@ -26,7 +25,7 @@ namespace VRRythmGame.BeatSaber {
 				obstacles.Add(bsObstacle.ToObstacle());
 			}
 
-			Debug.Log(String.Format("{0}, {1}, {2}", events, notes, obstacles));
+			Debug.Log(($"{0}, {1}, {2}", events, notes, obstacles));
 			return new VRRythmGame.Beatmap(events.ToArray(), notes.ToArray(), obstacles.ToArray());
 		}
 		
@@ -56,7 +55,7 @@ namespace VRRythmGame.BeatSaber {
 				note.xPos = _lineIndex -2 / 2f;
 				note.yPos = _lineLayer / 2f;
 				note.type = new[] {_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand};
-				note.cutDirection = _cutDirection;
+				note.cutDirection = _cutDirection * 45;
 				return note;
 			}
 		}

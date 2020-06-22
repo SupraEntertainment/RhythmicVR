@@ -40,7 +40,7 @@ namespace VRRythmGame.BeatSaber.MappingExtensions {
 				note.xPos = _lineIndex / 1000f;
 				note.yPos = _lineLayer / 1000f;
 				note.type = new[] {_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand};
-				note.cutDirection = _cutDirection;
+				note.cutDirection = _cutDirection * 45;
 				return note;
 			}
 		}
