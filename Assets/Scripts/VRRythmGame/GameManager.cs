@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using Valve.VR;
 using Random = UnityEngine.Random;
@@ -11,9 +12,7 @@ namespace VRRythmGame {
 
         [Header("Prefabs")]
         public GameObject target;
-        public static GameObject TARGET;
         public GameObject obstacle;
-        public static GameObject OBSTACLE;
     
         [Header("Materials")]
         public Material ambiguousMaterial;
@@ -37,17 +36,28 @@ namespace VRRythmGame {
         public static float SPAWN_DISTANCE;
         public UIManager uiManager;
         public Config config;
+        public PluginManager pluginManager;
         public SongList songList = new SongList();
         public SteamVR_Action_Boolean pauseButton;
+        public AssetPackage[] assetPackages;
 
         private bool allowPause;
         private bool isPaused;
+        
         private Beatmap _currentlyPlayingBeatmap;
+        private Gamemode _currentGamemode;
+        private TargetObject _currentTargetObject;
+        private GenericTrackedObject _currentTrackedDeviceObject;
 
         private void Start() {
+            
+            pluginManager = new PluginManager();
+            
             InitStaticVariables();
 
             InitConfig();
+
+            LoadAssets();
             
             LoadSongsIntoSongList();
 
@@ -59,8 +69,10 @@ namespace VRRythmGame {
                 if (pauseButton.changed) {
                     if (isPaused) {
                         ContinueBeatmap();
+                        isPaused = false;
                     } else {
                         StopBeatmap(0);
+                        isPaused = true;
                     }
                 }
             }
@@ -68,9 +80,6 @@ namespace VRRythmGame {
 
         private void InitStaticVariables() {
             // set all static values
-            TARGET = target;
-            OBSTACLE = obstacle;
-
             SPAWN_DISTANCE = spawnDistance;
         
             AMBIGUOUS_MAT = ambiguousMaterial;
@@ -93,6 +102,15 @@ namespace VRRythmGame {
                 config.Save();
             }
             
+        }
+
+        private void LoadAssets() {
+            foreach (var asset in assetPackages) {
+                pluginManager.AddPlugin(asset);
+            }
+
+            _currentGamemode = pluginManager.GetAllGamemodes()[0];
+            LoadGamemode(_currentGamemode);
         }
 
         private void LoadSongsIntoSongList() {
@@ -175,13 +193,13 @@ namespace VRRythmGame {
             StartCoroutine(PlayBeatmap(bm));
         }
 
-        private static IEnumerator PlayBeatmap(Beatmap bm) {
+        private IEnumerator PlayBeatmap(Beatmap bm) {
             //var beatmapLength = bm.notes[bm.notes.Length-1].time;
             float currentTime = 0;
             for (int i = 0; i < bm.notes.Length; i++) {
                 var note = bm.notes[i];
                 Debug.Log("Wait time: " + (note.time - currentTime));
-                yield return new WaitForSeconds(note.time - currentTime);
+                yield return new WaitForSeconds((note.time - currentTime));
                 currentTime = note.time;
                 Debug.Log("Current Time: " + currentTime);
                 SpawnTarget(note.speed, note.xPos, note.yPos, note.cutDirection, note.rotation, note.type);
@@ -243,6 +261,7 @@ namespace VRRythmGame {
      */
         public void LoadGamemode(Gamemode gm) {
             target = gm.targetObject;
+            _currentTargetObject = target.GetComponent<TargetObject>();
             foreach (var trackedDevicePair in gm.trackedObjects) {
                 trackedDevicePair.prefab.GetComponent<GenericTrackedObject>().collider.gameObject.tag = TrackerRoleToTag(trackedDevicePair.role);
                 Transform tracker;
@@ -264,13 +283,13 @@ namespace VRRythmGame {
         }
     
         // spawn a target object (switching target objects for gamemodes is still missing!)
-        public static void SpawnTarget(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, TrackingPoint[] hand) {
-            GameObject cube = Instantiate(TARGET, new Vector3(xCoord, yCoord, SPAWN_DISTANCE), new Quaternion(0, 0, viewRotation, 0));
+        public void SpawnTarget(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, TrackingPoint[] hand) {
+            GameObject cube = Instantiate(_currentTargetObject.gameObject, new Vector3(xCoord, yCoord, SPAWN_DISTANCE), new Quaternion(0, 0, viewRotation, 0));
             cube.GetComponent<TargetObject>().InitNote(new Note(1, xCoord, yCoord, speed, hand, viewRotation, playspaceRoation));
         }
 
         // spawn a obstacle ^ same here
-        public static void SpawnObstacle(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, float width, float height) {
+        public void SpawnObstacle(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, float width, float height) {
         
         }
     }

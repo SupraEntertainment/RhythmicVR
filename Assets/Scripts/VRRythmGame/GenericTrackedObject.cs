@@ -17,11 +17,15 @@ namespace VRRythmGame {
         }
 
         private void OnTriggerEnter(Collider other) {
-            if (other.gameObject.GetComponent<TargetObject>() != null) {
-                if (true) { //other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
-                    Destroy(other.gameObject);
-                }
+            if (other.gameObject.GetComponent<TargetObject>() == null) return;
+            if (other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
+                DetermineScore(other.gameObject);
             }
+        }
+
+        protected float DetermineScore(GameObject hitTarget) {
+            Destroy(hitTarget);
+            return 100;
         }
     }
 }

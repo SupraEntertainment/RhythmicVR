@@ -153,7 +153,7 @@ namespace VRRythmGame {
             practiceBeatmapButton.onClick.RemoveAllListeners();
             
             // add listeners
-            playBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
+            playBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[song.difficulties.Length-1], null); });
             deleteBeatmapButton.onClick.AddListener(delegate {  });
             practiceBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
             
