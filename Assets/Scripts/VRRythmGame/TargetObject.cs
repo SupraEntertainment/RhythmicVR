@@ -4,6 +4,7 @@ namespace VRRythmGame {
 	public abstract class TargetObject : MonoBehaviour {
 		protected Note linkedData = new Note();
 		protected bool isInitialized;
+		public bool shouldDespawnBehindPlayer = true;
 
 		public abstract void InitNote(Note data);
 
@@ -37,7 +38,9 @@ namespace VRRythmGame {
 
 		private void OnTriggerExit(Collider other) {
 			if (other.gameObject.CompareTag("despawn")) {
-				Destroy(gameObject);
+				if (shouldDespawnBehindPlayer) {
+					Destroy(gameObject);
+				}
 			}
 		}
 	}
