@@ -43,6 +43,7 @@ The following list contains my plans for this Project:
     - [X] settings
     - [X] quit
 - [X] settings menu with
+    - [X] dynamic structure
     - [ ] asset selection
     - [ ] mod management
     - [ ] audio settings

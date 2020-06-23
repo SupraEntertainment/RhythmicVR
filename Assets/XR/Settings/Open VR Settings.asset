@@ -16,6 +16,6 @@ MonoBehaviour:
   InitializationType: 1
   EditorAppKey: application.generated.unity.vrrythmgame.exe
   IsLegacy: 0
-  ActionManifestFileRelativeFilePath: E:/Unity/RythmicVR/Assets/StreamingAssets\SteamVR\actions.json
+  ActionManifestFileRelativeFilePath: E:/Unity/RhythmicVR/Assets/StreamingAssets\SteamVR\actions.json
   MirrorViewMode: 2
   HasCopiedDefaults: 0

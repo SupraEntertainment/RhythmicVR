@@ -39,7 +39,7 @@ namespace RhythmicVR {
         public GameObject songListItem;
         public GameObject scrollList;
         public GameObject buttonPrefab;
-        public GameObject sliderPrefab;
+        public GameObject vector3Prefab;
         public GameObject intPrefab;
         public GameObject floatPrefab;
         public GameObject textPrefab;
@@ -247,15 +247,8 @@ namespace RhythmicVR {
                     output = buttonPrefab;
                     output.GetComponentInChildren<Text>().text = text;
                     break;
-                case UiType.Slider:
-                    output = sliderPrefab;
-                    var sldr = output.GetComponent<Slider>();
-                    if (minValue != 0) {
-                        sldr.minValue = minValue;
-                    }
-                    if (maxValue != 0) {
-                        sldr.maxValue = maxValue;
-                    }
+                case UiType.Vector3:
+                    output = vector3Prefab;
                     break;
                 case UiType.Color:
                     output = colorPrefab;
@@ -266,10 +259,24 @@ namespace RhythmicVR {
                     break;
                 case UiType.Int:
                     output = intPrefab;
+                    var sldr = output.GetComponent<Slider>();
+                    if (minValue != 0) {
+                        sldr.minValue = minValue;
+                    }
+                    if (maxValue != 0) {
+                        sldr.maxValue = maxValue;
+                    }
                     output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Float:
                     output = floatPrefab;
+                    var sldr2 = output.GetComponent<Slider>();
+                    if (minValue != 0) {
+                        sldr2.minValue = minValue;
+                    }
+                    if (maxValue != 0) {
+                        sldr2.maxValue = maxValue;
+                    }
                     output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Enum:

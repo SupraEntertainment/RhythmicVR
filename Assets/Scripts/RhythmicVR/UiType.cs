@@ -1,7 +1,7 @@
 namespace RhythmicVR {
 	public enum UiType {
 		Button,
-		Slider,
+		Vector3,
 		Color,
 		Text,
 		Int,
