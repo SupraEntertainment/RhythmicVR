@@ -20,77 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="130c1005-a044-4781-8677-b5ac35cfe9c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/MappingExtensions.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/NoodleExtensions.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BeatSaberGamemode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BeatSaberGamemode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BeatSaberTargetObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BeatSaberTargetObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/AssetPackage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/AssetPackage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/AssetPackage.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/AssetPackage.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/AssetType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/AssetType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/AssetType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/AssetType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/Beatmap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/Beatmap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/Beatmap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/Beatmap.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/MappingExtensions.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/MappingExtensions/Beatmap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/MappingExtensions/Beatmap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/MappingExtensions/Beatmap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/MappingExtensions/Beatmap.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/NoodleExtensions.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/NoodleExtensions/Beatmap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/NoodleExtensions/Beatmap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/NoodleExtensions/Beatmap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/NoodleExtensions/Beatmap.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/Song.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/Song.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/Song.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/SongLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/SongLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/SongLoader.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/SongLoader.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Beatmap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Beatmap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Beatmap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Beatmap.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Config.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Config.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Config.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Config.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Coordinate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Coordinate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Coordinate.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Coordinate.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Difficulty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Difficulty.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Difficulty.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Difficulty.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Editor.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Editor/AssetBundleBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor/AssetBundleBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Editor/AssetBundleBuilder.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor/AssetBundleBuilder.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Editor/AssetPackageInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor/AssetPackageInspector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Editor/AssetPackageInspector.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor/AssetPackageInspector.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Event.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Event.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Event.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Gamemode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Gamemode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Gamemode.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Gamemode.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GenericTrackedObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GenericTrackedObject.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Note.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Note.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Note.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Obstacle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Obstacle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Obstacle.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Obstacle.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/OpenVRInputModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/OpenVRInputModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/OpenVRInputModule.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/OpenVRInputModule.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/PluginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/PluginManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/PluginManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/PluginManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/RaycastInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/RaycastInteractor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/RaycastInteractor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/RaycastInteractor.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Song.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Song.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Song.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SongList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SongList.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SongList.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SongList.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SpaceMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SpaceMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/SpaceMapping.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SpaceMapping.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/TargetObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TargetObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/TargetObject.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TargetObject.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/TrackedDevicePair.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TrackedDevicePair.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/TrackedDevicePair.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TrackedDevicePair.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/TrackingPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TrackingPoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/TrackingPoint.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TrackingPoint.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Util.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Util.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/Util.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Util.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,6 +96,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/MappingExtensions/Beatmap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Note.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" />
       </list>
     </option>
   </component>
@@ -208,6 +145,7 @@
       <workItem from="1592733863773" duration="15756000" />
       <workItem from="1592827394323" duration="13050000" />
       <workItem from="1592850766872" duration="90000" />
+      <workItem from="1592909746265" duration="3397000" />
     </task>
     <servers />
   </component>
@@ -321,28 +259,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs</url>
-          <line>57</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/UIManager.cs" initialLine="57" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs</url>
-          <line>242</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" initialLine="242" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/SongLoader.cs</url>
           <line>36</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/BeatSaber/SongLoader.cs" initialLine="36" />
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs</url>
-          <line>169</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" initialLine="169" />
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

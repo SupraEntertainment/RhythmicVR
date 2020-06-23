@@ -35,19 +35,21 @@ namespace RhythmicVR {
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
         public UIManager uiManager;
-        public Config config;
+        [NonSerialized] public Config config;
         public PluginManager pluginManager;
         public SongList songList = new SongList();
         public SteamVR_Action_Boolean pauseButton;
-        public AssetPackage[] assetPackages;
+        public AssetPackage[] includedAssetPackages;
 
         private bool allowPause;
         private bool isPaused;
         
-        private Beatmap _currentlyPlayingBeatmap;
-        private Gamemode _currentGamemode;
-        private TargetObject _currentTargetObject;
-        private GenericTrackedObject _currentTrackedDeviceObject;
+        [NonSerialized] public Beatmap currentlyPlayingBeatmap;
+        [NonSerialized] private Gamemode _currentGamemode;
+        [NonSerialized] private TargetObject _currentTargetObject;
+        [NonSerialized] private GenericTrackedObject _currentTrackedDeviceObject;
+
+        [NonSerialized] public float currentScore = 0;
 
         private void Start() {
             
@@ -105,7 +107,7 @@ namespace RhythmicVR {
         }
 
         private void LoadAssets() {
-            foreach (var asset in assetPackages) {
+            foreach (var asset in includedAssetPackages) {
                 pluginManager.AddPlugin(asset);
             }
 
@@ -186,9 +188,9 @@ namespace RhythmicVR {
         // start the selected beatmap
         public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
             Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
-            uiManager.NoMenu();
+            uiManager.InBeatmap();
             allowPause = true;
-            _currentlyPlayingBeatmap = bm;
+            currentlyPlayingBeatmap = bm;
             //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayBeatmap(bm));
         }
@@ -233,7 +235,7 @@ namespace RhythmicVR {
         }
 
         public void ExitBeatmap() {
-            StopCoroutine(PlayBeatmap(_currentlyPlayingBeatmap));
+            StopCoroutine(PlayBeatmap(currentlyPlayingBeatmap));
             allowPause = false;
             uiManager.ToSongListMenu();
             uiManager.HidePauseMenu();

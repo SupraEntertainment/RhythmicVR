@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using SFB;
@@ -25,6 +26,14 @@ namespace RhythmicVR {
         public Button practiceBeatmapButton;
         public Text beatmapTitleText;
         public Image beatmapCoverImage;
+
+        [Header("In Game Panels")] 
+        public List<GameObject> inGamePanels;
+
+        private Text scoreText;
+        private Text progrssText;
+        private Image progressBar;
+        private Text multiplierText;
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
@@ -34,7 +43,15 @@ namespace RhythmicVR {
         public void Start() {
             uiActionSet.Activate();
             ToMainMenu();
+            FindInGamePanels();
+            PopulateInGamePanels();
         }
+
+        public void Update() {
+            PopulateInGamePanels();
+        }
+
+        // song file loading, beat saber code belongs into beatsaber import plugin, load single song file should belong into its own plugin aswell
 
         public void LoadBeatSaberMap() {
             new Thread(OpenBeatSaberSong).Start();
@@ -62,6 +79,7 @@ namespace RhythmicVR {
         
         // menu navigation
         
+        // pause and unpause
         public void ShowPauseMenu(int reason) {
             switch (reason) {
                 case 0: // paused
@@ -81,31 +99,45 @@ namespace RhythmicVR {
             pauseMenu.SetActive(false);
         }
 
-        public void NoMenu() {
+        // general menu states
+        
+        public void InBeatmap() {
             songList.SetActive(false);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
+            SetInGameMenusActive(true);
         }
 
         public void ToMainMenu() {
             songList.SetActive(false);
             mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
+            SetInGameMenusActive(false);
         }
 
         public void ToSettingsMenu() {
             songList.SetActive(false);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(true);
+            SetInGameMenusActive(false);
         }
 
         public void ToSongListMenu() {
             songList.SetActive(true);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
+            SetInGameMenusActive(false);
             ListSongs(gm.songList.GetAllSongs());
         }
+        
+        //helper method for showing / hiding all different in game panels (including afterwards from mods added ones)
+        private void SetInGameMenusActive(bool state) {
+            foreach (var panel in inGamePanels) {
+                panel.SetActive(state);
+            }
+        }
 
+        // Quit App method for button call
         public void Quit() {
             Application.Quit();
         }
@@ -160,6 +192,41 @@ namespace RhythmicVR {
             // set text
             beatmapTitleText.text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
             beatmapCoverImage.sprite = Util.LoadSprite(song.pathToDir + song.coverImageFile);
+        }
+        
+        /* in-game panels */
+
+        private void FindInGamePanels() {
+            foreach (var panel in inGamePanels) {
+                try {
+                    scoreText = panel.transform.Find("Score").GetComponent<Text>();
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e);
+                }
+                try {
+                    progressBar = panel.transform.Find("Progress.Bar").GetComponent<Image>();
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e);
+                }
+                try {
+                    progrssText = panel.transform.Find("Progress.Text").GetComponent<Text>();
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e);
+                }
+                try {
+                    multiplierText = panel.transform.Find("Multiplier.Text").GetComponent<Text>();
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
+        private void PopulateInGamePanels() {
+            scoreText.text = gm.currentScore.ToString();
         }
     }
 }

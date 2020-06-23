@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RhythmicVR {
     public class GenericTrackedObject : MonoBehaviour {
         public Collider collider;
         public TrackingPoint role;
+        public GameManager gm;
     
         // Start is called before the first frame update
         private void Start() {
             collider.gameObject.AddComponent<Rigidbody>();
             CreateRigidbody(collider.gameObject.GetComponent<Rigidbody>());
+            gm = FindObjectOfType<GameManager>();
         }
 
         private void CreateRigidbody(Rigidbody rb) {
@@ -19,7 +22,7 @@ namespace RhythmicVR {
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.GetComponent<TargetObject>() == null) return;
             if (other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
-                DetermineScore(other.gameObject);
+                gm.currentScore = DetermineScore(other.gameObject);
             }
         }
 

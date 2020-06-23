@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 140969038}
   - component: {fileID: 140969037}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,16 +1457,12 @@ MonoBehaviour:
   waist: {fileID: 408846326}
   spawnDistance: 10
   uiManager: {fileID: 1576197619}
-  config:
-    appData: 
-    songSavePath: 
-    latestSongSortSetting: 
   pauseButton:
     actionPath: /actions/default/in/pause
     needsReinit: 0
-  assetPackages:
-  - {fileID: 5210609699491252746, guid: 9a480a3efe3db9b4ea4e215918fdb052, type: 3}
+  includedAssetPackages:
   - {fileID: 5098652987087657866, guid: 44d9436e8dfdb6e44bcd49d08b62357b, type: 3}
+  - {fileID: 5210609699491252746, guid: 9a480a3efe3db9b4ea4e215918fdb052, type: 3}
 --- !u!4 &263707703
 Transform:
   m_ObjectHideFlags: 0
@@ -3561,7 +3557,7 @@ GameObject:
   - component: {fileID: 743266134}
   - component: {fileID: 743266133}
   m_Layer: 0
-  m_Name: Score
+  m_Name: ScorePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6067,6 +6063,8 @@ MonoBehaviour:
   practiceBeatmapButton: {fileID: 2138663254}
   beatmapTitleText: {fileID: 939968010}
   beatmapCoverImage: {fileID: 600660897}
+  inGamePanels:
+  - {fileID: 743266131}
   songListItem: {fileID: 4723323551887608218, guid: 21058bb046dcb7d41a70302df6d579db,
     type: 3}
 --- !u!1 &1595993818
