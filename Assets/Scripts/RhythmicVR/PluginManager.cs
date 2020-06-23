@@ -6,7 +6,7 @@ namespace RhythmicVR {
 		private List<AssetPackage> loadedPlugins = new List<AssetPackage>();
 		
 		private List<Gamemode> loadedGamemodes = new List<Gamemode>();
-		private List<GameObject> loadedEnvironments;
+		private List<GameObject> loadedEnvironments = new List<GameObject>();
 		//private List<MiscPlugin> loadedPlugins;
 		private List<GenericTrackedObject> loadedTrackedObjects = new List<GenericTrackedObject>();
 		private List<TargetObject> loadedTargetObjects = new List<TargetObject>();
