@@ -37,6 +37,15 @@ namespace RhythmicVR {
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
+        public GameObject scrollList;
+        public GameObject buttonPrefab;
+        public GameObject sliderPrefab;
+        public GameObject intPrefab;
+        public GameObject floatPrefab;
+        public GameObject textPrefab;
+        public GameObject colorPrefab;
+        public GameObject categoryPrefab;
+        public GameObject enumPrefab;
 
         private List<GameObject> _loadedSongs = new List<GameObject>();
 
@@ -228,5 +237,55 @@ namespace RhythmicVR {
         private void PopulateInGamePanels() {
             scoreText.text = gm.currentScore.ToString();
         }
+        
+        /* Build UI elements from code */
+
+        public GameObject BuildUIElement(string text, UiType type, List<object> contents = null, int width = 0, int height = 0, int maxValue = 0, int minValue = 0) {
+            GameObject output;
+            switch (type) {
+                case UiType.Button:
+                    output = buttonPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                case UiType.Slider:
+                    output = sliderPrefab;
+                    var sldr = output.GetComponent<Slider>();
+                    if (minValue != 0) {
+                        sldr.minValue = minValue;
+                    }
+                    if (maxValue != 0) {
+                        sldr.maxValue = maxValue;
+                    }
+                    break;
+                case UiType.Color:
+                    output = colorPrefab;
+                    break;
+                case UiType.Text:
+                    output = textPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                case UiType.Int:
+                    output = intPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                case UiType.Float:
+                    output = floatPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                case UiType.Enum:
+                    output = enumPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                case UiType.Category:
+                    output = categoryPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+
+            return output;
+        }
+        
     }
 }

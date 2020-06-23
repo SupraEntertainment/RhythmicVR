@@ -31,6 +31,11 @@ namespace RhythmicVR {
         public Transform rightFoot;
         public Transform waist;
 
+        [Header("Integrated settings menus")] 
+        public SettingsField[] integratedSettings;
+
+        private SettingsManager settingsManager;
+
         [Header("Other Properties")] 
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
@@ -48,11 +53,13 @@ namespace RhythmicVR {
         [NonSerialized] private Gamemode _currentGamemode;
         [NonSerialized] private TargetObject _currentTargetObject;
         [NonSerialized] private GenericTrackedObject _currentTrackedDeviceObject;
+        [NonSerialized] private GameObject _currentEnvironment;
 
         [NonSerialized] public float currentScore = 0;
 
         private void Start() {
-            
+
+            settingsManager = new SettingsManager(this);
             pluginManager = new PluginManager();
             
             InitStaticVariables();
@@ -62,6 +69,8 @@ namespace RhythmicVR {
             LoadAssets();
             
             LoadSongsIntoSongList();
+
+            InitializeSettings();
 
             //RunATestSong();
         }
@@ -113,6 +122,11 @@ namespace RhythmicVR {
 
             _currentGamemode = pluginManager.GetAllGamemodes()[0];
             LoadGamemode(_currentGamemode);
+            SetEnvironment(pluginManager.GetAllEnvironments()[0]);
+        }
+
+        private void SetEnvironment(GameObject go) {
+            _currentEnvironment = Instantiate(go);
         }
 
         private void LoadSongsIntoSongList() {
@@ -122,6 +136,12 @@ namespace RhythmicVR {
                 songs.Add(ReadSongFromPath(path + Path.DirectorySeparatorChar));
             }
             songList.AddRange(songs);
+        }
+
+        private void InitializeSettings() {
+            settingsManager.settings.AddRange(integratedSettings);
+            settingsManager.settingsMenuParent = uiManager.settingsMenu;
+            settingsManager.UpdateSettingsUi();
         }
 
         private void RunATestSong() {

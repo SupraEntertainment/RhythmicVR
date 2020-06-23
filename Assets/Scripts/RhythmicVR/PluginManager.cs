@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RhythmicVR {
 	public class PluginManager {
 		private List<AssetPackage> loadedPlugins = new List<AssetPackage>();
 		
 		private List<Gamemode> loadedGamemodes = new List<Gamemode>();
-		//private List<Environment> loadedPlugins;
+		private List<GameObject> loadedEnvironments;
 		//private List<MiscPlugin> loadedPlugins;
 		private List<GenericTrackedObject> loadedTrackedObjects = new List<GenericTrackedObject>();
 		private List<TargetObject> loadedTargetObjects = new List<TargetObject>();
@@ -14,6 +15,7 @@ namespace RhythmicVR {
 			loadedPlugins.Add(plugin);
 			switch (plugin.type) {
 				case AssetType.Environment:
+					loadedEnvironments.Add(plugin.gameObject);
 					break;
 				case AssetType.Gamemode:
 					loadedGamemodes.Add(plugin.GetComponentInChildren<Gamemode>());
@@ -36,10 +38,10 @@ namespace RhythmicVR {
 		public List<Gamemode> GetAllGamemodes() {
 			return loadedGamemodes;
 		}
-		/*public List<AssetPackage> GetPlugins() {
-			return loadedPlugins;
+		public List<GameObject> GetAllEnvironments() {
+			return loadedEnvironments;
 		}
-		public List<AssetPackage> GetPlugins() {
+		/*public List<AssetPackage> GetPlugins() {
 			return loadedPlugins;
 		}
 		public List<AssetPackage> GetPlugins() {

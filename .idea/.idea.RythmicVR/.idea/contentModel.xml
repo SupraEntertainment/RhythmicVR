@@ -43,6 +43,8 @@
             <e p="OpenVRInputModule.cs" t="Include" />
             <e p="PluginManager.cs" t="Include" />
             <e p="RaycastInteractor.cs" t="Include" />
+            <e p="SettingsField.cs" t="Include" />
+            <e p="SettingsManager.cs" t="Include" />
             <e p="Song.cs" t="Include" />
             <e p="SongList.cs" t="Include" />
             <e p="SpaceMapping.cs" t="Include" />
@@ -50,6 +52,7 @@
             <e p="TrackedDevicePair.cs" t="Include" />
             <e p="TrackingPoint.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
+            <e p="UiType.cs" t="Include" />
             <e p="Util.cs" t="Include" />
           </e>
           <e p="SteamInputModule.cs" t="Include" />

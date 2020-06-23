@@ -20,11 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="130c1005-a044-4781-8677-b5ac35cfe9c2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsField.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsField.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UiType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UiType.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RythmicVR/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/DefaultEnvironment.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/DefaultEnvironment.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Beatsaber.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Beatsaber.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/inGame.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/PluginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/PluginManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TrackedObject.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TrackedObject.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +49,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Config.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/PluginManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Util.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/AssetType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/SongLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Coordinate.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,9 +61,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor/AssetPackageInspector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/437BA245-D840-4784-B9FB-AB9B439AC908/0c/49e93260/FileStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/Song.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pointer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Note.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Note.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/AssetPackage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsField.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/TargetObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/BeatSaber/MappingExtensions/Beatmap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -64,6 +78,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SpaceMapping.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Beatmap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UiType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Editor/AssetBundleBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9BE511C4-F675-4CED-93D9-E7C9AAF0B1FB/64/0fc7f443/XRDevice.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -97,8 +112,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/VRRythmGame/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/Note.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GenericTrackedObject.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/PluginManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UiType.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsField.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/SettingsManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RhythmicVR/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -145,7 +164,7 @@
       <workItem from="1592733863773" duration="15756000" />
       <workItem from="1592827394323" duration="13050000" />
       <workItem from="1592850766872" duration="90000" />
-      <workItem from="1592909746265" duration="3397000" />
+      <workItem from="1592909746265" duration="8067000" />
     </task>
     <servers />
   </component>
@@ -250,10 +269,18 @@
     </state>
     <state width="1877" height="391" key="GridCell.Tab.3.right/1920.0.1920.1080/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1592848734433" />
     <state width="1877" height="391" key="GridCell.Tab.3.right/1920.0.1920.1080/0.0.1920.1080/-1920.0.1920.1040@1920.0.1920.1080" timestamp="1592848863305" />
+    <state x="670" y="198" key="RiderGenerateDialog" timestamp="1592918940221">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="670" y="198" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592918940221" />
     <state x="2689" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592848152727">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2689" y="453" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1080/0.0.1920.1080/-1920.0.1920.1040@1920.0.1920.1080" timestamp="1592848152727" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1592914320996">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592914320996" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
