@@ -64,3 +64,6 @@ crashlytics-build.properties
 # out directories & zips
 out_*/
 out_*.zip
+
+# jetbrains
+.idea/
