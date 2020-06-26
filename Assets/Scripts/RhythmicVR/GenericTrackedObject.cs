@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RhythmicVR {
@@ -7,7 +7,8 @@ namespace RhythmicVR {
     /// </summary>
     public class GenericTrackedObject : MonoBehaviour {
         public Collider collider;
-        public TrackingPoint role;
+        public bool useVelocityForScoreCalc;
+        [System.NonSerialized] public TrackingPoint role;
         public GameManager gm;
     
         // Start is called before the first frame update
@@ -31,7 +32,11 @@ namespace RhythmicVR {
 
         protected float DetermineScore(GameObject hitTarget) {
             Destroy(hitTarget);
-            return 100;
+            float score = 100;
+            if (useVelocityForScoreCalc) {
+                score = GetComponent<Rigidbody>().velocity.magnitude * 10;
+            }
+            return score;
         }
     }
 }
