@@ -10,7 +10,7 @@
 		public string levelAuthorName;
 		public float beatsPerMinute;
 		public float previewStartTime;
-		public string songFile = "song.eeg";
+		public string songFile = "song.ogg";
 		public string coverImageFile = "cover.jpg";
 		public float startTimeOffset;
 		public TrackingPoint[] trackingPoints;
