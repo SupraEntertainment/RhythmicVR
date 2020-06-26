@@ -5520,19 +5520,19 @@ MonoBehaviour:
     type: 3}
   buttonPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
     type: 3}
-  vector3Prefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
+  vector3Prefab: {fileID: 7374969092661798817, guid: ae39e7b186f09e14884c679eab646fb2,
     type: 3}
-  intPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
+  intPrefab: {fileID: 1625518441639996191, guid: 7140ea55bf4ade44caff85f224a7d907,
     type: 3}
-  floatPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
+  floatPrefab: {fileID: 6463644372371371507, guid: 123e43795a8db514bb4d6998df09d61b,
     type: 3}
-  textPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
+  textPrefab: {fileID: 7374969092661798817, guid: ae39e7b186f09e14884c679eab646fb2,
     type: 3}
-  colorPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
+  colorPrefab: {fileID: 7374969092661798817, guid: ae39e7b186f09e14884c679eab646fb2,
     type: 3}
   categoryPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
     type: 3}
-  enumPrefab: {fileID: 4632151331868380991, guid: 98254667cf7769b4d82f9b21e897a29b,
+  enumPrefab: {fileID: 7374969092661798817, guid: ae39e7b186f09e14884c679eab646fb2,
     type: 3}
 --- !u!1 &1595993818
 GameObject:
