@@ -17,7 +17,7 @@ namespace RhythmicVR {
 		public void UpdateSettingsUi() {
 			DeleteAllSettingsPages();
 			var mainSettingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0));
-			mainSettingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { gm.uiManager.ToMainMenu(); });
+			mainSettingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener( delegate { Debug.Log("Back to main menu button pressed"); gm.uiManager.ToMainMenu(); });
 			allPages.Add(mainSettingsPage);
 			var content = mainSettingsPage.transform.Find("Viewport/Content").gameObject;
 			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, settings.Count * (defaultElementheight));
@@ -35,8 +35,8 @@ namespace RhythmicVR {
 			if (setting.type == UiType.Category) {
 				var settingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0));
 				allPages.Add(settingsPage);
-				settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { disableAllSettingsPages(); parent.transform.parent.parent.gameObject.SetActive(true); });
-				settingUiElement.GetComponent<Button>().onClick.AddListener(delegate { disableAllSettingsPages(); settingsPage.SetActive(true); });
+				//settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.RemoveAllListeners();
+				settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); parent.transform.parent.parent.gameObject.SetActive(true); });
 				settingUiElement.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); settingsPage.SetActive(true); });
 				var content = settingsPage.transform.Find("Viewport/Content").gameObject;
 				content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, setting.children.Length * defaultElementheight);
@@ -57,3 +57,5 @@ namespace RhythmicVR {
 				Destroy(page);
 			}
 		}
+	}
+}
