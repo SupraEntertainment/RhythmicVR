@@ -3,14 +3,18 @@ using UnityEngine;
 
 namespace RhythmicVR {
 	public class PluginManager {
-		private List<AssetPackage> loadedPlugins = new List<AssetPackage>();
+		private readonly List<AssetPackage> loadedPlugins = new List<AssetPackage>();
 		
-		private List<Gamemode> loadedGamemodes = new List<Gamemode>();
-		private List<GameObject> loadedEnvironments = new List<GameObject>();
-		//private List<MiscPlugin> loadedPlugins;
-		private List<GenericTrackedObject> loadedTrackedObjects = new List<GenericTrackedObject>();
-		private List<TargetObject> loadedTargetObjects = new List<TargetObject>();
+		private readonly List<Gamemode> loadedGamemodes = new List<Gamemode>();
+		private readonly List<GameObject> loadedEnvironments = new List<GameObject>();
+		private readonly List<GenericTrackedObject> loadedTrackedObjects = new List<GenericTrackedObject>();
+		private readonly List<TargetObject> loadedTargetObjects = new List<TargetObject>();
+		//private readonly List<MiscPlugin> miscPlugins;
 
+		/// <summary>
+		/// Add a plugin to the list
+		/// </summary>
+		/// <param name="plugin">The plugin to add</param>
 		public void AddPlugin(AssetPackage plugin) {
 			loadedPlugins.Add(plugin);
 			switch (plugin.type) {
@@ -35,20 +39,28 @@ namespace RhythmicVR {
 			return loadedPlugins;
 		}
 		
+		/// <summary>
+		/// Return all gamemodes
+		/// </summary>
+		/// <returns></returns>
 		public List<Gamemode> GetAllGamemodes() {
 			return loadedGamemodes;
 		}
+		/// <summary>
+		/// Return all Environment Prefabs
+		/// </summary>
+		/// <returns></returns>
 		public List<GameObject> GetAllEnvironments() {
 			return loadedEnvironments;
 		}
-		/*public List<AssetPackage> GetPlugins() {
-			return loadedPlugins;
-		}
-		public List<AssetPackage> GetPlugins() {
-			return loadedPlugins;
-		}
-		public List<AssetPackage> GetPlugins() {
-			return loadedPlugins;
+		/*public List<AssetPackage> GetAllMiscelaneousPlugins() {
+			return miscPlugins;
 		}*/
+		public List<GenericTrackedObject> GetAllTrackedObjects() {
+			return loadedTrackedObjects;
+		}
+		public List<TargetObject> GetAllTargets() {
+			return loadedTargetObjects;
+		}
 	}
 }

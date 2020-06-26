@@ -399,6 +399,3 @@ namespace RhythmicVR {
         }
     }
 }
-
-
-//TODO add method docs everywhere and comments on things, that aren't self explanatory

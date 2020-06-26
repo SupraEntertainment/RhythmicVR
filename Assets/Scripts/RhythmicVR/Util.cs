@@ -2,9 +2,16 @@ using System.IO;
 using UnityEngine;
 
 namespace RhythmicVR {
+	/// <summary>
+	/// Utility Methods, useful everywhere
+	/// </summary>
 	public class Util {
 		
-        
+        /// <summary>
+        /// Load sprite from file path
+        /// </summary>
+        /// <param name="filePath">path to sprite</param>
+        /// <returns>Sprite</returns>
 		public static Sprite LoadSprite(string filePath) {
  
 			// Load a PNG or JPG file from disk to a Sprite
@@ -15,7 +22,12 @@ namespace RhythmicVR {
 				return Sprite.Create(Tex2D, new Rect(0, 0, Tex2D.width, Tex2D.height),new Vector2(0,0), 100);
 			return null;
 		}
-		
+        
+        /// <summary>
+        /// Load Texture2D from file path
+        /// </summary>
+        /// <param name="filePath">path to Texture</param>
+        /// <returns>Texture2D</returns>
 		public static Texture2D LoadTexture(string filePath) {
  
 			// Load a PNG or JPG file from disk to a Texture2D

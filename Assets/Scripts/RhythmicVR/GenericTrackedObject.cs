@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RhythmicVR {
+    /// <summary>
+    /// Object to use on tracked devices, determines hit and score logic aswell as hit collider
+    /// </summary>
     public class GenericTrackedObject : MonoBehaviour {
         public Collider collider;
         public TrackingPoint role;

@@ -6,8 +6,17 @@ namespace RhythmicVR {
 		protected bool isInitialized;
 		public bool shouldDespawnBehindPlayer = true;
 
+		/// <summary>
+		/// Initialize note (set linked data, assign rotation, material, etc)
+		/// </summary>
+		/// <param name="data">note data</param>
 		public abstract void InitNote(Note data);
 
+		/// <summary>
+		/// look if it should be hit by the tracking point it got hit with (rest of logic is done on gamemode side (GenericTrackedOBject)
+		/// </summary>
+		/// <param name="tp">The tracking point to match with</param>
+		/// <returns>successful or not</returns>
 		public bool MatchCollider(TrackingPoint tp) {
 			foreach (var trackingPoint in linkedData.type) {
 				if (trackingPoint == tp) {
@@ -17,6 +26,11 @@ namespace RhythmicVR {
 			return false;
 		}
 
+		/// <summary>
+		/// Return material based on tracking points it should be hitable with
+		/// </summary>
+		/// <param name="trackingPoints">The tracking points, that cna hit it</param>
+		/// <returns>The material to assign</returns>
 		public Material AssignMaterial(TrackingPoint[] trackingPoints) {
 			if (trackingPoints.Length > 1) {
 				return GameManager.AMBIGUOUS_MAT;

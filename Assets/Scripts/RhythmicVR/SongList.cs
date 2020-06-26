@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 
 namespace RhythmicVR {
+	/// <summary>
+	/// Stores all loaded songs
+	/// </summary>
 	public class SongList {
 		private List<Song> _songlist = new List<Song>();
 
@@ -21,6 +24,12 @@ namespace RhythmicVR {
 			return _songlist;
 		}
 
+		/// <summary>
+		/// Returns song Objects of all songs, that have beatmaps of gamemode "gamemodeName",
+		/// only with said beatmaps in them, all others removed.
+		/// </summary>
+		/// <param name="gamemodeName">The gamemode to filter after</param>
+		/// <returns>List of songs with only beatmaps of gamemode</returns>
 		public List<Song> GetSongsWithBeatmapsOfGamemode(string gamemodeName) {
 			List<Song> localSongList = new List<Song>();
 			foreach (var song in _songlist) {

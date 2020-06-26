@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 
 namespace RhythmicVR {
+	/// <summary>
+	/// represents the beatmap position, rotation and scale offsets 
+	/// </summary>
 	[System.Serializable]
 	public class SpaceMapping {
 
 		public Vector3 position;
+		public Vector3 rotation;
 		public Vector3 scale;
 		[Header("[Hover over toggle for tooltip] Uses this transforms position and scale for the note space. This allows for notes to be e.g. only on the floor despite beatmap")]
 		[Tooltip("Uses this transforms position and scale for the note space. This allows for notes to be e.g. only on the floor despite beatmap")]
@@ -47,8 +51,13 @@ namespace RhythmicVR {
 			return input;
 		}
 
+		/// <summary>
+		/// map npte coordinate matching to parameters of this mapping
+		/// </summary>
+		/// <param name="input">default position</param>
+		/// <returns>manipulated position</returns>
 		public Vector3 MapCoords(Vector3 input) {
-			Vector3 output = new Vector3();
+			Vector3 output;
 
 			input = ApplyScale(input);
 

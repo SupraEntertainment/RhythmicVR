@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace RhythmicVR {
 
-	/*
-	 * config object containing all stored values
-	 */
+	/// <summary>
+	/// config object containing all stored values
+	/// </summary>
 	[Serializable]
 	public class Config {
         
@@ -24,10 +24,18 @@ namespace RhythmicVR {
 			}
 		}
 
+		/// <summary>
+		/// Save config file
+		/// </summary>
 		public void Save() {
 			File.WriteAllText(appData + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(this, true));
 		}
 
+		/// <summary>
+		/// load config file from path
+		/// </summary>
+		/// <param name="path">Path to load the file from</param>
+		/// <returns>The config object from that file</returns>
 		public static Config Load(string path) {
 			return JsonUtility.FromJson<Config>(File.ReadAllText(path + Path.DirectorySeparatorChar + "config.json"));
 		}

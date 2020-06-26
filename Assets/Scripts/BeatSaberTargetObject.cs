@@ -3,7 +3,10 @@ using RhythmicVR;
 
 public class BeatSaberTargetObject : TargetObject {
 	
-	
+	/// <summary>
+	/// Initialize note (set linked data, assign rotation, material, etc)
+	/// </summary>
+	/// <param name="data">note data</param>
 	public override void InitNote(Note data) {
 		linkedData = data;
 		GetComponent<MeshRenderer>().material = AssignMaterial(linkedData.type);

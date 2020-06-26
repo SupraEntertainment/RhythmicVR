@@ -110,6 +110,9 @@ namespace RhythmicVR {
 
         // general menu states
         
+        /// <summary>
+        /// Go in game, sets all ingame menus (score, etc) active, disables all other UI
+        /// </summary>
         public void InBeatmap() {
             songList.SetActive(false);
             mainMenu.SetActive(false);
@@ -117,6 +120,9 @@ namespace RhythmicVR {
             SetInGameMenusActive(true);
         }
 
+        /// <summary>
+        /// Go to main menu
+        /// </summary>
         public void ToMainMenu() {
             songList.SetActive(false);
             mainMenu.SetActive(true);
@@ -124,6 +130,9 @@ namespace RhythmicVR {
             SetInGameMenusActive(false);
         }
 
+        /// <summary>
+        /// Go to settings menu
+        /// </summary>
         public void ToSettingsMenu() {
             songList.SetActive(false);
             mainMenu.SetActive(false);
@@ -131,6 +140,9 @@ namespace RhythmicVR {
             SetInGameMenusActive(false);
         }
 
+        /// <summary>
+        /// Go to song list menu, also refreshes song list
+        /// </summary>
         public void ToSongListMenu() {
             songList.SetActive(true);
             mainMenu.SetActive(false);
@@ -139,14 +151,19 @@ namespace RhythmicVR {
             ListSongs(gm.songList.GetAllSongs());
         }
         
-        //helper method for showing / hiding all different in game panels (including afterwards from mods added ones)
+        /// <summary>
+        /// helper method for showing / hiding all different in game panels (including afterwards from mods added ones)
+        /// </summary>
+        /// <param name="state">show / hide</param>
         private void SetInGameMenusActive(bool state) {
             foreach (var panel in inGamePanels) {
                 panel.SetActive(state);
             }
         }
 
-        // Quit App method for button call
+        /// <summary>
+        /// Quit App method for button call
+        /// </summary>
         public void Quit() {
             Application.Quit();
         }
@@ -158,6 +175,12 @@ namespace RhythmicVR {
             ListAllSongs(songListParent, songs, songListItem);
         }
 
+        /// <summary>
+        /// List songs given in UI song list
+        /// </summary>
+        /// <param name="parent">The parent object to put the songs into</param>
+        /// <param name="songs">The songs</param>
+        /// <param name="buttonPrefab">The Prefab to use as song List element</param>
         private void ListAllSongs(RectTransform parent, List<Song> songs, GameObject buttonPrefab) {
             if (_loadedSongs.Count != 0) {
                 RemoveAllListedSongs();
@@ -183,8 +206,10 @@ namespace RhythmicVR {
             }
         }
         
-        /* Display song info */
-
+        /// <summary>
+        /// Display song info
+        /// </summary>
+        /// <param name="song">The song to display info about</param>
         public void DisplaySongInfo(Song song) {
             Debug.Log("Displaying Song " + song.songName + " by " + song.songAuthorName);
             
@@ -204,7 +229,10 @@ namespace RhythmicVR {
         }
         
         /* in-game panels */
-
+        
+        /// <summary>
+        /// Find ingame panels from list and and assign properties
+        /// </summary>
         private void FindInGamePanels() {
             foreach (var panel in inGamePanels) {
                 try {
@@ -237,10 +265,18 @@ namespace RhythmicVR {
         private void PopulateInGamePanels() {
             scoreText.text = gm.currentScore.ToString();
         }
-        
-        /* Build UI elements from code */
 
-        public GameObject BuildUIElement(string text, UiType type, List<object> contents = null, int width = 0, int height = 0, int maxValue = 0, int minValue = 0) {
+        /// <summary>
+        /// Build UI elements from code (via prefabs)
+        /// </summary>
+        /// <param name="text">The base text to use</param>
+        /// <param name="type">Wich type of UiElement to generate</param>
+        /// <param name="contents">If it has multiple conents (e.g. enum / dropdown)</param>
+        /// <param name="maxValue">for sliders</param>
+        /// <param name="minValue">for sliders</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public GameObject BuildUiElement(string text, UiType type, List<object> contents = null, int maxValue = 0, int minValue = 0) {
             GameObject output;
             switch (type) {
                 case UiType.Button:
@@ -249,9 +285,11 @@ namespace RhythmicVR {
                     break;
                 case UiType.Vector3:
                     output = vector3Prefab;
+                    output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Color:
                     output = colorPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Text:
                     output = textPrefab;
@@ -259,24 +297,12 @@ namespace RhythmicVR {
                     break;
                 case UiType.Int:
                     output = intPrefab;
-                    var sldr = output.GetComponent<Slider>();
-                    if (minValue != 0) {
-                        sldr.minValue = minValue;
-                    }
-                    if (maxValue != 0) {
-                        sldr.maxValue = maxValue;
-                    }
+                    SetupSlider(output, minValue, maxValue);
                     output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Float:
                     output = floatPrefab;
-                    var sldr2 = output.GetComponent<Slider>();
-                    if (minValue != 0) {
-                        sldr2.minValue = minValue;
-                    }
-                    if (maxValue != 0) {
-                        sldr2.maxValue = maxValue;
-                    }
+                    SetupSlider(output, minValue, maxValue);
                     output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Enum:
@@ -293,6 +319,15 @@ namespace RhythmicVR {
 
             return output;
         }
-        
+
+        private void SetupSlider(GameObject slider, int minValue, int maxValue) {
+            var sldr = slider.GetComponent<Slider>();
+            if (minValue != 0) {
+                sldr.minValue = minValue;
+            }
+            if (maxValue != 0) {
+                sldr.maxValue = maxValue;
+            }
+        }
     }
 }

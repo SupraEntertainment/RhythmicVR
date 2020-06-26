@@ -41,7 +41,7 @@ namespace RhythmicVR {
 		/// <param name="heightOfExistingElements">height positioning Offset for this element</param>
 		/// <returns>Height of this iterations element</returns>
 		private int InitializeUiElement(SettingsField setting, GameObject parent, int heightOfExistingElements) {
-			var settingUiElement = Instantiate(gm.uiManager.BuildUIElement(setting.name, setting.type), parent.transform); // instantiate UI element
+			var settingUiElement = Instantiate(gm.uiManager.BuildUiElement(setting.name, setting.type), parent.transform); // instantiate UI element
 			var rt = settingUiElement.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -heightOfExistingElements); // set elements position
 			if (setting.type == UiType.Category) {

@@ -5,6 +5,12 @@ using System.Linq;
 using UnityEngine;
 
 namespace RhythmicVR.BeatSaber {
+    /// <summary>
+    /// Beat saber song converter
+    /// ----
+    /// converts beatsaber song files and beatmaps as a whole into RhythmicVR songs and beatmaps.
+    /// Supports mapping extensions and noodle extensions
+    /// </summary>
     public class SongLoader {
 
         public static string ConvertSong(string filePath, GameManager gm) {
