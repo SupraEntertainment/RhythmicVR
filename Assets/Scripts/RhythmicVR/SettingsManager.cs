@@ -19,7 +19,8 @@ namespace RhythmicVR {
 		public void UpdateSettingsUi() {
 			DeleteAllSettingsPages();
 			var mainSettingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
-			mainSettingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener( delegate { Debug.Log("Back to main menu button pressed"); gm.uiManager.ToMainMenu(); }); // set back button callback
+			var backButtonGo = mainSettingsPage.transform.Find("Btn_back").gameObject;
+			Destroy(backButtonGo); //.GetComponent<Button>().onClick.AddListener( delegate { Debug.Log("Back to main menu button pressed"); gm.uiManager.ToMainMenu(); }); // set back button callback
 			allPages.Add(mainSettingsPage); // add to pages list
 			var content = mainSettingsPage.transform.Find("Viewport/Content").gameObject; // set content element
 			int contentHeight = 0;
