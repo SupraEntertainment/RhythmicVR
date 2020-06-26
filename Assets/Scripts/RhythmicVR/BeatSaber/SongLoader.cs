@@ -31,10 +31,10 @@ namespace RhythmicVR.BeatSaber {
                     }
                 }
                 convertedSong = song.ToSong();
-                Texture2D cover = new Texture2D(2, 2);
-                cover.LoadImage(File.ReadAllBytes(filePath + Path.DirectorySeparatorChar + song._coverImageFilename));
+                var cover = File.ReadAllBytes(filePath + Path.DirectorySeparatorChar + song._coverImageFilename);
+                var audio = File.ReadAllBytes(filePath + Path.DirectorySeparatorChar + song._songFilename);
 
-                return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray(), cover);
+                return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray(), cover, audio);
             }
             catch (Exception e) {
                 Console.WriteLine(e);

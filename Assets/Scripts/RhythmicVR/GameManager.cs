@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -263,12 +263,14 @@ namespace RhythmicVR {
 
         // write song and all beatmaps to their files
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Texture2D cover) {
+        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Byte[] cover, Byte[] audio) {
             string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + Path.DirectorySeparatorChar;
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }
             File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject, true));
-            File.WriteAllBytes(pathToSong + songObject.coverImageFile, cover.GetRawTextureData());
+            File.WriteAllBytes(pathToSong + songObject.coverImageFile, cover);
+            File.WriteAllBytes(pathToSong + songObject.songFile, audio);
             for (var index = 0; index < beatmaps.Length; index++) {
                 var beatmap = beatmaps[index];
                 File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap, true));
