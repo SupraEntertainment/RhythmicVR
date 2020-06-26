@@ -15,6 +15,7 @@ namespace RhythmicVR {
 		}
 		
 		public void UpdateSettingsUi() {
+			DeleteAllSettingsPages();
 			var mainSettingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0));
 			mainSettingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { gm.uiManager.ToMainMenu(); });
 			allPages.Add(mainSettingsPage);
@@ -23,7 +24,7 @@ namespace RhythmicVR {
 			for (var i = 0; i < settings.Count; i++) {
 				RecursiveFunction(settings[i], content, i);
 			}
-			disableAllSettingsPages();
+			DisableAllSettingsPages();
 			mainSettingsPage.SetActive(true);
 		}
 
@@ -36,6 +37,7 @@ namespace RhythmicVR {
 				allPages.Add(settingsPage);
 				settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { disableAllSettingsPages(); parent.transform.parent.parent.gameObject.SetActive(true); });
 				settingUiElement.GetComponent<Button>().onClick.AddListener(delegate { disableAllSettingsPages(); settingsPage.SetActive(true); });
+				settingUiElement.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); settingsPage.SetActive(true); });
 				var content = settingsPage.transform.Find("Viewport/Content").gameObject;
 				content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 20 + setting.children.Length * (defaultElementheight + 20));
 				for (var i = 0; i < setting.children.Length; i++) {
@@ -44,11 +46,14 @@ namespace RhythmicVR {
 			}
 		}
 
-		public void disableAllSettingsPages() {
+		public void DisableAllSettingsPages() {
 			foreach (var page in allPages) {
 				page.SetActive(false);
 			}
 		}
-		
-	}
-}
+
+		private void DeleteAllSettingsPages() {
+			foreach (var page in allPages) {
+				Destroy(page);
+			}
+		}
