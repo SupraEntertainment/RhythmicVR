@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -75,6 +75,9 @@ namespace RhythmicVR {
             //RunATestSong();
         }
 
+        /// <summary>
+        /// handle pause button
+        /// </summary>
         private void Update() {
             if (allowPause) {
                 if (pauseButton.changed) {
@@ -89,8 +92,11 @@ namespace RhythmicVR {
             }
         }
 
+        /// <summary>
+        /// Set all static values, this is a really jank way of doing and should never be done...
+        /// Will replace it with something better eventually
+        /// </summary>
         private void InitStaticVariables() {
-            // set all static values
             SPAWN_DISTANCE = spawnDistance;
         
             AMBIGUOUS_MAT = ambiguousMaterial;
@@ -99,6 +105,9 @@ namespace RhythmicVR {
             CENTER_MAT = centerMaterial;
         }
 
+        /// <summary>
+        /// Initialize config object (assign if it can be loaded, otherwise create new and save it)
+        /// </summary>
         private void InitConfig() {
             var logdir = Application.consoleLogPath.Substring(0, Application.consoleLogPath.Length - 10);
         
@@ -115,6 +124,9 @@ namespace RhythmicVR {
             
         }
 
+        /// <summary>
+        /// Add included plugins to Plugin Manager, load first gamemode, set first environment
+        /// </summary>
         private void LoadAssets() {
             foreach (var asset in includedAssetPackages) {
                 pluginManager.AddPlugin(asset);
@@ -125,10 +137,20 @@ namespace RhythmicVR {
             SetEnvironment(pluginManager.GetAllEnvironments()[0]);
         }
 
+        /// <summary>
+        /// Initialize the Environment Prefab, delete previously loaded Environment if there is any
+        /// </summary>
+        /// <param name="go"></param>
         private void SetEnvironment(GameObject go) {
+            if (_currentEnvironment != null) {
+                Destroy(_currentEnvironment);
+            }
             _currentEnvironment = Instantiate(go);
         }
 
+        /// <summary>
+        /// Load all songs from the songPath (config object) into the songList
+        /// </summary>
         private void LoadSongsIntoSongList() {
             List<Song> songs = new List<Song>();
             string[] paths = Directory.GetDirectories(config.songSavePath);
@@ -144,6 +166,9 @@ namespace RhythmicVR {
             settingsManager.UpdateSettingsUi();
         }
 
+        /// <summary>
+        /// Create a fake beatmap with some tests notes and play them
+        /// </summary>
         private void RunATestSong() {
             // create debug beatmap
             var bm = new Beatmap();
@@ -167,11 +192,15 @@ namespace RhythmicVR {
 
             bm.notes = notes.ToArray();
             // play beatmap
-            StartCoroutine(PlayBeatmap(bm));
+            StartCoroutine(PlayNotes(bm));
         }
 
-        // return tag string for tracker role 
-        private string TrackerRoleToTag(TrackingPoint role) {
+        /// <summary>
+        /// Return Tag String for Tracker Role 
+        /// </summary>
+        /// <param name="role">The Tracker Role to convert</param>
+        /// <returns>The Tag String to use</returns>
+        private static string TrackerRoleToTag(TrackingPoint role) {
             switch (role) {
                 case TrackingPoint.LeftHand:
                     return "leftHand";
@@ -188,7 +217,10 @@ namespace RhythmicVR {
             }
         }
 
-        // load a song
+        /// <summary>
+        /// Load a Song fromn path and add to songList, reload songList UI
+        /// </summary>
+        /// <param name="songpath">The Folder path, where level.json is stored in</param>
         public void LoadSong(string songpath) {
             var song = ReadSongFromPath(songpath);
             Debug.Log("Loaded Song " + song.songName + " by " + song.songAuthorName);
@@ -199,23 +231,38 @@ namespace RhythmicVR {
             //StartBeatmap(song, song.difficulties[0]);
         }
 
+        /// <summary>
+        /// Read a song from path to song object
+        /// </summary>
+        /// <param name="songpath">The Folder path, where level.json is stored in</param>
+        /// <returns>The Song object</returns>
         public static Song ReadSongFromPath(string songpath) {
             var song = JsonUtility.FromJson<Song>(File.ReadAllText(songpath + "level.json"));
             song.pathToDir = songpath;
             return song;
         }
 
-        // start the selected beatmap
+        /// <summary>
+        /// Start a Beatmap
+        /// </summary>
+        /// <param name="song">The Song to play</param>
+        /// <param name="difficulty">The Difficulty, of wich to take the beatmap</param>
+        /// <param name="modfiers">[Not Implemented] The modifiers to use while playing</param>
         public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
             Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
             uiManager.InBeatmap();
             allowPause = true;
             currentlyPlayingBeatmap = bm;
             //StopCoroutine(PlayBeatmap(bm));
-            StartCoroutine(PlayBeatmap(bm));
+            StartCoroutine(PlayNotes(bm));
         }
 
-        private IEnumerator PlayBeatmap(Beatmap bm) {
+        /// <summary>
+        /// Play Notes coroutine, plays all notes timed properly
+        /// </summary>
+        /// <param name="bm">The beatmap to take the notes from</param>
+        /// <returns></returns>
+        private IEnumerator PlayNotes(Beatmap bm) {
             //var beatmapLength = bm.notes[bm.notes.Length-1].time;
             float currentTime = 0;
             for (int i = 0; i < bm.notes.Length; i++) {
@@ -230,6 +277,13 @@ namespace RhythmicVR {
             Debug.Log("Finished placing target objects");
         }
 
+        /// <summary>
+        /// Pauses the currently playing beatmap.
+        /// </summary>
+        /// <param name="reason">
+        /// 0 = paused<br/>
+        /// 1 = completed<br/>
+        /// 2 = failed</param>
         public void StopBeatmap(int reason) {
             switch (reason) {
                 case 0: // paused
@@ -249,20 +303,32 @@ namespace RhythmicVR {
             }
         }
 
+        /// <summary>
+        /// Continue the paused beatmap. Hides Pause menu and sets the time scale back to 1 in order to continue.
+        /// </summary>
         public void ContinueBeatmap() {
             Time.timeScale = 1;
             uiManager.HidePauseMenu();
         }
 
+        /// <summary>
+        /// Exit the currently playing beatmap (stops the coroutine, disables pause button, hides pause menu, and returns to the menu)
+        /// </summary>
         public void ExitBeatmap() {
-            StopCoroutine(PlayBeatmap(currentlyPlayingBeatmap));
+            StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
             allowPause = false;
             uiManager.ToSongListMenu();
             uiManager.HidePauseMenu();
         }
 
-        // write song and all beatmaps to their files
-        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Texture2D cover) {
+        /// <summary>
+        /// Write song, all Beatmaps, the Cover Image and Audio to their Files
+        /// </summary>
+        /// <param name="songObject">The "Song" Object</param>
+        /// <param name="beatmaps">The "Beatmap" Objects</param>
+        /// <param name="cover">The cover Image as byte Array</param>
+        /// <param name="audio">The audio File as byte Array</param>
+        /// <returns>the path to the song</returns>
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Byte[] cover, Byte[] audio) {
             string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + Path.DirectorySeparatorChar;
             if (!Directory.Exists(pathToSong)) {
@@ -278,35 +344,50 @@ namespace RhythmicVR {
 
             return pathToSong;
         }
-
-    
-        /*
-     * loads a gamemode from assetbundle
-     */
+        
+        /// <summary>
+        /// Loads a Gamemode (sets appropriate target object and tracked Objects (colliders and hit logic) to Tracking points
+        /// </summary>
+        /// <param name="gm">The gamemode to load</param>
         public void LoadGamemode(Gamemode gm) {
-            target = gm.targetObject;
-            _currentTargetObject = target.GetComponent<TargetObject>();
-            foreach (var trackedDevicePair in gm.trackedObjects) {
-                trackedDevicePair.prefab.GetComponent<GenericTrackedObject>().collider.gameObject.tag = TrackerRoleToTag(trackedDevicePair.role);
+            target = gm.targetObject; //set the target object
+            _currentTargetObject = target.GetComponent<TargetObject>(); //set the target component (still arguing about which of theese two to use)
+            
+            foreach (var trackedDevicePair in gm.trackedObjects) { // iterate over all available tracking points in gamemode
+                trackedDevicePair.prefab.GetComponent<GenericTrackedObject>().collider.gameObject.tag = TrackerRoleToTag(trackedDevicePair.role); // set tag for determining position
                 Transform tracker;
-                if (trackedDevicePair.role == TrackingPoint.LeftHand) {
-                    tracker = leftHand;
-                } else if (trackedDevicePair.role == TrackingPoint.RightHand) {
-                    tracker = rightHand;
-                } else if (trackedDevicePair.role == TrackingPoint.LeftFoot) {
-                    tracker = leftFoot;
-                } else if (trackedDevicePair.role == TrackingPoint.RightFoot) {
-                    tracker = rightFoot;
-                } else if (trackedDevicePair.role == TrackingPoint.Waist) {
-                    tracker = waist;
-                } else {
-                    return;
+                switch (trackedDevicePair.role) { // set tracked objects (colliders and hit logic) to tracking points 
+                    case TrackingPoint.LeftHand:
+                        tracker = leftHand;
+                        break;
+                    case TrackingPoint.RightHand:
+                        tracker = rightHand;
+                        break;
+                    case TrackingPoint.LeftFoot:
+                        tracker = leftFoot;
+                        break;
+                    case TrackingPoint.RightFoot:
+                        tracker = rightFoot;
+                        break;
+                    case TrackingPoint.Waist:
+                        tracker = waist;
+                        break;
+                    default:
+                        return;
                 }
                 Instantiate(trackedDevicePair.prefab, tracker);
             }
         }
     
-        // spawn a target object (switching target objects for gamemodes is still missing!)
+        /// <summary>
+        /// Spawn a Target Object
+        /// </summary>
+        /// <param name="speed">The speed, in wich that note travels</param>
+        /// <param name="xCoord">The x position</param>
+        /// <param name="yCoord">The y position</param>
+        /// <param name="viewRotation">The Rotation along the notes travel direction</param>
+        /// <param name="playspaceRoation">The notes rotation along the gamemode origin</param>
+        /// <param name="hand">The Tracking points the note is supposed to be hit with</param>
         public void SpawnTarget(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, TrackingPoint[] hand) {
             GameObject cube = Instantiate(_currentTargetObject.gameObject, new Vector3(xCoord, yCoord, SPAWN_DISTANCE), new Quaternion(0, 0, viewRotation, 0));
             cube.GetComponent<TargetObject>().InitNote(new Note(1, xCoord, yCoord, speed, hand, viewRotation, playspaceRoation));
@@ -318,3 +399,6 @@ namespace RhythmicVR {
         }
     }
 }
+
+
+//TODO add method docs everywhere and comments on things, that aren't self explanatory
