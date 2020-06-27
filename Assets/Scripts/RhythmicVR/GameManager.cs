@@ -155,7 +155,7 @@ namespace RhythmicVR {
             List<Song> songs = new List<Song>();
             string[] paths = Directory.GetDirectories(config.songSavePath);
             foreach (var path in paths) {
-                songs.Add(ReadSongFromPath(path + Path.DirectorySeparatorChar));
+                songs.Add(ReadSongFromPath(path + "/"));
             }
             songList.AddRange(songs);
         }
@@ -249,7 +249,7 @@ namespace RhythmicVR {
         /// <param name="difficulty">The Difficulty, of wich to take the beatmap</param>
         /// <param name="modfiers">[Not Implemented] The modifiers to use while playing</param>
         public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
-            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + Path.DirectorySeparatorChar + song.id + "_" + song.songName + Path.DirectorySeparatorChar + difficulty.beatMapPath));
+            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
             uiManager.InBeatmap();
             allowPause = true;
             currentlyPlayingBeatmap = bm;
@@ -330,7 +330,7 @@ namespace RhythmicVR {
         /// <param name="audio">The audio File as byte Array</param>
         /// <returns>the path to the song</returns>
         public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Byte[] cover, Byte[] audio) {
-            string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + Path.DirectorySeparatorChar;
+            string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + "/";
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }

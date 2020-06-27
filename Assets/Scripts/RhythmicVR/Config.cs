@@ -20,7 +20,7 @@ namespace RhythmicVR {
 			}
 
 			if (songSavePath == null) {
-				songSavePath = appData + "songs" + Path.DirectorySeparatorChar;
+				songSavePath = appData + "songs/";
 			}
 		}
 
@@ -28,7 +28,7 @@ namespace RhythmicVR {
 		/// Save config file
 		/// </summary>
 		public void Save() {
-			File.WriteAllText(appData + Path.DirectorySeparatorChar + "config.json", JsonUtility.ToJson(this, true));
+			File.WriteAllText(appData + "/config.json", JsonUtility.ToJson(this, true));
 		}
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace RhythmicVR {
 		/// <param name="path">Path to load the file from</param>
 		/// <returns>The config object from that file</returns>
 		public static Config Load(string path) {
-			return JsonUtility.FromJson<Config>(File.ReadAllText(path + Path.DirectorySeparatorChar + "config.json"));
+			return JsonUtility.FromJson<Config>(File.ReadAllText(path + "/config.json"));
 		}
 	}
 }
