@@ -57,6 +57,17 @@ namespace RhythmicVR {
 					contentHeight += InitializeUiElement(setting.children[i], content, contentHeight); // create next elements
 				}
 				content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, contentHeight); //set height of conent element
+			} else {
+				var allInputElements = settingUiElement.GetComponentsInChildren<InputField>();
+				for (var i = 0; i < allInputElements.Length; i++) {
+					var inputElement = allInputElements[i];
+					inputElement.onValueChanged.AddListener(delegate(string arg0) { setting.InvokeEvent(i, arg0); });
+				}
+
+				var allSliders = settingUiElement.GetComponentsInChildren<Slider>();
+				foreach (var slider in allSliders) {
+					slider.onValueChanged.AddListener(delegate(float arg0) { setting.InvokeEvent(0, arg0.ToString()); });
+				}
 			}
 			return (int)rt.rect.height;
 		}

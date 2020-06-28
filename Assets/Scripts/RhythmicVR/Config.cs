@@ -13,6 +13,13 @@ namespace RhythmicVR {
 		public string appData;
 		public string songSavePath;
 		public string latestSongSortSetting;
+		public int generalVolume = 50;
+		public int menuVolume = 50;
+		public int songVolume = 50;
+		public int songPreviewVolume = 50;
+		public int hitVolume = 50;
+		public int missVolume = 50;
+		public int wrongHitVolume = 50;
 
 		public Config() {
 			if (appData == null) {
