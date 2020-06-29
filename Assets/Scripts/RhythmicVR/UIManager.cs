@@ -47,6 +47,9 @@ namespace RhythmicVR {
         public GameObject categoryPrefab;
         public GameObject enumPrefab;
 
+        [Header("Various")] 
+        public Dropdown gamemodeDropdown;
+
         private List<GameObject> _loadedSongs = new List<GameObject>();
 
         public void Start() {
@@ -171,8 +174,24 @@ namespace RhythmicVR {
 #endif
             Application.Quit();
         }
+
+        /// <summary>
+        /// Select gamemode from dropdown
+        /// </summary>
+        /// <param name="option">the selected option in dropdown (should be sorted simmilar to list in PluginManager)</param>
+        public void SelectGamemode(int option) {
+            gm.SetGamemode(gm.pluginManager.GetAllGamemodes()[option]);
+        }
+
+        /// <summary>
+        /// Adds all gamemodes listed in pluginManager to dropdown on songlist
+        /// </summary>
+        public void AddGamemodesToDropdown() {
+            foreach (var gamemode in gm.pluginManager.GetAllGamemodes()) {
+                gamemodeDropdown.options.Add(new Dropdown.OptionData(gamemode.name));
+            }
+        }
         
-        /*-------------------- ^^ button methods ^^ --------------------------*/
         /*-------------------- vv songlist vv --------------------------*/
 
         public void ListSongs(List<Song> songs) {

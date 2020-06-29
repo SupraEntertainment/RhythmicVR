@@ -134,8 +134,8 @@ namespace RhythmicVR {
                 pluginManager.AddPlugin(asset);
             }
 
-            _currentGamemode = pluginManager.GetAllGamemodes()[0];
-            LoadGamemode(_currentGamemode);
+            SetGamemode(pluginManager.GetAllGamemodes()[0]);
+            uiManager.AddGamemodesToDropdown();
             SetEnvironment(pluginManager.GetAllEnvironments()[0]);
         }
 
@@ -387,7 +387,8 @@ namespace RhythmicVR {
         /// Loads a Gamemode (sets appropriate target object and tracked Objects (colliders and hit logic) to Tracking points
         /// </summary>
         /// <param name="gm">The gamemode to load</param>
-        public void LoadGamemode(Gamemode gm) {
+        public void SetGamemode(Gamemode gm) {
+            _currentGamemode = gm;
             target = gm.targetObject; //set the target object
             _currentTargetObject = target.GetComponent<TargetObject>(); //set the target component (still arguing about which of theese two to use)
             

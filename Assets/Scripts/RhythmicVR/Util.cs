@@ -33,7 +33,7 @@ namespace RhythmicVR {
 			// Load a PNG or JPG file from disk to a Texture2D
 			// Returns null if load fails
 
-			Debug.Log("loading image " + filePath);
+			//Debug.Log("loading image " + filePath);
  
 			Texture2D Tex2D;
 			byte[] FileData;

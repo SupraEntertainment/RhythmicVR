@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99558e1543fa4d30b830f36e14683509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  packageName: Beat Saber
+  packageName: Beat Punch
   type: 0
 --- !u!1 &8232447370259423880
 GameObject:
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942252579dee441594ee5d404c0a440c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Beat Saber
+  name: Beat Punch
   icon: {fileID: 0}
   targetObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
     type: 3}
@@ -111,6 +111,7 @@ MonoBehaviour:
     role: 4
   targetSpaceMapping:
     position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
     scale: {x: 0, y: 0, z: 0}
     useTransform: 0
     origin: {fileID: 0}
