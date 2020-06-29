@@ -142,8 +142,6 @@ namespace Valve.VR
             try
             {
                 var error = EVRInitError.None;
-
-#if !OPENVR_XR_API
                 if (!SteamVR.usingNativeSupport)
                 {
                     ReportGeneralErrors();
@@ -151,7 +149,6 @@ namespace Valve.VR
                     SteamVR_Events.Initialized.Send(false);
                     return null;
                 }
-#endif
 
                 // Verify common interfaces are valid.
 
@@ -185,12 +182,10 @@ namespace Valve.VR
 
                 settings = SteamVR_Settings.instance;
 
-#if !OPENVR_XR_API
                 if (Application.isEditor)
                     IdentifyEditorApplication();
 
                 SteamVR_Input.IdentifyActionsFile();
-#endif
 
                 if (SteamVR_Settings.instance.inputUpdateMode != SteamVR_UpdateModes.Nothing || SteamVR_Settings.instance.poseUpdateMode != SteamVR_UpdateModes.Nothing)
                 {
@@ -589,7 +584,7 @@ namespace Valve.VR
             }
         }
 
-#region Event callbacks
+        #region Event callbacks
 
         private void OnInitializing(bool initializing)
         {
@@ -654,7 +649,7 @@ namespace Valve.VR
             }
         }
 
-#endregion
+        #endregion
 
         private SteamVR()
         {
