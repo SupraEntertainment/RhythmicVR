@@ -1,4 +1,4 @@
-# RythmicVR
+# RhythmicVR
 
 The following list contains my plans for this Project:
 - [ ] Modularity / support for multiple gamemodes (addable afterwards -> via assetbundles?)
