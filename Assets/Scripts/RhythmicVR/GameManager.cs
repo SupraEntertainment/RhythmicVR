@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 using Valve.VR;
 using Random = UnityEngine.Random;
@@ -46,11 +45,13 @@ namespace RhythmicVR {
         public SongList songList = new SongList();
         public SteamVR_Action_Boolean pauseButton;
         public AssetPackage[] includedAssetPackages;
+        private AudioSource audioSource;
 
         private bool allowPause;
         private bool isPaused;
         
         [NonSerialized] public Beatmap currentlyPlayingBeatmap;
+        [NonSerialized] public Song currentlyPlayingSong;
         [NonSerialized] private Gamemode _currentGamemode;
         [NonSerialized] private TargetObject _currentTargetObject;
         [NonSerialized] private GenericTrackedObject _currentTrackedDeviceObject;
@@ -60,6 +61,11 @@ namespace RhythmicVR {
 
         private void Start() {
 
+            if (GetComponent<AudioSource>()) {
+                audioSource = GetComponent<AudioSource>();
+            } else {
+                audioSource = new AudioSource();
+            }
             settingsManager = new SettingsManager(this);
             pluginManager = new PluginManager();
             volumeManager = new VolumeManager(this);
@@ -286,12 +292,24 @@ namespace RhythmicVR {
         /// <param name="difficulty">The Difficulty, of wich to take the beatmap</param>
         /// <param name="modfiers">[Not Implemented] The modifiers to use while playing</param>
         public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
-            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(config.songSavePath + "/" + song.id + "_" + song.songName + "/" + difficulty.beatMapPath));
+            Beatmap bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(song.pathToDir + "/" + difficulty.beatMapPath));
             uiManager.InBeatmap();
             allowPause = true;
             currentlyPlayingBeatmap = bm;
+            currentlyPlayingSong = song;
             //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayNotes(bm));
+            PlaySongAudio(song);
+        }
+
+        /// <summary>
+        /// Play the audio belonging to song object
+        /// </summary>
+        /// <param name="song">The song, whos audio to play</param>
+        private void PlaySongAudio(Song song) {
+            var path = song.pathToDir + song.songFile;
+            audioSource.clip = Util.GetAudioClipFromPath(path);
+            audioSource.Play();
         }
 
         /// <summary>

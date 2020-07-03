@@ -1,11 +1,17 @@
+using System.Collections;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace RhythmicVR {
 	/// <summary>
 	/// Utility Methods, useful everywhere
 	/// </summary>
 	public class Util {
+		
+		private static IEnumerator _iterator;
+
+		public static AudioClip audioClip; //to store the audio clip output from WebRequest handler in
 		
         /// <summary>
         /// Load sprite from file path
@@ -46,5 +52,35 @@ namespace RhythmicVR {
 			}  
 			return null;                     // Return null if load failed
 		}
+
+        public IEnumerator SetAudioClipFromPath(string path) {
+	        Debug.Log(File.Exists(path));
+	        var fullpath = "file://" + path;
+	        var request = UnityWebRequestMultimedia.GetAudioClip(fullpath, AudioType.OGGVORBIS);
+	        yield return request.SendWebRequest();
+	        while (!request.isDone) {
+		        Debug.Log("Not done yet");
+	        }
+	        //audioClip = ((DownloadHandlerAudioClip) request.downloadHandler).audioClip;
+	        audioClip = DownloadHandlerAudioClip.GetContent(request);
+        }
+
+        public static AudioClip GetAudioClipFromPath(string path) {
+	        var util = new Util();
+	        while (audioClip == null) {
+		        if (_iterator == null)
+		        {
+			        Debug.Log("Starting DoSomething()");
+			        _iterator = util.SetAudioClipFromPath(path);
+		        }
+ 
+		        if (!_iterator.MoveNext())
+		        {
+			        Debug.Log("DoSomething completed!");
+			        _iterator = null;
+		        }
+	        }
+	        return audioClip;
+        }
 	}
 }
