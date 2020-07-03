@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageName: Beat Punch
   type: 0
+  unityAssetObject: {fileID: 8232447370259423880}
 --- !u!1 &8232447370259423880
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +72,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8232447370259423880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9482887, y: -0.9369526, z: -1.9759009}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2492262632421967462}

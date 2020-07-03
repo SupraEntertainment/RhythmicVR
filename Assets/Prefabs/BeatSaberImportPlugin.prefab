@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageName: beat Saber Importer
   type: 4
+  unityAssetObject: {fileID: 5098652987200088459}
 --- !u!1 &5098652987200088459
 GameObject:
   m_ObjectHideFlags: 0

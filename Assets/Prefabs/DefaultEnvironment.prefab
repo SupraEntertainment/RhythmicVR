@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageName: Default Circular
   type: 2
+  unityAssetObject: {fileID: 0}
 --- !u!1001 &132990828366831836
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ namespace VRRythmGame.Editor {
             EditorGUILayout.BeginVertical();
             EditorGUILayout.PropertyField(packageName);
             EditorGUILayout.PropertyField(type);
+            EditorGUILayout.PropertyField(unityAssetObject);
             EditorGUILayout.EndVertical();
             if (GUILayout.Button("Build AssetBundle")) {
                 var abb = new AssetBundleBuild();
