@@ -58,9 +58,7 @@ namespace RhythmicVR {
 			page.buttonOnParentMenu = gm.uiManager.BuildUiElement(page.pageName, UiType.Category);
 			page.gameObject = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
 			page.buttonOnParentMenu.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.SetActive(true); }); // go to this new page when clicking on category
-			Debug.Log(parent != null);
-			Debug.Log(parent);
-			if (parent != null) {
+			if ((object)parent != null) { // unity does weird operator magic, therefore cast to normal System.Object
 				page.parent = parent;
 				parent.AddChildPage(page);
 			}
