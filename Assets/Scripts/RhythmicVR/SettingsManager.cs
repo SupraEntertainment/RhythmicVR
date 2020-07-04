@@ -115,9 +115,7 @@ namespace RhythmicVR {
 		}
 
 		private void DeleteAllSettingsPages() {
-			foreach (var page in allPages) {
-				Destroy(page);
-			}
+			allPages.Clear();
 		}
 	}
 }
