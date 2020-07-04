@@ -173,37 +173,47 @@ namespace RhythmicVR {
         /// </summary>
         private void InitializeSettings() {
             // add listeners
-            /*foreach (var setting in integratedSettings) {
-                if (setting.name.ToLower() == "audio") { // audio
-                    for (var i = 0; i < setting.children.Length; i++) {
-                        var audioSetting = setting.children[i];
-                        switch (i) {
-                            case 0:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetGeneralVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            case 1:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetMenuVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            case 2:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetSongVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            case 3:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetSongPreviewVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            case 4:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetHitVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            case 5:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetMissVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            case 6:
-                                audioSetting.call.AddListener(delegate { volumeManager.SetWrongHitVolume(int.Parse(audioSetting._input)); });
-                                break;
-                            
-                        }
-                    }
+            for (var i = 0; i < integratedSettings.Length; i++) {
+                var setting = integratedSettings[i];
+                switch (i) {
+                    case 0:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetGeneralVolume(int.Parse(setting._input));
+                        });
+                        break;
+                    case 1:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetMenuVolume(int.Parse(setting._input));
+                        });
+                        break;
+                    case 2:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetSongVolume(int.Parse(setting._input));
+                        });
+                        break;
+                    case 3:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetSongPreviewVolume(int.Parse(setting._input));
+                        });
+                        break;
+                    case 4:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetHitVolume(int.Parse(setting._input));
+                        });
+                        break;
+                    case 5:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetMissVolume(int.Parse(setting._input));
+                        });
+                        break;
+                    case 6:
+                        setting.call.AddListener(delegate {
+                            volumeManager.SetWrongHitVolume(int.Parse(setting._input));
+                        });
+                        break;
                 }
-            }*/
+            }
+
             settingsManager.settings.AddRange(integratedSettings);
             settingsManager.settingsMenuParent = uiManager.settingsMenu;
             settingsManager.UpdateSettingsUi();

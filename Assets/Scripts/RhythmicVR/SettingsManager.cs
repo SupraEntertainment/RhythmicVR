@@ -57,10 +57,10 @@ namespace RhythmicVR {
 			MenuPage page = new MenuPage {pageName = pageName};
 			page.buttonOnParentMenu = gm.uiManager.BuildUiElement(page.pageName, UiType.Category);
 			page.gameObject = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
-			page.buttonOnParentMenu.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.SetActive(true); }); // go to this new page when clicking on category
 			if ((object)parent != null) { // unity does weird operator magic, therefore cast to normal System.Object
 				page.parent = parent;
 				parent.AddChildPage(page);
+				page.buttonOnParentMenu.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.SetActive(true); }); // go to this new page when clicking on category
 			}
 			page.gameObject.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.parent.SetActive(true); }); // back button lsitener (to activate previous page)
 			allPages.Add(page); // add to page list
