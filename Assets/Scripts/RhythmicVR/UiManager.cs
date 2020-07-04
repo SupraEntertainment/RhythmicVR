@@ -8,9 +8,9 @@ using UnityEngine.UI;
 using Valve.VR;
 
 namespace RhythmicVR {
-    public class UIManager : MonoBehaviour {
+    public class UiManager : MonoBehaviour {
 
-        public GameManager gm;
+        public Core core;
         public RectTransform songListParent;
         public SteamVR_ActionSet uiActionSet;
 
@@ -31,7 +31,7 @@ namespace RhythmicVR {
         public List<GameObject> inGamePanels;
 
         private Text scoreText;
-        private Text progrssText;
+        private Text progressText;
         private Image progressBar;
         private Text multiplierText;
         
@@ -50,7 +50,7 @@ namespace RhythmicVR {
         [Header("Various")] 
         public Dropdown gamemodeDropdown;
 
-        private List<GameObject> _loadedSongs = new List<GameObject>();
+        private List<GameObject> loadedSongs = new List<GameObject>();
 
         public void Start() {
             uiActionSet.Activate();
@@ -76,7 +76,7 @@ namespace RhythmicVR {
         public void OpenSongFile() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Load and Play Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
-                    gm.LoadSong(path + Path.DirectorySeparatorChar);
+                    core.LoadSong(path + Path.DirectorySeparatorChar);
                 }
             });
         }
@@ -84,7 +84,7 @@ namespace RhythmicVR {
         private void OpenBeatSaberSong() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
-                    gm.LoadSong(BeatSaber.SongLoader.ConvertSong(path, gm));
+                    core.LoadSong(BeatSaber.SongLoader.ConvertSong(path, core));
                 }
             });
         }
@@ -151,7 +151,7 @@ namespace RhythmicVR {
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
             SetInGameMenusActive(false);
-            ListSongs(gm.songList.GetAllSongs());
+            ListSongs(core.songList.GetAllSongs());
         }
         
         /// <summary>
@@ -180,14 +180,14 @@ namespace RhythmicVR {
         /// </summary>
         /// <param name="option">the selected option in dropdown (should be sorted simmilar to list in PluginManager)</param>
         public void SelectGamemode(int option) {
-            gm.SetGamemode(gm.pluginManager.GetAllGamemodes()[option]);
+            core.SetGamemode(core.pluginManager.GetAllGamemodes()[option]);
         }
 
         /// <summary>
         /// Adds all gamemodes listed in pluginManager to dropdown on songlist
         /// </summary>
         public void AddGamemodesToDropdown() {
-            foreach (var gamemode in gm.pluginManager.GetAllGamemodes()) {
+            foreach (var gamemode in core.pluginManager.GetAllGamemodes()) {
                 gamemodeDropdown.options.Add(new Dropdown.OptionData(gamemode.name));
             }
         }
@@ -205,7 +205,7 @@ namespace RhythmicVR {
         /// <param name="songs">The songs</param>
         /// <param name="buttonPrefab">The Prefab to use as song List element</param>
         private void ListAllSongs(RectTransform parent, List<Song> songs, GameObject buttonPrefab) {
-            if (_loadedSongs.Count != 0) {
+            if (loadedSongs.Count != 0) {
                 RemoveAllListedSongs();
             }
 
@@ -219,12 +219,12 @@ namespace RhythmicVR {
                 var rt = button.GetComponent<RectTransform>();
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
-                _loadedSongs.Add(button);
+                loadedSongs.Add(button);
             }
         }
 
         private void RemoveAllListedSongs() {
-            foreach (var loadedSong in _loadedSongs) {
+            foreach (var loadedSong in loadedSongs) {
                 Destroy(loadedSong);
             }
         }
@@ -242,9 +242,9 @@ namespace RhythmicVR {
             practiceBeatmapButton.onClick.RemoveAllListeners();
             
             // add listeners
-            playBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[song.difficulties.Length-1], null); });
+            playBeatmapButton.onClick.AddListener(delegate { core.StartBeatmap(song, song.difficulties[song.difficulties.Length-1], null); });
             deleteBeatmapButton.onClick.AddListener(delegate {  });
-            practiceBeatmapButton.onClick.AddListener(delegate { gm.StartBeatmap(song, song.difficulties[0], null); });
+            practiceBeatmapButton.onClick.AddListener(delegate { core.StartBeatmap(song, song.difficulties[0], null); });
             
             // set text
             beatmapTitleText.text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
@@ -271,7 +271,7 @@ namespace RhythmicVR {
                     Console.WriteLine(e);
                 }
                 try {
-                    progrssText = panel.transform.Find("Progress.Text").GetComponent<Text>();
+                    progressText = panel.transform.Find("Progress.Text").GetComponent<Text>();
                 }
                 catch (Exception e) {
                     Console.WriteLine(e);
@@ -286,7 +286,7 @@ namespace RhythmicVR {
         }
 
         private void PopulateInGamePanels() {
-            scoreText.text = gm.currentScore.ToString();
+            scoreText.text = core.currentScore.ToString();
         }
 
         /// <summary>

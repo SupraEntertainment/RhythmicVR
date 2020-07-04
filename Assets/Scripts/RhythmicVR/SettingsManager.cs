@@ -8,11 +8,11 @@ namespace RhythmicVR {
 	public class SettingsManager : Object {
 		public List<SettingsField> settings = new List<SettingsField>();
 		public GameObject settingsMenuParent;
-		private GameManager gm;
+		private Core core;
 		private List<MenuPage> allPages = new List<MenuPage>();
 
-		public SettingsManager(GameManager gm) {
-			this.gm = gm;
+		public SettingsManager(Core core) {
+			this.core = core;
 		}
 		
 		/// <summary>
@@ -55,8 +55,8 @@ namespace RhythmicVR {
 
 		private MenuPage CreatePage(string pageName, MenuPage parent) {
 			MenuPage page = new MenuPage {pageName = pageName};
-			page.buttonOnParentMenu = gm.uiManager.BuildUiElement(page.pageName, UiType.Category);
-			page.gameObject = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
+			page.buttonOnParentMenu = core.uiManager.BuildUiElement(page.pageName, UiType.Category);
+			page.gameObject = Instantiate(core.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
 			if ((object)parent != null) { // unity does weird operator magic, therefore cast to normal System.Object
 				page.parent = parent;
 				parent.AddChildPage(page);
@@ -77,11 +77,11 @@ namespace RhythmicVR {
 		/// 
 		[Obsolete("This should not be used to create Ui elements anymore, use CreatePage() and SetupElement() instead")]
 		private int InitializeUiElement(SettingsField setting, GameObject parent, int heightOfExistingElements) {
-			var settingUiElement = Instantiate(gm.uiManager.BuildUiElement(setting.name, setting.type), parent.transform); // instantiate UI element
+			var settingUiElement = Instantiate(core.uiManager.BuildUiElement(setting.name, setting.type), parent.transform); // instantiate UI element
 			var rt = settingUiElement.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -heightOfExistingElements); // set elements position
 			if (setting.type == UiType.Category) {
-				var settingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); // instantiate category page
+				var settingsPage = Instantiate(core.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); // instantiate category page
 				//allPages.Add(settingsPage); // add page to list
 				//settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.RemoveAllListeners(); //remove all previous listeners
 				settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); parent.transform.parent.parent.gameObject.SetActive(true); }); // back button lsitener (to activate previous page)

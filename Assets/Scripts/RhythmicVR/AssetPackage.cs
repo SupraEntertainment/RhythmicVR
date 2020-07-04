@@ -8,7 +8,7 @@ namespace RhythmicVR {
 	/// </summary>
 	public class AssetPackage : MonoBehaviour {
 
-		public string packageName;
+		public string pluginName;
 		public AssetType type;
 		public Object unityAssetObject;
 		[SerializeField] public object assetObject;

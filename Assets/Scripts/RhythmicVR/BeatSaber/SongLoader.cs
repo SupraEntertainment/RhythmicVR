@@ -13,7 +13,7 @@ namespace RhythmicVR.BeatSaber {
     /// </summary>
     public class SongLoader {
 
-        public static string ConvertSong(string filePath, GameManager gm) {
+        public static string ConvertSong(string filePath, Core gm) {
             try {
                 Song song = JsonUtility.FromJson<Song>(File.ReadAllText(filePath + Path.DirectorySeparatorChar + "info.dat"));
 

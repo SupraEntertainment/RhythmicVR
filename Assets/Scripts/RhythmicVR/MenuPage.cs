@@ -25,7 +25,7 @@ namespace RhythmicVR {
 		public void AddElement(SettingsField field) {
 			elementChildren.Add(field);
 			var content = gameObject.transform.Find("Viewport/Content").gameObject;
-			field.initializedObject = Instantiate(FindObjectOfType<GameManager>().uiManager.BuildUiElement(field.name, field.type), content.transform); // instantiate UI element
+			field.initializedObject = Instantiate(FindObjectOfType<Core>().uiManager.BuildUiElement(field.name, field.type), content.transform); // instantiate UI element
 			var rt = field.initializedObject.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -height); // set elements position
 			height += (int)rt.rect.height;

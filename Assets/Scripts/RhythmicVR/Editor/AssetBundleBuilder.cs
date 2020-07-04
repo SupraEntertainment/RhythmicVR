@@ -18,7 +18,7 @@ namespace RhythmicVR.Editor {
             var prefab = PrefabUtility.SaveAsPrefabAsset(conentes, $"Assets/Asset_{uniqueID}.prefab", out bool succeeded);
             
             abb.assetNames = new string[] {prefab.name};
-            abb.assetBundleName = conentes.GetComponent<AssetPackage>().packageName;
+            abb.assetBundleName = conentes.GetComponent<PluginBaseClass>().pluginName;
             
             // halp, how 2 mark the asset in that prefab for usage in the asset bundle?
             

@@ -9,13 +9,13 @@ namespace RhythmicVR {
         public Collider collider;
         public bool useVelocityForScoreCalc;
         [System.NonSerialized] public TrackingPoint role;
-        public GameManager gm;
+        public Core gm;
     
         // Start is called before the first frame update
         private void Start() {
             collider.gameObject.AddComponent<Rigidbody>();
             CreateRigidbody(collider.gameObject.GetComponent<Rigidbody>());
-            gm = FindObjectOfType<GameManager>();
+            gm = FindObjectOfType<Core>();
         }
 
         private void CreateRigidbody(Rigidbody rb) {

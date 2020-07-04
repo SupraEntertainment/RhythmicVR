@@ -33,19 +33,19 @@ namespace RhythmicVR {
 		/// <returns>The material to assign</returns>
 		public Material AssignMaterial(TrackingPoint[] trackingPoints) {
 			if (trackingPoints.Length > 1) {
-				return GameManager.AMBIGUOUS_MAT;
+				return Core.AMBIGUOUS_MAT;
 			} else {
 				switch (trackingPoints[0]) {
 					case TrackingPoint.LeftFoot:
 					case TrackingPoint.LeftHand:
-						return GameManager.LEFT_MAT;
+						return Core.LEFT_MAT;
 					case TrackingPoint.RightFoot:
 					case TrackingPoint.RightHand:
-						return GameManager.RIGHT_MAT;
+						return Core.RIGHT_MAT;
 					case TrackingPoint.Waist:
-						return GameManager.CENTER_MAT;
+						return Core.CENTER_MAT;
 					default:
-						return GameManager.AMBIGUOUS_MAT;
+						return Core.AMBIGUOUS_MAT;
 				}
 			}
 		}

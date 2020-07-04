@@ -3,19 +3,25 @@ using UnityEngine;
 
 namespace RhythmicVR {
 	public class PluginManager {
-		private readonly List<AssetPackage> loadedPlugins = new List<AssetPackage>();
+		private readonly List<PluginBaseClass> loadedPlugins = new List<PluginBaseClass>();
 		
 		private readonly List<Gamemode> loadedGamemodes = new List<Gamemode>();
 		private readonly List<GameObject> loadedEnvironments = new List<GameObject>();
 		private readonly List<GenericTrackedObject> loadedTrackedObjects = new List<GenericTrackedObject>();
 		private readonly List<TargetObject> loadedTargetObjects = new List<TargetObject>();
-		//private readonly List<MiscPlugin> miscPlugins;
+		private readonly List<PluginBaseClass> miscPlugins = new List<PluginBaseClass>();
+
+		private Core core;
+
+		public PluginManager(Core core) {
+			this.core = core;
+		}
 
 		/// <summary>
 		/// Add a plugin to the list
 		/// </summary>
 		/// <param name="plugin">The plugin to add</param>
-		public void AddPlugin(AssetPackage plugin) {
+		public void AddPlugin(PluginBaseClass plugin) {
 			loadedPlugins.Add(plugin);
 			switch (plugin.type) {
 				case AssetType.Environment:
@@ -25,6 +31,8 @@ namespace RhythmicVR {
 					loadedGamemodes.Add(plugin.GetComponentInChildren<Gamemode>());
 					break;
 				case AssetType.Misc:
+					miscPlugins.Add(plugin);
+					plugin.Init(core);
 					break;
 				case AssetType.TargetObject:
 					loadedTargetObjects.Add(plugin.GetComponentInChildren<TargetObject>());
@@ -34,8 +42,14 @@ namespace RhythmicVR {
 					break;
 			}
 		}
+
+		public void AddPlugins(PluginBaseClass[] plugins) {
+			foreach (var plugin in plugins) {
+				AddPlugin(plugin);
+			}
+		}
 		
-		public List<AssetPackage> GetPlugins() {
+		public List<PluginBaseClass> GetPlugins() {
 			return loadedPlugins;
 		}
 		
@@ -46,6 +60,7 @@ namespace RhythmicVR {
 		public List<Gamemode> GetAllGamemodes() {
 			return loadedGamemodes;
 		}
+		
 		/// <summary>
 		/// Return all Environment Prefabs
 		/// </summary>
@@ -53,9 +68,9 @@ namespace RhythmicVR {
 		public List<GameObject> GetAllEnvironments() {
 			return loadedEnvironments;
 		}
-		/*public List<AssetPackage> GetAllMiscelaneousPlugins() {
+		public List<PluginBaseClass> GetAllMiscelaneousPlugins() {
 			return miscPlugins;
-		}*/
+		}
 		public List<GenericTrackedObject> GetAllTrackedObjects() {
 			return loadedTrackedObjects;
 		}

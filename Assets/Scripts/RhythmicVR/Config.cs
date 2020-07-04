@@ -12,14 +12,8 @@ namespace RhythmicVR {
         
 		public string appData;
 		public string songSavePath;
+		public string pluginSavePath;
 		public string latestSongSortSetting;
-		public int generalVolume = 50;
-		public int menuVolume = 50;
-		public int songVolume = 50;
-		public int songPreviewVolume = 50;
-		public int hitVolume = 50;
-		public int missVolume = 50;
-		public int wrongHitVolume = 50;
 
 		public Config() {
 			if (appData == null) {
@@ -29,6 +23,18 @@ namespace RhythmicVR {
 			if (songSavePath == null) {
 				songSavePath = appData + "songs/";
 			}
+
+			if (pluginSavePath == null) {
+				pluginSavePath = appData + "plugins/";
+			}
+		}
+
+		public void SavePluginConfig(string contents, string pluginName) {
+			File.WriteAllText(pluginSavePath + pluginName + ".json", contents);
+		}
+
+		public string LoadPluginConfig(string pluginName) {
+			return File.ReadAllText(pluginSavePath + pluginName + ".json");
 		}
 
 		/// <summary>

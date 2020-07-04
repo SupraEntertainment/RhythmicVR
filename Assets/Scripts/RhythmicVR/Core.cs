@@ -7,7 +7,7 @@ using Valve.VR;
 using Random = UnityEngine.Random;
 
 namespace RhythmicVR {
-    public class GameManager : MonoBehaviour {
+    public class Core : MonoBehaviour {
 
         [Header("Prefabs")]
         public GameObject target;
@@ -33,18 +33,17 @@ namespace RhythmicVR {
         [Header("Integrated settings menus")] 
         public SettingsField[] integratedSettings;
 
-        private SettingsManager settingsManager;
-        private VolumeManager volumeManager;
+        public SettingsManager settingsManager;
 
         [Header("Other Properties")] 
         public float spawnDistance;
         public static float SPAWN_DISTANCE;
-        public UIManager uiManager;
+        public UiManager uiManager;
         [NonSerialized] public Config config;
         public PluginManager pluginManager;
         public SongList songList = new SongList();
         public SteamVR_Action_Boolean pauseButton;
-        public AssetPackage[] includedAssetPackages;
+        public PluginBaseClass[] includedAssetPackages;
         private AudioSource audioSource;
 
         private bool allowPause;
@@ -67,8 +66,7 @@ namespace RhythmicVR {
                 audioSource = new AudioSource();
             }
             settingsManager = new SettingsManager(this);
-            pluginManager = new PluginManager();
-            volumeManager = new VolumeManager(this);
+            pluginManager = new PluginManager(this);
             
             InitStaticVariables();
 
@@ -176,7 +174,7 @@ namespace RhythmicVR {
             for (var i = 0; i < integratedSettings.Length; i++) {
                 var setting = integratedSettings[i];
                 switch (i) {
-                    case 0:
+                    /*case 0:
                         setting.call.AddListener(delegate {
                             volumeManager.SetGeneralVolume(int.Parse(setting._input));
                         });
@@ -210,7 +208,7 @@ namespace RhythmicVR {
                         setting.call.AddListener(delegate {
                             volumeManager.SetWrongHitVolume(int.Parse(setting._input));
                         });
-                        break;
+                        break;*/
                 }
             }
 
