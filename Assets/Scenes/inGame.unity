@@ -647,7 +647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &100778713
 Transform:
   m_ObjectHideFlags: 0
@@ -1166,75 +1166,81 @@ MonoBehaviour:
   rightFoot: {fileID: 98393552}
   waist: {fileID: 408846326}
   integratedSettings:
-  - name: Audio
-    type: 7
-    children:
-    - name: General
-      type: 4
-      children: []
-    - name: Hits
-      type: 4
-      children: []
-    - name: Misses
-      type: 4
-      children: []
-    - name: Menu
-      type: 4
-      children: []
-    - name: Songs
-      type: 4
-      children: []
-  - name: Video
-    type: 7
-    children:
-    - name: Super Sampling
-      type: 5
-      children: []
-    - name: Camera Smoothing (on desktop window)
-      type: 4
-      children: []
+  - name: General
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Songs
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Hits
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Misses
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Bad Hits
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Menu
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Song Preview
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Audio
+  - name: Super Sampling
+    type: 5
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Video
+  - name: Camera Shoothing (desktop view)
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Video
+  - name: Position
+    type: 1
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Playspace
+  - name: Rotation
+    type: 1
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Playspace
+  - name: Position
+    type: 1
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Controller Offsets
+  - name: Rotation
+    type: 1
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Controller Offsets
+  - name: Songs
+    type: 3
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Files
   - name: Assets
-    type: 7
-    children:
-    - name: Environments
-      type: 7
-      children: []
-    - name: Targets
-      type: 7
-      children: []
-    - name: Tracking Points
-      type: 7
-      children: []
-    - name: Gamemodes
-      type: 7
-      children: []
-  - name: Playspace
-    type: 7
-    children:
-    - name: Position
-      type: 1
-      children: []
-    - name: Rotation
-      type: 1
-      children: []
-  - name: Controller Offsets
-    type: 7
-    children:
-    - name: Position
-      type: 1
-      children: []
-    - name: Rotation
-      type: 1
-      children: []
-  - name: Files
-    type: 7
-    children:
-    - name: Songs
-      type: 3
-      children: []
-    - name: Assets
-      type: 3
-      children: []
+    type: 4
+    prefab: {fileID: 0}
+    initializedObject: {fileID: 0}
+    menuPath: Settings/Files
   spawnDistance: 10
   uiManager: {fileID: 1576197619}
   pauseButton:
@@ -6097,7 +6103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1741253005
 Transform:
   m_ObjectHideFlags: 0
@@ -7079,7 +7085,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7639,7 +7645,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8621,6 +8627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Input_list
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249789291369989987, guid: e102d4b7f3163d8478c8b1bb8c76aeeb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e102d4b7f3163d8478c8b1bb8c76aeeb, type: 3}

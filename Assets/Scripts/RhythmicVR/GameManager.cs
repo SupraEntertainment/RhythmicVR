@@ -173,7 +173,7 @@ namespace RhythmicVR {
         /// </summary>
         private void InitializeSettings() {
             // add listeners
-            foreach (var setting in integratedSettings) {
+            /*foreach (var setting in integratedSettings) {
                 if (setting.name.ToLower() == "audio") { // audio
                     for (var i = 0; i < setting.children.Length; i++) {
                         var audioSetting = setting.children[i];
@@ -203,7 +203,7 @@ namespace RhythmicVR {
                         }
                     }
                 }
-            }
+            }*/
             settingsManager.settings.AddRange(integratedSettings);
             settingsManager.settingsMenuParent = uiManager.settingsMenu;
             settingsManager.UpdateSettingsUi();

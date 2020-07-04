@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace RhythmicVR {
 	public class SettingsManager : Object {
 		public List<SettingsField> settings = new List<SettingsField>();
 		public GameObject settingsMenuParent;
 		private GameManager gm;
-		private List<GameObject> allPages = new List<GameObject>();
+		private List<MenuPage> allPages = new List<MenuPage>();
 
 		public SettingsManager(GameManager gm) {
 			this.gm = gm;
@@ -18,22 +20,55 @@ namespace RhythmicVR {
 		/// </summary>
 		public void UpdateSettingsUi() {
 			DeleteAllSettingsPages();
-			var mainSettingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
-			var backButtonGo = mainSettingsPage.transform.Find("Btn_back").gameObject;
+			var page = CreatePage("Settings", null);
+			var backButtonGo = page.gameObject.transform.Find("Btn_back").gameObject;
 			Destroy(backButtonGo); //.GetComponent<Button>().onClick.AddListener( delegate { Debug.Log("Back to main menu button pressed"); gm.uiManager.ToMainMenu(); }); // set back button callback
-			allPages.Add(mainSettingsPage); // add to pages list
-			var content = mainSettingsPage.transform.Find("Viewport/Content").gameObject; // set content element
-			int contentHeight = 0;
+			//var content = page.gameObject.transform.Find("Viewport/Content").gameObject; // set content element
+			//int contentHeight = 0;
 			for (var i = 0; i < settings.Count; i++) { // go through all elements inside this element
-				contentHeight += InitializeUiElement(settings[i], content, contentHeight);
+				SetupElement(settings[i], page);
 			}
-			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, contentHeight); //set height of conent element
+			//content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, contentHeight); //set height of conent element
 			
 			// activate main settings page
 			DisableAllSettingsPages();
-			mainSettingsPage.SetActive(true);
+			page.SetActive(true);
 		}
 
+		private void SetupElement(SettingsField setting, MenuPage parent) {
+			string[] path = setting.menuPath.Split('/');
+			MenuPage currentPage = parent;
+			foreach (var page in path) {
+				bool pageExists = false;
+				foreach (var menuPage in allPages) {
+					if (string.Equals(page, menuPage.pageName, StringComparison.CurrentCultureIgnoreCase)) {
+						pageExists = true;
+						currentPage = menuPage;
+					}
+				}
+				if (!pageExists) {
+					currentPage = CreatePage(page, currentPage);
+				}
+			}
+			currentPage.AddElement(setting);
+		}
+
+		private MenuPage CreatePage(string pageName, MenuPage parent) {
+			MenuPage page = new MenuPage {pageName = pageName};
+			page.buttonOnParentMenu = gm.uiManager.BuildUiElement(page.pageName, UiType.Category);
+			page.gameObject = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
+			page.buttonOnParentMenu.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.SetActive(true); }); // go to this new page when clicking on category
+			Debug.Log(parent != null);
+			Debug.Log(parent);
+			if (parent != null) {
+				page.parent = parent;
+				parent.AddChildPage(page);
+			}
+			page.gameObject.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.parent.SetActive(true); }); // back button lsitener (to activate previous page)
+			allPages.Add(page); // add to page list
+			return page;
+		}
+		
 		/// <summary>
 		/// Initialize settings menu, run over this for each element, calls itself if elements are inside eachother (for categories)
 		/// </summary>
@@ -41,21 +76,23 @@ namespace RhythmicVR {
 		/// <param name="parent">The parent gameobject to initialize the element in</param>
 		/// <param name="heightOfExistingElements">height positioning Offset for this element</param>
 		/// <returns>Height of this iterations element</returns>
+		/// 
+		[Obsolete("This should not be used to create Ui elements anymore, use CreatePage() and SetupElement() instead")]
 		private int InitializeUiElement(SettingsField setting, GameObject parent, int heightOfExistingElements) {
 			var settingUiElement = Instantiate(gm.uiManager.BuildUiElement(setting.name, setting.type), parent.transform); // instantiate UI element
 			var rt = settingUiElement.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -heightOfExistingElements); // set elements position
 			if (setting.type == UiType.Category) {
 				var settingsPage = Instantiate(gm.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); // instantiate category page
-				allPages.Add(settingsPage); // add page to list
+				//allPages.Add(settingsPage); // add page to list
 				//settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.RemoveAllListeners(); //remove all previous listeners
 				settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); parent.transform.parent.parent.gameObject.SetActive(true); }); // back button lsitener (to activate previous page)
 				settingUiElement.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); settingsPage.SetActive(true); }); // go to this new page when clicking on category
 				var content = settingsPage.transform.Find("Viewport/Content").gameObject; // set content element
 				int contentHeight = 0;
-				for (var i = 0; i < setting.children.Length; i++) {
+				/*for (var i = 0; i < setting.children.Length; i++) {
 					contentHeight += InitializeUiElement(setting.children[i], content, contentHeight); // create next elements
-				}
+				}*/
 				content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, contentHeight); //set height of conent element
 			} else {
 				var allInputElements = settingUiElement.GetComponentsInChildren<InputField>();
@@ -80,7 +117,7 @@ namespace RhythmicVR {
 
 		private void DeleteAllSettingsPages() {
 			foreach (var page in allPages) {
-				Destroy(page);
+				Destroy(page.gameObject);
 			}
 		}
 	}
