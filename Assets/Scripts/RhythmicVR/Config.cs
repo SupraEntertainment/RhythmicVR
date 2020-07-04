@@ -30,11 +30,18 @@ namespace RhythmicVR {
 		}
 
 		public void SavePluginConfig(string contents, string pluginName) {
-			File.WriteAllText(pluginSavePath + pluginName + ".json", contents);
+			var path = pluginSavePath + pluginName + "/";
+			if (Util.EnsureDirectoryIntegrity(path, true)) {
+				File.WriteAllText(path + "config.json", contents);
+			}
 		}
 
 		public string LoadPluginConfig(string pluginName) {
-			return File.ReadAllText(pluginSavePath + pluginName + ".json");
+			var path = pluginSavePath + pluginName + "/";
+			if (Util.EnsureDirectoryIntegrity(path)) {
+				return File.ReadAllText(path + "config.json");
+			}
+			return null;
 		}
 
 		/// <summary>

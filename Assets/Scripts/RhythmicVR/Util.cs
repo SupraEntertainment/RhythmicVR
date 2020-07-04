@@ -82,5 +82,15 @@ namespace RhythmicVR {
 	        }
 	        return audioClip;
         }
+
+        public static bool EnsureDirectoryIntegrity(string path, bool shouldCreate = false) {
+	        if (!Directory.Exists(path)) {
+		        if (shouldCreate) {
+			        Directory.CreateDirectory(path);
+			        return true;
+		        }
+	        }
+	        return false;
+        }
 	}
 }

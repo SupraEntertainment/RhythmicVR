@@ -6,14 +6,14 @@ namespace RhythmicVR {
 		public int height;
 		public string pageName;
 		public GameObject buttonOnParentMenu;
-		public GameObject gameObject;
+		public GameObject pageObject;
 		public List<MenuPage> pageChildren = new List<MenuPage>();
 		public List<SettingsField> elementChildren = new List<SettingsField>();
 		public MenuPage parent;
 
 		public void AddChildPage(MenuPage menuPage) {
 			pageChildren.Add(menuPage);
-			var content = gameObject.transform.Find("Viewport/Content").gameObject;
+			var content = pageObject.transform.Find("Viewport/Content").gameObject;
 			var element = Instantiate(menuPage.buttonOnParentMenu, content.transform); // instantiate UI element
 			var rt = element.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -height); // set elements position
@@ -24,7 +24,7 @@ namespace RhythmicVR {
 
 		public void AddElement(SettingsField field) {
 			elementChildren.Add(field);
-			var content = gameObject.transform.Find("Viewport/Content").gameObject;
+			var content = pageObject.transform.Find("Viewport/Content").gameObject;
 			field.initializedObject = Instantiate(FindObjectOfType<Core>().uiManager.BuildUiElement(field.name, field.type), content.transform); // instantiate UI element
 			var rt = field.initializedObject.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -height); // set elements position
@@ -33,7 +33,7 @@ namespace RhythmicVR {
 		}
 
 		public void SetActive(bool state) {
-			gameObject.SetActive(state);
+			pageObject.SetActive(state);
 		}
 
 		public override string ToString() {

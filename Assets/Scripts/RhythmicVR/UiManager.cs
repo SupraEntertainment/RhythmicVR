@@ -30,10 +30,10 @@ namespace RhythmicVR {
         [Header("In Game Panels")] 
         public List<GameObject> inGamePanels;
 
-        private Text scoreText;
-        private Text progressText;
-        private Image progressBar;
-        private Text multiplierText;
+        public Text scoreText;
+        public Text progressText;
+        public Image progressBar;
+        public Text multiplierText;
         
         [Header("UI Prefabs")]
         public GameObject songListItem;
@@ -64,10 +64,6 @@ namespace RhythmicVR {
         }
 
         // song file loading, beat saber code belongs into beatsaber import plugin, load single song file should belong into its own plugin aswell
-
-        public void LoadBeatSaberMap() {
-            new Thread(OpenBeatSaberSong).Start();
-        }
     
         public void LoadSong() {
             new Thread(OpenSongFile).Start();
@@ -77,14 +73,6 @@ namespace RhythmicVR {
             StandaloneFileBrowser.OpenFolderPanelAsync("Load and Play Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
                     core.LoadSong(path + Path.DirectorySeparatorChar);
-                }
-            });
-        }
-
-        private void OpenBeatSaberSong() {
-            StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", true, delegate(string[] strings) {
-                foreach (var path in strings) {
-                    core.LoadSong(BeatSaber.SongLoader.ConvertSong(path, core));
                 }
             });
         }
@@ -257,7 +245,7 @@ namespace RhythmicVR {
         /// Find ingame panels from list and and assign properties
         /// </summary>
         private void FindInGamePanels() {
-            foreach (var panel in inGamePanels) {
+            /*foreach (var panel in inGamePanels) {
                 try {
                     scoreText = panel.transform.Find("Score").GetComponent<Text>();
                 }
@@ -282,7 +270,7 @@ namespace RhythmicVR {
                 catch (Exception e) {
                     Console.WriteLine(e);
                 }
-            }
+            }*/
         }
 
         private void PopulateInGamePanels() {

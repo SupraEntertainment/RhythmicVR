@@ -326,19 +326,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefaultTarget
       objectReference: {fileID: 0}
-    - target: {fileID: 24336008260490455, guid: fc249ba197d90a34dacd7e39f32a597b,
-        type: 3}
-      propertyPath: unityAssetObject
-      value: 
-      objectReference: {fileID: 24336007255761659}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc249ba197d90a34dacd7e39f32a597b, type: 3}
---- !u!1 &24336007255761659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5819272095287526613, guid: fc249ba197d90a34dacd7e39f32a597b,
-    type: 3}
-  m_PrefabInstance: {fileID: 24336007255761658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1496863320737201282
 PrefabInstance:
   m_ObjectHideFlags: 0

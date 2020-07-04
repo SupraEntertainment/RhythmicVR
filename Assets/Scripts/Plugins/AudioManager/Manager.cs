@@ -16,6 +16,8 @@ namespace AudioManager {
                 audioConfig = new Config();
                 SaveConfig();
             }
+
+            SetupUiElements();
         }
 
         private void SetupUiElements() {

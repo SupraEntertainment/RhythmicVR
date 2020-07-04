@@ -13,6 +13,7 @@ namespace RhythmicVR {
 
 		public SettingsManager(Core core) {
 			this.core = core;
+			settingsMenuParent = core.uiManager.settingsMenu.transform.Find("Canvas").gameObject;
 		}
 		
 		/// <summary>
@@ -21,7 +22,7 @@ namespace RhythmicVR {
 		public void UpdateSettingsUi() {
 			DeleteAllSettingsPages();
 			var page = CreatePage("Settings", null);
-			var backButtonGo = page.gameObject.transform.Find("Btn_back").gameObject;
+			var backButtonGo = page.pageObject.transform.Find("Btn_back").gameObject;
 			Destroy(backButtonGo); //.GetComponent<Button>().onClick.AddListener( delegate { Debug.Log("Back to main menu button pressed"); gm.uiManager.ToMainMenu(); }); // set back button callback
 			//var content = page.gameObject.transform.Find("Viewport/Content").gameObject; // set content element
 			//int contentHeight = 0;
@@ -56,13 +57,13 @@ namespace RhythmicVR {
 		private MenuPage CreatePage(string pageName, MenuPage parent) {
 			MenuPage page = new MenuPage {pageName = pageName};
 			page.buttonOnParentMenu = core.uiManager.BuildUiElement(page.pageName, UiType.Category);
-			page.gameObject = Instantiate(core.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
+			page.pageObject = Instantiate(core.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); //instatiate main settings page
 			if ((object)parent != null) { // unity does weird operator magic, therefore cast to normal System.Object
 				page.parent = parent;
 				parent.AddChildPage(page);
 				page.buttonOnParentMenu.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.SetActive(true); }); // go to this new page when clicking on category
 			}
-			page.gameObject.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.parent.SetActive(true); }); // back button lsitener (to activate previous page)
+			page.pageObject.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); page.parent.SetActive(true); }); // back button lsitener (to activate previous page)
 			allPages.Add(page); // add to page list
 			return page;
 		}
@@ -115,7 +116,7 @@ namespace RhythmicVR {
 
 		private void DeleteAllSettingsPages() {
 			foreach (var page in allPages) {
-				Destroy(page.gameObject);
+				Destroy(page);
 			}
 		}
 	}

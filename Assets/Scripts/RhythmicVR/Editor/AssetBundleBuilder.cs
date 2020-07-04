@@ -23,7 +23,7 @@ namespace RhythmicVR.Editor {
             // halp, how 2 mark the asset in that prefab for usage in the asset bundle?
             
             var path = assetBundleOutPath + "/";
-            switch (prefab.GetComponent<AssetPackage>().type) {
+            switch (prefab.GetComponent<PluginBaseClass>().type) {
                 case AssetType.Gamemode:
                     path += "Gamemodes";
                     break;
@@ -43,7 +43,7 @@ namespace RhythmicVR.Editor {
                     path += "Misc";
                     break;
             }
-            if (!EnsureDirectoryIntegrity(path)) {
+            if (!Util.EnsureDirectoryIntegrity(path, true)) {
                 return;
             }
             BuildPipeline.BuildAssetBundles(path, BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneWindows64);
