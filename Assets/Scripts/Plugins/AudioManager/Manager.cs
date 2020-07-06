@@ -25,43 +25,50 @@ namespace AudioManager {
 
             {
                 SettingsField setting = new SettingsField("General", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetGeneralVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetGeneralVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetGeneralVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
 
             {
                 SettingsField setting = new SettingsField("Menu", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetMenuVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetMenuVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetMenuVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
             
             {
                 SettingsField setting = new SettingsField("Song", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetSongVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetSongVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetSongVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
             
             {
                 SettingsField setting = new SettingsField("Song Preview", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetSongPreviewVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetSongPreviewVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetSongPreviewVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
             
             {
                 SettingsField setting = new SettingsField("Hit", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetHitVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetHitVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetHitVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
             
             {
                 SettingsField setting = new SettingsField("Miss", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetMissVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetMissVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetMissVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
             
             {
                 SettingsField setting = new SettingsField("Wrong Hit", UiType.Int, core.uiManager.intPrefab, "Settings/Audio");
-                setting.call.AddListener(delegate { SetWrongHitVolume(int.Parse(setting._input)); });
+                setting.floatCall = delegate(float arg0) { SetWrongHitVolume((int)arg0); };
+                setting.stringCall = delegate(string arg0) { SetWrongHitVolume(int.Parse(arg0)); };
                 audioSettings.Add(setting);
             }
             

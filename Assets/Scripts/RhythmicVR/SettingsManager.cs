@@ -52,6 +52,7 @@ namespace RhythmicVR {
 				}
 			}
 			currentPage.AddElement(setting);
+			setting.SetupListeners();
 		}
 
 		private MenuPage CreatePage(string pageName, MenuPage parent) {
@@ -97,12 +98,17 @@ namespace RhythmicVR {
 				var allInputElements = settingUiElement.GetComponentsInChildren<InputField>();
 				for (var i = 0; i < allInputElements.Length; i++) {
 					var inputElement = allInputElements[i];
-					inputElement.onValueChanged.AddListener(delegate(string arg0) { setting.InvokeEvent(i, arg0); });
+					inputElement.onValueChanged.AddListener(setting.stringCall);
 				}
 
 				var allSliders = settingUiElement.GetComponentsInChildren<Slider>();
 				foreach (var slider in allSliders) {
-					slider.onValueChanged.AddListener(delegate(float arg0) { setting.InvokeEvent(0, arg0.ToString()); });
+					slider.onValueChanged.AddListener(setting.floatCall);
+				}
+
+				var allButtons = settingUiElement.GetComponentsInChildren<Button>();
+				foreach (var button in allButtons) {
+					button.onClick.AddListener(setting.buttonCall);
 				}
 			}
 			return (int)rt.rect.height;

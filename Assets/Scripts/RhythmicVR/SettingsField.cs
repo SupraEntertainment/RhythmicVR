@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace RhythmicVR {
 	/// <summary>
@@ -11,7 +13,11 @@ namespace RhythmicVR {
 		public UiType type;
 		public GameObject prefab;
 		public GameObject initializedObject;
-		[System.NonSerialized] public UnityEvent call = new UnityEvent();
+		[System.NonSerialized] public UnityAction buttonCall;
+		[System.NonSerialized] public UnityAction<float> floatCall;
+		[System.NonSerialized] public UnityAction<string> stringCall;
+		[System.NonSerialized] public UnityAction<int, float> vectorNCall; // int = enumerator, float = value
+		[System.NonSerialized] public UnityAction<int> enumCall;
 		[System.NonSerialized] public int _inputIndex;
 		[System.NonSerialized] public string _input;
 		public string menuPath;
@@ -23,10 +29,47 @@ namespace RhythmicVR {
 			this.menuPath = menuPath;
 		}
 
-		public void InvokeEvent(int inputIndex, string input) {
-			_inputIndex = inputIndex;
-			_input = input;
-			call.Invoke();
+		public void SetupListeners() {
+			InputField input;
+			Slider slider;
+			
+			switch (type) {
+				case UiType.Button:
+					initializedObject.GetComponentInChildren<Button>().onClick.AddListener(buttonCall);
+					break;
+				case UiType.Vector3:
+					var allFloatInputs = initializedObject.GetComponentsInChildren<InputField>();
+					for (var i = 0; i < allFloatInputs.Length; i++) {
+						var inputElement = allFloatInputs[i];
+						int i2 = i;
+						inputElement.onValueChanged.AddListener(delegate(string arg0) { vectorNCall(i2, float.Parse(arg0)); });
+					}
+					break;
+				case UiType.Color:
+					break;
+				case UiType.Text:
+					initializedObject.GetComponentInChildren<InputField>().onValueChanged.AddListener(stringCall);
+					break;
+				case UiType.Int:
+				case UiType.Float:
+					input = initializedObject.GetComponentInChildren<InputField>();
+					slider = initializedObject.GetComponentInChildren<Slider>();
+					
+					input.onValueChanged.AddListener(delegate(string arg0) { 
+						floatCall(float.Parse(arg0));
+						slider.value = float.Parse(arg0);
+					});
+					slider.onValueChanged.AddListener(delegate(float arg0) { 
+						floatCall(arg0);
+						input.text = arg0.ToString();
+					});
+					break;
+				case UiType.Enum:
+					initializedObject.GetComponentInChildren<Dropdown>().onValueChanged.AddListener(enumCall);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 	}
 }

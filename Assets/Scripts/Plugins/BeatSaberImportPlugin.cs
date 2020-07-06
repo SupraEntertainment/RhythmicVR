@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using RhythmicVR;
 using RhythmicVR.BeatSaber;
 using SFB;
-using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class BeatSaberImportPlugin : PluginBaseClass {
 	public override void Init(Core core) {
@@ -29,8 +27,9 @@ public class BeatSaberImportPlugin : PluginBaseClass {
         List<SettingsField> audioSettings = new List<SettingsField>();
 
         {
-            SettingsField setting = new SettingsField("Convert and Import Beatsaber Map", UiType.Button, core.uiManager.intPrefab, "Settings/Plugins/Beat Saber Import");
-            setting.call.AddListener(LoadBeatSaberMap);
+            SettingsField setting = new SettingsField("Convert and Import Beatsaber Map", UiType.Button, core.uiManager.buttonPrefab, "Settings/Plugins/Beat Saber Import");
+            setting.buttonCall = LoadBeatSaberMap;
+            //setting.prefab.GetComponent<Button>().onClick.AddListener(LoadBeatSaberMap);
             audioSettings.Add(setting);
         }
         
