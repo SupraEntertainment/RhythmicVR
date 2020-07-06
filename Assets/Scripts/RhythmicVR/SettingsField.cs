@@ -7,19 +7,19 @@ namespace RhythmicVR {
 	/// <summary>
 	/// Defines a settings UI element
 	/// </summary>
-	[System.Serializable]
+	[Serializable]
 	public class SettingsField {
 		public string name;
 		public UiType type;
 		public GameObject prefab;
 		public GameObject initializedObject;
-		[System.NonSerialized] public UnityAction buttonCall;
-		[System.NonSerialized] public UnityAction<float> floatCall;
-		[System.NonSerialized] public UnityAction<string> stringCall;
-		[System.NonSerialized] public UnityAction<int, float> vectorNCall; // int = enumerator, float = value
-		[System.NonSerialized] public UnityAction<int> enumCall;
-		[System.NonSerialized] public int _inputIndex;
-		[System.NonSerialized] public string _input;
+		public int maxValue = 1;
+		public int minValue;
+		[NonSerialized] public UnityAction buttonCall;
+		[NonSerialized] public UnityAction<float> floatCall;
+		[NonSerialized] public UnityAction<string> stringCall;
+		[NonSerialized] public UnityAction<int, float> vectorNCall; // int = enumerator, float = value
+		[NonSerialized] public UnityAction<int> enumCall;
 		public string menuPath;
 
 		public SettingsField(string name = null, UiType type = default, GameObject prefab = null, string menuPath = null) {
