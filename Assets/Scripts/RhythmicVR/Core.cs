@@ -86,7 +86,7 @@ namespace RhythmicVR {
         /// </summary>
         private void Update() {
             if (allowPause) {
-                if (pauseButton.changed) {
+                if (pauseButton.stateUp) {
                     if (isPaused) {
                         ContinueBeatmap();
                         isPaused = false;
@@ -375,6 +375,7 @@ namespace RhythmicVR {
             audioSource.Play();
             Time.timeScale = 1;
             uiManager.HidePauseMenu();
+            isPaused = false;
         }
 
         /// <summary>
@@ -382,9 +383,12 @@ namespace RhythmicVR {
         /// </summary>
         public void ExitBeatmap() {
             StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
+            audioSource.time = 0;
+            audioSource.clip = null;
             allowPause = false;
             uiManager.ToSongListMenu();
             uiManager.HidePauseMenu();
+            isPaused = false;
         }
 
         /// <summary>
