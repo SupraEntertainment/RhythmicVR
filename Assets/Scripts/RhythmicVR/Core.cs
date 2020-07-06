@@ -349,6 +349,7 @@ namespace RhythmicVR {
         /// 1 = completed<br/>
         /// 2 = failed</param>
         public void StopBeatmap(int reason) {
+            audioSource.Pause();
             switch (reason) {
                 case 0: // paused
                     Time.timeScale = 0;
@@ -371,6 +372,7 @@ namespace RhythmicVR {
         /// Continue the paused beatmap. Hides Pause menu and sets the time scale back to 1 in order to continue.
         /// </summary>
         public void ContinueBeatmap() {
+            audioSource.Play();
             Time.timeScale = 1;
             uiManager.HidePauseMenu();
         }
