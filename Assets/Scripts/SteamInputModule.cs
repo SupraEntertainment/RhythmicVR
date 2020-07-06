@@ -20,7 +20,6 @@ public class SteamInputModule : VRInputModule
             if (m_Click.GetStateDown(m_Sources[i])) {
                 if (currentPointerId == i) {
                     Press();
-                    Drag();
                 } else {
                     SetPointer(i);
                     currentPointerId = i;

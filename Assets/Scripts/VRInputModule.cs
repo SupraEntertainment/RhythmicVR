@@ -34,6 +34,8 @@ public class VRInputModule : BaseInputModule
         Data.pointerCurrentRaycast = FindFirstRaycast(m_RaycastResultCache);
 
         HandlePointerExitAndEnter(Data, Data.pointerCurrentRaycast.gameObject);
+
+        ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.dragHandler);
     }
 
     public void Press()
@@ -41,8 +43,10 @@ public class VRInputModule : BaseInputModule
         Data.pointerPressRaycast = Data.pointerCurrentRaycast;
 
         Data.pointerPress = ExecuteEvents.GetEventHandler<IPointerClickHandler>(Data.pointerPressRaycast.gameObject);
+        Data.pointerDrag = ExecuteEvents.GetEventHandler<IDragHandler>(Data.pointerPressRaycast.gameObject);
 
         ExecuteEvents.Execute(Data.pointerPress, Data, ExecuteEvents.pointerDownHandler);
+        ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.beginDragHandler);
     }
 
     public void Release()
@@ -53,43 +57,14 @@ public class VRInputModule : BaseInputModule
             ExecuteEvents.Execute(Data.pointerPress, Data, ExecuteEvents.pointerClickHandler);
 
         ExecuteEvents.Execute(Data.pointerPress, Data, ExecuteEvents.pointerUpHandler);
+        ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.endDragHandler);
 
         Data.pointerPress = null;
+        Data.pointerDrag = null;
 
         Data.pointerCurrentRaycast.Clear();
     }
-
-    public void Drag(float pixelDragThresholdMultiplier = 1.0f)
-    {
-        if (!Data.IsPointerMoving() ||
-            Cursor.lockState == CursorLockMode.Locked ||
-            Data.pointerDrag == null)
-            return;
-
-        if (!Data.dragging)
-        {
-            if ((Data.pressPosition - Data.position).sqrMagnitude >= ((eventSystem.pixelDragThreshold * eventSystem.pixelDragThreshold) * pixelDragThresholdMultiplier))
-            {
-                ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.beginDragHandler);
-                Data.dragging = true;
-            }
-        }
-
-        if (Data.dragging)
-        {
-            // If we moved from our initial press object, process an up for that object.
-            if (Data.pointerPress != Data.pointerDrag)
-            {
-                ExecuteEvents.Execute(Data.pointerPress, Data, ExecuteEvents.pointerUpHandler);
-
-                Data.eligibleForClick = false;
-                Data.pointerPress = null;
-                Data.rawPointerPress = null;
-            }
-            ExecuteEvents.Execute(Data.pointerDrag, Data, ExecuteEvents.dragHandler);
-        }
-    }
-
+    
     public void Scroll()
     {
         var scrollDelta = Data.scrollDelta;
