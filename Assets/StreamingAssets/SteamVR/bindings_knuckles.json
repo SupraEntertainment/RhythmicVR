@@ -128,13 +128,6 @@
         }
       ]
     },
-    "/actions/platformer": {
-      "chords": [],
-      "poses": [],
-      "haptics": [],
-      "sources": [],
-      "skeleton": []
-    },
     "/actions/ui": {
       "chords": [],
       "poses": [],
