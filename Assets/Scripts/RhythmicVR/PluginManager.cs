@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RhythmicVR {
@@ -11,7 +12,7 @@ namespace RhythmicVR {
 		private readonly List<TargetObject> loadedTargetObjects = new List<TargetObject>();
 		private readonly List<PluginBaseClass> miscPlugins = new List<PluginBaseClass>();
 
-		private Core core;
+		private readonly Core core;
 
 		public PluginManager(Core core) {
 			this.core = core;
@@ -37,7 +38,7 @@ namespace RhythmicVR {
 				case AssetType.TargetObject:
 					loadedTargetObjects.Add(plugin.GetComponentInChildren<TargetObject>());
 					break;
-				case AssetType.TrackedObject:
+				case AssetType.VisualTrackedObject:
 					loadedTrackedObjects.Add(plugin.GetComponentInChildren<GenericTrackedObject>());
 					break;
 			}
@@ -47,6 +48,10 @@ namespace RhythmicVR {
 			foreach (var plugin in plugins) {
 				AddPlugin(plugin);
 			}
+		}
+
+		public PluginBaseClass Find(string searchString) {
+			return loadedPlugins.FirstOrDefault(plugin => plugin.pluginName == searchString);
 		}
 		
 		public List<PluginBaseClass> GetPlugins() {

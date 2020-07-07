@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using ScoreManager;
+using UnityEngine;
 
 namespace RhythmicVR {
     /// <summary>
@@ -9,13 +9,15 @@ namespace RhythmicVR {
         public Collider collider;
         public bool useVelocityForScoreCalc;
         [System.NonSerialized] public TrackingPoint role;
-        public Core gm;
+        public Core core;
+        private ScoreManager.ScoreManager scoreManager;
     
         // Start is called before the first frame update
         private void Start() {
             collider.gameObject.AddComponent<Rigidbody>();
             CreateRigidbody(collider.gameObject.GetComponent<Rigidbody>());
-            gm = FindObjectOfType<Core>();
+            core = FindObjectOfType<Core>();
+            scoreManager = (ScoreManager.ScoreManager)core.pluginManager.Find("Score Manager");
         }
 
         private void CreateRigidbody(Rigidbody rb) {
@@ -26,11 +28,11 @@ namespace RhythmicVR {
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.GetComponent<TargetObject>() == null) return;
             if (other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
-                gm.currentScore = DetermineScore(other.gameObject);
+                scoreManager.currentPlaythrough.AddScore(DetermineScore(other.gameObject));
             }
         }
 
-        protected float DetermineScore(GameObject hitTarget) {
+        protected virtual float DetermineScore(GameObject hitTarget) {
             Destroy(hitTarget);
             float score = 100;
             if (useVelocityForScoreCalc) {

@@ -33,7 +33,7 @@ namespace RhythmicVR.Editor {
                 case AssetType.Environment:
                     path += "Environments";
                     break;
-                case AssetType.TrackedObject:
+                case AssetType.VisualTrackedObject:
                     path += "TrackedObjects";
                     break;
                 case AssetType.Misc:

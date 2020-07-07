@@ -6,7 +6,7 @@ namespace RhythmicVR {
 		Gamemode,
 		TargetObject,
 		Environment,
-		TrackedObject,
+		VisualTrackedObject,
 		Misc
 	}
 }

@@ -61,7 +61,6 @@ namespace RhythmicVR {
 	        while (!request.isDone) {
 		        Debug.Log("Not done yet");
 	        }
-	        //audioClip = ((DownloadHandlerAudioClip) request.downloadHandler).audioClip;
 	        audioClip = DownloadHandlerAudioClip.GetContent(request);
         }
 

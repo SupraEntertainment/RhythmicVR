@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScoreManager;
+using UnityEngine;
 
 namespace RhythmicVR {
 	/// <summary>
@@ -13,6 +14,7 @@ namespace RhythmicVR {
 
 		[Tooltip("place the object here, that has the component \"TargetObject\" or a child class of it attatched")]
 		public GameObject targetObject;
+		public Playthrough playthroughObject;
 		public TrackedDevicePair[] trackedObjects;
 		public SpaceMapping targetSpaceMapping; // translates json file positioning into unity coordinates (if needed) e.g. x=0, y=z z=y
 

@@ -45,16 +45,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pluginName: Beat Saber
   type: 0
-  unityAssetObject: {fileID: 5210609699491252747}
   gamemodeName: Beat Saber
   icon: {fileID: 0}
   targetObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
     type: 3}
+  scoreObject: {fileID: 0}
   trackedObjects:
   - prefab: {fileID: 4596255499207317936, guid: 5c14f1094544c0d408fa03b1a6f07599,
       type: 3}
+    defaultVisualPrefab: {fileID: 6252578295895531179, guid: 0f9811be6db7c904eaa2b154daf1f980,
+      type: 3}
     role: 1
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
+      type: 3}
+    defaultVisualPrefab: {fileID: 6252578295895531179, guid: 0f9811be6db7c904eaa2b154daf1f980,
       type: 3}
     role: 0
   targetSpaceMapping:

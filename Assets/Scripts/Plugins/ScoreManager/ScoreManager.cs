@@ -7,6 +7,7 @@ namespace ScoreManager {
 
 		private Config scoreConfig;
 		private ScoreList scoreList;
+		public Playthrough currentPlaythrough;
 		
 		public override void Init(Core core) {
 			base.Init(core);
@@ -97,7 +98,7 @@ namespace ScoreManager {
 	        SaveConfig();
         }
 
-		public Score AddScore(Song song) {
+		public void SelectSongAndAddPlaythrough(Song song) {
 			if ((object) scoreList == null || scoreList.song != song) {
 				scoreList = new ScoreList(song);
 				scoreList.LoadScores();
@@ -105,10 +106,10 @@ namespace ScoreManager {
 				scoreList.SaveScores();
 			}
 
-			return scoreList.AddScore();
+			currentPlaythrough = scoreList.AddPlaythrough();
 		}
 
-		public Score[] GetScores(Song song) {
+		public Playthrough[] GetScores(Song song) {
 			if (scoreList.song != song) {
 				scoreList = new ScoreList(song);
 			}

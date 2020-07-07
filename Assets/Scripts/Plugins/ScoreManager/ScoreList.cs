@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using ScoreManager;
 using UnityEngine;
 
 namespace RhythmicVR {
 	public class ScoreList {
 		
-		private List<Score> scores = new List<Score>();
+		private List<Playthrough> scores = new List<Playthrough>();
 		public Song song;
 		private string path;
 
@@ -32,22 +33,22 @@ namespace RhythmicVR {
 			}
 		}
 
-		public Score AddScore() {
-			var score = new Score();
+		public Playthrough AddPlaythrough() {
+			var score = new Playthrough();
 			scores.Add(score);
 			return score;
 		}
 
-		public Score[] GetScores() {
+		public Playthrough[] GetScores() {
 			return scores.ToArray();
 		}
 	}
 
 	[System.Serializable]
 	internal class ScoreListInternal {
-		public Score[] scores;
+		public Playthrough[] scores;
 
-		public ScoreListInternal(Score[] scores) {
+		public ScoreListInternal(Playthrough[] scores) {
 			this.scores = scores;
 		}
 	}

@@ -2,9 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
-namespace RhythmicVR {
+namespace ScoreManager {
 	[System.Serializable]
-	public class Score {
+	public class Playthrough : Object {
 		public string scoringsystem;
 		public float score;
 		public float[] notes;
