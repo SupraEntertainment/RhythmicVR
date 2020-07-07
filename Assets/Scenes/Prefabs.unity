@@ -202,11 +202,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordTrackedObject
       objectReference: {fileID: 0}
-    - target: {fileID: 3914208877251514305, guid: d3514dd6aa7be03498e885799e02f95a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4892734981010436623, guid: d3514dd6aa7be03498e885799e02f95a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -261,11 +256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4892734981010436623, guid: d3514dd6aa7be03498e885799e02f95a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3514dd6aa7be03498e885799e02f95a, type: 3}

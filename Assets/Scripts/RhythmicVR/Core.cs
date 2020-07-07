@@ -51,6 +51,7 @@ namespace RhythmicVR {
 
         private bool allowPause;
         private bool isPaused;
+        public bool songIsPlaying;
         
         public Beatmap currentlyPlayingBeatmap;
         public Song currentlyPlayingSong;
@@ -308,6 +309,7 @@ namespace RhythmicVR {
             Time.timeScale = 0;
             var bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(song.pathToDir + "/" + difficulty.beatMapPath));
             uiManager.InBeatmap();
+            songIsPlaying = true;
             allowPause = true;
             currentlyPlayingBeatmap = bm;
             currentlyPlayingSong = song;
@@ -357,6 +359,7 @@ namespace RhythmicVR {
         /// 1 = completed<br/>
         /// 2 = failed</param>
         public void StopBeatmap(int reason) {
+            songIsPlaying = false;
             audioSource.Pause();
             switch (reason) {
                 case 0: // paused
@@ -378,6 +381,7 @@ namespace RhythmicVR {
         /// Continue the paused beatmap. Hides Pause menu and sets the time scale back to 1 in order to continue.
         /// </summary>
         public void ContinueBeatmap() {
+            songIsPlaying = true;
             audioSource.Play();
             Time.timeScale = 1;
             uiManager.HidePauseMenu();

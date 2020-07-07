@@ -1236,6 +1236,38 @@ MonoBehaviour:
   - {fileID: 4552210796766179163, guid: fe6317d0effbb944c8ce36d91eb01c5b, type: 3}
   - {fileID: 24336007255761661, guid: fc249ba197d90a34dacd7e39f32a597b, type: 3}
   - {fileID: 8809837882599818245, guid: c52175c71c10192488d495f5fdfa9547, type: 3}
+  songIsPlaying: 0
+  currentlyPlayingBeatmap:
+    formatVersion: 
+    version: 0
+    events: []
+    notes: []
+    obstacles: []
+  currentlyPlayingSong:
+    id: 0
+    formatVersion: 
+    songName: 
+    songSubName: 
+    songAuthorName: 
+    albumName: 
+    levelAuthorName: 
+    beatsPerMinute: 0
+    previewStartTime: 0
+    songFile: song.ogg
+    coverImageFile: cover.jpg
+    startTimeOffset: 0
+    trackingPoints: 
+    leftHandTool: 
+    rightHandTool: 
+    waistTool: 
+    leftFootTool: 
+    rightFootTool: 
+    environment: 
+    targetObject: cube
+    obstacleObject: 
+    difficulties: []
+  currentGamemode: {fileID: 0}
+  currentScore: 0
 --- !u!4 &263707703
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,7 +1280,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1576197618}
-  - {fileID: 1523260797}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5471,7 +5502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1523260797
 Transform:
   m_ObjectHideFlags: 0
@@ -5479,13 +5510,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523260796}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 743266132}
-  m_Father: {fileID: 263707703}
-  m_RootOrder: 1
+  m_Father: {fileID: 1576197618}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526059775
 GameObject:
@@ -5712,6 +5743,7 @@ Transform:
   - {fileID: 100778713}
   - {fileID: 1222346177}
   - {fileID: 283526237}
+  - {fileID: 1523260797}
   m_Father: {fileID: 263707703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5735,13 +5767,13 @@ MonoBehaviour:
   mainMenu: {fileID: 469291872}
   settingsMenu: {fileID: 100778712}
   pauseMenu: {fileID: 1222346176}
+  titleText: {fileID: 283526236}
+  inGame: {fileID: 1523260796}
   playBeatmapButton: {fileID: 268996277}
   deleteBeatmapButton: {fileID: 1367272300}
   practiceBeatmapButton: {fileID: 2138663254}
   beatmapTitleText: {fileID: 939968010}
   beatmapCoverImage: {fileID: 600660897}
-  inGamePanels:
-  - {fileID: 743266131}
   scoreText: {fileID: 140969037}
   progressText: {fileID: 0}
   progressBar: {fileID: 0}

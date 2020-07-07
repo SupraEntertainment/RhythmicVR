@@ -19,6 +19,8 @@ namespace RhythmicVR {
         public GameObject mainMenu;
         public GameObject settingsMenu;
         public GameObject pauseMenu;
+        public GameObject titleText;
+        public GameObject inGame;
 
         [Header("Song Info Panel elements")]
         public Button playBeatmapButton;
@@ -28,8 +30,6 @@ namespace RhythmicVR {
         public Image beatmapCoverImage;
 
         [Header("In Game Panels")] 
-        public List<GameObject> inGamePanels;
-
         public Text scoreText;
         public Text progressText;
         public Image progressBar;
@@ -51,17 +51,20 @@ namespace RhythmicVR {
         [Header("Various")] 
         public Dropdown gamemodeDropdown;
 
+        private ScoreManager.ScoreManager scoreManager;
         private List<GameObject> loadedSongs = new List<GameObject>();
 
         public void Start() {
+            scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("Score Manager");
             uiActionSet.Activate();
             ToMainMenu();
-            FindInGamePanels();
             PopulateInGamePanels();
         }
 
         public void Update() {
-            PopulateInGamePanels();
+            if (core.songIsPlaying) {
+                PopulateInGamePanels();
+            }
         }
 
         // song file loading, beat saber code belongs into beatsaber import plugin, load single song file should belong into its own plugin aswell
@@ -109,7 +112,7 @@ namespace RhythmicVR {
             songList.SetActive(false);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
-            SetInGameMenusActive(true);
+            inGame.SetActive(true);
         }
 
         /// <summary>
@@ -119,7 +122,7 @@ namespace RhythmicVR {
             songList.SetActive(false);
             mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
-            SetInGameMenusActive(false);
+            inGame.SetActive(false);
         }
 
         /// <summary>
@@ -129,7 +132,7 @@ namespace RhythmicVR {
             songList.SetActive(false);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(true);
-            SetInGameMenusActive(false);
+            inGame.SetActive(false);
         }
 
         /// <summary>
@@ -139,18 +142,8 @@ namespace RhythmicVR {
             songList.SetActive(true);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
-            SetInGameMenusActive(false);
+            inGame.SetActive(false);
             ListSongs(core.songList.GetAllSongs());
-        }
-        
-        /// <summary>
-        /// helper method for showing / hiding all different in game panels (including afterwards from mods added ones)
-        /// </summary>
-        /// <param name="state">show / hide</param>
-        private void SetInGameMenusActive(bool state) {
-            foreach (var panel in inGamePanels) {
-                panel.SetActive(state);
-            }
         }
 
         /// <summary>
@@ -167,13 +160,13 @@ namespace RhythmicVR {
         /// <summary>
         /// Select gamemode from dropdown
         /// </summary>
-        /// <param name="option">the selected option in dropdown (should be sorted simmilar to list in PluginManager)</param>
+        /// <param name="option">the selected option in dropdown (should be sorted similar to list in PluginManager)</param>
         public void SelectGamemode(int option) {
             core.SetGamemode(core.pluginManager.GetAllGamemodes()[option]);
         }
 
         /// <summary>
-        /// Adds all gamemodes listed in pluginManager to dropdown on songlist
+        /// Adds all gamemodes listed in pluginManager to dropdown on songList
         /// </summary>
         public void AddGamemodesToDropdown() {
             foreach (var gamemode in core.pluginManager.GetAllGamemodes()) {
@@ -193,7 +186,7 @@ namespace RhythmicVR {
         /// <param name="parent">The parent object to put the songs into</param>
         /// <param name="songs">The songs</param>
         /// <param name="buttonPrefab">The Prefab to use as song List element</param>
-        private void ListAllSongs(RectTransform parent, List<Song> songs, GameObject buttonPrefab) {
+        private void ListAllSongs(Transform parent, IReadOnlyList<Song> songs, GameObject buttonPrefab) {
             if (loadedSongs.Count != 0) {
                 RemoveAllListedSongs();
             }
@@ -241,41 +234,9 @@ namespace RhythmicVR {
         }
         
         /* in-game panels */
-        
-        /// <summary>
-        /// Find ingame panels from list and and assign properties
-        /// </summary>
-        private void FindInGamePanels() {
-            /*foreach (var panel in inGamePanels) {
-                try {
-                    scoreText = panel.transform.Find("Score").GetComponent<Text>();
-                }
-                catch (Exception e) {
-                    Console.WriteLine(e);
-                }
-                try {
-                    progressBar = panel.transform.Find("Progress.Bar").GetComponent<Image>();
-                }
-                catch (Exception e) {
-                    Console.WriteLine(e);
-                }
-                try {
-                    progressText = panel.transform.Find("Progress.Text").GetComponent<Text>();
-                }
-                catch (Exception e) {
-                    Console.WriteLine(e);
-                }
-                try {
-                    multiplierText = panel.transform.Find("Multiplier.Text").GetComponent<Text>();
-                }
-                catch (Exception e) {
-                    Console.WriteLine(e);
-                }
-            }*/
-        }
 
         private void PopulateInGamePanels() {
-            scoreText.text = core.currentScore.ToString();
+            scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
         }
 
         /// <summary>
