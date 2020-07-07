@@ -7,6 +7,7 @@ namespace RhythmicVR {
 		Int,
 		Float,
 		Enum,
+		Bool,
 		Category
 	}
 }

@@ -6,9 +6,11 @@ namespace RhythmicVR {
 	public class ScoreList {
 		
 		private List<Score> scores = new List<Score>();
+		public Song song;
 		private string path;
 
 		public ScoreList(Song song) {
+			this.song = song;
 			path = song.pathToDir;
 		}
 
@@ -30,8 +32,14 @@ namespace RhythmicVR {
 			}
 		}
 
-		public List<Score> GetScores() {
-			return scores;
+		public Score AddScore() {
+			var score = new Score();
+			scores.Add(score);
+			return score;
+		}
+
+		public Score[] GetScores() {
+			return scores.ToArray();
 		}
 	}
 

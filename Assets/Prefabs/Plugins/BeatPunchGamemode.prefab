@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2492262632421967462}
-  - component: {fileID: 4419529105503052813}
+  - component: {fileID: 4419529105503052812}
   m_Layer: 0
   m_Name: BeatPunchGamemode
   m_TagString: Untagged
@@ -27,12 +27,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.3625743, y: 1.6868439, z: 1.4563594}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8232447370259423882}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4419529105503052813
+--- !u!114 &4419529105503052812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,66 +40,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2492262632421967460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 284cf5d510e7aad45bbad0ebf2a93a3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 909134cfc1741164fb785ebb9c9b7a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pluginName: Beat Punch
   type: 0
-  unityAssetObject: {fileID: 8232447370259423880}
---- !u!1 &8232447370259423880
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8232447370259423882}
-  - component: {fileID: 8232447370259423881}
-  m_Layer: 0
-  m_Name: Gamemode
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8232447370259423882
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8232447370259423880}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2492262632421967462}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8232447370259423881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8232447370259423880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942252579dee441594ee5d404c0a440c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Beat Punch
+  gamemodeName: Beat Punch
   icon: {fileID: 0}
   targetObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
     type: 3}
   trackedObjects:
-  - prefab: {fileID: 4596255499207317936, guid: 5c14f1094544c0d408fa03b1a6f07599,
-      type: 3}
-    role: 1
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
     role: 0
+  - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
+      type: 3}
+    role: 1
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
     role: 2

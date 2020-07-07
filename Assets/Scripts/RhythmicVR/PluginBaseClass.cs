@@ -5,15 +5,17 @@ namespace RhythmicVR {
 
         public string pluginName;
         public AssetType type;
-        public Object unityAssetObject;
+        
         protected Core core;
+        
+        /*public Object unityAssetObject;
         public object assetObject;
 
         private void Start() {
             if (unityAssetObject != null) {
                 assetObject = unityAssetObject;
             }
-        }
+        }*/
     
         /// <summary>
         /// Always call the base method. Applies Core object to property

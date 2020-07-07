@@ -9,17 +9,5 @@
         public int hitVolume = 50;
         public int missVolume = 50;
         public int wrongHitVolume = 50;
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

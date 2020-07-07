@@ -20,6 +20,7 @@ namespace RhythmicVR {
 		[NonSerialized] public UnityAction<string> stringCall;
 		[NonSerialized] public UnityAction<int, float> vectorNCall; // int = enumerator, float = value
 		[NonSerialized] public UnityAction<int> enumCall;
+		[NonSerialized] public UnityAction<bool> boolCall;
 		public string menuPath;
 
 		public SettingsField(string name = null, UiType type = default, GameObject prefab = null, string menuPath = null) {
@@ -66,6 +67,9 @@ namespace RhythmicVR {
 					break;
 				case UiType.Enum:
 					initializedObject.GetComponentInChildren<Dropdown>().onValueChanged.AddListener(enumCall);
+					break;
+				case UiType.Bool:
+					initializedObject.GetComponentInChildren<Toggle>().onValueChanged.AddListener(boolCall);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

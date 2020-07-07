@@ -44,6 +44,7 @@ namespace RhythmicVR {
         public GameObject floatPrefab;
         public GameObject textPrefab;
         public GameObject colorPrefab;
+        public GameObject boolPrefab;
         public GameObject categoryPrefab;
         public GameObject enumPrefab;
 
@@ -176,7 +177,7 @@ namespace RhythmicVR {
         /// </summary>
         public void AddGamemodesToDropdown() {
             foreach (var gamemode in core.pluginManager.GetAllGamemodes()) {
-                gamemodeDropdown.options.Add(new Dropdown.OptionData(gamemode.name));
+                gamemodeDropdown.options.Add(new Dropdown.OptionData(gamemode.gamemodeName));
             }
         }
         
@@ -318,6 +319,10 @@ namespace RhythmicVR {
                     break;
                 case UiType.Enum:
                     output = enumPrefab;
+                    output.GetComponentInChildren<Text>().text = text;
+                    break;
+                case UiType.Bool:
+                    output = boolPrefab;
                     output.GetComponentInChildren<Text>().text = text;
                     break;
                 case UiType.Category:
