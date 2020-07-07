@@ -82,6 +82,38 @@ namespace RhythmicVR {
 
             InitializeSettings();
 
+            // very bad v don't use yet.. find a fix for the device index
+
+            uint leftHandIndex = 0; //OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand);
+            uint rightHandIndex = 0; //OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand);
+
+            uint i = 0;
+            while (true) {
+                
+                if (OpenVR.System.GetControllerRoleForTrackedDeviceIndex(i) == ETrackedControllerRole.LeftHand) {
+                    leftHandIndex = i;
+                }
+                if (OpenVR.System.GetControllerRoleForTrackedDeviceIndex(i) == ETrackedControllerRole.RightHand) {
+                    rightHandIndex = i;
+                }
+
+                if (leftHandIndex != 0 && rightHandIndex != 0) {
+                    break;
+                }
+
+                if (i == 40) {
+                    break;
+                }
+
+                i++;
+            }
+
+            Debug.Log(leftHandIndex);
+            Debug.Log(rightHandIndex);
+            
+            Util.FetchPointerOffset(leftHandIndex, leftHand.Find("pointerOffset/Pointer")); 
+            Util.FetchPointerOffset(rightHandIndex, rightHand.Find("pointerOffset/Pointer")); 
+
             //RunATestSong();
         }
 

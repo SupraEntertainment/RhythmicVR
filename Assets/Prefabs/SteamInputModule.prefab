@@ -59,4 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a2588432fa93d40953cd17eb9d2c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
+  pointers:
+  - {fileID: 0}
+  - {fileID: 0}
+  sources: 0200000001000000
+  click:
+    actionPath: /actions/ui/in/click
+    needsReinit: 0
+  scroll:
+    actionPath: /actions/ui/in/scroll
+    needsReinit: 0

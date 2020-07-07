@@ -1,23 +1,19 @@
-﻿using UnityEngine;
-using Valve.VR;
+﻿using Valve.VR;
 
-public class SteamInputModule : VRInputModule
-{
+public class SteamInputModule : VRInputModule {
     
-    public SteamVR_Input_Sources[] m_Sources = new SteamVR_Input_Sources[]{};
-    public SteamVR_Action_Boolean m_Click = null;
-    public SteamVR_Action_Vector2 m_Scroll = null;
+    public SteamVR_Input_Sources[] sources;
+    public SteamVR_Action_Boolean click;
+    public SteamVR_Action_Vector2 scroll;
 
     private int currentPointerId = 0;
-    
-
     
     public override void Process() {
         base.Process();
 
-        for (var i = 0; i < m_Sources.Length; i++) {
+        for (var i = 0; i < sources.Length; i++) {
             // Press
-            if (m_Click.GetStateDown(m_Sources[i])) {
+            if (click.GetStateDown(sources[i])) {
                 if (currentPointerId == i) {
                     Press();
                 } else {
@@ -27,14 +23,14 @@ public class SteamInputModule : VRInputModule
             }
 
             // Release
-            if (m_Click.GetStateUp(m_Sources[i])) {
+            if (click.GetStateUp(sources[i])) {
                 Release();
             }
             
             // Scroll
-            if (m_Scroll.changed) {
+            if (scroll.changed) {
                 //Debug.Log("Scrolled " + m_Scroll.axis);
-                Data.scrollDelta = m_Scroll.axis * 20;
+                Data.scrollDelta = scroll.axis * 20;
                 Scroll();
             }
         }

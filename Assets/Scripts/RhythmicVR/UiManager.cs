@@ -67,7 +67,7 @@ namespace RhythmicVR {
             }
         }
 
-        // song file loading, beat saber code belongs into beatsaber import plugin, load single song file should belong into its own plugin aswell
+        // song file loading, should belong into its own plugin
     
         public void LoadSong() {
             new Thread(OpenSongFile).Start();
