@@ -1,7 +1,7 @@
 {
    "action_manifest_version" : 0,
    "alias_info" : {},
-   "app_key" : "application.generated.unity.vrrythmgame.exe",
+   "app_key" : "application.generated.unity.rhythmicvr.exe",
    "bindings" : {
     "/actions/default": {
       "chords": [],
@@ -165,8 +165,7 @@
    },
    "controller_type": "vive_cosmos_controller",
    "description": "",
-   "name": "vive_cosmos_controller"
+   "name": "vive_cosmos_controller",
    "options" : {},
    "simulated_actions" : []
-}
 }

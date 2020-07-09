@@ -38,6 +38,11 @@
       "requirement": "mandatory"
     },
     {
+      "name": "/actions/default/in/grab",
+      "type": "pose",
+      "requirement": "mandatory"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -48,6 +53,11 @@
     {
       "name": "/actions/ui/in/scroll",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/ui/in/pointer",
+      "type": "pose",
+      "requirement": "mandatory"
     }
   ],
   "action_sets": [

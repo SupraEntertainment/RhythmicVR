@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4506513043872991683}
   - component: {fileID: 4506513043872991682}
   - component: {fileID: 4506513043872991685}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SphereTrackedObject
   m_TagString: leftHand
   m_Icon: {fileID: 0}
@@ -108,4 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 4506513043872991682}
   useVelocityForScoreCalc: 0
-  gm: {fileID: 0}
+  core: {fileID: 0}

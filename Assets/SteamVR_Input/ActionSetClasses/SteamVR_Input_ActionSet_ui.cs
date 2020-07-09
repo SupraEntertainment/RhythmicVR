@@ -32,5 +32,13 @@ namespace Valve.VR
                 return SteamVR_Actions.ui_scroll;
             }
         }
+        
+        public virtual SteamVR_Action_Pose pointer
+        {
+            get
+            {
+                return SteamVR_Actions.ui_pointer;
+            }
+        }
     }
 }

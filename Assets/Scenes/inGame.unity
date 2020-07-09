@@ -964,6 +964,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &222435257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222435258}
+  m_Layer: 0
+  m_Name: itemOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &222435258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222435257}
+  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: 0, y: -0.015, z: -0.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1789539952}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1 &234100122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1257,12 @@ MonoBehaviour:
   uiManager: {fileID: 1576197619}
   pauseButton:
     actionPath: /actions/default/in/pause
+    needsReinit: 0
+  pointerOffset:
+    actionPath: /actions/ui/in/pointer
+    needsReinit: 0
+  gripPosition:
+    actionPath: /actions/default/in/grab
     needsReinit: 0
   includedAssetPackages:
   - {fileID: 2966985895657643161, guid: eaaaff690c4f4964a9ba0dcf5b4bce6c, type: 3}
@@ -2769,6 +2805,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520670765}
   m_CullTransparentMesh: 0
+--- !u!1 &532568685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 532568686}
+  m_Layer: 0
+  m_Name: itemOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &532568686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532568685}
+  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: 0, y: -0.015, z: -0.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1789596332}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1 &573069776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6544,6 +6610,7 @@ Transform:
   - {fileID: 1789553276}
   - {fileID: 1328565143}
   - {fileID: 164814757}
+  - {fileID: 222435258}
   m_Father: {fileID: 1674946946}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6589,6 +6656,7 @@ Transform:
   - {fileID: 1789557728}
   - {fileID: 1681312633}
   - {fileID: 1445040009}
+  - {fileID: 532568686}
   m_Father: {fileID: 1674946946}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

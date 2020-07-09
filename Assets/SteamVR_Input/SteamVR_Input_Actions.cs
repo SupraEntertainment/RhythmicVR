@@ -33,11 +33,15 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_pause;
         
+        private static SteamVR_Action_Pose p_default_grab;
+        
         private static SteamVR_Action_Vibration p_default_Haptic;
         
         private static SteamVR_Action_Boolean p_ui_click;
         
         private static SteamVR_Action_Vector2 p_ui_scroll;
+        
+        private static SteamVR_Action_Pose p_ui_pointer;
         
         public static SteamVR_Action_Boolean default_GrabPinch
         {
@@ -103,6 +107,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Pose default_grab
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_grab.GetCopy<SteamVR_Action_Pose>();
+            }
+        }
+        
         public static SteamVR_Action_Vibration default_Haptic
         {
             get
@@ -127,6 +139,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Pose ui_pointer
+        {
+            get
+            {
+                return SteamVR_Actions.p_ui_pointer.GetCopy<SteamVR_Action_Pose>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -138,9 +158,11 @@ namespace Valve.VR
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_pause,
+                    SteamVR_Actions.default_grab,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.ui_click,
-                    SteamVR_Actions.ui_scroll};
+                    SteamVR_Actions.ui_scroll,
+                    SteamVR_Actions.ui_pointer};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_GrabPinch,
                     SteamVR_Actions.default_GrabGrip,
@@ -150,14 +172,18 @@ namespace Valve.VR
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.default_HeadsetOnHead,
                     SteamVR_Actions.default_pause,
+                    SteamVR_Actions.default_grab,
                     SteamVR_Actions.ui_click,
-                    SteamVR_Actions.ui_scroll};
+                    SteamVR_Actions.ui_scroll,
+                    SteamVR_Actions.ui_pointer};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
-                    SteamVR_Actions.default_Pose};
+                    SteamVR_Actions.default_Pose,
+                    SteamVR_Actions.default_grab,
+                    SteamVR_Actions.ui_pointer};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
                     SteamVR_Actions.default_GrabPinch,
                     SteamVR_Actions.default_GrabGrip,
@@ -192,9 +218,11 @@ namespace Valve.VR
             SteamVR_Actions.p_default_Squeeze = ((SteamVR_Action_Single)(SteamVR_Action.Create<SteamVR_Action_Single>("/actions/default/in/Squeeze")));
             SteamVR_Actions.p_default_HeadsetOnHead = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/HeadsetOnHead")));
             SteamVR_Actions.p_default_pause = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/pause")));
+            SteamVR_Actions.p_default_grab = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/default/in/grab")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_ui_click = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/ui/in/click")));
             SteamVR_Actions.p_ui_scroll = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/ui/in/scroll")));
+            SteamVR_Actions.p_ui_pointer = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/ui/in/pointer")));
         }
     }
 }

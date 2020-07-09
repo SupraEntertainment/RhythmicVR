@@ -94,7 +94,7 @@ namespace RhythmicVR {
 	        return false;
         }
         
-        public static void FetchPointerOffset(uint index, Transform pointer) {
+        public static void FetchPoseOffset(uint index, Transform pointer, string poseString) {
 	        StringBuilder renderModelName = new StringBuilder(50);
 
 	        ETrackedPropertyError pError = new ETrackedPropertyError();
@@ -104,16 +104,12 @@ namespace RhythmicVR {
 	        VRControllerState_t state = new VRControllerState_t();
 	        RenderModel_ControllerMode_State_t rState = new RenderModel_ControllerMode_State_t();
 	        RenderModel_ComponentState_t compState = new RenderModel_ComponentState_t();
-	        bool found = OpenVR.RenderModels.GetComponentState(renderModelName.ToString(), "tip", ref state, ref rState,
+	        bool found = OpenVR.RenderModels.GetComponentState(renderModelName.ToString(), poseString, ref state, ref rState,
 	                                                           ref compState);
 
 	        if (!found) return;
 
 	        var pose = new SteamVR_Utils.RigidTransform(compState.mTrackingToComponentLocal);
-	        //Debug.Log(state);
-	        //Debug.Log(rState);
-	        //Debug.Log(compState);
-	        Debug.Log(pose);
 	        pointer.localPosition = pose.pos;
 	        pointer.localRotation = pose.rot;
         }

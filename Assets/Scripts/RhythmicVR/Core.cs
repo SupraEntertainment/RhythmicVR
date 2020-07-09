@@ -43,6 +43,8 @@ namespace RhythmicVR {
         public PluginManager pluginManager;
         public SongList songList = new SongList();
         public SteamVR_Action_Boolean pauseButton;
+        public SteamVR_Action_Pose pointerOffset;
+        public SteamVR_Action_Pose gripPosition;
         public PluginBaseClass[] includedAssetPackages;
         private AudioSource audioSource;
         private List<GameObject> trackedObjects = new List<GameObject>();
@@ -82,39 +84,23 @@ namespace RhythmicVR {
 
             InitializeSettings();
 
-            // very bad v don't use yet.. find a fix for the device index
+            //SetControllerPointerOffset();
 
-            uint leftHandIndex = 0; //OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand);
-            uint rightHandIndex = 0; //OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand);
+            Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand), leftHand.Find("pointerOffset"), "tip"); 
+            Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("pointerOffset"), "tip"); 
 
-            uint i = 0;
-            while (true) {
-                
-                if (OpenVR.System.GetControllerRoleForTrackedDeviceIndex(i) == ETrackedControllerRole.LeftHand) {
-                    leftHandIndex = i;
-                }
-                if (OpenVR.System.GetControllerRoleForTrackedDeviceIndex(i) == ETrackedControllerRole.RightHand) {
-                    rightHandIndex = i;
-                }
-
-                if (leftHandIndex != 0 && rightHandIndex != 0) {
-                    break;
-                }
-
-                if (i == 40) {
-                    break;
-                }
-
-                i++;
-            }
-
-            Debug.Log(leftHandIndex);
-            Debug.Log(rightHandIndex);
-            
-            Util.FetchPointerOffset(leftHandIndex, leftHand.Find("pointerOffset/Pointer")); 
-            Util.FetchPointerOffset(rightHandIndex, rightHand.Find("pointerOffset/Pointer")); 
+            //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand), leftHand.Find("itemOffset"), "handGrip"); 
+            //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("itemOffset"), "handGrip"); 
 
             //RunATestSong();
+        }
+
+        private void SetControllerPointerOffset() {
+            var l = leftHand.Find("pointerOffset");
+            var r = rightHand.Find("pointerOffset");
+
+            pointerOffset.UpdateTransform(SteamVR_Input_Sources.LeftHand, l);
+            pointerOffset.UpdateTransform(SteamVR_Input_Sources.RightHand, r);
         }
 
         /// <summary>
@@ -497,8 +483,8 @@ namespace RhythmicVR {
                     default:
                         return;
                 }
-                trackedObjects.Add(Instantiate(trackedDevicePair.prefab, tracker));
-                visualTrackedObjects.Add(Instantiate(trackedDevicePair.defaultVisualPrefab, tracker)); //TODO use selected prefab for gamemode, only fallback if empty
+                trackedObjects.Add(Instantiate(trackedDevicePair.prefab, tracker.Find("itemOffset")));
+                visualTrackedObjects.Add(Instantiate(trackedDevicePair.defaultVisualPrefab, tracker.Find("itemOffset"))); //TODO use selected prefab for gamemode, only fallback if empty
             }
         }
     

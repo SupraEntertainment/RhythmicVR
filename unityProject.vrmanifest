@@ -2,13 +2,13 @@
   "source": "Unity",
   "applications": [
     {
-      "app_key": "application.generated.unity.vrrythmgame.exe",
+      "app_key": "application.generated.unity.rythmicvr.exe",
       "launch_type": "url",
       "url": "steam://launch/",
       "action_manifest_path": "E:\\Unity\\RhythmicVR\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
-          "name": "VRRythmGame [Testing]"
+          "name": "RhythmicVR [Testing]"
         }
       }
     }
