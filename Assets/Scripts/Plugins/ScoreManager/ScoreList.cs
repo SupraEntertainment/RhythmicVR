@@ -25,7 +25,7 @@ namespace RhythmicVR {
 		}
 
 		public void LoadScores() {
-			if (Util.EnsureDirectoryIntegrity(path)) {
+			if (Util.EnsureFileIntegrity(path + "scores.json")) {
 				scores.AddRange(JsonUtility.FromJson<ScoreListInternal>(File.ReadAllText(path + "scores.json")).scores);
 				foreach (var score in scores) {
 					score.FillListsFromArrays();

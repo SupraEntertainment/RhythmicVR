@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9515,6 +9515,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557331827}
     m_Modifications:
+    - target: {fileID: 6824549255625758560, guid: 19ea86a0b8b028b46ae1d1a4bdfb838e,
+        type: 3}
+      propertyPath: m_Text
+      value: No Song Selected
+      objectReference: {fileID: 0}
     - target: {fileID: 6824549255785181068, guid: 19ea86a0b8b028b46ae1d1a4bdfb838e,
         type: 3}
       propertyPath: m_LocalPosition.x
