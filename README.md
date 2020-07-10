@@ -53,14 +53,10 @@ The following list contains my plans for this Project:
     
  
  
-refactor everything because the way things are done right now are completely useless and not modular enough.
-Will implement features as is in the current system, but the entire song playing, loading, etc logic will be handled by individual plugins. 
+- [X] refactor plugin framework because the way things are done right now are completely useless and not modular enough.
+- [ ] the entire song playing, loading, etc logic will be handled by individual plugins. 
 They will be able to create deriviatives of the Song class, wich can be loaded through the song list. 
 The song list might need to be a plugin aswell... that is to be determined still.....
-
-And the way settings are setup rn is really janky... 
-I need to figure something better out. 
-I will probably give the UI elements a path string similar to unity editor menu points and dropdowns work.
 
 ### Screenshots
 ![Early Screenshot](https://i.imgur.com/KWZKX2P.png)

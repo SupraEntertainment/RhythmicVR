@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using SFB;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Valve.VR;
 
@@ -28,6 +29,13 @@ namespace RhythmicVR {
         public Button practiceBeatmapButton;
         public Text beatmapTitleText;
         public Image beatmapCoverImage;
+        public Transform beatmapCategoryPanel;
+        public Transform beatmapDifficultyPanel;
+        public GameObject difficultyButton;
+        public Text beatMapTargetCount;
+        public Text songLength;
+        public Text beatsPerMinute;
+        public Text targetsPerMinute;
 
         [Header("In Game Panels")] 
         public Text scoreText;
@@ -113,6 +121,7 @@ namespace RhythmicVR {
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
             inGame.SetActive(true);
+            titleText.SetActive(false);
         }
 
         /// <summary>
@@ -123,6 +132,7 @@ namespace RhythmicVR {
             mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
             inGame.SetActive(false);
+            titleText.SetActive(true);
         }
 
         /// <summary>
@@ -133,6 +143,7 @@ namespace RhythmicVR {
             mainMenu.SetActive(false);
             settingsMenu.SetActive(true);
             inGame.SetActive(false);
+            titleText.SetActive(true);
         }
 
         /// <summary>
@@ -143,6 +154,7 @@ namespace RhythmicVR {
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
             inGame.SetActive(false);
+            titleText.SetActive(true);
             ListSongs(core.songList.GetAllSongs());
         }
 
@@ -217,6 +229,8 @@ namespace RhythmicVR {
         /// <param name="song">The song to display info about</param>
         public void DisplaySongInfo(Song song) {
             Debug.Log("Displaying Song " + song.songName + " by " + song.songAuthorName);
+
+            core.currentlyPlayingSong = song;
             
             // remove listeners from previous song
             playBeatmapButton.onClick.RemoveAllListeners();
@@ -231,6 +245,34 @@ namespace RhythmicVR {
             // set text
             beatmapTitleText.text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
             beatmapCoverImage.sprite = Util.LoadSprite(song.pathToDir + song.coverImageFile);
+
+            for (int i = 0; i < beatmapDifficultyPanel.transform.childCount; i++) {
+                Destroy(beatmapDifficultyPanel.transform.GetChild(i).gameObject);
+            }
+
+            Debug.Log(beatmapDifficultyPanel.GetComponent<RectTransform>().sizeDelta.y);
+            var difButHeight = beatmapDifficultyPanel.GetComponent<RectTransform>().sizeDelta.y / (song.difficulties.Length);
+            Debug.Log(difButHeight);
+            for (var i = 0; i < song.difficulties.Length; i++) {
+                var i1 = i;
+                var difficulty = song.difficulties[i];
+                var button = Instantiate(difficultyButton, beatmapDifficultyPanel);
+                button.GetComponentInChildren<Text>().text = song.difficulties[i].name;
+                button.GetComponent<Button>().onClick.AddListener(delegate {
+                    SetPlayButtonListener(delegate {
+                        core.StartBeatmap(song, song.difficulties[i1], null);
+                    });
+                    Debug.Log("Selected Difficulty " + i1);
+                });
+                var rt = button.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, (- i) * difButHeight);
+                button.GetComponent<RectTransform>().sizeDelta = new Vector2(rt.sizeDelta.x, difButHeight);
+            }
+        }
+
+        public void SetPlayButtonListener(UnityAction call) {
+            playBeatmapButton.onClick.RemoveAllListeners();
+            playBeatmapButton.onClick.AddListener(call);
         }
         
         /* in-game panels */
