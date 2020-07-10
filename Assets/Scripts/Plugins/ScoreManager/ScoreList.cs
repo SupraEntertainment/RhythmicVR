@@ -20,7 +20,7 @@ namespace RhythmicVR {
 				foreach (var score in scores) {
 					score.FinalizeScore();
 				}
-				File.WriteAllText(path + "scores.json", JsonUtility.ToJson(new ScoreListInternal(scores.ToArray())));
+				File.WriteAllText(path + "scores.json", JsonUtility.ToJson(new ScoreListInternal(scores.ToArray()), true));
 			}
 		}
 

@@ -91,7 +91,7 @@ namespace AudioManager {
         }
 
         private void SaveConfig() {
-            core.config.SavePluginConfig(JsonUtility.ToJson(audioConfig), pluginName);
+            core.config.SavePluginConfig(JsonUtility.ToJson(audioConfig, true), pluginName);
         }
 
         public void SetGeneralVolume(int volume) {

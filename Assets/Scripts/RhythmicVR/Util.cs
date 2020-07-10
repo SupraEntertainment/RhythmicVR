@@ -84,14 +84,26 @@ namespace RhythmicVR {
 	        return audioClip;
         }
 
+        public static bool EnsureFileIntegrity(string path, bool shouldCreate = false) {
+	        if (!File.Exists(path)) {
+		        if (shouldCreate) {
+			        File.Create(path);
+			        return true;
+		        }
+		        return false;
+	        }
+	        return true;
+        }
+
         public static bool EnsureDirectoryIntegrity(string path, bool shouldCreate = false) {
 	        if (!Directory.Exists(path)) {
 		        if (shouldCreate) {
 			        Directory.CreateDirectory(path);
 			        return true;
 		        }
+		        return false;
 	        }
-	        return false;
+	        return true;
         }
         
         public static void FetchPoseOffset(uint index, Transform pointer, string poseString) {

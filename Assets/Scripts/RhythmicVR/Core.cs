@@ -181,6 +181,9 @@ namespace RhythmicVR {
         /// </summary>
         private void LoadSongsIntoSongList() {
             List<Song> songs = new List<Song>();
+            if (!Util.EnsureDirectoryIntegrity(config.songSavePath)) {
+                return;
+            }
             string[] paths = Directory.GetDirectories(config.songSavePath);
             foreach (var path in paths) {
                 songs.Add(ReadSongFromPath(path + "/"));

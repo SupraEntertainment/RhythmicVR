@@ -48,7 +48,9 @@ namespace RhythmicVR {
 		/// Save config file
 		/// </summary>
 		public void Save() {
-			File.WriteAllText(appData + "/config.json", JsonUtility.ToJson(this, true));
+			if (Util.EnsureDirectoryIntegrity(appData)) {
+				File.WriteAllText(appData + "/config.json", JsonUtility.ToJson(this, true));
+			}
 		}
 
 		/// <summary>
@@ -57,7 +59,10 @@ namespace RhythmicVR {
 		/// <param name="path">Path to load the file from</param>
 		/// <returns>The config object from that file</returns>
 		public static Config Load(string path) {
-			return JsonUtility.FromJson<Config>(File.ReadAllText(path + "/config.json"));
+			if (Util.EnsureFileIntegrity(path + "/config.json")) {
+				return JsonUtility.FromJson<Config>(File.ReadAllText(path + "/config.json"));
+			}
+			return null;
 		}
 	}
 }
