@@ -273,29 +273,6 @@ namespace RhythmicVR {
         }
 
         /// <summary>
-        /// Return Tag String for Tracker Role 
-        /// </summary>
-        /// <param name="role">The Tracker Role to convert</param>
-        /// <returns>The Tag String to use</returns>
-        [Obsolete("This is a bad way of doing comparisons and shouldn't be used... use the public script properties instead")]
-        private static string TrackerRoleToTag(TrackingPoint role) {
-            switch (role) {
-                case TrackingPoint.LeftHand:
-                    return "leftHand";
-                case TrackingPoint.RightHand:
-                    return "rightHand";
-                case TrackingPoint.Waist:
-                    return "waist";
-                case TrackingPoint.LeftFoot:
-                    return "leftFoot";
-                case TrackingPoint.RightFoot:
-                    return "rightFoot";
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
         /// Load a Song from path and add to songList, reload songList UI
         /// </summary>
         /// <param name="songPath">The Folder path, where level.json is stored in</param>

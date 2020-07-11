@@ -68,51 +68,6 @@ namespace RhythmicVR {
 			allPages.Add(page); // add to page list
 			return page;
 		}
-		
-		/// <summary>
-		/// Initialize settings menu, run over this for each element, calls itself if elements are inside eachother (for categories)
-		/// </summary>
-		/// <param name="setting">The settings element to iterate over in this run</param>
-		/// <param name="parent">The parent gameobject to initialize the element in</param>
-		/// <param name="heightOfExistingElements">height positioning Offset for this element</param>
-		/// <returns>Height of this iterations element</returns>
-		/// 
-		[Obsolete("This should not be used to create Ui elements anymore, use CreatePage() and SetupElement() instead")]
-		private int InitializeUiElement(SettingsField setting, GameObject parent, int heightOfExistingElements) {
-			var settingUiElement = Instantiate(core.uiManager.BuildUiElement(setting.name, setting.type), parent.transform); // instantiate UI element
-			var rt = settingUiElement.GetComponent<RectTransform>(); //get rect transform
-			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -heightOfExistingElements); // set elements position
-			if (setting.type == UiType.Category) {
-				var settingsPage = Instantiate(core.uiManager.scrollList, settingsMenuParent.transform.GetChild(0)); // instantiate category page
-				//allPages.Add(settingsPage); // add page to list
-				//settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.RemoveAllListeners(); //remove all previous listeners
-				settingsPage.transform.Find("Btn_back").GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); parent.transform.parent.parent.gameObject.SetActive(true); }); // back button lsitener (to activate previous page)
-				settingUiElement.GetComponent<Button>().onClick.AddListener(delegate { DisableAllSettingsPages(); settingsPage.SetActive(true); }); // go to this new page when clicking on category
-				var content = settingsPage.transform.Find("Viewport/Content").gameObject; // set content element
-				int contentHeight = 0;
-				/*for (var i = 0; i < setting.children.Length; i++) {
-					contentHeight += InitializeUiElement(setting.children[i], content, contentHeight); // create next elements
-				}*/
-				content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, contentHeight); //set height of conent element
-			} else {
-				var allInputElements = settingUiElement.GetComponentsInChildren<InputField>();
-				for (var i = 0; i < allInputElements.Length; i++) {
-					var inputElement = allInputElements[i];
-					inputElement.onValueChanged.AddListener(setting.stringCall);
-				}
-
-				var allSliders = settingUiElement.GetComponentsInChildren<Slider>();
-				foreach (var slider in allSliders) {
-					slider.onValueChanged.AddListener(setting.floatCall);
-				}
-
-				var allButtons = settingUiElement.GetComponentsInChildren<Button>();
-				foreach (var button in allButtons) {
-					button.onClick.AddListener(setting.buttonCall);
-				}
-			}
-			return (int)rt.rect.height;
-		}
 
 		public void DisableAllSettingsPages() {
 			foreach (var page in allPages) {
