@@ -33,6 +33,10 @@ namespace RhythmicVR.BeatSaber {
                         }else {
                             bm = JsonUtility.FromJson<Beatmap>(beatmapJson).ToBeatmap();
                         }
+
+                        foreach (var note in bm.notes) {
+                            note.time = (note.time / song._beatsPerMinute) * 60;
+                        }
                         convertedBeatmaps.Add(bm);
                     }
                 }
