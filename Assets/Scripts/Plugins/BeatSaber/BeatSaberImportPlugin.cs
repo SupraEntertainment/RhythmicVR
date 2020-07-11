@@ -18,7 +18,7 @@ namespace BeatSaber {
         private void OpenBeatSaberSong() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
-                    core.LoadSong(SongLoader.ConvertSong(path, core));
+                    SongLoader.ConvertSong(path, core);
                 }
             });
         }
