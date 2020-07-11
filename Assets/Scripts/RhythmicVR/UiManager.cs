@@ -40,7 +40,7 @@ namespace RhythmicVR {
         [Header("In Game Panels")] 
         public Text scoreText;
         public Text progressText;
-        public Image progressBar;
+        public SlicedFilledImage progressBar;
         public Text multiplierText;
         
         [Header("UI Prefabs")]
@@ -279,6 +279,12 @@ namespace RhythmicVR {
 
         private void PopulateInGamePanels() {
             scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
+            multiplierText.text = scoreManager.currentPlaythrough.GetMultiplier().x.ToString();
+            
+            
+            var audioSource = core.audioSource;
+            progressBar.fillAmount = 1 / audioSource.clip.length * audioSource.time;
+            progressText.text = Util.ParseSeconds(audioSource.time) + " / " + Util.ParseSeconds(audioSource.clip.length);
         }
 
         /// <summary>

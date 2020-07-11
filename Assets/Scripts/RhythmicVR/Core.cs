@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -46,7 +46,7 @@ namespace RhythmicVR {
         public SteamVR_Action_Pose pointerOffset;
         public SteamVR_Action_Pose gripPosition;
         public PluginBaseClass[] includedAssetPackages;
-        private AudioSource audioSource;
+        public AudioSource audioSource;
         private List<GameObject> trackedObjects = new List<GameObject>();
         private List<GameObject> visualTrackedObjects = new List<GameObject>();
         private List<GameObject> menuTrackedObjects = new List<GameObject>();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.IO;
 using System.Text;
@@ -124,6 +125,17 @@ namespace RhythmicVR {
 	        var pose = new SteamVR_Utils.RigidTransform(compState.mTrackingToComponentLocal);
 	        pointer.localPosition = pose.pos;
 	        pointer.localRotation = pose.rot;
+        }
+
+        public static string ParseSeconds(float seconds) {
+	        int sec = (int)Math.Floor(seconds);
+	        int min = 0;
+	        while (sec >= 60) {
+		        sec -= 60;
+		        min++;
+	        }
+
+	        return min + ":" + $"{sec:D2}";
         }
 	}
 }
