@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -388,11 +388,9 @@ namespace RhythmicVR {
                     uiManager.ShowPauseMenu(reason);
                     break;
                 case 1: // completed
-                    ExitBeatmap();
                     uiManager.ShowPauseMenu(reason);
                     break;
                 case 2: // failed
-                    ExitBeatmap();
                     uiManager.ShowPauseMenu(reason);
                     break;
             }
