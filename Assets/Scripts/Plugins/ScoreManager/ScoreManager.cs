@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ScoreManager {
 	public class ScoreManager : PluginBaseClass {
 
-		private Config scoreConfig;
+		public Config scoreConfig;
 		private ScoreList scoreList;
 		public Playthrough currentPlaythrough;
 		

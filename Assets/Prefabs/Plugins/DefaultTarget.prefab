@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pluginName: Default Target
   type: 1
-  unityAssetObject: {fileID: 5819272095287526613}
 --- !u!1001 &24336006535473194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,12 +115,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fe6c4ea531b084fb48e5f6147fb8b7, type: 3}
---- !u!1 &5819272095287526613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 24336006535473194}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7393060090298906310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7408167964453527276, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,

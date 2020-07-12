@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using SFB;
 using UnityEngine;
@@ -29,13 +30,11 @@ namespace RhythmicVR {
         public Button practiceBeatmapButton;
         public Text beatmapTitleText;
         public Image beatmapCoverImage;
+        public Transform songPropertyPanel;
         public Transform beatmapCategoryPanel;
         public Transform beatmapDifficultyPanel;
         public GameObject difficultyButton;
-        public Text beatMapTargetCount;
-        public Text songLength;
-        public Text beatsPerMinute;
-        public Text targetsPerMinute;
+        public GameObject propertyPanel;
 
         [Header("In Game Panels")] 
         public Text scoreText;
@@ -58,6 +57,8 @@ namespace RhythmicVR {
 
         [Header("Various")] 
         public Dropdown gamemodeDropdown;
+
+        public Dictionary<string, object> displayedProperties = new Dictionary<string, object>();
 
         private ScoreManager.ScoreManager scoreManager;
         private List<GameObject> loadedSongs = new List<GameObject>();
@@ -250,9 +251,7 @@ namespace RhythmicVR {
                 Destroy(beatmapDifficultyPanel.transform.GetChild(i).gameObject);
             }
 
-            Debug.Log(beatmapDifficultyPanel.GetComponent<RectTransform>().sizeDelta.y);
             var difButHeight = beatmapDifficultyPanel.GetComponent<RectTransform>().sizeDelta.y / (song.difficulties.Length);
-            Debug.Log(difButHeight);
             for (var i = 0; i < song.difficulties.Length; i++) {
                 var i1 = i;
                 var difficulty = song.difficulties[i];
@@ -265,8 +264,28 @@ namespace RhythmicVR {
                     Debug.Log("Selected Difficulty " + i1);
                 });
                 var rt = button.GetComponent<RectTransform>();
-                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, (- i) * difButHeight);
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -i * difButHeight);
                 button.GetComponent<RectTransform>().sizeDelta = new Vector2(rt.sizeDelta.x, difButHeight);
+            }
+            
+            displayedProperties.Clear();
+            displayedProperties.Add("bpm", song.beatsPerMinute);
+
+            SetDisplayedProperties();
+        }
+
+        public void SetDisplayedProperties() {
+            for (int i = 0; i < songPropertyPanel.transform.childCount; i++) {
+                Destroy(songPropertyPanel.transform.GetChild(i).gameObject);
+            }
+            
+            var propButWidth = songPropertyPanel.GetComponent<RectTransform>().sizeDelta.x / (displayedProperties.Count);
+            for (var i = 0; i < displayedProperties.Count; i++) {
+                var button = Instantiate(propertyPanel, songPropertyPanel);
+                button.GetComponentInChildren<Text>().text = displayedProperties.Keys.ElementAt(i) + "\n" + displayedProperties.Values.ElementAt(i).ToString();
+                var rt = button.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(-i * propButWidth, rt.anchoredPosition.y);
+                button.GetComponent<RectTransform>().sizeDelta = new Vector2(propButWidth, rt.sizeDelta.y);
             }
         }
 
@@ -278,13 +297,23 @@ namespace RhythmicVR {
         /* in-game panels */
 
         private void PopulateInGamePanels() {
-            scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
-            multiplierText.text = scoreManager.currentPlaythrough.GetMultiplier().x.ToString();
-            
-            
-            var audioSource = core.audioSource;
-            progressBar.fillAmount = 1 / audioSource.clip.length * audioSource.time;
-            progressText.text = Util.ParseSeconds(audioSource.time) + " / " + Util.ParseSeconds(audioSource.clip.length);
+            if (scoreManager.scoreConfig.showOverlay) {
+                if (scoreManager.scoreConfig.showOverallScore) {
+                    scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
+                }
+                if (scoreManager.scoreConfig.showMultiplier) {
+                    multiplierText.text = scoreManager.currentPlaythrough.GetMultiplier().x.ToString();
+                }
+                if (scoreManager.scoreConfig.showCurrentTargetScore) {
+                    //scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
+                }
+
+                if ((object)core.audioSource.clip != null) {
+                    var audioSource = core.audioSource;
+                    progressBar.fillAmount = 1 / audioSource.clip.length * audioSource.time;
+                    progressText.text = Util.ParseSeconds(audioSource.time) + " / " + Util.ParseSeconds(audioSource.clip.length);
+                }
+            }
         }
 
         /// <summary>
