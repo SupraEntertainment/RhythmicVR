@@ -158,7 +158,6 @@ namespace RhythmicVR {
             settingsMenu.SetActive(false);
             inGame.SetActive(false);
             titleText.SetActive(true);
-            ListSongs(core.songList.GetAllSongs());
         }
 
         /// <summary>

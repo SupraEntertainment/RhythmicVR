@@ -23,6 +23,7 @@ namespace BeatSaber {
                     SongLoader.ConvertSong(path, core);
                 }
             });
+            core.uiManager.ListSongs(core.songList.GetAllSongs());
         }
 
         private void LoadBeatSaberMapFolder() {
@@ -50,6 +51,7 @@ namespace BeatSaber {
                 }
                 core.uiManager.ProgressBarSetActive(false);
             });
+            core.uiManager.ListSongs(core.songList.GetAllSongs());
         }
 
         private void SetupUiElements() {

@@ -88,6 +88,8 @@ namespace RhythmicVR {
 
             Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand), leftHand.Find("pointerOffset"), "tip"); 
             Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("pointerOffset"), "tip"); 
+            
+            uiManager.ListSongs(songList.GetAllSongs());
 
             //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand), leftHand.Find("itemOffset"), "handGrip"); 
             //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("itemOffset"), "handGrip"); 
