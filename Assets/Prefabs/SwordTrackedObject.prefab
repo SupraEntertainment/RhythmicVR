@@ -106,6 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2550460a1ab040a4eb6e3e0fd9911d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 5256248154781288748}
-  useVelocityForScoreCalc: 0
+  mCollider: {fileID: 5256248154781288748}
+  useVelocityForScoreCalc: 1
   core: {fileID: 0}
