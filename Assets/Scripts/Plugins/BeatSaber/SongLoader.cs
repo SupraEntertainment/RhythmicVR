@@ -44,6 +44,8 @@ namespace RhythmicVR.BeatSaber {
                 var cover = File.ReadAllBytes(filePath + Path.DirectorySeparatorChar + song._coverImageFilename);
                 var audio = File.ReadAllBytes(filePath + Path.DirectorySeparatorChar + song._songFilename);
 
+                Debug.Log("Imported Beatsaber Song successfully.");
+                Debug.Log(convertedSong.songName + " - " + convertedSong.songAuthorName + " - " + convertedSong.albumName);
                 return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray(), cover, audio);
             }
             catch (Exception e) {

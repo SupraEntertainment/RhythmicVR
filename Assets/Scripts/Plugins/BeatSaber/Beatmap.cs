@@ -24,8 +24,6 @@ namespace RhythmicVR.BeatSaber {
 			foreach (var bsObstacle in _obstacles) {
 				obstacles.Add(bsObstacle.ToObstacle());
 			}
-
-			Debug.Log(($"{events}, {notes}, {obstacles}"));
 			return new RhythmicVR.Beatmap(events.ToArray(), notes.ToArray(), obstacles.ToArray());
 		}
 		
