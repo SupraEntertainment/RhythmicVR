@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScoreManager {
 	[System.Serializable]
-	public class Playthrough : Object {
+	public class Playthrough {
 		public string scoringsystem;
 		public float score;
 		public float[] notes;
