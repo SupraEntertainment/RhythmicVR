@@ -57,6 +57,7 @@ namespace RhythmicVR {
 
         [Header("Various")] 
         public Dropdown gamemodeDropdown;
+        public SlicedFilledImage generalProgressBar;
 
         public Dictionary<string, object> displayedProperties = new Dictionary<string, object>();
 
@@ -382,6 +383,30 @@ namespace RhythmicVR {
             if (maxValue != 0) {
                 sldr.maxValue = maxValue;
             }
+        }
+
+        /// <summary>
+        /// Enable or disable the progress bar
+        /// </summary>
+        /// <param name="state"></param>
+        public void ProgressBarSetActive(bool state) {
+            generalProgressBar.transform.parent.gameObject.SetActive(state);
+        }
+
+        /// <summary>
+        /// Set the Title of the progress bar
+        /// </summary>
+        /// <param name="title">Title string</param>
+        public void ProgressBarSetTitle(string title) {
+            generalProgressBar.transform.parent.GetComponentInChildren<Text>().text = title;
+        }
+
+        /// <summary>
+        /// Set the value of the progress bar
+        /// </summary>
+        /// <param name="value">value from 0 to 1</param>
+        public void ProgressBarSetValue(float value) {
+            generalProgressBar.fillAmount = value;
         }
     }
 }
