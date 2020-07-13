@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using RhythmicVR;
 using RhythmicVR.BeatSaber;
@@ -11,7 +13,7 @@ namespace BeatSaber {
             SetupUiElements();
         }
 
-        public void LoadBeatSaberMap() {
+        private void LoadBeatSaberMap() {
             new Thread(OpenBeatSaberSong).Start();
         }
 
@@ -23,17 +25,40 @@ namespace BeatSaber {
             });
         }
 
+        private void LoadBeatSaberMapFolder() {
+            new Thread(OpenBeatSaberSongFolder).Start();
+        }
+
+        private void OpenBeatSaberSongFolder() {
+            StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", false, delegate(string[] strings) {
+                string[] paths = Directory.GetDirectories(strings[0]);
+                foreach (var path in paths) {
+                    try {
+                        SongLoader.ConvertSong(path, core);
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine(e);
+                    }
+                }
+            });
+        }
+
         private void SetupUiElements() {
-            List<SettingsField> audioSettings = new List<SettingsField>();
+            List<SettingsField> settingsFields = new List<SettingsField>();
 
             {
-                SettingsField setting = new SettingsField("Convert and Import Beatsaber Map", UiType.Button, core.uiManager.buttonPrefab, "Settings/Plugins/Beat Saber Import");
+                SettingsField setting = new SettingsField("Import Beatsaber Song", UiType.Button, core.uiManager.buttonPrefab, "Settings/Plugins/Beat Saber Import");
                 setting.buttonCall = LoadBeatSaberMap;
-                //setting.prefab.GetComponent<Button>().onClick.AddListener(LoadBeatSaberMap);
-                audioSettings.Add(setting);
+                settingsFields.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Import Beatsaber Song Folder", UiType.Button, core.uiManager.buttonPrefab, "Settings/Plugins/Beat Saber Import");
+                setting.buttonCall = LoadBeatSaberMapFolder;
+                settingsFields.Add(setting);
             }
         
-            core.settingsManager.settings.AddRange(audioSettings);
+            core.settingsManager.settings.AddRange(settingsFields);
             core.settingsManager.UpdateSettingsUi();
         }
     }
