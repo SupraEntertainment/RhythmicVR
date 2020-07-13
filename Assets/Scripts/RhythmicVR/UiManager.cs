@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -191,7 +192,7 @@ namespace RhythmicVR {
         /*-------------------- vv songlist vv --------------------------*/
 
         public void ListSongs(List<Song> songs) {
-            ListAllSongs(songListParent, songs, songListItem);
+            StartCoroutine(ListAllSongs(songListParent, songs, songListItem));
         }
 
         /// <summary>
@@ -200,10 +201,14 @@ namespace RhythmicVR {
         /// <param name="parent">The parent object to put the songs into</param>
         /// <param name="songs">The songs</param>
         /// <param name="buttonPrefab">The Prefab to use as song List element</param>
-        private void ListAllSongs(Transform parent, IReadOnlyList<Song> songs, GameObject buttonPrefab) {
+        private IEnumerator ListAllSongs(Transform parent, IReadOnlyList<Song> songs, GameObject buttonPrefab) {
             if (loadedSongs.Count != 0) {
                 RemoveAllListedSongs();
             }
+            
+            core.uiManager.ProgressBarSetActive(true);
+            core.uiManager.ProgressBarSetTitle("Loading songs");
+            int max = songs.Count;
 
             var prt = parent.GetComponent<RectTransform>();
             prt.sizeDelta = new Vector2(0, 20 + songs.Count * (buttonPrefab.GetComponent<RectTransform>().rect.height+20));
@@ -216,7 +221,13 @@ namespace RhythmicVR {
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
                 loadedSongs.Add(button);
+                
+                core.uiManager.ProgressBarSetValue(1/max*i);
+                core.uiManager.ProgressBarSetTitle("Loading songs " + i + "/" + max);
+                yield return i;
             }
+            
+            core.uiManager.ProgressBarSetActive(false);
         }
 
         private void RemoveAllListedSongs() {

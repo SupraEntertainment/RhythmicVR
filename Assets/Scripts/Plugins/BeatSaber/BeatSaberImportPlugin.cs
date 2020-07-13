@@ -32,6 +32,10 @@ namespace BeatSaber {
         private void OpenBeatSaberSongFolder() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", false, delegate(string[] strings) {
                 string[] paths = Directory.GetDirectories(strings[0]);
+                core.uiManager.ProgressBarSetActive(true);
+                core.uiManager.ProgressBarSetTitle("Importing songs");
+                int i = 0;
+                int max = paths.Length;
                 foreach (var path in paths) {
                     try {
                         SongLoader.ConvertSong(path, core);
@@ -39,7 +43,12 @@ namespace BeatSaber {
                     catch (Exception e) {
                         Console.WriteLine(e);
                     }
+
+                    i++;
+                    core.uiManager.ProgressBarSetValue(1/max*i);
+                    core.uiManager.ProgressBarSetTitle("Importing songs " + i + "/" + max);
                 }
+                core.uiManager.ProgressBarSetActive(false);
             });
         }
 
