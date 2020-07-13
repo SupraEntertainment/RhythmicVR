@@ -68,32 +68,32 @@ namespace ScoreManager {
             core.config.SavePluginConfig(JsonUtility.ToJson(scoreConfig), pluginName);
         }
 
-        public void SetRelativeSaving(bool state) {
+        private void SetRelativeSaving(bool state) {
             scoreConfig.shouldSaveInSongDir = state;
             SaveConfig();
         }
 
-        public void SetScoreSavePath(string path) {
+        private void SetScoreSavePath(string path) {
             scoreConfig.globalScoreSavePath = path;
             SaveConfig();
         }
 
-        public void SetShowOverlay(bool state) {
+        private void SetShowOverlay(bool state) {
 	        scoreConfig.showOverlay = state;
 	        SaveConfig();
         }
 
-        public void SetShowMultiplier(bool state) {
+        private void SetShowMultiplier(bool state) {
 	        scoreConfig.showMultiplier = state;
 	        SaveConfig();
         }
 
-        public void SetShowOverallScore(bool state) {
+        private void SetShowOverallScore(bool state) {
 	        scoreConfig.showOverallScore = state;
 	        SaveConfig();
         }
 
-        public void SetShowCurrentTargetScore(bool state) {
+        private void SetShowCurrentTargetScore(bool state) {
 	        scoreConfig.showCurrentTargetScore = state;
 	        SaveConfig();
         }
@@ -115,6 +115,12 @@ namespace ScoreManager {
 			}
 
 			return scoreList.GetScores();
+		}
+
+		public void SaveCurrentScores() {
+			if ((object)scoreList != null) {
+				scoreList.SaveScores();
+			}
 		}
 	}
 }

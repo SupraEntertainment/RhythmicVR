@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -389,6 +389,7 @@ namespace RhythmicVR {
         /// </summary>
         public void ExitBeatmap() {
             StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
+            ((ScoreManager.ScoreManager) pluginManager.Find("Score Manager")).SaveCurrentScores();
             audioSource.time = 0;
             audioSource.clip = null;
             allowPause = false;
