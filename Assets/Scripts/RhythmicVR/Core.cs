@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -196,10 +196,10 @@ namespace RhythmicVR {
         /// </summary>
         private void InitializeSettings() {
             // add listeners
-            for (var i = 0; i < integratedSettings.Length; i++) {
+            /*for (var i = 0; i < integratedSettings.Length; i++) {
                 var setting = integratedSettings[i];
                 switch (i) {
-                    /*case 0:
+                    case 0:
                         setting.call.AddListener(delegate {
                             volumeManager.SetGeneralVolume(int.Parse(setting._input));
                         });
@@ -233,9 +233,9 @@ namespace RhythmicVR {
                         setting.call.AddListener(delegate {
                             volumeManager.SetWrongHitVolume(int.Parse(setting._input));
                         });
-                        break;*/
+                        break;
                 }
-            }
+            }*/
 
             settingsManager.settings.AddRange(integratedSettings);
             settingsManager.settingsMenuParent = uiManager.settingsMenu;
@@ -243,7 +243,7 @@ namespace RhythmicVR {
         }
 
         /// <summary>
-        /// Create a fake beatmap with some tests notes and play them
+        /// Create a fake beatmap with some test notes and play them
         /// </summary>
         private void RunATestSong() {
             // create debug Beatmap

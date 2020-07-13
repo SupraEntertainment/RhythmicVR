@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -81,8 +81,8 @@ namespace RhythmicVR {
         public void LoadSong() {
             new Thread(OpenSongFile).Start();
         }
-    
-        public void OpenSongFile() {
+
+        private void OpenSongFile() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Load and Play Beatmap", "", true, delegate(string[] strings) {
                 foreach (var path in strings) {
                     core.LoadSong(path + Path.DirectorySeparatorChar);

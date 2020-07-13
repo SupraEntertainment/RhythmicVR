@@ -6,7 +6,7 @@ namespace RhythmicVR {
     /// Object to use on tracked devices, determines hit and score logic aswell as hit collider
     /// </summary>
     public class GenericTrackedObject : MonoBehaviour {
-        public Collider collider;
+        public Collider mCollider;
         public bool useVelocityForScoreCalc;
         [System.NonSerialized] public TrackingPoint role;
         public Core core;
@@ -14,8 +14,8 @@ namespace RhythmicVR {
     
         // Start is called before the first frame update
         private void Start() {
-            collider.gameObject.AddComponent<Rigidbody>();
-            CreateRigidbody(collider.gameObject.GetComponent<Rigidbody>());
+            mCollider.gameObject.AddComponent<Rigidbody>();
+            CreateRigidbody(mCollider.gameObject.GetComponent<Rigidbody>());
             core = FindObjectOfType<Core>();
             scoreManager = (ScoreManager.ScoreManager)core.pluginManager.Find("Score Manager");
         }
