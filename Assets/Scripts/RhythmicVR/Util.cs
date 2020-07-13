@@ -89,8 +89,10 @@ namespace RhythmicVR {
 	        if (!File.Exists(path)) {
 		        if (shouldCreate) {
 			        File.Create(path);
+			        Debug.Log("The File at \"" + path + "\" did not exist:\nCreated");
 			        return true;
 		        }
+		        Debug.Log("The File at \"" + path + "\" did not exist:\nReturned without creating");
 		        return false;
 	        }
 	        return true;
@@ -100,8 +102,10 @@ namespace RhythmicVR {
 	        if (!Directory.Exists(path)) {
 		        if (shouldCreate) {
 			        Directory.CreateDirectory(path);
+			        Debug.Log("The Directory at \"" + path + "\" did not exist:\nCreated");
 			        return true;
 		        }
+		        Debug.Log("The Directory at \"" + path + "\" did not exist:\nReturned without creating");
 		        return false;
 	        }
 	        return true;
