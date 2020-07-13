@@ -45,7 +45,7 @@ namespace BeatSaber {
                     }
 
                     i++;
-                    core.uiManager.ProgressBarSetValue(1/max*i);
+                    core.uiManager.ProgressBarSetValue(1f/max*i);
                     core.uiManager.ProgressBarSetTitle("Importing songs " + i + "/" + max);
                 }
                 core.uiManager.ProgressBarSetActive(false);

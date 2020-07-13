@@ -222,7 +222,7 @@ namespace RhythmicVR {
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
                 loadedSongs.Add(button);
                 
-                core.uiManager.ProgressBarSetValue(1/max*i);
+                core.uiManager.ProgressBarSetValue(1f/max*i);
                 core.uiManager.ProgressBarSetTitle("Loading songs " + i + "/" + max);
                 yield return i;
             }
