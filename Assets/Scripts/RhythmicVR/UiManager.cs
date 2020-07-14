@@ -245,12 +245,11 @@ namespace RhythmicVR {
             core.currentlyPlayingSong = song;
             
             // remove listeners from previous song
-            playBeatmapButton.onClick.RemoveAllListeners();
             deleteBeatmapButton.onClick.RemoveAllListeners();
             practiceBeatmapButton.onClick.RemoveAllListeners();
             
             // add listeners
-            playBeatmapButton.onClick.AddListener(delegate { core.StartBeatmap(song, song.difficulties[song.difficulties.Length-1], null); });
+            SetPlayButtonListener(delegate { core.StartBeatmap(song, song.difficulties[song.difficulties.Length-1], null); });
             deleteBeatmapButton.onClick.AddListener(delegate {  });
             practiceBeatmapButton.onClick.AddListener(delegate { core.StartBeatmap(song, song.difficulties[0], null); });
             
@@ -281,6 +280,8 @@ namespace RhythmicVR {
             
             displayedProperties.Clear();
             displayedProperties.Add("bpm", song.beatsPerMinute);
+
+            scoreManager.DisplayScoresOnScoreboard(song);
 
             SetDisplayedProperties();
         }

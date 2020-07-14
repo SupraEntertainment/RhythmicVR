@@ -54,6 +54,8 @@ namespace RhythmicVR {
         private bool allowPause;
         private bool isPaused;
         public bool songIsPlaying;
+
+        public string playerName = "No Player Name";
         
         public Beatmap currentlyPlayingBeatmap;
         public Song currentlyPlayingSong;
@@ -390,17 +392,20 @@ namespace RhythmicVR {
         /// </summary>
         public void ExitBeatmap() {
             StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
-            ((ScoreManager.ScoreManager) pluginManager.Find("Score Manager")).SaveCurrentScores();
+            var scoreManager = ((ScoreManager.ScoreManager) pluginManager.Find("Score Manager"));
+            scoreManager.SaveCurrentScores();
+            scoreManager.DisplayScoresOnScoreboard(currentlyPlayingSong);
             audioSource.time = 0;
             audioSource.clip = null;
             allowPause = false;
-            uiManager.ToSongListMenu();
-            uiManager.HidePauseMenu();
             isPaused = false;
             StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
             foreach (var target in FindObjectsOfType<TargetObject>()) {
                 Destroy(target.gameObject);
             }
+
+            uiManager.ToSongListMenu();
+            uiManager.HidePauseMenu();
         }
 
         /// <summary>

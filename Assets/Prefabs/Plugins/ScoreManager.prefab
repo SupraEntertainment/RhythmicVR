@@ -47,6 +47,8 @@ MonoBehaviour:
   type: 4
   scoreListPrefab: {fileID: 4983377862484768831, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
     type: 3}
+  scorePrefab: {fileID: 1644353558440814565, guid: 8982ebf4003bf2942be232c0e738e079,
+    type: 3}
   scoreConfig:
     shouldSaveInSongDir: 1
     globalScoreSavePath: 

@@ -7,6 +7,7 @@ namespace ScoreManager {
 	public class ScoreManager : PluginBaseClass {
 
 		public GameObject scoreListPrefab;
+		public GameObject scorePrefab;
 		public Config scoreConfig;
 		public Playthrough currentPlaythrough;
 		
@@ -119,6 +120,29 @@ namespace ScoreManager {
 			}
 
 			currentPlaythrough = scoreList.AddPlaythrough();
+		}
+
+		public void DisplayScoresOnScoreboard(Song song) {
+			if ((object) scoreList == null || scoreList.song != song) {
+				scoreList = new ScoreList(song);
+				scoreList.LoadScores();
+			}
+
+			for (int i = 0; i < scoreListContent.childCount; i++) {
+				Destroy(scoreListContent.GetChild(i).gameObject);
+			}
+			
+			int contentHeight = 0;
+			foreach (var playthrough in scoreList.GetScores()) {
+				var scorePanel = Instantiate(scorePrefab, scoreListContent);
+				var texts = scorePanel.GetComponentsInChildren<Text>();
+				var rt = scorePanel.GetComponent<RectTransform>(); //get rect transform
+				rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -contentHeight); // set elements position
+				texts[0].text = core.playerName;
+				texts[1].text = playthrough.score.ToString();
+				contentHeight += (int)rt.sizeDelta.y;
+			}
+			scoreListContent.sizeDelta = new Vector2(0, contentHeight);
 		}
 
 		public Playthrough[] GetScores(Song song) {
