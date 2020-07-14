@@ -45,3 +45,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pluginName: Score Manager
   type: 4
+  scoreListPrefab: {fileID: 4983377862484768831, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
+    type: 3}
+  scoreConfig:
+    shouldSaveInSongDir: 1
+    globalScoreSavePath: 
+    showOverlay: 1
+    showMultiplier: 1
+    showOverallScore: 1
+    showCurrentTargetScore: 1
+  currentPlaythrough:
+    scoringsystem: 
+    score: 0
+    notes: []

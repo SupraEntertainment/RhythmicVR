@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using RhythmicVR;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ScoreManager {
 	public class ScoreManager : PluginBaseClass {
 
+		public GameObject scoreListPrefab;
 		public Config scoreConfig;
-		private ScoreList scoreList;
 		public Playthrough currentPlaythrough;
+		
+		private ScoreList scoreList;
+		private RectTransform scoreListContent;
 		
 		public override void Init(Core core) {
 			base.Init(core);
@@ -17,8 +21,16 @@ namespace ScoreManager {
 				scoreConfig = new Config();
 				SaveConfig();
 			}
+			
+			SetupScoreList();
 
 			SetupUiElements();
+		}
+
+		private void SetupScoreList() {
+			var instantiated = Instantiate(scoreListPrefab, new Vector3(3.8f, 1.5f, 2.17f), Quaternion.Euler(0, 45, 0), core.uiManager.songList.transform);
+			instantiated.GetComponentInChildren<Text>().text = "Scores";
+			scoreListContent = instantiated.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
 		}
 
         private void SetupUiElements() {
