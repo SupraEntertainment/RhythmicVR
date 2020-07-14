@@ -314,7 +314,6 @@ namespace RhythmicVR {
             currentlyPlayingBeatmap = bm;
             currentlyPlayingSong = song;
             ((ScoreManager.ScoreManager) pluginManager.Find("Score Manager")).SelectSongAndAddPlaythrough(song);
-            //StopCoroutine(PlayBeatmap(bm));
             StartCoroutine(PlayNotes(bm));
             PlaySongAudio(song);
         }
@@ -398,6 +397,10 @@ namespace RhythmicVR {
             uiManager.ToSongListMenu();
             uiManager.HidePauseMenu();
             isPaused = false;
+            StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
+            foreach (var target in FindObjectsOfType<TargetObject>()) {
+                Destroy(target.gameObject);
+            }
         }
 
         /// <summary>
