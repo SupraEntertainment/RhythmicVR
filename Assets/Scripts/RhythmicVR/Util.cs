@@ -11,8 +11,6 @@ namespace RhythmicVR {
 	/// Utility Methods, useful everywhere
 	/// </summary>
 	public class Util {
-		
-		private static IEnumerator _iterator;
 
 		public static AudioClip audioClip; //to store the audio clip output from WebRequest handler in
 		
@@ -56,7 +54,7 @@ namespace RhythmicVR {
 			return null;                     // Return null if load failed
 		}
 
-        public IEnumerator SetAudioClipFromPath(string path) {
+        public static IEnumerator SetAudioClipFromPath(string path) {
 	        Debug.Log(File.Exists(path));
 	        var fullpath = "file://" + path;
 	        var request = UnityWebRequestMultimedia.GetAudioClip(fullpath, AudioType.OGGVORBIS);
@@ -68,12 +66,12 @@ namespace RhythmicVR {
         }
 
         public static AudioClip GetAudioClipFromPath(string path) {
-	        var util = new Util();
+			IEnumerator _iterator = null;
 	        while (audioClip == null) {
 		        if (_iterator == null)
 		        {
 			        Debug.Log("Starting DoSomething()");
-			        _iterator = util.SetAudioClipFromPath(path);
+			        _iterator = SetAudioClipFromPath(path);
 		        }
  
 		        if (!_iterator.MoveNext())
@@ -82,7 +80,10 @@ namespace RhythmicVR {
 			        _iterator = null;
 		        }
 	        }
-	        return audioClip;
+
+	        AudioClip ac = audioClip;
+	        audioClip = null;
+	        return ac;
         }
 
         public static bool EnsureFileIntegrity(string path, bool shouldCreate = false) {
