@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using BeatSaber;
 using UnityEngine;
 using Valve.VR;
 using Random = UnityEngine.Random;
@@ -63,6 +64,7 @@ namespace RhythmicVR {
         private TargetObject currentTargetObject;
         private GenericTrackedObject currentTrackedDeviceObject;
         private GameObject currentEnvironment;
+        private BeatSaberImportPlugin bsip;
 
         public float currentScore = 0;
 
@@ -80,7 +82,9 @@ namespace RhythmicVR {
 
             InitConfig();
 
-            LoadAssets();
+            LoadPlugins();
+            
+            bsip = (BeatSaberImportPlugin)pluginManager.Find("Beat Saber Import");
             
             LoadSongsIntoSongList();
 
@@ -111,6 +115,11 @@ namespace RhythmicVR {
         /// handle pause button
         /// </summary>
         private void Update() {
+            if (bsip.reloadSongs) {
+                LoadSongsIntoSongList();
+                uiManager.ListSongs(songList.GetAllSongs());
+                bsip.reloadSongs = false;
+            }
             if (allowPause) {
                 if (pauseButton.stateUp) {
                     if (isPaused) {
@@ -159,7 +168,7 @@ namespace RhythmicVR {
         /// <summary>
         /// Add included plugins to Plugin Manager, load first gamemode, set first environment
         /// </summary>
-        private void LoadAssets() {
+        private void LoadPlugins() {
             foreach (var asset in includedAssetPackages) {
                 pluginManager.AddPlugin(asset);
             }
@@ -183,7 +192,8 @@ namespace RhythmicVR {
         /// <summary>
         /// Load all songs from the songPath (config object) into the songList
         /// </summary>
-        private void LoadSongsIntoSongList() {
+        public void LoadSongsIntoSongList() {
+            songList.Clear();
             List<Song> songs = new List<Song>();
             if (!Util.EnsureDirectoryIntegrity(config.songSavePath)) {
                 return;

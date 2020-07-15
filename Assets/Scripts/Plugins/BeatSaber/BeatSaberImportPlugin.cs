@@ -8,6 +8,9 @@ using SFB;
 
 namespace BeatSaber {
     public class BeatSaberImportPlugin : PluginBaseClass {
+
+        public bool reloadSongs;
+
         public override void Init(Core core) {
             base.Init(core);
             SetupUiElements();
@@ -23,7 +26,7 @@ namespace BeatSaber {
                     SongLoader.ConvertSong(path, core);
                 }
             });
-            core.uiManager.ListSongs(core.songList.GetAllSongs());
+            reloadSongs = true;
         }
 
         private void LoadBeatSaberMapFolder() {
@@ -51,7 +54,7 @@ namespace BeatSaber {
                 }
                 core.uiManager.ProgressBarSetActive(false);
             });
-            core.uiManager.ListSongs(core.songList.GetAllSongs());
+            reloadSongs = true;
         }
 
         private void SetupUiElements() {
