@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -430,14 +430,29 @@ namespace RhythmicVR {
         /// <param name="cover">The cover Image as byte Array</param>
         /// <param name="audio">The audio File as byte Array</param>
         /// <returns>the path to the song</returns>
-        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, Byte[] cover, Byte[] audio) {
+        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, byte[] cover = null, byte[] audio = null, string coverFilePath = "", string audioFilePath = "") {
             string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + "/";
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }
             File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject, true));
-            File.WriteAllBytes(pathToSong + songObject.coverImageFile, cover);
-            File.WriteAllBytes(pathToSong + songObject.songFile, audio);
+
+            // copy file or write from bytes
+            if (coverFilePath != null) {
+                File.Copy(coverFilePath, pathToSong + songObject.coverImageFile);
+            }
+            else if (cover != null) {
+                File.WriteAllBytes(pathToSong + songObject.coverImageFile, cover);
+            }
+            
+            // copy file or write from bytes
+            if (audioFilePath != null) {
+                File.Copy(audioFilePath, pathToSong + songObject.songFile);
+            }
+            else if (audio != null) {
+                File.WriteAllBytes(pathToSong + songObject.songFile, audio);
+            }
+            
             for (var index = 0; index < beatmaps.Length; index++) {
                 var beatmap = beatmaps[index];
                 File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap, true));
