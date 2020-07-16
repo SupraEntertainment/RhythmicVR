@@ -359,7 +359,7 @@ namespace RhythmicVR {
                 yield return new WaitForSeconds((note.time - currentTime));
                 currentTime = note.time;
                 Debug.Log("Current Time: " + currentTime);
-                SpawnTarget(note.speed, note.xPos, note.yPos, note.cutDirection, note.rotation, note.type);
+                currentGamemode.SpawnTarget(note);
             }
 
             Debug.Log("Finished placing target objects");
@@ -454,14 +454,16 @@ namespace RhythmicVR {
             foreach (var trackedObject in trackedObjects) {
                 Destroy(trackedObject);
             }
+            trackedObjects.Clear();
+            
             foreach (var trackedObject in visualTrackedObjects) {
                 Destroy(trackedObject);
             }
+            visualTrackedObjects.Clear();
+            
             currentGamemode = gm;
             target = gm.targetObject; //set the target object
             currentTargetObject = target.GetComponent<TargetObject>(); //set the target component (TODO: still arguing about which of theese two to use)
-            trackedObjects.Clear();
-            visualTrackedObjects.Clear();
             
             
             foreach (var trackedDevicePair in gm.trackedObjects) { // iterate over all available tracking points in gamemode
@@ -489,25 +491,6 @@ namespace RhythmicVR {
                 trackedObjects.Add(Instantiate(trackedDevicePair.prefab, tracker.Find("itemOffset")));
                 visualTrackedObjects.Add(Instantiate(trackedDevicePair.defaultVisualPrefab, tracker.Find("itemOffset"))); //TODO use selected prefab for gamemode, only fallback if empty
             }
-        }
-    
-        /// <summary>
-        /// Spawn a Target Object
-        /// </summary>
-        /// <param name="speed">The speed, in wich that note travels</param>
-        /// <param name="xCoord">The x position</param>
-        /// <param name="yCoord">The y position</param>
-        /// <param name="viewRotation">The Rotation along the notes travel direction</param>
-        /// <param name="playspaceRoation">The notes rotation along the gamemode origin</param>
-        /// <param name="hand">The Tracking points the note is supposed to be hit with</param>
-        public void SpawnTarget(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, TrackingPoint[] hand) {
-            GameObject cube = Instantiate(currentTargetObject.gameObject, new Vector3(xCoord, yCoord, SPAWN_DISTANCE), new Quaternion(0, 0, viewRotation, 0));
-            cube.GetComponent<TargetObject>().InitNote(new Note(1, xCoord, yCoord, speed, hand, viewRotation, playspaceRoation));
-        }
-
-        // spawn a obstacle ^ same here
-        public void SpawnObstacle(float speed, float xCoord, float yCoord, float viewRotation, float playspaceRoation, float width, float height) {
-        
         }
     }
 }
