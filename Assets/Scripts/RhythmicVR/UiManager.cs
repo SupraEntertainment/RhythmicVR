@@ -213,9 +213,14 @@ namespace RhythmicVR {
             prt.sizeDelta = new Vector2(0, 20 + songs.Count * (buttonPrefab.GetComponent<RectTransform>().rect.height+20));
             for (var i = 0; i < songs.Count; i++) {
                 var song = songs[i];
-                GameObject button = Instantiate(buttonPrefab, parent);
-                button.GetComponentInChildren<Text>().text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
-                button.transform.Find("Image").GetComponent<Image>().sprite = Util.LoadSprite(song.pathToDir + song.coverImageFile);
+                GameObject button;
+                if ((object)song.uiPanel == null) {
+                    button = song.uiPanel = Instantiate(buttonPrefab, parent);
+                    button.GetComponentInChildren<Text>().text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
+                    button.transform.Find("Image").GetComponent<Image>().sprite = Util.LoadSprite(song.pathToDir + song.coverImageFile);
+                } else {
+                    button = song.uiPanel;
+                }
                 var rt = button.GetComponent<RectTransform>();
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });

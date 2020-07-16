@@ -1,4 +1,6 @@
-﻿namespace RhythmicVR {
+﻿using UnityEngine;
+
+namespace RhythmicVR {
 	[System.Serializable]
 	public class Song {
 		public int id;
@@ -24,6 +26,7 @@
 		public string obstacleObject;
 		public Difficulty[] difficulties;
 		[System.NonSerialized] public string pathToDir;
+		[System.NonSerialized] public GameObject uiPanel;
 
 	}
 }
