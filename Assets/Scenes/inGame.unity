@@ -993,6 +993,9 @@ MonoBehaviour:
     obstacleObject: 
     difficulties: []
   currentGamemode: {fileID: 0}
+  currentTargetObject: {fileID: 0}
+  currentTrackedDeviceObject: {fileID: 0}
+  currentEnvironment: {fileID: 0}
   currentScore: 0
 --- !u!4 &263707703
 Transform:
@@ -2937,36 +2940,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &657824138
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 657824139}
-  m_Layer: 0
-  m_Name: AssetBundleBuilder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &657824139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657824138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &667955572 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4983377862484768824, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
