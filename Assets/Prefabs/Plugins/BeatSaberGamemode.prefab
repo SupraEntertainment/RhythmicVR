@@ -43,13 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942252579dee441594ee5d404c0a440c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Beat Saber
+  pluginName: gm_beatSaber
   type: 0
   gamemodeName: Beat Saber
   icon: {fileID: 0}
   targetObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
     type: 3}
-  playthroughObject: {fileID: 0}
+  playthroughObject:
+    scoringsystem: 
+    score: 0
+    notes: []
   trackedObjects:
   - prefab: {fileID: 3827903119638515565, guid: d3514dd6aa7be03498e885799e02f95a,
       type: 3}
