@@ -243,13 +243,21 @@ namespace RhythmicVR {
             Debug.Log("Displaying Song " + song.songName + " by " + song.songAuthorName);
 
             core.currentlyPlayingSong = song;
+
+            float closestDifficultyDistance = 1000;
+            int difficultyClosestToSelectedDifficultyRankingIndex = 0; // yes I actually went for that var name. I was thinking of changing it, but no. It will stay.
+            for (var i = 0; i < song.difficulties.Length; i++) {
+                if (Math.Abs(song.difficulties[i].difficulty - core.config.lastSelectedDifficulty) < closestDifficultyDistance) {
+                    difficultyClosestToSelectedDifficultyRankingIndex = i;
+                }
+            }
             
             // remove listeners from previous song
             deleteBeatmapButton.onClick.RemoveAllListeners();
             practiceBeatmapButton.onClick.RemoveAllListeners();
             
             // add listeners
-            SetPlayButtonListener(delegate { core.StartBeatmap(song, song.difficulties[song.difficulties.Length-1], null); });
+            SetPlayButtonListener(delegate { core.StartBeatmap(song, song.difficulties[difficultyClosestToSelectedDifficultyRankingIndex], null); });
             deleteBeatmapButton.onClick.AddListener(delegate {  });
             practiceBeatmapButton.onClick.AddListener(delegate { core.StartBeatmap(song, song.difficulties[0], null); });
             
@@ -271,6 +279,7 @@ namespace RhythmicVR {
                     SetPlayButtonListener(delegate {
                         core.StartBeatmap(song, song.difficulties[i1], null);
                     });
+                    core.config.lastSelectedDifficulty = song.difficulties[i1].difficulty;
                     Debug.Log("Selected Difficulty " + i1);
                 });
                 var rt = button.GetComponent<RectTransform>();

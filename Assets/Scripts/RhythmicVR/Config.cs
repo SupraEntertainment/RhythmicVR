@@ -13,7 +13,8 @@ namespace RhythmicVR {
 		public string appData;
 		public string songSavePath;
 		public string pluginSavePath;
-		public string latestSongSortSetting;
+		public float lastSelectedDifficulty;
+		public string lastSongSorting;
 
 		public Config() {
 			if (appData == null) {
