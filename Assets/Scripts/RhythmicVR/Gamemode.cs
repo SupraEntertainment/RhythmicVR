@@ -28,8 +28,8 @@ namespace RhythmicVR {
 		/// </summary>
 		/// <param name="noteData">The note data to use</param>
 		public virtual void SpawnTarget(Note noteData) {
-			GameObject cube = Instantiate(targetObject.gameObject, new Vector3(noteData.xPos, noteData.yPos, core.spawnDistance), new Quaternion(0, 0, noteData.cutDirection, 0));
-			cube.GetComponent<TargetObject>().InitNote(noteData);
+			GameObject target = Instantiate(targetObject.gameObject, new Vector3(noteData.xPos, noteData.yPos, core.spawnDistance), new Quaternion(0, 0, noteData.cutDirection, 0));
+			target.GetComponent<TargetObject>().InitNote(noteData);
 		}
 
 		// spawn a obstacle ^ same here
