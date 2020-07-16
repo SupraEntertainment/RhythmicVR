@@ -50,7 +50,7 @@ namespace RhythmicVR.BeatSaber {
 			public RhythmicVR.Note ToNote() {
 				var note = new RhythmicVR.Note();
 				note.time = _time;
-				note.xPos = _lineIndex -2 / 2f;
+				note.xPos = (_lineIndex -2) / 2f;
 				note.yPos = _lineLayer / 2f;
 				note.type = new[] {_type == 0 ? TrackingPoint.LeftHand : TrackingPoint.RightHand};
 				note.cutDirection = _cutDirection * 45;
