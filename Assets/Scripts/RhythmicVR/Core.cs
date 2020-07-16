@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -119,6 +119,10 @@ namespace RhythmicVR {
                 LoadSongsIntoSongList();
                 uiManager.ListSongs(songList.GetAllSongs());
                 bsip.reloadSongs = false;
+            }
+            if (bsip.selectedPath != "") {
+                StartCoroutine(bsip.ConvertMultipleSongs(bsip.selectedPath));
+                bsip.selectedPath = "";
             }
             if (allowPause) {
                 if (pauseButton.stateUp) {

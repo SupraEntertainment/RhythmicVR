@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -10,6 +11,7 @@ namespace BeatSaber {
     public class BeatSaberImportPlugin : PluginBaseClass {
 
         public bool reloadSongs;
+        public string selectedPath = "";
 
         public override void Init(Core core) {
             base.Init(core);
@@ -35,25 +37,30 @@ namespace BeatSaber {
 
         private void OpenBeatSaberSongFolder() {
             StandaloneFileBrowser.OpenFolderPanelAsync("Open beatsaber Beatmap", "", false, delegate(string[] strings) {
-                string[] paths = Directory.GetDirectories(strings[0]);
-                core.uiManager.ProgressBarSetActive(true);
-                core.uiManager.ProgressBarSetTitle("Importing songs");
-                int i = 0;
-                int max = paths.Length;
-                foreach (var path in paths) {
-                    try {
-                        SongLoader.ConvertSong(path, core);
-                    }
-                    catch (Exception e) {
-                        Console.WriteLine(e);
-                    }
-
-                    i++;
-                    core.uiManager.ProgressBarSetValue(1f/max*i);
-                    core.uiManager.ProgressBarSetTitle("Importing songs " + i + "/" + max);
-                }
-                core.uiManager.ProgressBarSetActive(false);
+                selectedPath = strings[0];
             });
+        }
+        
+        public IEnumerator ConvertMultipleSongs(string folderPath) {
+            string[] paths = Directory.GetDirectories(folderPath);
+            core.uiManager.ProgressBarSetActive(true);
+            core.uiManager.ProgressBarSetTitle("Importing songs");
+            int i = 0;
+            int max = paths.Length;
+            foreach (var path in paths) {
+                try {
+                    SongLoader.ConvertSong(path, core);
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e);
+                }
+
+                i++;
+                core.uiManager.ProgressBarSetValue(1f/max*i);
+                core.uiManager.ProgressBarSetTitle("Importing songs " + i + "/" + max);
+                yield return i;
+            }
+            core.uiManager.ProgressBarSetActive(false);
             reloadSongs = true;
         }
 
