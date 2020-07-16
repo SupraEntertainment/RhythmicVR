@@ -30,6 +30,7 @@ namespace RhythmicVR {
 					break;
 				case AssetType.Gamemode:
 					loadedGamemodes.Add(plugin.GetComponentInChildren<Gamemode>());
+					plugin.Init(core);
 					break;
 				case AssetType.Misc:
 					miscPlugins.Add(plugin);
