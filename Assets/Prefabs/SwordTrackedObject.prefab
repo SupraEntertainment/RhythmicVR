@@ -107,5 +107,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mCollider: {fileID: 5256248154781288748}
-  useVelocityForScoreCalc: 1
+  useVelocityForScoreCalc: 0
   core: {fileID: 0}
