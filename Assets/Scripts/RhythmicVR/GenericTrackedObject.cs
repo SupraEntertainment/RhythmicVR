@@ -29,11 +29,13 @@ namespace RhythmicVR {
             if (other.gameObject.GetComponent<TargetObject>() == null) return;
             if (other.gameObject.GetComponent<TargetObject>().MatchCollider(role)) {
                 scoreManager.currentPlaythrough.AddScore(DetermineScore(other.gameObject));
+            } else {
+                scoreManager.currentPlaythrough.AddScore(0);
             }
+            Destroy(other.gameObject);
         }
 
         protected virtual float DetermineScore(GameObject hitTarget) {
-            Destroy(hitTarget);
             float score = 100;
             if (useVelocityForScoreCalc) {
                 score = GetComponent<Rigidbody>().velocity.magnitude * 10;
