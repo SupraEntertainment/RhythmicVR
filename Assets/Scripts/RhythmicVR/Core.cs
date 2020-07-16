@@ -38,7 +38,6 @@ namespace RhythmicVR {
 
         [Header("Other Properties")] 
         public float spawnDistance;
-        public static float SPAWN_DISTANCE;
         public UiManager uiManager;
         [NonSerialized] public Config config;
         public PluginManager pluginManager;
@@ -142,8 +141,6 @@ namespace RhythmicVR {
         /// Will replace it with something better eventually
         /// </summary>
         private void InitStaticVariables() {
-            SPAWN_DISTANCE = spawnDistance;
-        
             AMBIGUOUS_MAT = ambiguousMaterial;
             LEFT_MAT = leftMaterial;
             RIGHT_MAT = rightMaterial;
@@ -503,7 +500,10 @@ namespace RhythmicVR {
                     default:
                         return;
                 }
-                trackedObjects.Add(Instantiate(trackedDevicePair.prefab, tracker.Find("itemOffset")));
+
+                var to = Instantiate(trackedDevicePair.prefab, tracker.Find("itemOffset"));
+                to.GetComponent<GenericTrackedObject>().role = trackedDevicePair.role;
+                trackedObjects.Add(to);
                 visualTrackedObjects.Add(Instantiate(trackedDevicePair.defaultVisualPrefab, tracker.Find("itemOffset"))); //TODO use selected prefab for gamemode, only fallback if empty
             }
         }
