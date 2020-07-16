@@ -61,9 +61,9 @@ namespace RhythmicVR {
         public Beatmap currentlyPlayingBeatmap;
         public Song currentlyPlayingSong;
         public Gamemode currentGamemode;
-        private TargetObject currentTargetObject;
-        private GenericTrackedObject currentTrackedDeviceObject;
-        private GameObject currentEnvironment;
+        public TargetObject currentTargetObject;
+        public GenericTrackedObject currentTrackedDeviceObject;
+        public GameObject currentEnvironment;
         private BeatSaberImportPlugin bsip;
 
         public float currentScore = 0;
