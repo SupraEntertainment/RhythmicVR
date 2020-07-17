@@ -30,6 +30,7 @@ namespace RhythmicVR {
 			var rt = field.initializedObject.GetComponent<RectTransform>(); //get rect transform
 			rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -height); // set elements position
 			height += (int)rt.rect.height;
+			field.page = this;
 			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, height); //set height of conent element
 			if (field.type == UiType.Float || field.type == UiType.Int) {
 				var slider = field.initializedObject.GetComponentInChildren<Slider>();

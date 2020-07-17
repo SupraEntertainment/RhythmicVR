@@ -11,6 +11,7 @@ namespace RhythmicVR {
 	public class SettingsField {
 		public string name;
 		public UiType type;
+		public MenuPage page;
 		public GameObject prefab;
 		public GameObject initializedObject;
 		public float maxValue = 1;
@@ -43,40 +44,28 @@ namespace RhythmicVR {
 		public void SetupListeners() {
 			InputField input;
 			Slider slider;
+
+			SetValues(initialValue);
 			
 			switch (type) {
 				case UiType.Button:
 					initializedObject.GetComponentInChildren<Button>().onClick.AddListener(buttonCall);
 					break;
 				case UiType.Vector3:
-					float[] initialValues = new []{0f};
-					if (initialValue != null) {
-						var initialValuesVec3 = (Vector3) initialValue;
-						 initialValues = new[] { initialValuesVec3.x, initialValuesVec3.y, initialValuesVec3.z };
-					}
 					var allFloatInputs = initializedObject.GetComponentsInChildren<InputField>();
 					for (var i = 0; i < allFloatInputs.Length; i++) {
-						var inputElement = allFloatInputs[i];
 						int i2 = i;
-						if (initialValue != null) inputElement.text = initialValues[i2].ToString();
-						inputElement.onValueChanged.AddListener(delegate(string arg0) { vectorNCall(i2, float.Parse(arg0)); });
+						allFloatInputs[i].onValueChanged.AddListener(delegate(string arg0) { vectorNCall(i2, float.Parse(arg0)); });
 					}
 					break;
 				case UiType.Color:
 					break;
 				case UiType.Text:
-					var textInput = initializedObject.GetComponentInChildren<InputField>();
-					if (initialValue != null) textInput.text = (string) initialValue;
-					textInput.onValueChanged.AddListener(stringCall);
+					initializedObject.GetComponentInChildren<InputField>().onValueChanged.AddListener(stringCall);
 					break;
 				case UiType.Int:
 					input = initializedObject.GetComponentInChildren<InputField>();
 					slider = initializedObject.GetComponentInChildren<Slider>();
-					
-					if (initialValue != null) {
-						input.text = ((int) initialValue).ToString();
-						slider.value = (int) initialValue;
-					}
 					
 					input.onValueChanged.AddListener(delegate(string arg0) { 
 						floatCall(float.Parse(arg0));
@@ -91,11 +80,6 @@ namespace RhythmicVR {
 					input = initializedObject.GetComponentInChildren<InputField>();
 					slider = initializedObject.GetComponentInChildren<Slider>();
 					
-					if (initialValue != null) {
-						input.text = ((float) initialValue).ToString();
-						slider.value = (float) initialValue;
-					}
-					
 					input.onValueChanged.AddListener(delegate(string arg0) { 
 						floatCall(float.Parse(arg0));
 						slider.value = float.Parse(arg0);
@@ -106,22 +90,52 @@ namespace RhythmicVR {
 					});
 					break;
 				case UiType.Enum:
-					var dropdown = initializedObject.GetComponentInChildren<Dropdown>();
-					
-					if (initialValue != null) {
-						dropdown.value = (int) initialValue;
-					}
-					
-					dropdown.onValueChanged.AddListener(enumCall);
+					initializedObject.GetComponentInChildren<Dropdown>().onValueChanged.AddListener(enumCall);
 					break;
 				case UiType.Bool:
-					var toggle = initializedObject.GetComponentInChildren<Toggle>();
-					
-					if (initialValue != null) {
-						toggle.isOn = (bool) initialValue;
+					initializedObject.GetComponentInChildren<Toggle>().onValueChanged.AddListener(boolCall);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
+		public void SetValues(object value) {
+			if (value == null) return;
+			switch (type) {
+				case UiType.Button:
+					break;
+				case UiType.Vector3:
+					float[] initialValues = new[] {0f};
+						
+					var initialValuesVec3 = (Vector3) value;
+					initialValues = new[] {initialValuesVec3.x, initialValuesVec3.y, initialValuesVec3.z};
+
+					var allFloatInputs = initializedObject.GetComponentsInChildren<InputField>();
+					for (var i = 0; i < allFloatInputs.Length; i++) {
+						int i2 = i;
+						allFloatInputs[i].text = initialValues[i2].ToString();
 					}
 
-					toggle.onValueChanged.AddListener(boolCall);
+					break;
+				case UiType.Color:
+					break;
+				case UiType.Text:
+					initializedObject.GetComponentInChildren<InputField>().text = (string) value;
+					break;
+				case UiType.Int:
+					initializedObject.GetComponentInChildren<InputField>().text = ((int) value).ToString();
+					initializedObject.GetComponentInChildren<Slider>().value = (int) value;
+					break;
+				case UiType.Float:
+					initializedObject.GetComponentInChildren<InputField>().text = ((float) value).ToString();
+					initializedObject.GetComponentInChildren<Slider>().value = (float) value;
+					break;
+				case UiType.Enum:
+					initializedObject.GetComponentInChildren<Dropdown>().value = (int) value;
+					break;
+				case UiType.Bool:
+					initializedObject.GetComponentInChildren<Toggle>().isOn = (bool) value;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

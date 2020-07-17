@@ -32,6 +32,7 @@ namespace RhythmicVR {
         public Transform waist;
 
         [Header("Other Properties")] 
+        public Transform playerTransform;
         public float spawnDistance;
         public UiManager uiManager;
         [NonSerialized] public Config config;
@@ -102,6 +103,11 @@ namespace RhythmicVR {
             //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("itemOffset"), "handGrip"); 
 
             //RunATestSong();
+        }
+
+        private void SetPlayerOffsets() {
+            playerTransform.position = new Vector3(config.playspacePosition[0], config.playspacePosition[1], config.playspacePosition[2]);
+            playerTransform.rotation = Quaternion.Euler(config.playspaceRotation[0], config.playspaceRotation[1], config.playspaceRotation[2]);
         }
 
         private void SetControllerPointerOffset() {
@@ -269,6 +275,17 @@ namespace RhythmicVR {
             }
 
             {
+                SettingsField setting = new SettingsField("Reset", UiType.Button, uiManager.buttonPrefab, "Settings/Offsets/Playspace");
+                setting.buttonCall = delegate() {
+                    config.playspacePosition = new float[]{0,0,0};
+                    config.playspaceRotation = new float[]{0,0,0};
+                    setting.page.elementChildren[0].SetValues(new Vector3(0,0,0));
+                    setting.page.elementChildren[1].SetValues(new Vector3(0,0,0));
+                };
+                coreSettings.Add(setting);
+            }
+
+            {
                 Vector3 initialValue = new Vector3(config.controllerPosition[0], config.controllerPosition[1], config.controllerPosition[2]);
                 SettingsField setting = new SettingsField("Position", UiType.Vector3, uiManager.vector3Prefab, "Settings/Offsets/Controller", initialValue);
                 setting.vectorNCall = delegate(int arg0, float arg1) { config.controllerPosition[arg0] = arg1; };
@@ -279,6 +296,17 @@ namespace RhythmicVR {
                 Vector3 initialValue = new Vector3(config.controllerRotation[0], config.controllerRotation[1], config.controllerRotation[2]);
                 SettingsField setting = new SettingsField("Rotation", UiType.Vector3, uiManager.vector3Prefab, "Settings/Offsets/Controller", initialValue);
                 setting.vectorNCall = delegate(int arg0, float arg1) { config.controllerRotation[arg0] = arg1; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Reset", UiType.Button, uiManager.buttonPrefab, "Settings/Offsets/Controller");
+                setting.buttonCall = delegate() {
+                    config.controllerPosition = new float[]{0,0,0};
+                    config.controllerRotation = new float[]{0,0,0};
+                    setting.page.elementChildren[0].SetValues(new Vector3(0,0,0));
+                    setting.page.elementChildren[1].SetValues(new Vector3(0,0,0));
+                };
                 coreSettings.Add(setting);
             }
 
