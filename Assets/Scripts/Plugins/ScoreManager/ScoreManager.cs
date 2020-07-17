@@ -35,45 +35,45 @@ namespace ScoreManager {
 		}
 
         private void SetupUiElements() {
-            List<SettingsField> audioSettings = new List<SettingsField>();
+            List<SettingsField> settingsFields = new List<SettingsField>();
 
             {
-                SettingsField setting = new SettingsField("Save Scores in Song Folders", UiType.Bool, core.uiManager.boolPrefab, "Settings/Files");
+                SettingsField setting = new SettingsField("Save Scores in Song Folders", UiType.Bool, core.uiManager.boolPrefab, "Settings/Files", scoreConfig.shouldSaveInSongDir);
                 setting.boolCall = SetRelativeSaving;
-                audioSettings.Add(setting);
+                settingsFields.Add(setting);
             }
 
             {
-                SettingsField setting = new SettingsField("Score Save Path", UiType.Text, core.uiManager.textPrefab, "Settings/Files");
+                SettingsField setting = new SettingsField("Score Save Path", UiType.Text, core.uiManager.textPrefab, "Settings/Files", scoreConfig.globalScoreSavePath);
                 setting.stringCall = SetScoreSavePath;
-                audioSettings.Add(setting);
+                settingsFields.Add(setting);
             }
 
             {
-	            SettingsField setting = new SettingsField("Show Score Overlay in Game", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager");
+	            SettingsField setting = new SettingsField("Show Score Overlay in Game", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager", scoreConfig.showOverlay);
 	            setting.boolCall = SetShowOverlay;
-	            audioSettings.Add(setting);
+	            settingsFields.Add(setting);
             }
 
             {
-	            SettingsField setting = new SettingsField("Show Multiplier", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager");
+	            SettingsField setting = new SettingsField("Show Multiplier", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager", scoreConfig.showMultiplier);
 	            setting.boolCall = SetShowMultiplier;
-	            audioSettings.Add(setting);
+	            settingsFields.Add(setting);
             }
 
             {
-	            SettingsField setting = new SettingsField("Show Overall Score", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager");
+	            SettingsField setting = new SettingsField("Show Overall Score", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager", scoreConfig.showOverallScore);
 	            setting.boolCall = SetShowOverallScore;
-	            audioSettings.Add(setting);
+	            settingsFields.Add(setting);
             }
 
             {
-	            SettingsField setting = new SettingsField("Show Current Target Score", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager");
+	            SettingsField setting = new SettingsField("Show Current Target Score", UiType.Bool, core.uiManager.boolPrefab, "Settings/Plugins/Score Manager", scoreConfig.showCurrentTargetScore);
 	            setting.boolCall = SetShowCurrentTargetScore;
-	            audioSettings.Add(setting);
+	            settingsFields.Add(setting);
             }
             
-            core.settingsManager.settings.AddRange(audioSettings);
+            core.settingsManager.settings.AddRange(settingsFields);
             core.settingsManager.UpdateSettingsUi();
         }
 
