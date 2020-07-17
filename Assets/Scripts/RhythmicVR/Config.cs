@@ -15,6 +15,9 @@ namespace RhythmicVR {
 		public string pluginSavePath;
 		public float lastSelectedDifficulty;
 		public string lastSongSorting;
+		public bool useSteamUsername;
+		public string localUsername;
+		public string steamUsername;
 
 		public Config() {
 			if (appData == null) {
