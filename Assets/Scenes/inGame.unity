@@ -883,6 +883,7 @@ MonoBehaviour:
   leftFoot: {fileID: 1430731963}
   rightFoot: {fileID: 98393552}
   waist: {fileID: 408846326}
+  playerTransform: {fileID: 0}
   spawnDistance: 10
   uiManager: {fileID: 1576197619}
   pauseButton:
@@ -9350,6 +9351,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1317231288}
     m_Modifications:
+    - target: {fileID: 2134803406865160086, guid: e5deb238b09e6524d98004094b69a58f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134803406865160086, guid: e5deb238b09e6524d98004094b69a58f,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3912224307026940788, guid: e5deb238b09e6524d98004094b69a58f,
         type: 3}
       propertyPath: m_LocalPosition.x
