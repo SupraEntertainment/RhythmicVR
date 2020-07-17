@@ -16,6 +16,13 @@ namespace AudioManager {
                 audioConfig = new Config();
                 SaveConfig();
             }
+            SetGeneralVolume(audioConfig.generalVolume);
+            SetMenuVolume(audioConfig.menuVolume);
+            SetSongVolume(audioConfig.songVolume);
+            SetSongPreviewVolume(audioConfig.songPreviewVolume);
+            SetHitVolume(audioConfig.hitVolume);
+            SetMissVolume(audioConfig.missVolume);
+            SetWrongHitVolume(audioConfig.wrongHitVolume);
 
             SetupUiElements();
         }
