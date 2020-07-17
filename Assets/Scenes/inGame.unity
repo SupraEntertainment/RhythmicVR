@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &100778713
 Transform:
   m_ObjectHideFlags: 0
@@ -883,64 +883,6 @@ MonoBehaviour:
   leftFoot: {fileID: 1430731963}
   rightFoot: {fileID: 98393552}
   waist: {fileID: 408846326}
-  integratedSettings:
-  - name: Songs
-    type: 3
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Files
-  - name: Assets
-    type: 3
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Files
-  - name: Super Sampling
-    type: 5
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Video
-  - name: Camera Smoothing (desktop view)
-    type: 4
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Video
-  - name: Position
-    type: 1
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Playspace
-  - name: Rotation
-    type: 1
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Playspace
-  - name: Position
-    type: 1
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Controller Offsets
-  - name: Rotation
-    type: 1
-    prefab: {fileID: 0}
-    initializedObject: {fileID: 0}
-    maxValue: 0
-    minValue: 0
-    menuPath: Settings/Controller Offsets
-  settingsManager: {fileID: 0}
   spawnDistance: 10
   uiManager: {fileID: 1576197619}
   pauseButton:
@@ -960,42 +902,6 @@ MonoBehaviour:
   - {fileID: 4552210796766179163, guid: fe6317d0effbb944c8ce36d91eb01c5b, type: 3}
   - {fileID: 24336007255761661, guid: fc249ba197d90a34dacd7e39f32a597b, type: 3}
   - {fileID: 8809837882599818245, guid: c52175c71c10192488d495f5fdfa9547, type: 3}
-  audioSource: {fileID: 0}
-  songIsPlaying: 0
-  playerName: No Player Name
-  currentlyPlayingBeatmap:
-    formatVersion: 
-    version: 0
-    events: []
-    notes: []
-    obstacles: []
-  currentlyPlayingSong:
-    id: 0
-    formatVersion: 
-    songName: 
-    songSubName: 
-    songAuthorName: 
-    albumName: 
-    levelAuthorName: 
-    beatsPerMinute: 0
-    previewStartTime: 0
-    songFile: song.ogg
-    coverImageFile: cover.jpg
-    startTimeOffset: 0
-    trackingPoints: 
-    leftHandTool: 
-    rightHandTool: 
-    waistTool: 
-    leftFootTool: 
-    rightFootTool: 
-    environment: 
-    targetObject: cube
-    obstacleObject: 
-    difficulties: []
-  currentGamemode: {fileID: 0}
-  currentTargetObject: {fileID: 0}
-  currentTrackedDeviceObject: {fileID: 0}
-  currentEnvironment: {fileID: 0}
   currentScore: 0
 --- !u!4 &263707703
 Transform:
@@ -6173,7 +6079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1741253005
 Transform:
   m_ObjectHideFlags: 0
@@ -7810,7 +7716,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8958,12 +8864,12 @@ PrefabInstance:
     - target: {fileID: 4983377861698100140, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4983377861698100140, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4983377861698100140, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
         type: 3}
@@ -9815,6 +9721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Input_toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828444886250031308, guid: 53abdb9e8bfd83c479a91144c96a9358,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8285531307694385869, guid: 53abdb9e8bfd83c479a91144c96a9358,
         type: 3}

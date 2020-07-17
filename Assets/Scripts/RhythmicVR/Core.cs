@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -31,11 +31,6 @@ namespace RhythmicVR {
         public Transform rightFoot;
         public Transform waist;
 
-        [Header("Integrated settings menus")] 
-        public SettingsField[] integratedSettings;
-
-        public SettingsManager settingsManager;
-
         [Header("Other Properties")] 
         public float spawnDistance;
         public UiManager uiManager;
@@ -46,23 +41,24 @@ namespace RhythmicVR {
         public SteamVR_Action_Pose pointerOffset;
         public SteamVR_Action_Pose gripPosition;
         public PluginBaseClass[] includedAssetPackages;
-        public AudioSource audioSource;
+        [NonSerialized]  public SettingsManager settingsManager;
+        [NonSerialized] public AudioSource audioSource;
         private List<GameObject> trackedObjects = new List<GameObject>();
         private List<GameObject> visualTrackedObjects = new List<GameObject>();
         private List<GameObject> menuTrackedObjects = new List<GameObject>();
 
         private bool allowPause;
         private bool isPaused;
-        public bool songIsPlaying;
+        [NonSerialized] public bool songIsPlaying;
 
-        public string playerName = "No Player Name";
+        [NonSerialized] public string playerName = "No Player Name";
         
-        public Beatmap currentlyPlayingBeatmap;
-        public Song currentlyPlayingSong;
-        public Gamemode currentGamemode;
-        public TargetObject currentTargetObject;
-        public GenericTrackedObject currentTrackedDeviceObject;
-        public GameObject currentEnvironment;
+        [NonSerialized] public Beatmap currentlyPlayingBeatmap;
+        [NonSerialized] public Song currentlyPlayingSong;
+        [NonSerialized] public Gamemode currentGamemode;
+        [NonSerialized] public TargetObject currentTargetObject;
+        [NonSerialized] public GenericTrackedObject currentTrackedDeviceObject;
+        [NonSerialized] public GameObject currentEnvironment;
         private BeatSaberImportPlugin bsip;
 
         public float currentScore = 0;
@@ -216,49 +212,78 @@ namespace RhythmicVR {
         /// Add all integrated settings to Settings manager (UI) and add listeners to inputs
         /// </summary>
         private void InitializeSettings() {
-            // add listeners
-            /*for (var i = 0; i < integratedSettings.Length; i++) {
-                var setting = integratedSettings[i];
-                switch (i) {
-                    case 0:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetGeneralVolume(int.Parse(setting._input));
-                        });
-                        break;
-                    case 1:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetMenuVolume(int.Parse(setting._input));
-                        });
-                        break;
-                    case 2:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetSongVolume(int.Parse(setting._input));
-                        });
-                        break;
-                    case 3:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetSongPreviewVolume(int.Parse(setting._input));
-                        });
-                        break;
-                    case 4:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetHitVolume(int.Parse(setting._input));
-                        });
-                        break;
-                    case 5:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetMissVolume(int.Parse(setting._input));
-                        });
-                        break;
-                    case 6:
-                        setting.call.AddListener(delegate {
-                            volumeManager.SetWrongHitVolume(int.Parse(setting._input));
-                        });
-                        break;
-                }
-            }*/
+            List<SettingsField> coreSettings = new List<SettingsField>();
 
-            settingsManager.settings.AddRange(integratedSettings);
+            {
+                SettingsField setting = new SettingsField("Song save Path", UiType.Text, uiManager.textPrefab, "Settings/Files", config.songSavePath);
+                setting.stringCall = delegate(string arg0) { config.songSavePath = arg0; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Plugin save Path", UiType.Text, uiManager.textPrefab, "Settings/Files", config.pluginSavePath);
+                setting.stringCall = delegate(string arg0) { config.pluginSavePath = arg0; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Use Steam Username", UiType.Bool, uiManager.boolPrefab, "Settings/Player", config.useSteamUsername);
+                setting.boolCall = delegate(bool arg0) { config.useSteamUsername = arg0; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Local Username", UiType.Text, uiManager.textPrefab, "Settings/Player", config.localUsername);
+                setting.stringCall = delegate(string arg0) { config.localUsername = arg0; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Super Sampling", UiType.Float, uiManager.floatPrefab, "Settings/Video", config.superSampling);
+                setting.floatCall = delegate(float arg0) { config.superSampling = arg0; };
+                setting.maxValue = 5;
+                setting.minValue = 0.2f;
+                coreSettings.Add(setting);
+            }
+
+            {
+                SettingsField setting = new SettingsField("Camera Smoothing (desktop)", UiType.Int, uiManager.intPrefab, "Settings/Video", config.cameraSmoothing);
+                setting.floatCall = delegate(float arg0) { config.cameraSmoothing = (int)arg0; };
+                setting.maxValue = 10;
+                setting.minValue = 0;
+                coreSettings.Add(setting);
+            }
+
+            {
+                Vector3 initialValue = new Vector3(config.playspacePosition[0], config.playspacePosition[1], config.playspacePosition[2]);
+                SettingsField setting = new SettingsField("Position", UiType.Vector3, uiManager.vector3Prefab, "Settings/Offsets/Playspace", initialValue);
+                setting.vectorNCall = delegate(int arg0, float arg1) { config.playspacePosition[arg0] = arg1; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                Vector3 initialValue = new Vector3(config.playspaceRotation[0], config.playspaceRotation[1], config.playspaceRotation[2]);
+                SettingsField setting = new SettingsField("Rotation", UiType.Vector3, uiManager.vector3Prefab, "Settings/Offsets/Playspace", initialValue);
+                setting.vectorNCall = delegate(int arg0, float arg1) { config.playspaceRotation[arg0] = arg1; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                Vector3 initialValue = new Vector3(config.controllerPosition[0], config.controllerPosition[1], config.controllerPosition[2]);
+                SettingsField setting = new SettingsField("Position", UiType.Vector3, uiManager.vector3Prefab, "Settings/Offsets/Controller", initialValue);
+                setting.vectorNCall = delegate(int arg0, float arg1) { config.controllerPosition[arg0] = arg1; };
+                coreSettings.Add(setting);
+            }
+
+            {
+                Vector3 initialValue = new Vector3(config.controllerRotation[0], config.controllerRotation[1], config.controllerRotation[2]);
+                SettingsField setting = new SettingsField("Rotation", UiType.Vector3, uiManager.vector3Prefab, "Settings/Offsets/Controller", initialValue);
+                setting.vectorNCall = delegate(int arg0, float arg1) { config.controllerRotation[arg0] = arg1; };
+                coreSettings.Add(setting);
+            }
+
+            
+            settingsManager.settings.AddRange(coreSettings);
             settingsManager.settingsMenuParent = uiManager.settingsMenu;
             settingsManager.UpdateSettingsUi();
         }

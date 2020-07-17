@@ -15,6 +15,12 @@ namespace RhythmicVR {
 		public string pluginSavePath;
 		public float lastSelectedDifficulty;
 		public string lastSongSorting;
+		public float superSampling = 1;
+		public int cameraSmoothing = 1;
+		public float[] playspacePosition = {0f,0f,0f};
+		public float[] playspaceRotation = {0f,0f,0f};
+		public float[] controllerPosition = {0f,0f,0f};
+		public float[] controllerRotation = {0f,0f,0f};
 		public bool useSteamUsername;
 		public string localUsername;
 		public string steamUsername;
