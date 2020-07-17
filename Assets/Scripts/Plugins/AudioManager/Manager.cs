@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RhythmicVR;
 using UnityEngine;
 
@@ -96,6 +96,7 @@ namespace AudioManager {
 
         public void SetGeneralVolume(int volume) {
             audioConfig.generalVolume = volume;
+            core.audioSource.volume = (0.01f * audioConfig.generalVolume) * (0.01f * audioConfig.songVolume);
             SaveConfig();
         }
 
@@ -106,6 +107,7 @@ namespace AudioManager {
 
         public void SetSongVolume(int volume) {
             audioConfig.songVolume = volume;
+            core.audioSource.volume = (0.01f * audioConfig.generalVolume) * (0.01f * audioConfig.songVolume);
             SaveConfig();
         }
 
