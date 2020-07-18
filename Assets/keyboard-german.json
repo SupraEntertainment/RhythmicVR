@@ -2,7 +2,7 @@
     "keys": [
         {
             "keyName": "^",
-            "character": "None",
+            "character": "Caret",
             "position": [
                 10.0,
                 -10.0
@@ -146,7 +146,7 @@
         },
         {
             "keyName": "´",
-            "character": "None",
+            "character": "BackQuote",
             "position": [
                 1210.0,
                 -10.0
@@ -170,7 +170,7 @@
         },
         {
             "keyName": "Tab",
-            "character": "None",
+            "character": "Tab",
             "position": [
                 10.0,
                 -110.0
@@ -182,7 +182,7 @@
         },
         {
             "keyName": "Q",
-            "character": "None",
+            "character": "Q",
             "position": [
                 160.0,
                 -110.0
@@ -194,7 +194,7 @@
         },
         {
             "keyName": "W",
-            "character": "None",
+            "character": "W",
             "position": [
                 260.0,
                 -110.0
@@ -206,7 +206,7 @@
         },
         {
             "keyName": "E",
-            "character": "None",
+            "character": "E",
             "position": [
                 360.0,
                 -110.0
@@ -218,7 +218,7 @@
         },
         {
             "keyName": "R",
-            "character": "None",
+            "character": "R",
             "position": [
                 460.0,
                 -110.0
@@ -230,7 +230,7 @@
         },
         {
             "keyName": "T",
-            "character": "None",
+            "character": "T",
             "position": [
                 560.0,
                 -110.0
@@ -242,7 +242,7 @@
         },
         {
             "keyName": "Z",
-            "character": "None",
+            "character": "Z",
             "position": [
                 660.0,
                 -110.0
@@ -254,7 +254,7 @@
         },
         {
             "keyName": "U",
-            "character": "None",
+            "character": "U",
             "position": [
                 760.0,
                 -110.0
@@ -266,7 +266,7 @@
         },
         {
             "keyName": "I",
-            "character": "None",
+            "character": "I",
             "position": [
                 860.0,
                 -110.0
@@ -278,7 +278,7 @@
         },
         {
             "keyName": "O",
-            "character": "None",
+            "character": "O",
             "position": [
                 960.0,
                 -110.0
@@ -290,7 +290,7 @@
         },
         {
             "keyName": "P",
-            "character": "None",
+            "character": "P",
             "position": [
                 1060.0,
                 -110.0
@@ -302,7 +302,7 @@
         },
         {
             "keyName": "Ü",
-            "character": "None",
+            "character": "U",
             "position": [
                 1160.0,
                 -110.0
@@ -314,7 +314,7 @@
         },
         {
             "keyName": "+",
-            "character": "None",
+            "character": "Plus",
             "position": [
                 1260.0,
                 -110.0
@@ -326,7 +326,7 @@
         },
         {
             "keyName": "",
-            "character": "None",
+            "character": "Return",
             "position": [
                 1360.0,
                 -110.0
@@ -338,7 +338,7 @@
         },
         {
             "keyName": "↵",
-            "character": "None",
+            "character": "Return",
             "position": [
                 1400.0,
                 -110.0
@@ -350,7 +350,7 @@
         },
         {
             "keyName": "Caps",
-            "character": "None",
+            "character": "CapsLock",
             "position": [
                 10.0,
                 -210.0
@@ -362,7 +362,7 @@
         },
         {
             "keyName": "A",
-            "character": "None",
+            "character": "A",
             "position": [
                 200.0,
                 -210.0
@@ -374,7 +374,7 @@
         },
         {
             "keyName": "S",
-            "character": "None",
+            "character": "S",
             "position": [
                 300.0,
                 -210.0
@@ -386,7 +386,7 @@
         },
         {
             "keyName": "D",
-            "character": "None",
+            "character": "D",
             "position": [
                 400.0,
                 -210.0
@@ -398,7 +398,7 @@
         },
         {
             "keyName": "F",
-            "character": "None",
+            "character": "F",
             "position": [
                 500.0,
                 -210.0
@@ -410,7 +410,7 @@
         },
         {
             "keyName": "G",
-            "character": "None",
+            "character": "G",
             "position": [
                 600.0,
                 -210.0
@@ -422,7 +422,7 @@
         },
         {
             "keyName": "H",
-            "character": "None",
+            "character": "H",
             "position": [
                 700.0,
                 -210.0
@@ -434,7 +434,7 @@
         },
         {
             "keyName": "J",
-            "character": "None",
+            "character": "J",
             "position": [
                 800.0,
                 -210.0
@@ -446,7 +446,7 @@
         },
         {
             "keyName": "K",
-            "character": "None",
+            "character": "K",
             "position": [
                 900.0,
                 -210.0
@@ -458,7 +458,7 @@
         },
         {
             "keyName": "L",
-            "character": "None",
+            "character": "L",
             "position": [
                 1000.0,
                 -210.0
@@ -470,7 +470,7 @@
         },
         {
             "keyName": "Ö",
-            "character": "None",
+            "character": "O",
             "position": [
                 1100.0,
                 -210.0
@@ -482,7 +482,7 @@
         },
         {
             "keyName": "Ä",
-            "character": "None",
+            "character": "A",
             "position": [
                 1200.0,
                 -210.0
@@ -494,7 +494,7 @@
         },
         {
             "keyName": "#",
-            "character": "None",
+            "character": "Hash",
             "position": [
                 1300.0,
                 -210.0
@@ -506,7 +506,7 @@
         },
         {
             "keyName": "Shift",
-            "character": "None",
+            "character": "LeftShift",
             "position": [
                 10.0,
                 -310.0
@@ -518,7 +518,7 @@
         },
         {
             "keyName": "<",
-            "character": "None",
+            "character": "Less",
             "position": [
                 150.0,
                 -310.0
@@ -530,7 +530,7 @@
         },
         {
             "keyName": "Y",
-            "character": "None",
+            "character": "Y",
             "position": [
                 250.0,
                 -310.0
@@ -542,7 +542,7 @@
         },
         {
             "keyName": "X",
-            "character": "None",
+            "character": "X",
             "position": [
                 350.0,
                 -310.0
@@ -554,7 +554,7 @@
         },
         {
             "keyName": "C",
-            "character": "None",
+            "character": "C",
             "position": [
                 450.0,
                 -310.0
@@ -566,7 +566,7 @@
         },
         {
             "keyName": "V",
-            "character": "None",
+            "character": "V",
             "position": [
                 550.0,
                 -310.0
@@ -578,7 +578,7 @@
         },
         {
             "keyName": "B",
-            "character": "None",
+            "character": "B",
             "position": [
                 650.0,
                 -310.0
@@ -590,7 +590,7 @@
         },
         {
             "keyName": "N",
-            "character": "None",
+            "character": "N",
             "position": [
                 750.0,
                 -310.0
@@ -602,7 +602,7 @@
         },
         {
             "keyName": "M",
-            "character": "None",
+            "character": "M",
             "position": [
                 850.0,
                 -310.0
@@ -614,7 +614,7 @@
         },
         {
             "keyName": ",",
-            "character": "None",
+            "character": "Comma",
             "position": [
                 950.0,
                 -310.0
@@ -626,7 +626,7 @@
         },
         {
             "keyName": ".",
-            "character": "None",
+            "character": "Dot",
             "position": [
                 1050.0,
                 -310.0
@@ -638,7 +638,7 @@
         },
         {
             "keyName": "-",
-            "character": "None",
+            "character": "Minus",
             "position": [
                 1150.0,
                 -310.0
@@ -650,7 +650,7 @@
         },
         {
             "keyName": "Shift",
-            "character": "None",
+            "character": "RightShift",
             "position": [
                 1250.0,
                 -310.0
@@ -662,7 +662,7 @@
         },
         {
             "keyName": "Ctrl",
-            "character": "None",
+            "character": "LeftControl",
             "position": [
                 10.0,
                 -410.0
@@ -674,7 +674,7 @@
         },
         {
             "keyName": "Super",
-            "character": "None",
+            "character": "LeftWindows",
             "position": [
                 160.0,
                 -410.0
@@ -686,7 +686,7 @@
         },
         {
             "keyName": "Alt",
-            "character": "None",
+            "character": "LeftAlt",
             "position": [
                 300.0,
                 -410.0
@@ -698,7 +698,7 @@
         },
         {
             "keyName": "Space",
-            "character": "None",
+            "character": "Space",
             "position": [
                 440.0,
                 -410.0
@@ -710,7 +710,7 @@
         },
         {
             "keyName": "AltGr",
-            "character": "None",
+            "character": "RightAlt",
             "position": [
                 960.0,
                 -410.0
@@ -722,7 +722,7 @@
         },
         {
             "keyName": "Super",
-            "character": "None",
+            "character": "RightWindows",
             "position": [
                 1100.0,
                 -410.0
@@ -734,7 +734,7 @@
         },
         {
             "keyName": "Menu",
-            "character": "None",
+            "character": "Menu",
             "position": [
                 1240.0,
                 -410.0
@@ -746,7 +746,7 @@
         },
         {
             "keyName": "Ctrl",
-            "character": "None",
+            "character": "rightControl",
             "position": [
                 1380.0,
                 -410.0
