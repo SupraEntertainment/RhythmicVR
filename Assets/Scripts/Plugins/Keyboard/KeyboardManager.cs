@@ -27,7 +27,7 @@ namespace Keyboard {
             keyboard = Instantiate(keyboardCanvasPrefab);
             LoadKeyboardJson(core.config.keyboardSavePath);
             InstantiateKeys();
-            //SaveKeyboardJson(core.config.keyboardSavePath);
+            SaveKeyboardJson(core.config.keyboardSavePath);
         }
 
         private void LoadKeyboardJson(string path) {
@@ -49,6 +49,12 @@ namespace Keyboard {
                 keys.Add(keyObject);
                 try {
                     keyObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(key.position[0], key.position[1]);
+                    if (key.size[0] != 0) {
+                        keyObject.GetComponent<RectTransform>().sizeDelta = new Vector2(key.size[0], keyObject.GetComponent<RectTransform>().sizeDelta.y);
+                    }
+                    if (key.size[1] != 0) {
+                        keyObject.GetComponent<RectTransform>().sizeDelta = new Vector2(keyObject.GetComponent<RectTransform>().sizeDelta.x, key.size[1]);
+                    }
                 }
                 catch (Exception e) {
                     Console.WriteLine(e);
