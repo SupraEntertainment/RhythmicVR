@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,25 +24,31 @@ namespace RhythmicVR {
 		/// </summary>
 		/// <param name="plugin">The plugin to add</param>
 		public void AddPlugin(PluginBaseClass plugin) {
-			loadedPlugins.Add(plugin);
-			switch (plugin.type) {
-				case AssetType.Environment:
-					loadedEnvironments.Add(plugin.gameObject);
-					break;
-				case AssetType.Gamemode:
-					loadedGamemodes.Add(plugin.GetComponentInChildren<Gamemode>());
-					plugin.Init(core);
-					break;
-				case AssetType.Misc:
-					miscPlugins.Add(plugin);
-					plugin.Init(core);
-					break;
-				case AssetType.TargetObject:
-					loadedTargetObjects.Add(plugin.GetComponentInChildren<TargetObject>());
-					break;
-				case AssetType.VisualTrackedObject:
-					loadedTrackedObjects.Add(plugin.GetComponentInChildren<GenericTrackedObject>());
-					break;
+			try {
+				loadedPlugins.Add(plugin);
+				switch (plugin.type) {
+					case AssetType.Environment:
+						loadedEnvironments.Add(plugin.gameObject);
+						break;
+					case AssetType.Gamemode:
+						loadedGamemodes.Add(plugin.GetComponentInChildren<Gamemode>());
+						plugin.Init(core);
+						break;
+					case AssetType.Misc:
+						miscPlugins.Add(plugin);
+						plugin.Init(core);
+						break;
+					case AssetType.TargetObject:
+						loadedTargetObjects.Add(plugin.GetComponentInChildren<TargetObject>());
+						break;
+					case AssetType.VisualTrackedObject:
+						loadedTrackedObjects.Add(plugin.GetComponentInChildren<GenericTrackedObject>());
+						break;
+				}
+			}
+			catch (Exception e) {
+				Debug.Log("could not load Plugin: " + plugin.pluginName);
+				Debug.Log(e);
 			}
 		}
 
