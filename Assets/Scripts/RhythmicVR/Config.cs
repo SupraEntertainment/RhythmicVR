@@ -13,6 +13,7 @@ namespace RhythmicVR {
 		public string appData;
 		public string songSavePath;
 		public string pluginSavePath;
+		public string keyboardSavePath;
 		public float lastSelectedDifficulty;
 		public string lastSongSorting;
 		public float superSampling = 1;
@@ -36,6 +37,10 @@ namespace RhythmicVR {
 
 			if (pluginSavePath == null) {
 				pluginSavePath = appData + "plugins/";
+			}
+
+			if (keyboardSavePath == null) {
+				keyboardSavePath = appData + "keyboards/";
 			}
 		}
 

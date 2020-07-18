@@ -1,0 +1,492 @@
+{
+    "keys": [
+        {
+            "keyName": "^",
+            "character": "None",
+            "position": [
+                50.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "1",
+            "character": "Alpha1",
+            "position": [
+                150.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "2",
+            "character": "Alpha2",
+            "position": [
+                250.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "3",
+            "character": "Alpha3",
+            "position": [
+                350.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "4",
+            "character": "Alpha4",
+            "position": [
+                450.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "5",
+            "character": "Alpha5",
+            "position": [
+                550.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "6",
+            "character": "Alpha6",
+            "position": [
+                650.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "7",
+            "character": "Alpha7",
+            "position": [
+                750.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "8",
+            "character": "Alpha8",
+            "position": [
+                850.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "9",
+            "character": "Alpha9",
+            "position": [
+                950.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "0",
+            "character": "Alpha0",
+            "position": [
+                1050.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "ß",
+            "character": "None",
+            "position": [
+                1150.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "´",
+            "character": "None",
+            "position": [
+                1250.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "<--",
+            "character": "None",
+            "position": [
+                1350.0,
+                -50.0
+            ]
+        },
+        {
+            "keyName": "Tab",
+            "character": "None",
+            "position": [
+                50.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "Q",
+            "character": "None",
+            "position": [
+                150.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "W",
+            "character": "None",
+            "position": [
+                250.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "E",
+            "character": "None",
+            "position": [
+                350.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "R",
+            "character": "None",
+            "position": [
+                450.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "T",
+            "character": "None",
+            "position": [
+                550.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "Z",
+            "character": "None",
+            "position": [
+                650.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "U",
+            "character": "None",
+            "position": [
+                750.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "I",
+            "character": "None",
+            "position": [
+                850.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "O",
+            "character": "None",
+            "position": [
+                950.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "P",
+            "character": "None",
+            "position": [
+                1050.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "Ü",
+            "character": "None",
+            "position": [
+                1150.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "+",
+            "character": "None",
+            "position": [
+                1250.0,
+                -150.0
+            ]
+        },
+        {
+            "keyName": "Caps",
+            "character": "None",
+            "position": [
+                50.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "A",
+            "character": "None",
+            "position": [
+                150.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "S",
+            "character": "None",
+            "position": [
+                250.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "D",
+            "character": "None",
+            "position": [
+                350.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "F",
+            "character": "None",
+            "position": [
+                450.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "G",
+            "character": "None",
+            "position": [
+                550.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "H",
+            "character": "None",
+            "position": [
+                650.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "J",
+            "character": "None",
+            "position": [
+                750.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "K",
+            "character": "None",
+            "position": [
+                850.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "L",
+            "character": "None",
+            "position": [
+                950.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "Ö",
+            "character": "None",
+            "position": [
+                1050.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "Ä",
+            "character": "None",
+            "position": [
+                1150.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "#",
+            "character": "None",
+            "position": [
+                1250.0,
+                -250.0
+            ]
+        },
+        {
+            "keyName": "Shift",
+            "character": "None",
+            "position": [
+                50.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "<",
+            "character": "None",
+            "position": [
+                150.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "Y",
+            "character": "None",
+            "position": [
+                250.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "X",
+            "character": "None",
+            "position": [
+                350.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "C",
+            "character": "None",
+            "position": [
+                450.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "V",
+            "character": "None",
+            "position": [
+                550.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "B",
+            "character": "None",
+            "position": [
+                650.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "N",
+            "character": "None",
+            "position": [
+                750.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "M",
+            "character": "None",
+            "position": [
+                850.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": ",",
+            "character": "None",
+            "position": [
+                950.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": ".",
+            "character": "None",
+            "position": [
+                1050.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "-",
+            "character": "None",
+            "position": [
+                1150.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "Shift",
+            "character": "None",
+            "position": [
+                1250.0,
+                -350.0
+            ]
+        },
+        {
+            "keyName": "Ctrl",
+            "character": "None",
+            "position": [
+                50.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "Super",
+            "character": "None",
+            "position": [
+                150.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "Alt",
+            "character": "None",
+            "position": [
+                250.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "Space",
+            "character": "None",
+            "position": [
+                350.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "AltGr",
+            "character": "None",
+            "position": [
+                950.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "Super",
+            "character": "None",
+            "position": [
+                1050.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "Menu",
+            "character": "None",
+            "position": [
+                1150.0,
+                -450.0
+            ]
+        },
+        {
+            "keyName": "Ctrl",
+            "character": "None",
+            "position": [
+                1250.0,
+                -450.0
+            ]
+        }
+    ]
+}

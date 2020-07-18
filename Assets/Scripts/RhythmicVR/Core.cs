@@ -233,6 +233,12 @@ namespace RhythmicVR {
             }
 
             {
+                SettingsField setting = new SettingsField("keyboard config Path", UiType.Text, uiManager.textPrefab, "Settings/Files", config.keyboardSavePath);
+                setting.stringCall = delegate(string arg0) { config.keyboardSavePath = arg0; };
+                coreSettings.Add(setting);
+            }
+
+            {
                 SettingsField setting = new SettingsField("Use Steam Username", UiType.Bool, uiManager.boolPrefab, "Settings/Player", config.useSteamUsername);
                 setting.boolCall = delegate(bool arg0) { config.useSteamUsername = arg0; };
                 coreSettings.Add(setting);
