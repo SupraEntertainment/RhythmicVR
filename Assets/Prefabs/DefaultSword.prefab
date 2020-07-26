@@ -168,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6252578295895531177}
   - component: {fileID: 6252578295895531176}
+  - component: {fileID: 5438358571403897212}
   m_Layer: 0
   m_Name: DefaultSword
   m_TagString: Untagged
@@ -203,5 +204,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284cf5d510e7aad45bbad0ebf2a93a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Default Sword
+  pluginName: to_defaultSword
+  assetName: Default Sword
   type: 3
+--- !u!114 &5438358571403897212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252578295895531179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginBaseClass: {fileID: 6252578295895531176}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5210609699491252745}
   - component: {fileID: 8191856869559654083}
+  - component: {fileID: 5544214218248155555}
   m_Layer: 0
   m_Name: BeatSaberGamemode
   m_TagString: Untagged
@@ -44,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pluginName: gm_beatSaber
+  assetName: Beat Saber Gamemode
   type: 0
   gamemodeName: Beat Saber
   icon: {fileID: 0}
@@ -73,3 +75,16 @@ MonoBehaviour:
     x: 0
     y: 1
     z: 2
+--- !u!114 &5544214218248155555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210609699491252747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginBaseClass: {fileID: 8191856869559654083}

@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6940309054751554121}
   - component: {fileID: 6940309054751554118}
+  - component: {fileID: 4287091444198238409}
   m_Layer: 0
   m_Name: Keyboard
   m_TagString: Untagged
@@ -74,7 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105ddab29cf285c4fae3a9306a375542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Keyboard
+  pluginName: keyboardManager
+  assetName: Keyboard Manager
   type: 4
   keyboardCanvasPrefab: {fileID: 9039626477198497574, guid: 4438a2b2bda5f4d4686617319e824f71,
     type: 3}
@@ -86,308 +88,627 @@ MonoBehaviour:
     position:
     - 50
     - 50
+    size:
+    - 0
+    - 0
   - keyName: 1
     character: 
     position:
     - 150
     - 50
+    size:
+    - 0
+    - 0
   - keyName: 2
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 3
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 4
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 5
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 6
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 7
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 8
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 9
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 0
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: "\xDF"
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: "\xB4"
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: '`'
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: <--
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Tab
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Q
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: W
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: E
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: R
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: T
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Z
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: U
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: I
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: O
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: P
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: "\xDC"
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: +
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Caps
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: A
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: S
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: D
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: F
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: G
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: H
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: J
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: K
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: L
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: "\xD6"
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: "\xC4"
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: '#'
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Shift
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: <
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Y
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: X
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: C
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: V
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: B
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: N
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: M
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: ','
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: .
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: '-'
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Shift
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Ctrl
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Super
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Alt
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Space
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: AltGr
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Super
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Menu
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: Ctrl
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
   - keyName: 
     character: 
     position: []
+    size:
+    - 0
+    - 0
+--- !u!114 &4287091444198238409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940309054751554120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginBaseClass: {fileID: 6940309054751554118}

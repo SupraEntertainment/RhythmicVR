@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5098652987087657860}
   - component: {fileID: 3355367145167125729}
+  - component: {fileID: 6927624912209439334}
   m_Layer: 0
   m_Name: BeatSaberImportPlugin
   m_TagString: Untagged
@@ -43,6 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66db0ed17f4f535418a85834767f235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Beat Saber Import
+  pluginName: import_beatSaber
+  assetName: Beat Saber Import
   type: 4
-  unityAssetObject: {fileID: 0}
+  reloadSongs: 0
+  selectedPath: 
+--- !u!114 &6927624912209439334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098652987087657861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginBaseClass: {fileID: 3355367145167125729}

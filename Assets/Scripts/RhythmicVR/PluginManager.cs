@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
 
 namespace RhythmicVR {
@@ -89,6 +91,41 @@ namespace RhythmicVR {
 		}
 		public List<TargetObject> GetAllTargets() {
 			return loadedTargetObjects;
+		}
+
+		public void LoadPluginsFromFolder(string path) {
+			List<PluginBaseClass> pluginsOut = new List<PluginBaseClass>();
+
+			string tempPath = core.config.tempPluginRuntimePath;
+
+			Directory.CreateDirectory(tempPath);
+			
+
+			if (Util.EnsureDirectoryIntegrity(path, true)) {
+				string[] pluginPaths = Directory.GetFiles(path);
+				foreach (var pluginPath in pluginPaths) {
+					string destPath = tempPath + Path.GetFileName(pluginPath);
+					var zip = new FastZip();
+					zip.ExtractZip(pluginPath, destPath, "");
+					string destPathPlatform = destPath + "/";
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
+					destPathPlatform += "win64";
+#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
+					destPathPlatform += "lin64";
+#endif
+					destPathPlatform = Directory.GetFiles(destPathPlatform)[0];
+					pluginsOut.Add(AssetBundle.LoadFromFile(destPathPlatform).LoadAsset<GameObject>("Plugin").GetComponentInChildren<PluginBaseClass>());
+				}
+			}
+
+			try {
+				Directory.Delete(tempPath);
+			}
+			catch (Exception e) {
+				Debug.Log("Could not delete temporary plugin directory");
+			}
+
+			AddPlugins(pluginsOut.ToArray());
 		}
 	}
 }

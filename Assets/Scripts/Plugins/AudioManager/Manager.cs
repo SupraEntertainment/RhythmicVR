@@ -3,6 +3,7 @@ using RhythmicVR;
 using UnityEngine;
 
 namespace AudioManager {
+    
     [System.Serializable]
     public class Manager : PluginBaseClass {
 

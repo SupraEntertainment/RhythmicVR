@@ -66,7 +66,7 @@ namespace RhythmicVR {
         private List<GameObject> loadedSongs = new List<GameObject>();
 
         public void Start() {
-            scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("Score Manager");
+            scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("score_manager");
             uiActionSet.Activate();
             ToMainMenu();
             PopulateInGamePanels();

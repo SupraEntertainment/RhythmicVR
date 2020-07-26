@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
 
 namespace RhythmicVR {
+    [ExecuteInEditMode]
     public class PluginBaseClass : MonoBehaviour {
 
         public string pluginName;
+        public string assetName;
         public AssetType type;
         
         protected Core core;
-        
+
+        private void Start() {
+            if (!gameObject.GetComponent<BuildPlugin>()) {
+                var buildPluginButton = gameObject.AddComponent<BuildPlugin>();
+                buildPluginButton.pluginBaseClass = this;
+            }
+        }
+
         /*public Object unityAssetObject;
         public object assetObject;
 

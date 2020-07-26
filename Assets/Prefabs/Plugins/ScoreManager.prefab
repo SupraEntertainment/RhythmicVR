@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70852b5c89146f5aca773ebf8b2dd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Score Manager
+  pluginName: score_manager
+  assetName: Score Manager
   type: 4
   scoreListPrefab: {fileID: 4983377862484768831, guid: 18769dbf0b465b543a4bab6e5dbdecaf,
     type: 3}

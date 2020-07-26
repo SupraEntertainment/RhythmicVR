@@ -84,6 +84,8 @@ namespace RhythmicVR {
                 playerName = config.localUsername;
             }
 
+            pluginManager.LoadPluginsFromFolder(config.pluginSavePath);
+
             LoadPlugins();
             
             bsip = (BeatSaberImportPlugin)pluginManager.Find("Beat Saber Import");
@@ -391,7 +393,7 @@ namespace RhythmicVR {
             allowPause = true;
             currentlyPlayingBeatmap = bm;
             currentlyPlayingSong = song;
-            ((ScoreManager.ScoreManager) pluginManager.Find("Score Manager")).SelectSongAndAddPlaythrough(song);
+            ((ScoreManager.ScoreManager) pluginManager.Find("score_manager")).SelectSongAndAddPlaythrough(song);
             StartCoroutine(PlayNotes(bm));
             PlaySongAudio(song);
         }
@@ -468,7 +470,7 @@ namespace RhythmicVR {
         /// </summary>
         public void ExitBeatmap() {
             StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
-            var scoreManager = ((ScoreManager.ScoreManager) pluginManager.Find("Score Manager"));
+            var scoreManager = ((ScoreManager.ScoreManager) pluginManager.Find("score_manager"));
             scoreManager.SaveCurrentScores();
             scoreManager.DisplayScoresOnScoreboard(currentlyPlayingSong);
             audioSource.time = 0;
@@ -572,5 +574,10 @@ namespace RhythmicVR {
                 visualTrackedObjects.Add(Instantiate(trackedDevicePair.defaultVisualPrefab, tracker.Find("itemOffset"))); //TODO use selected prefab for gamemode, only fallback if empty
             }
         }
+
+        public GameObject SimpleInstantiate(GameObject prefab) {
+            return Instantiate(prefab);
+        }
+        
     }
 }

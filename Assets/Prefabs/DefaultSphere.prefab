@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4624334584696744084}
   - component: {fileID: 4624334584696744085}
   - component: {fileID: 4624334584696744087}
+  - component: {fileID: 3091269509871101295}
   m_Layer: 0
   m_Name: DefaultSphere
   m_TagString: Untagged
@@ -92,5 +93,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284cf5d510e7aad45bbad0ebf2a93a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Default Sphere
+  pluginName: to_defaultSphere
+  assetName: Default Sphere
   type: 3
+--- !u!114 &3091269509871101295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624334584696744080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginBaseClass: {fileID: 4624334584696744087}

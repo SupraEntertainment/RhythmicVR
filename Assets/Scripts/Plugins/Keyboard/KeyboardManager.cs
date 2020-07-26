@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Keyboard;
@@ -21,6 +22,9 @@ namespace Keyboard {
 
         public List<Key> keyList = new List<Key>();
 
+        private InputField activeInput;
+        private List<InputField> inputFields = new List<InputField>();
+
 
         public override void Init(Core core) {
             base.Init(core);
@@ -28,6 +32,31 @@ namespace Keyboard {
             LoadKeyboardJson(core.config.keyboardSavePath);
             InstantiateKeys();
             SaveKeyboardJson(core.config.keyboardSavePath);
+            SetKeyboardActive(false);
+
+            FindInputFields();
+        }
+
+        private void Update() {
+            for (var i = 0; i < inputFields.Count; i++) {
+                var inputField = inputFields[i];
+                Debug.Log(i);
+                if (inputField.isFocused) {
+                    activeInput = inputField;
+                    SetKeyboardActive(true);
+                }
+            }
+        }
+
+        public void FindInputFields() {
+            inputFields.Clear();
+            foreach (var inputField in FindObjectsOfType<InputField>()) {
+                inputFields.Add(inputField);
+            }
+        }
+
+        public void SetKeyboardActive(bool state) {
+            keyboard.SetActive(state);
         }
 
         private void LoadKeyboardJson(string path) {
@@ -60,8 +89,13 @@ namespace Keyboard {
                     Console.WriteLine(e);
                 }
                 keyObject.GetComponentInChildren<Text>().text = key.keyName;
-                keyObject.GetComponent<Button>().onClick.AddListener(delegate { Event.KeyboardEvent(key.character); });
+                keyObject.GetComponent<Button>().onClick.AddListener(delegate { ListenerMethod(key.character); });
             }
+        }
+
+        private void ListenerMethod(string keyCode) {
+            activeInput.text = keyCode;
+            //activeInput.ForceLabelUpdate();
         }
 
         private void SaveKeyboardJson(string path) {

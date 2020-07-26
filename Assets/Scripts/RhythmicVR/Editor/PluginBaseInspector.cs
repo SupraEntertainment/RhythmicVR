@@ -1,11 +1,11 @@
-﻿using RhythmicVR.Files;
+﻿/*using RhythmicVR.Files;
 using UnityEditor;
 using UnityEngine;
 
 namespace RhythmicVR.Editor {
     
     [CustomEditor(typeof(PluginBaseClass))]
-    public class AssetPackageInspector : UnityEditor.Editor {
+    public class PluginBaseInspector : UnityEditor.Editor {
 
 
         public override void OnInspectorGUI() {
@@ -43,4 +43,4 @@ namespace RhythmicVR.Editor {
         }
         
     }
-}
+}*/

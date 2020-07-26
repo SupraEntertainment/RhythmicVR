@@ -17,7 +17,7 @@ namespace RhythmicVR {
             mCollider.gameObject.AddComponent<Rigidbody>();
             CreateRigidbody(mCollider.gameObject.GetComponent<Rigidbody>());
             core = FindObjectOfType<Core>();
-            scoreManager = (ScoreManager.ScoreManager)core.pluginManager.Find("Score Manager");
+            scoreManager = (ScoreManager.ScoreManager)core.pluginManager.Find("score_manager");
         }
 
         private void CreateRigidbody(Rigidbody rb) {

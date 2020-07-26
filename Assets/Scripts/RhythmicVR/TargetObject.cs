@@ -53,7 +53,7 @@ namespace RhythmicVR {
 		private void OnTriggerExit(Collider other) {
 			if (other.gameObject.CompareTag("despawn")) {
 				if (shouldDespawnBehindPlayer) {
-					((ScoreManager.ScoreManager)FindObjectOfType<Core>().pluginManager.Find("Score Manager")).currentPlaythrough.AddScore(0);
+					((ScoreManager.ScoreManager)FindObjectOfType<Core>().pluginManager.Find("score_manager")).currentPlaythrough.AddScore(0);
 					Destroy(gameObject);
 				}
 			}

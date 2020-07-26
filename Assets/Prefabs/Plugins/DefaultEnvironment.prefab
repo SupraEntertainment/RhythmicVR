@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284cf5d510e7aad45bbad0ebf2a93a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Default
+  pluginName: env_default
+  assetName: Default
   type: 2
-  unityAssetObject: {fileID: 0}
 --- !u!1001 &132990828366831836
 PrefabInstance:
   m_ObjectHideFlags: 0
