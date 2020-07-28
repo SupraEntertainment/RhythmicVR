@@ -10,10 +10,11 @@ The following list contains my plans for this Project:
 ### Mechanics
 - [X] Song loading via json file (json specs in code -> Song.cs & Beatmap.cs)
 - [X] dynamic (expandable) systems for anything you could imagine (gamemodes, songs, mods for gamemodes)
-- [ ] on the fly loaded assets
+- [X] on the fly loaded assets
     - [ ] tracked object models (swords, guns, gloves, shoes)
     - [ ] avatars / player models
-    - [ ] environments
+    - [X] environments
+    - [X] gamemodes
     - [ ] targets
     - [ ] obstacles
 - [ ] loading of songs / beatmaps from other games
