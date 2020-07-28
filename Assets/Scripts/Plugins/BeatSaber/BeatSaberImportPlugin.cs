@@ -18,6 +18,18 @@ namespace BeatSaber {
             SetupUiElements();
         }
 
+        private void Update() {
+            if (reloadSongs) {
+                core.LoadSongsIntoSongList();
+                core.uiManager.ListSongs(core.songList.GetAllSongs());
+                reloadSongs = false;
+            }
+            if (selectedPath != "") {
+                StartCoroutine(ConvertMultipleSongs(selectedPath));
+                selectedPath = "";
+            }
+        }
+
         private void LoadBeatSaberMap() {
             new Thread(OpenBeatSaberSong).Start();
         }

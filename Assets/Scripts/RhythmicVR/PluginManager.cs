@@ -37,8 +37,9 @@ namespace RhythmicVR {
 						plugin.Init(core);
 						break;
 					case AssetType.Misc:
-						miscPlugins.Add(plugin);
-						plugin.Init(core);
+						var pl = core.SimpleInstantiate(plugin.gameObject).GetComponent<PluginBaseClass>();
+						miscPlugins.Add(pl);
+						pl.Init(core);
 						break;
 					case AssetType.TargetObject:
 						loadedTargetObjects.Add(plugin.GetComponentInChildren<TargetObject>());
@@ -114,7 +115,18 @@ namespace RhythmicVR {
 					destPathPlatform += "lin64";
 #endif
 					destPathPlatform = Directory.GetFiles(destPathPlatform)[0];
-					pluginsOut.Add(AssetBundle.LoadFromFile(destPathPlatform).LoadAsset<GameObject>("Plugin").GetComponentInChildren<PluginBaseClass>());
+					AssetBundle assetBundle = AssetBundle.LoadFromFile(destPathPlatform);
+					string[] assetNames = assetBundle.GetAllAssetNames();
+					string assetName = "";
+					foreach (var asset in assetNames) {
+						if (asset.Contains("plugin") && asset.Contains(".prefab")) {
+							assetName = asset;
+							break;
+						}
+					}
+					GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
+					PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
+					pluginsOut.Add(plugin);
 				}
 			}
 

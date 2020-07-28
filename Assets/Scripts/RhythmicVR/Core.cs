@@ -41,7 +41,6 @@ namespace RhythmicVR {
         public SteamVR_Action_Boolean pauseButton;
         public SteamVR_Action_Pose pointerOffset;
         public SteamVR_Action_Pose gripPosition;
-        public PluginBaseClass[] includedAssetPackages;
         [NonSerialized]  public SettingsManager settingsManager;
         [NonSerialized] public AudioSource audioSource;
         private List<GameObject> trackedObjects = new List<GameObject>();
@@ -84,8 +83,6 @@ namespace RhythmicVR {
                 playerName = config.localUsername;
             }
 
-            pluginManager.LoadPluginsFromFolder(config.pluginSavePath);
-
             LoadPlugins();
             
             bsip = (BeatSaberImportPlugin)pluginManager.Find("Beat Saber Import");
@@ -124,15 +121,6 @@ namespace RhythmicVR {
         /// handle pause button
         /// </summary>
         private void Update() {
-            if (bsip.reloadSongs) {
-                LoadSongsIntoSongList();
-                uiManager.ListSongs(songList.GetAllSongs());
-                bsip.reloadSongs = false;
-            }
-            if (bsip.selectedPath != "") {
-                StartCoroutine(bsip.ConvertMultipleSongs(bsip.selectedPath));
-                bsip.selectedPath = "";
-            }
             if (allowPause) {
                 if (pauseButton.stateUp) {
                     if (isPaused) {
@@ -180,9 +168,7 @@ namespace RhythmicVR {
         /// Add included plugins to Plugin Manager, load first gamemode, set first environment
         /// </summary>
         private void LoadPlugins() {
-            foreach (var asset in includedAssetPackages) {
-                pluginManager.AddPlugin(asset);
-            }
+            pluginManager.LoadPluginsFromFolder(config.pluginSavePath);
 
             SetGamemode(pluginManager.GetAllGamemodes()[0]);
             uiManager.AddGamemodesToDropdown();
