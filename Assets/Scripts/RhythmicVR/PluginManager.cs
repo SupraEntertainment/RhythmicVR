@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
-using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace RhythmicVR {
 	public class PluginManager {
+		private readonly List<PluginBaseClass> allPlugins = new List<PluginBaseClass>();
 		private readonly List<PluginBaseClass> loadedPlugins = new List<PluginBaseClass>();
 		
 		private readonly List<Gamemode> loadedGamemodes = new List<Gamemode>();
@@ -27,7 +29,34 @@ namespace RhythmicVR {
 		/// <param name="plugin">The plugin to add</param>
 		public void AddPlugin(PluginBaseClass plugin) {
 			try {
-				loadedPlugins.Add(plugin);
+				SetPluginActiveState(plugin, true);
+			}
+			catch (Exception e) {
+				Debug.Log("could not load Plugin: " + plugin.pluginName);
+				Debug.Log(e);
+			}
+		}
+
+		/// <summary>
+		/// Enables or disables plugins properly
+		/// </summary>
+		/// <param name="plugin">the plugin to deal with</param>
+		/// <param name="state">true = enable, false = disable</param>
+		public void SetPluginActiveState(PluginBaseClass plugin, bool state) {
+			if (state) { //enable
+				bool existsAlready = false;
+				for (var i = 0; i < allPlugins.Count; i++) {
+					if (allPlugins[i].pluginName.Equals(plugin.pluginName)) {
+						SetPluginActiveState(allPlugins[i], false);
+						allPlugins[i] = plugin;
+						existsAlready = true;
+						break;
+					}
+				}
+
+				if (!existsAlready) {
+					allPlugins.Add(plugin);
+				}
 				switch (plugin.type) {
 					case AssetType.Environment:
 						loadedEnvironments.Add(plugin.gameObject);
@@ -39,6 +68,7 @@ namespace RhythmicVR {
 					case AssetType.Misc:
 						var pl = core.SimpleInstantiate(plugin.gameObject).GetComponent<PluginBaseClass>();
 						miscPlugins.Add(pl);
+						loadedPlugins.Add(pl);
 						pl.Init(core);
 						break;
 					case AssetType.TargetObject:
@@ -48,10 +78,25 @@ namespace RhythmicVR {
 						loadedTrackedObjects.Add(plugin.GetComponentInChildren<GenericTrackedObject>());
 						break;
 				}
-			}
-			catch (Exception e) {
-				Debug.Log("could not load Plugin: " + plugin.pluginName);
-				Debug.Log(e);
+				
+			} else { //disable
+				plugin.StopPlugin();
+				switch (plugin.type) {
+					case AssetType.Gamemode:
+						break;
+					case AssetType.TargetObject:
+						break;
+					case AssetType.Environment:
+						break;
+					case AssetType.VisualTrackedObject:
+						break;
+					case AssetType.Misc:
+						Object.Destroy(plugin.gameObject);
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+				
 			}
 		}
 
@@ -97,47 +142,67 @@ namespace RhythmicVR {
 		public void LoadPluginsFromFolder(string path) {
 			List<PluginBaseClass> pluginsOut = new List<PluginBaseClass>();
 
-			string tempPath = core.config.tempPluginRuntimePath;
-
-			Directory.CreateDirectory(tempPath);
-			
-
 			if (Util.EnsureDirectoryIntegrity(path, true)) {
+				string platformDir = "";
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
+				platformDir = "win64";
+#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
+				platformDir = "lin64";
+#endif
 				string[] pluginPaths = Directory.GetFiles(path);
 				foreach (var pluginPath in pluginPaths) {
-					string destPath = tempPath + Path.GetFileName(pluginPath);
-					var zip = new FastZip();
-					zip.ExtractZip(pluginPath, destPath, "");
-					string destPathPlatform = destPath + "/";
-#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
-					destPathPlatform += "win64";
-#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
-					destPathPlatform += "lin64";
+#if UNITY_EDITOR
+					if (pluginPath.Contains(".meta")) {
+						continue;
+					}	
 #endif
-					destPathPlatform = Directory.GetFiles(destPathPlatform)[0];
-					AssetBundle assetBundle = AssetBundle.LoadFromFile(destPathPlatform);
-					string[] assetNames = assetBundle.GetAllAssetNames();
-					string assetName = "";
-					foreach (var asset in assetNames) {
-						if (asset.Contains("plugin") && asset.Contains(".prefab")) {
-							assetName = asset;
-							break;
+					try {
+						Byte[] data = new byte[]{};
+						var file = File.OpenRead(pluginPath);
+						var zip = new ZipArchive(file, ZipArchiveMode.Read);
+						foreach(var entry in zip.Entries) {
+							if (entry.FullName.Contains(platformDir)) {
+								var stream = entry.Open();
+								data = ReadStreamFully(stream);
+							}
 						}
+						AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
+						string[] assetNames = assetBundle.GetAllAssetNames();
+						string assetName = "";
+						foreach (var asset in assetNames) {
+							if (asset.Contains("plugin") && asset.Contains(".prefab")) {
+								assetName = asset;
+								break;
+							}
+						}
+						GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
+						PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
+
+						pluginsOut.Add(plugin);
+
 					}
-					GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
-					PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
-					pluginsOut.Add(plugin);
+					catch (Exception e) {
+						Debug.Log("Could not load Plugin from file");
+						Debug.Log(e);
+					}
 				}
 			}
 
-			try {
-				Directory.Delete(tempPath);
-			}
-			catch (Exception e) {
-				Debug.Log("Could not delete temporary plugin directory");
-			}
-
 			AddPlugins(pluginsOut.ToArray());
+		}
+			
+		private static byte[] ReadStreamFully(Stream input)
+		{
+			byte[] buffer = new byte[16*1024];
+			using (MemoryStream ms = new MemoryStream())
+			{
+				int read;
+				while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					ms.Write(buffer, 0, read);
+				}
+				return ms.ToArray();
+			}
 		}
 	}
 }
