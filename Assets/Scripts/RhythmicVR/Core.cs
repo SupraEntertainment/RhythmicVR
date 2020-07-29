@@ -168,6 +168,10 @@ namespace RhythmicVR {
         /// Add included plugins to Plugin Manager, load first gamemode, set first environment
         /// </summary>
         private void LoadPlugins() {
+            //internal plugins
+            pluginManager.LoadPluginsFromFolder(Application.streamingAssetsPath + "/plugins/");
+            
+            //external plugins
             pluginManager.LoadPluginsFromFolder(config.pluginSavePath);
 
             SetGamemode(pluginManager.GetAllGamemodes()[0]);
