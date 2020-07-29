@@ -33,5 +33,9 @@ namespace RhythmicVR {
         public virtual void Init(Core core) {
             this.core = core;
         }
+
+        public virtual void StopPlugin() {
+            
+        }
     }
 }
