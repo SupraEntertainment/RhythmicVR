@@ -29,7 +29,19 @@ namespace RhythmicVR {
 		/// <param name="plugin">The plugin to add</param>
 		public void AddPlugin(PluginBaseClass plugin) {
 			try {
-				SetPluginActiveState(plugin, true);
+				bool existsAlready = false;
+				for (var i = 0; i < allPlugins.Count; i++) {
+					if (allPlugins[i].pluginName.Equals(plugin.pluginName)) {
+						SetPluginActiveState(allPlugins[i], false);
+						allPlugins[i] = plugin;
+						existsAlready = true;
+						break;
+					}
+				}
+
+				if (!existsAlready) {
+					allPlugins.Add(plugin);
+				}
 			}
 			catch (Exception e) {
 				Debug.Log("could not load Plugin: " + plugin.pluginName);
@@ -44,25 +56,18 @@ namespace RhythmicVR {
 		/// <param name="state">true = enable, false = disable</param>
 		public void SetPluginActiveState(PluginBaseClass plugin, bool state) {
 			if (state) { //enable
-				bool existsAlready = false;
-				for (var i = 0; i < allPlugins.Count; i++) {
-					if (allPlugins[i].pluginName.Equals(plugin.pluginName)) {
-						SetPluginActiveState(allPlugins[i], false);
-						allPlugins[i] = plugin;
-						existsAlready = true;
-						break;
-					}
-				}
 
-				if (!existsAlready) {
-					allPlugins.Add(plugin);
+				// if dependencies are not met, don't load plugin
+				if (!ResolveDependencies(plugin)) {
+					return;
 				}
+				
 				switch (plugin.type) {
 					case AssetType.Environment:
 						loadedEnvironments.Add(plugin.gameObject);
 						break;
 					case AssetType.Gamemode:
-						loadedGamemodes.Add(plugin.GetComponentInChildren<Gamemode>());
+						loadedGamemodes.Add((Gamemode)plugin);
 						plugin.Init(core);
 						break;
 					case AssetType.Misc:
@@ -100,9 +105,44 @@ namespace RhythmicVR {
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="plugin">the plugin to check for dependencies</param>
+		/// <returns>success</returns>
+		private bool ResolveDependencies(PluginBaseClass plugin) {
+			List<string> missingDependencies = new List<string>();
+			if (plugin.dependencies != null) {
+				foreach (var dependency in plugin.dependencies) {
+					bool depMet = true;
+					foreach (var plugin1 in allPlugins) {
+						if (plugin1.pluginName.Equals(dependency)) {
+							depMet = ResolveDependencies(plugin1);
+							break;
+						}
+					}
+
+					if (!depMet) {
+						missingDependencies.Add(dependency);
+					}
+				}
+			}
+
+			if (missingDependencies.Count != 0) {
+				Debug.Log("Failed to load " + plugin.assetName + " (" + plugin.pluginName + ") because of missing dependencies.\n" 
+				        + plugin.assetName + " requires: " + missingDependencies);
+				return false;
+			}
+
+			return true;
+		}
+
 		public void AddPlugins(PluginBaseClass[] plugins) {
 			foreach (var plugin in plugins) {
 				AddPlugin(plugin);
+			}
+			foreach (var plugin in plugins) {
+				SetPluginActiveState(plugin, true);
 			}
 		}
 

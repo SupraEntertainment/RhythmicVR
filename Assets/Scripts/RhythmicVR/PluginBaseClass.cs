@@ -7,6 +7,7 @@ namespace RhythmicVR {
         public string pluginName;
         public string assetName;
         public AssetType type;
+        public string[] dependencies;
         
         protected Core core;
 
@@ -16,15 +17,6 @@ namespace RhythmicVR {
                 buildPluginButton.pluginBaseClass = this;
             }
         }
-
-        /*public Object unityAssetObject;
-        public object assetObject;
-
-        private void Start() {
-            if (unityAssetObject != null) {
-                assetObject = unityAssetObject;
-            }
-        }*/
     
         /// <summary>
         /// Always call the base method. Applies Core object to property
@@ -36,6 +28,10 @@ namespace RhythmicVR {
 
         public virtual void StopPlugin() {
             
+        }
+
+        public override string ToString() {
+            return pluginName;
         }
     }
 }
