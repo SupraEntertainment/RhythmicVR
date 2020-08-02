@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5098652987087657861
+--- !u!1 &3496774698518521949
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5098652987087657860}
-  - component: {fileID: 3355367145167125729}
-  - component: {fileID: 6927624912209439334}
+  - component: {fileID: 3496774698518521922}
+  - component: {fileID: 3496774698518521923}
+  - component: {fileID: 3496774698518521948}
   m_Layer: 0
-  m_Name: BeatSaberImportPlugin
+  m_Name: BlockSong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5098652987087657860
+--- !u!4 &3496774698518521922
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098652987087657861}
+  m_GameObject: {fileID: 3496774698518521949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,35 +32,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3355367145167125729
+--- !u!114 &3496774698518521923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098652987087657861}
+  m_GameObject: {fileID: 3496774698518521949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66db0ed17f4f535418a85834767f235e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8775bd272b9a44b2b36180c1a41d8064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: import_beatSaber
-  assetName: Beat Saber Import
+  pluginName: blockSong
+  assetName: Block Song
   type: 4
-  dependencies:
-  - blockSong
-  reloadSongs: 0
-  selectedPath: 
---- !u!114 &6927624912209439334
+  dependencies: []
+--- !u!114 &3496774698518521948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098652987087657861}
+  m_GameObject: {fileID: 3496774698518521949}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginBaseClass: {fileID: 3355367145167125729}
+  pluginBaseClass: {fileID: 3496774698518521923}

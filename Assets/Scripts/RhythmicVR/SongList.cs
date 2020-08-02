@@ -36,7 +36,7 @@ namespace RhythmicVR {
 				Song localSong = song;
 				List<Difficulty> localDifficulties = new List<Difficulty>();
 				foreach (var difficulty in song.difficulties) {
-					if (difficulty.gamemode == gamemodeName) {
+					if (difficulty.type == gamemodeName) {
 						localDifficulties.Add(difficulty);
 					}
 				}

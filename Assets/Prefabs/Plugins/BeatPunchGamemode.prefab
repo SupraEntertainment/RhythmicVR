@@ -47,6 +47,8 @@ MonoBehaviour:
   pluginName: gm_beatPunch
   assetName: Beat Punch Gamemode
   type: 0
+  dependencies:
+  - blockSong
   gamemodeName: Beat Punch
   icon: {fileID: 0}
   targetObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
@@ -58,27 +60,27 @@ MonoBehaviour:
   trackedObjects:
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
-    defaultVisualPrefab: {fileID: 4624334584696744080, guid: 6cbb06baddb9dae46be72d225219f204,
+    defaultVisualPrefab: {fileID: 3242301686432151540, guid: a33471903328efe4bae979f6f3590961,
       type: 3}
     role: 0
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
-    defaultVisualPrefab: {fileID: 4624334584696744080, guid: 6cbb06baddb9dae46be72d225219f204,
+    defaultVisualPrefab: {fileID: 3242301686432151540, guid: a33471903328efe4bae979f6f3590961,
       type: 3}
     role: 1
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
-    defaultVisualPrefab: {fileID: 4624334584696744080, guid: 6cbb06baddb9dae46be72d225219f204,
+    defaultVisualPrefab: {fileID: 3242301686432151540, guid: a33471903328efe4bae979f6f3590961,
       type: 3}
     role: 2
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
-    defaultVisualPrefab: {fileID: 4624334584696744080, guid: 6cbb06baddb9dae46be72d225219f204,
+    defaultVisualPrefab: {fileID: 3242301686432151540, guid: a33471903328efe4bae979f6f3590961,
       type: 3}
     role: 3
   - prefab: {fileID: 4506513043872991684, guid: 4c693d07d3dbe9f42bd211d267aca510,
       type: 3}
-    defaultVisualPrefab: {fileID: 4624334584696744080, guid: 6cbb06baddb9dae46be72d225219f204,
+    defaultVisualPrefab: {fileID: 3242301686432151540, guid: a33471903328efe4bae979f6f3590961,
       type: 3}
     role: 4
   targetSpaceMapping:

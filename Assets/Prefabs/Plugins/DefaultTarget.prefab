@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 24336008260490452}
   - component: {fileID: 24336007255761661}
+  - component: {fileID: 1349146166801378839}
   m_Layer: 0
   m_Name: DefaultTarget
   m_TagString: Untagged
@@ -44,8 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284cf5d510e7aad45bbad0ebf2a93a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pluginName: Default Target
+  pluginName: target_cube
+  assetName: Default Target
   type: 1
+  dependencies: []
+--- !u!114 &1349146166801378839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24336008260490454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af5e137af5d46a09c81a4676e8f7a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginBaseClass: {fileID: 24336007255761661}
 --- !u!1001 &24336006535473194
 PrefabInstance:
   m_ObjectHideFlags: 0

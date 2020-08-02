@@ -262,9 +262,9 @@ namespace RhythmicVR {
             practiceBeatmapButton.onClick.RemoveAllListeners();
             
             // add listeners
-            SetPlayButtonListener(delegate { core.StartBeatmap(song, song.difficulties[difficultyClosestToSelectedDifficultyRankingIndex], null); });
+            SetPlayButtonListener(delegate { core.currentGamemode.StartBeatmap(song, song.difficulties[difficultyClosestToSelectedDifficultyRankingIndex], null); });
             deleteBeatmapButton.onClick.AddListener(delegate {  });
-            practiceBeatmapButton.onClick.AddListener(delegate { core.StartBeatmap(song, song.difficulties[0], null); });
+            practiceBeatmapButton.onClick.AddListener(delegate { core.currentGamemode.StartBeatmap(song, song.difficulties[0], null); });
             
             // set text
             beatmapTitleText.text = song.songName + " - " + song.songAuthorName + "\n" + song.songSubName;
@@ -282,7 +282,7 @@ namespace RhythmicVR {
                 button.GetComponentInChildren<Text>().text = song.difficulties[i].name;
                 button.GetComponent<Button>().onClick.AddListener(delegate {
                     SetPlayButtonListener(delegate {
-                        core.StartBeatmap(song, song.difficulties[i1], null);
+                        core.currentGamemode.StartBeatmap(song, song.difficulties[i1], null);
                     });
                     core.config.lastSelectedDifficulty = song.difficulties[i1].difficulty;
                     Debug.Log("Selected Difficulty " + i1);

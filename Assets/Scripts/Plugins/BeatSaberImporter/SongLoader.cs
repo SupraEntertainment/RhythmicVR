@@ -13,25 +13,25 @@ namespace RhythmicVR.BeatSaber {
     /// </summary>
     public class SongLoader {
 
-        public static string ConvertSong(string filePath, Core gm) {
+        public static string ConvertSong(string filePath, Core core) {
             try {
                 Song song = JsonUtility.FromJson<Song>(File.ReadAllText(filePath + Path.DirectorySeparatorChar + "info.dat"));
 
                 RhythmicVR.Song convertedSong;
-                List<RhythmicVR.Beatmap> convertedBeatmaps = new List<RhythmicVR.Beatmap>();
+                List<BlockSong.Beatmap> convertedBeatmaps = new List<BlockSong.Beatmap>();
             
                 foreach (var difficulty in song._difficultyBeatmapSets) {
                     foreach (var difficultyBeatmap in difficulty._difficultyBeatmaps) {
                     
                         var beatmapPath = filePath + Path.DirectorySeparatorChar + difficultyBeatmap._beatmapFilename;
                         string beatmapJson = File.ReadAllText(beatmapPath);
-                        RhythmicVR.Beatmap bm;
+                        BlockSong.Beatmap bm;
                         if (difficultyBeatmap._customData._requirements.Contains("Mapping Extensions")) { //Array.IndexOf(difficultyBeatmap._customData._requirements, "Mapping Extensions") > -1) { 
-                            bm = JsonUtility.FromJson<MappingExtensions.Beatmap>(beatmapJson).ToBeatmap();
+                            bm = JsonUtility.FromJson<BeatSaberImporter.MappingExtensions.Beatmap>(beatmapJson).ToBeatmap();
                         } else if (difficultyBeatmap._customData._requirements.Contains("Noodle Extensions")) {
-                            bm = JsonUtility.FromJson<NoodleExtensions.Beatmap>(beatmapJson).ToBeatmap();
+                            bm = JsonUtility.FromJson<BeatSaberImporter.NoodleExtensions.Beatmap>(beatmapJson).ToBeatmap();
                         }else {
-                            bm = JsonUtility.FromJson<Beatmap>(beatmapJson).ToBeatmap();
+                            bm = JsonUtility.FromJson<BeatSaberImporter.Beatmap>(beatmapJson).ToBeatmap();
                         }
 
                         foreach (var note in bm.notes) {
@@ -46,7 +46,7 @@ namespace RhythmicVR.BeatSaber {
 
                 Debug.Log("Imported Beatsaber Song successfully.");
                 Debug.Log(convertedSong.songName + " - " + convertedSong.songAuthorName + " - " + convertedSong.albumName);
-                return gm.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray(), coverFilePath:coverPath, audioFilePath:audioPath);
+                return core.SaveSongToFile(convertedSong, convertedBeatmaps.ToArray(), coverFilePath:coverPath, audioFilePath:audioPath);
             }
             catch (Exception e) {
                 Console.WriteLine(e);

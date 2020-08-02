@@ -47,6 +47,8 @@ MonoBehaviour:
   pluginName: gm_beatSaber
   assetName: Beat Saber Gamemode
   type: 0
+  dependencies:
+  - blockSong
   gamemodeName: Beat Saber
   icon: {fileID: 0}
   targetObject: {fileID: 5806336581761019135, guid: c8fe6c4ea531b084fb48e5f6147fb8b7,
@@ -58,12 +60,12 @@ MonoBehaviour:
   trackedObjects:
   - prefab: {fileID: 3827903119638515565, guid: d3514dd6aa7be03498e885799e02f95a,
       type: 3}
-    defaultVisualPrefab: {fileID: 6252578295895531179, guid: 0f9811be6db7c904eaa2b154daf1f980,
+    defaultVisualPrefab: {fileID: 7041844000146063170, guid: 40138ce6a6260cd4daa6e2e9c16a5bbc,
       type: 3}
     role: 1
   - prefab: {fileID: 3827903119638515565, guid: d3514dd6aa7be03498e885799e02f95a,
       type: 3}
-    defaultVisualPrefab: {fileID: 6252578295895531179, guid: 0f9811be6db7c904eaa2b154daf1f980,
+    defaultVisualPrefab: {fileID: 7041844000146063170, guid: 40138ce6a6260cd4daa6e2e9c16a5bbc,
       type: 3}
     role: 0
   targetSpaceMapping:

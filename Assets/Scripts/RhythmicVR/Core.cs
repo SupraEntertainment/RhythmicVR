@@ -47,13 +47,12 @@ namespace RhythmicVR {
         private List<GameObject> visualTrackedObjects = new List<GameObject>();
         private List<GameObject> menuTrackedObjects = new List<GameObject>();
 
-        private bool allowPause;
-        private bool isPaused;
+        [NonSerialized] public bool allowPause;
+        [NonSerialized] public bool isPaused;
         [NonSerialized] public bool songIsPlaying;
 
         [NonSerialized] public string playerName = "No Player Name";
         
-        [NonSerialized] public Beatmap currentlyPlayingBeatmap;
         [NonSerialized] public Song currentlyPlayingSong;
         [NonSerialized] public Gamemode currentGamemode;
         [NonSerialized] public TargetObject currentTargetObject;
@@ -314,6 +313,7 @@ namespace RhythmicVR {
             settingsManager.UpdateSettingsUi();
         }
 
+        /*
         /// <summary>
         /// Create a fake beatmap with some test notes and play them
         /// </summary>
@@ -333,7 +333,7 @@ namespace RhythmicVR {
                 notes.Add(new Note {
                     time = Random.Range((i - 0.5f) / 4f, (i + 0.5f) / 4f),
                     cutDirection = i * 6,
-                    type = possibleTypes[(int) Math.Floor(Random.value * 6)],
+                    target = possibleTypes[(int) Math.Floor(Random.value * 6)],
                     xPos = Random.value * 2 - 1,
                     yPos = Random.value * 2
                 });
@@ -342,7 +342,7 @@ namespace RhythmicVR {
             bm.notes = notes.ToArray();
             // play beatmap
             StartCoroutine(PlayNotes(bm));
-        }
+        }*/
 
         /// <summary>
         /// Load a Song from path and add to songList, reload songList UI
@@ -370,57 +370,6 @@ namespace RhythmicVR {
         }
 
         /// <summary>
-        /// Start a Beatmap
-        /// </summary>
-        /// <param name="song">The Song to play</param>
-        /// <param name="difficulty">The Difficulty, of which to take the beatmap</param>
-        /// <param name="modfiers">[Not Implemented] The modifiers to use while playing</param>
-        public void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
-            Time.timeScale = 0;
-            var bm = JsonUtility.FromJson<Beatmap>(File.ReadAllText(song.pathToDir + "/" + difficulty.beatMapPath));
-            uiManager.InBeatmap();
-            songIsPlaying = true;
-            allowPause = true;
-            currentlyPlayingBeatmap = bm;
-            currentlyPlayingSong = song;
-            ((ScoreManager.ScoreManager) pluginManager.Find("score_manager")).SelectSongAndAddPlaythrough(song);
-            StartCoroutine(PlayNotes(bm));
-            PlaySongAudio(song);
-        }
-
-        /// <summary>
-        /// Play the audio belonging to song object
-        /// </summary>
-        /// <param name="song">The song, who's audio to play</param>
-        private void PlaySongAudio(Song song) {
-            var path = song.pathToDir + song.songFile;
-            audioSource.clip = Util.GetAudioClipFromPath(path);
-            audioSource.Play();
-            Time.timeScale = 1;
-        }
-
-        /// <summary>
-        /// Play Notes coroutine, plays all notes timed properly
-        /// </summary>
-        /// <param name="bm">The beatmap to take the notes from</param>
-        /// <returns></returns>
-        private IEnumerator PlayNotes(Beatmap bm) {
-            //var beatmapLength = bm.notes[bm.notes.Length-1].time;
-            float currentTime = 0;
-            for (var i = 0; i < bm.notes.Length; i++) {
-                var note = bm.notes[i];
-                Debug.Log("Wait time: " + (note.time - currentTime));
-                yield return new WaitForSeconds((note.time - currentTime));
-                currentTime = note.time;
-                Debug.Log("Current Time: " + currentTime);
-                currentGamemode.SpawnTarget(note);
-            }
-
-            Debug.Log("Finished placing target objects");
-            StopBeatmap(1);
-        }
-
-        /// <summary>
         /// Pauses the currently playing beatmap.
         /// </summary>
         /// <param name="reason">
@@ -444,6 +393,10 @@ namespace RhythmicVR {
             }
         }
 
+        public void ExitBeatmap() {
+            currentGamemode.ExitBeatmap();
+        }
+
         /// <summary>
         /// Continue the paused beatmap. Hides Pause menu and sets the time scale back to 1 in order to continue.
         /// </summary>
@@ -456,35 +409,16 @@ namespace RhythmicVR {
         }
 
         /// <summary>
-        /// Exit the currently playing beatmap (stops the coroutine, disables pause button, hides pause menu, and returns to the menu)
-        /// </summary>
-        public void ExitBeatmap() {
-            StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
-            var scoreManager = ((ScoreManager.ScoreManager) pluginManager.Find("score_manager"));
-            scoreManager.SaveCurrentScores();
-            scoreManager.DisplayScoresOnScoreboard(currentlyPlayingSong);
-            audioSource.time = 0;
-            audioSource.clip = null;
-            allowPause = false;
-            isPaused = false;
-            StopCoroutine(PlayNotes(currentlyPlayingBeatmap));
-            foreach (var target in FindObjectsOfType<TargetObject>()) {
-                Destroy(target.gameObject);
-            }
-
-            uiManager.ToSongListMenu();
-            uiManager.HidePauseMenu();
-        }
-
-        /// <summary>
         /// Write song, all Beatmaps, the Cover Image and Audio to their Files
         /// </summary>
         /// <param name="songObject">The "Song" Object</param>
         /// <param name="beatmaps">The "Beatmap" Objects</param>
-        /// <param name="cover">The cover Image as byte Array</param>
-        /// <param name="audio">The audio File as byte Array</param>
+        /// <param name="coverData">The cover Image as byte Array</param>
+        /// <param name="audioData">The audio File as byte Array</param>
+        /// <param name="coverFilePath">The file path to the cover image file to copy to the target directory</param>
+        /// <param name="audioFilePath">The file path to the audio file to copy to the target directory</param>
         /// <returns>the path to the song</returns>
-        public string SaveSongToFile(Song songObject, Beatmap[] beatmaps, byte[] cover = null, byte[] audio = null, string coverFilePath = "", string audioFilePath = "") {
+        public string SaveSongToFile<T>(Song songObject, T[] beatmaps, byte[] coverData = null, byte[] audioData = null, string coverFilePath = "", string audioFilePath = "") {
             string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + "/";
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
@@ -492,24 +426,24 @@ namespace RhythmicVR {
             File.WriteAllText(pathToSong + "level.json", JsonUtility.ToJson(songObject, true));
 
             // copy file or write from bytes
-            if (coverFilePath != null) {
+            if (coverFilePath != null && !File.Exists(pathToSong + songObject.coverImageFile)) {
                 File.Copy(coverFilePath, pathToSong + songObject.coverImageFile);
             }
-            else if (cover != null) {
-                File.WriteAllBytes(pathToSong + songObject.coverImageFile, cover);
+            else if (coverData != null) {
+                File.WriteAllBytes(pathToSong + songObject.coverImageFile, coverData);
             }
             
             // copy file or write from bytes
-            if (audioFilePath != null) {
+            if (audioFilePath != null && !File.Exists(pathToSong + songObject.songFile)) {
                 File.Copy(audioFilePath, pathToSong + songObject.songFile);
             }
-            else if (audio != null) {
-                File.WriteAllBytes(pathToSong + songObject.songFile, audio);
+            else if (audioData != null) {
+                File.WriteAllBytes(pathToSong + songObject.songFile, audioData);
             }
-            
-            for (var index = 0; index < beatmaps.Length; index++) {
-                var beatmap = beatmaps[index];
-                File.WriteAllText(pathToSong + songObject.difficulties[index].beatMapPath, JsonUtility.ToJson(beatmap, true));
+
+            for (var i = 0; i < beatmaps.Length; i++) {
+                var beatmap = beatmaps[i];
+                File.WriteAllText(pathToSong + songObject.difficulties[i].beatMapPath, JsonUtility.ToJson(beatmap, true));
             }
 
             return pathToSong;
@@ -532,7 +466,7 @@ namespace RhythmicVR {
             
             currentGamemode = gm;
             target = gm.targetObject; //set the target object
-            currentTargetObject = target.GetComponent<TargetObject>(); //set the target component (TODO: still arguing about which of theese two to use)
+            currentTargetObject = target.GetComponent<TargetObject>(); //set the target component (TODO: still arguing about which of these two to use)
             
             
             foreach (var trackedDevicePair in gm.trackedObjects) { // iterate over all available tracking points in gamemode

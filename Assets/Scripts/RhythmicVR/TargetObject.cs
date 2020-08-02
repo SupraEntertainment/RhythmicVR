@@ -10,7 +10,9 @@ namespace RhythmicVR {
 		/// Initialize note (set linked data, assign rotation, material, etc)
 		/// </summary>
 		/// <param name="data">note data</param>
-		public abstract void InitNote(Note data);
+		public virtual void InitNote(Note data) {
+			
+		}
 
 		/// <summary>
 		/// look if it should be hit by the tracking point it got hit with (rest of logic is done on gamemode side (GenericTrackedOBject)
@@ -18,7 +20,7 @@ namespace RhythmicVR {
 		/// <param name="tp">The tracking point to match with</param>
 		/// <returns>successful or not</returns>
 		public bool MatchCollider(TrackingPoint tp) {
-			foreach (var trackingPoint in linkedData.type) {
+			foreach (var trackingPoint in linkedData.target) {
 				if (trackingPoint == tp) {
 					return true;
 				}

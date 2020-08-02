@@ -43,7 +43,7 @@ namespace RhythmicVR.BeatSaber {
 					diffic.difficulty = difficultyBeatmap._difficultyRank;
 					diffic.beatMapAuthor = _levelAuthorName;
 					diffic.beatMapPath = difficultyBeatmap._beatmapFilename;
-					diffic.gamemode = "Beat Saber";
+					diffic.type = "blockSong";
 					difficulties.Add(diffic);
 				}
 			}

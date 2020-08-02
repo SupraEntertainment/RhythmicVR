@@ -4,8 +4,8 @@ using RhythmicVR;
 using UnityEngine;
 using Beatmap = BlockSong.Beatmap;
 
-namespace BeatPunchGamemode {
-	public class BeatPunchGamemode : Gamemode {
+namespace BeatSaber {
+	public class BeatSaberGamemode : Gamemode {
 
 		/// <summary>
 		/// Spawn a Target Object
@@ -14,7 +14,7 @@ namespace BeatPunchGamemode {
 		public void SpawnTarget(BlockSong.Note noteData) {
 			noteData.xPos = noteData.xPos / 2;
 			noteData.yPos = noteData.yPos / 2;
-			GameObject cube = Instantiate(targetObject, new Vector3(noteData.xPos, noteData.yPos, core.spawnDistance), new Quaternion(0, 0, noteData.cutDirection, 0));
+			GameObject cube = Instantiate(targetObject.gameObject, new Vector3(noteData.xPos, noteData.yPos, core.spawnDistance), new Quaternion(0, 0, noteData.cutDirection, 0));
 			cube.GetComponent<BlockSongTargetObject>().InitNote(noteData);
 		}
 
@@ -32,7 +32,7 @@ namespace BeatPunchGamemode {
 		public override void StartBeatmap(Song song, Difficulty difficulty, string modfiers) {
 			Time.timeScale = 0;
 			BlockSong.BlockSong st = (BlockSong.BlockSong)core.pluginManager.Find(difficulty.type);
-			Beatmap bm = st.LoadBeatmap(song.pathToDir + "/" + difficulty.beatMapPath);
+			var bm = st.LoadBeatmap(song.pathToDir + "/" + difficulty.beatMapPath);
 			core.uiManager.InBeatmap();
 			core.songIsPlaying = true;
 			core.allowPause = true;
@@ -63,5 +63,6 @@ namespace BeatPunchGamemode {
 			Debug.Log("Finished placing target objects");
 			core.StopBeatmap(1);
 		}
+	
 	}
 }

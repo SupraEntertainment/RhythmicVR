@@ -22,8 +22,6 @@ namespace RhythmicVR {
 		public string leftFootTool;
 		public string rightFootTool;
 		public string environment;
-		public string targetObject = "cube";
-		public string obstacleObject;
 		public Difficulty[] difficulties;
 		[System.NonSerialized] public string pathToDir;
 		[System.NonSerialized] public GameObject uiPanel;

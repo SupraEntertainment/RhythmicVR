@@ -67,8 +67,10 @@ namespace RhythmicVR {
 						loadedEnvironments.Add(plugin.gameObject);
 						break;
 					case AssetType.Gamemode:
-						loadedGamemodes.Add((Gamemode)plugin);
-						plugin.Init(core);
+						var gamemode = core.SimpleInstantiate(plugin.gameObject).GetComponent<Gamemode>();
+						loadedGamemodes.Add(gamemode);
+						loadedPlugins.Add(gamemode);
+						gamemode.Init(core);
 						break;
 					case AssetType.Misc:
 						var pl = core.SimpleInstantiate(plugin.gameObject).GetComponent<PluginBaseClass>();

@@ -1,4 +1,4 @@
-﻿namespace RhythmicVR {
+﻿namespace BlockSong {
     
     [System.Serializable]
     public class Event {
