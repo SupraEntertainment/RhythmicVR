@@ -323,21 +323,23 @@ namespace RhythmicVR {
         /* in-game panels */
 
         private void PopulateInGamePanels() {
-            if (scoreManager.scoreConfig.showOverlay) {
-                if (scoreManager.scoreConfig.showOverallScore) {
-                    scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
-                }
-                if (scoreManager.scoreConfig.showMultiplier) {
-                    multiplierText.text = scoreManager.currentPlaythrough.GetMultiplier().x.ToString();
-                }
-                if (scoreManager.scoreConfig.showCurrentTargetScore) {
-                    //scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
-                }
+            if (scoreManager) {
+                if (scoreManager.scoreConfig.showOverlay) {
+                    if (scoreManager.scoreConfig.showOverallScore) {
+                        scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
+                    }
+                    if (scoreManager.scoreConfig.showMultiplier) {
+                        multiplierText.text = scoreManager.currentPlaythrough.GetMultiplier().x.ToString();
+                    }
+                    if (scoreManager.scoreConfig.showCurrentTargetScore) {
+                        //scoreText.text = scoreManager.currentPlaythrough.GetScore().ToString();
+                    }
 
-                if ((object)core.audioSource.clip != null) {
-                    var audioSource = core.audioSource;
-                    progressBar.fillAmount = 1 / audioSource.clip.length * audioSource.time;
-                    progressText.text = Util.ParseSeconds(audioSource.time) + " / " + Util.ParseSeconds(audioSource.clip.length);
+                    if ((object)core.audioSource.clip != null) {
+                        var audioSource = core.audioSource;
+                        progressBar.fillAmount = 1 / audioSource.clip.length * audioSource.time;
+                        progressText.text = Util.ParseSeconds(audioSource.time) + " / " + Util.ParseSeconds(audioSource.clip.length);
+                    }
                 }
             }
         }
