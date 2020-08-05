@@ -173,9 +173,14 @@ namespace RhythmicVR {
             //external plugins
             pluginManager.LoadPluginsFromFolder(config.pluginSavePath);
 
-            SetGamemode(pluginManager.GetAllGamemodes()[0]);
+            if (pluginManager.GetAllGamemodes().Count != 0) {
+                SetGamemode(pluginManager.GetAllGamemodes()[0]);
+            }
+            if (pluginManager.GetAllEnvironments().Count != 0) {
+                SetEnvironment(pluginManager.GetAllEnvironments()[0]);
+            }
+            
             uiManager.AddGamemodesToDropdown();
-            SetEnvironment(pluginManager.GetAllEnvironments()[0]);
         }
 
         /// <summary>
