@@ -424,7 +424,12 @@ namespace RhythmicVR {
         /// <param name="audioFilePath">The file path to the audio file to copy to the target directory</param>
         /// <returns>the path to the song</returns>
         public string SaveSongToFile<T>(Song songObject, T[] beatmaps, byte[] coverData = null, byte[] audioData = null, string coverFilePath = "", string audioFilePath = "") {
-            string pathToSong = config.songSavePath + songObject.id + "_" + songObject.songName.Replace("/", "") + "/";
+            string songName = songObject.songName;
+            foreach (var invalidCharacter in Path.GetInvalidPathChars()) {
+                songName = songName.Replace(invalidCharacter, '_');
+            }
+            string pathToSong = config.songSavePath + songObject.id + "_" + songName + "/";
+            
             if (!Directory.Exists(pathToSong)) {
                 Directory.CreateDirectory(pathToSong);
             }
