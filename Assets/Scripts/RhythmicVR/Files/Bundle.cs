@@ -2,7 +2,6 @@
 
 namespace RhythmicVR.Files
 {
-    [CreateAssetMenu(fileName = "New Plugin", menuName = "RhythmicVR/Plugin")]
     public class Bundle : ScriptableObject
     {
         public GameObject Prefab;
