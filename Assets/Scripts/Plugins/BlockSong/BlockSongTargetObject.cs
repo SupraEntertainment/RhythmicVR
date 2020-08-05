@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BlockSong {
 	public class BlockSongTargetObject : TargetObject {
-		private new Note linkedData;
+		private Note linkedData;
 	
 		/// <summary>
 		/// Initialize note (set linked data, assign rotation, material, etc)

@@ -2,7 +2,7 @@
 
 namespace RhythmicVR {
 	public abstract class TargetObject : MonoBehaviour {
-		protected Note linkedData = new Note();
+		private Note data = new Note();
 		protected bool isInitialized;
 		public bool shouldDespawnBehindPlayer = true;
 
@@ -11,7 +11,7 @@ namespace RhythmicVR {
 		/// </summary>
 		/// <param name="data">note data</param>
 		public virtual void InitNote(Note data) {
-			
+			this.data = data;
 		}
 
 		/// <summary>
@@ -20,7 +20,7 @@ namespace RhythmicVR {
 		/// <param name="tp">The tracking point to match with</param>
 		/// <returns>successful or not</returns>
 		public bool MatchCollider(TrackingPoint tp) {
-			foreach (var trackingPoint in linkedData.target) {
+			foreach (var trackingPoint in data.target) {
 				if (trackingPoint == tp) {
 					return true;
 				}
