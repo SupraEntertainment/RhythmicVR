@@ -66,7 +66,12 @@ namespace RhythmicVR {
         private List<GameObject> loadedSongs = new List<GameObject>();
 
         public void Start() {
-            scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("score_manager");
+            try {
+                scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("score_manager");
+            }
+            catch (Exception e) {
+                Debug.Log(e);
+            }
             uiActionSet.Activate();
             ToMainMenu();
             PopulateInGamePanels();
@@ -295,7 +300,9 @@ namespace RhythmicVR {
             displayedProperties.Clear();
             displayedProperties.Add("bpm", song.beatsPerMinute);
 
-            scoreManager.DisplayScoresOnScoreboard(song);
+            if ((object)scoreManager != null) {
+                scoreManager.DisplayScoresOnScoreboard(song);
+            }
 
             SetDisplayedProperties();
         }
