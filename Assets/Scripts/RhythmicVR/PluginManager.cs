@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
+using Ionic.Zip;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -184,6 +184,7 @@ namespace RhythmicVR {
 		public void LoadPluginsFromFolder(string path) {
 			List<PluginBaseClass> pluginsOut = new List<PluginBaseClass>();
 
+			
 			if (Util.EnsureDirectoryIntegrity(path, true)) {
 				string platformDir = "";
 #if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
@@ -199,7 +200,25 @@ namespace RhythmicVR {
 					}	
 #endif
 					try {
+
+						
 						Byte[] data = new byte[]{};
+
+						//Open the stream and read it back.
+						using (FileStream fs = new FileStream(pluginPath, FileMode.Open)) {
+							MemoryStream ms = new MemoryStream();
+							using (ZipFile zip = ZipFile.Read(fs)) {
+								foreach (ZipEntry entry in zip)
+								{
+									if (entry.FileName.Contains(platformDir)) {
+										entry.Extract(ms);
+										data = ms.ToArray();
+									}
+								}
+							}
+						}
+
+						/*
 						var file = File.OpenRead(pluginPath);
 						var zip = new ZipArchive(file, ZipArchiveMode.Read);
 						foreach(var entry in zip.Entries) {
@@ -207,7 +226,8 @@ namespace RhythmicVR {
 								var stream = entry.Open();
 								data = ReadStreamFully(stream);
 							}
-						}
+						}*/
+
 						AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
 						string[] assetNames = assetBundle.GetAllAssetNames();
 						string assetName = "";
