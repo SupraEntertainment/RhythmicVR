@@ -13,7 +13,6 @@ namespace RhythmicVR {
 		public string appData;
 		public string songSavePath;
 		public string pluginSavePath;
-		public string tempPluginRuntimePath;
 		public string keyboardSavePath;
 		public float lastSelectedDifficulty;
 		public string lastSongSorting;
@@ -38,10 +37,6 @@ namespace RhythmicVR {
 
 			if (pluginSavePath == null) {
 				pluginSavePath = appData + "plugins/";
-			}
-
-			if (tempPluginRuntimePath == null) {
-				tempPluginRuntimePath = appData + "plugins_temp_loading/";
 			}
 
 			if (keyboardSavePath == null) {

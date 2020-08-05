@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
+using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -184,13 +184,12 @@ namespace RhythmicVR {
 		public void LoadPluginsFromFolder(string path) {
 			List<PluginBaseClass> pluginsOut = new List<PluginBaseClass>();
 
+			string tempPath = path + "temp/";
+
+			Directory.CreateDirectory(tempPath);
+			
+
 			if (Util.EnsureDirectoryIntegrity(path, true)) {
-				string platformDir = "";
-#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
-				platformDir = "win64";
-#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
-				platformDir = "lin64";
-#endif
 				string[] pluginPaths = Directory.GetFiles(path);
 				foreach (var pluginPath in pluginPaths) {
 #if UNITY_EDITOR
@@ -198,53 +197,39 @@ namespace RhythmicVR {
 						continue;
 					}	
 #endif
-					try {
-						Byte[] data = new byte[]{};
-						var file = File.OpenRead(pluginPath);
-						var zip = new ZipArchive(file, ZipArchiveMode.Read);
-						foreach(var entry in zip.Entries) {
-							if (entry.FullName.Contains(platformDir)) {
-								var stream = entry.Open();
-								data = ReadStreamFully(stream);
-							}
+					string destPath = tempPath + Path.GetFileName(pluginPath);
+					var zip = new FastZip();
+					zip.ExtractZip(pluginPath, destPath, "");
+					string destPathPlatform = destPath + "/";
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
+					destPathPlatform += "win64";
+#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
+					destPathPlatform += "lin64";
+#endif
+					destPathPlatform = Directory.GetFiles(destPathPlatform)[0];
+					AssetBundle assetBundle = AssetBundle.LoadFromFile(destPathPlatform);
+					string[] assetNames = assetBundle.GetAllAssetNames();
+					string assetName = "";
+					foreach (var asset in assetNames) {
+						if (asset.Contains("plugin") && asset.Contains(".prefab")) {
+							assetName = asset;
+							break;
 						}
-						AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
-						string[] assetNames = assetBundle.GetAllAssetNames();
-						string assetName = "";
-						foreach (var asset in assetNames) {
-							if (asset.Contains("plugin") && asset.Contains(".prefab")) {
-								assetName = asset;
-								break;
-							}
-						}
-						GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
-						PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
-
-						pluginsOut.Add(plugin);
-
 					}
-					catch (Exception e) {
-						Debug.Log("Could not load Plugin from file");
-						Debug.Log(e);
-					}
+					GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
+					PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
+					pluginsOut.Add(plugin);
 				}
+			}
+
+			try {
+				Directory.Delete(tempPath);
+			}
+			catch (Exception e) {
+				Debug.Log("Could not delete temporary plugin directory");
 			}
 
 			AddPlugins(pluginsOut.ToArray());
-		}
-			
-		private static byte[] ReadStreamFully(Stream input)
-		{
-			byte[] buffer = new byte[16*1024];
-			using (MemoryStream ms = new MemoryStream())
-			{
-				int read;
-				while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-				{
-					ms.Write(buffer, 0, read);
-				}
-				return ms.ToArray();
-			}
 		}
 	}
 }
