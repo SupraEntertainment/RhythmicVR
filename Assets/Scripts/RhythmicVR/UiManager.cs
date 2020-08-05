@@ -210,7 +210,7 @@ namespace RhythmicVR {
             int max = songs.Count;
 
             var prt = parent.GetComponent<RectTransform>();
-            prt.sizeDelta = new Vector2(0, 20 + songs.Count * (buttonPrefab.GetComponent<RectTransform>().rect.height+20));
+            prt.sizeDelta = new Vector2(0, songs.Count * (buttonPrefab.GetComponent<RectTransform>().rect.height+20));
             for (var i = 0; i < songs.Count; i++) {
                 var song = songs[i];
                 GameObject button;
@@ -222,7 +222,7 @@ namespace RhythmicVR {
                     button = song.uiPanel;
                 }
                 var rt = button.GetComponent<RectTransform>();
-                button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -20 - i * (rt.rect.height+20));
+                button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -i * (rt.rect.height));
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
                 loadedSongs.Add(button);
                 
