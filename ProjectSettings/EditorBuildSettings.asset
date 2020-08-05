@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/inGame.unity
     guid: 564a3bf916e734e44ab2ac6bfa3662ac
   m_configObjects:
-    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 173704bc576067843a9d656c54f75cb6,
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: da2a8fc9cb7d7d940a4fa822b394bded,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9f0dc9f13d5420d439cbc0e8e7ff6ce6,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b059632608710654b9808e71d5926330,
       type: 2}
