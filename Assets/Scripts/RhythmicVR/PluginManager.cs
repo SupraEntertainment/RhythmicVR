@@ -184,11 +184,7 @@ namespace RhythmicVR {
 		public void LoadPluginsFromFolder(string path) {
 			List<PluginBaseClass> pluginsOut = new List<PluginBaseClass>();
 
-			string tempPath = path + "temp/";
-
-			Directory.CreateDirectory(tempPath);
 			
-
 			if (Util.EnsureDirectoryIntegrity(path, true)) {
 				string[] pluginPaths = Directory.GetFiles(path);
 				foreach (var pluginPath in pluginPaths) {
@@ -197,24 +193,50 @@ namespace RhythmicVR {
 						continue;
 					}	
 #endif
-					string destPath = tempPath + Path.GetFileName(pluginPath);
-					var zip = new FastZip();
-					zip.ExtractZip(pluginPath, destPath, "");
-					string destPathPlatform = destPath + "/";
-#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
-					destPathPlatform += "win64";
-#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
-					destPathPlatform += "lin64";
-#endif
-					destPathPlatform = Directory.GetFiles(destPathPlatform)[0];
-					AssetBundle assetBundle = AssetBundle.LoadFromFile(destPathPlatform);
-					string[] assetNames = assetBundle.GetAllAssetNames();
-					string assetName = "";
-					foreach (var asset in assetNames) {
-						if (asset.Contains("plugin") && asset.Contains(".prefab")) {
-							assetName = asset;
-							break;
+					try {
+
+						
+						Byte[] data = new byte[]{};
+
+						//Open the stream and read it back.
+						// Using DotNetZip
+						/*using (FileStream fs = new FileStream(pluginPath, FileMode.Open)) {
+							MemoryStream ms = new MemoryStream();
+							using (ZipFile zip = ZipFile.Read(fs)) {
+								foreach (ZipEntry entry in zip)
+								{
+									if (entry.FileName.Contains(platformDir)) {
+										entry.Extract(ms);
+										data = ms.ToArray();
+									}
+								}
+							}
+						}*/
+
+						// Using System.IO.Compression
+						var file = File.OpenRead(pluginPath);
+						var zip = new ZipArchive(file, ZipArchiveMode.Read);
+						foreach(var entry in zip.Entries) {
+							if (entry.FullName.Contains(platformDir)) {
+								var stream = entry.Open();
+								data = ReadStreamFully(stream);
+							}
 						}
+
+						AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
+						string[] assetNames = assetBundle.GetAllAssetNames();
+						string assetName = "";
+						foreach (var asset in assetNames) {
+							if (asset.Contains("plugin") && asset.Contains(".prefab")) {
+								assetName = asset;
+								break;
+							}
+						}
+						GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
+						PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
+
+						pluginsOut.Add(plugin);
+
 					}
 					GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
 					PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
