@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
@@ -184,8 +185,13 @@ namespace RhythmicVR {
 		public void LoadPluginsFromFolder(string path) {
 			List<PluginBaseClass> pluginsOut = new List<PluginBaseClass>();
 
-			
 			if (Util.EnsureDirectoryIntegrity(path, true)) {
+				string platformDir = "";
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
+				platformDir = "win64";
+#elif (UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX)
+				platformDir = "lin64";
+#endif
 				string[] pluginPaths = Directory.GetFiles(path);
 				foreach (var pluginPath in pluginPaths) {
 #if UNITY_EDITOR
@@ -195,8 +201,7 @@ namespace RhythmicVR {
 #endif
 					try {
 
-						
-						Byte[] data = new byte[]{};
+						Byte[] data = new byte[] { };
 
 						//Open the stream and read it back.
 						// Using DotNetZip
@@ -222,7 +227,6 @@ namespace RhythmicVR {
 								data = ReadStreamFully(stream);
 							}
 						}
-
 						AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
 						string[] assetNames = assetBundle.GetAllAssetNames();
 						string assetName = "";
@@ -238,20 +242,28 @@ namespace RhythmicVR {
 						pluginsOut.Add(plugin);
 
 					}
-					GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
-					PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
-					pluginsOut.Add(plugin);
+					catch (Exception e) {
+						Debug.Log("Could not load Plugin from file");
+						Debug.Log(e);
+					}
 				}
 			}
 
-			try {
-				Directory.Delete(tempPath);
-			}
-			catch (Exception e) {
-				Debug.Log("Could not delete temporary plugin directory");
-			}
-
 			AddPlugins(pluginsOut.ToArray());
+		}
+			
+		private static byte[] ReadStreamFully(Stream input)
+		{
+			byte[] buffer = new byte[16*1024];
+			using (MemoryStream ms = new MemoryStream())
+			{
+				int read;
+				while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					ms.Write(buffer, 0, read);
+				}
+				return ms.ToArray();
+			}
 		}
 	}
 }
