@@ -64,6 +64,9 @@ namespace RhythmicVR {
 
         private ScoreManager.ScoreManager scoreManager;
         private List<GameObject> loadedSongs = new List<GameObject>();
+        private GameObject lastSelectedSong;
+        private GameObject lastSelectedDifficulty;
+        private GameObject lastSelectedDifficultyCategory;
 
         public void Start() {
             try {
@@ -228,6 +231,7 @@ namespace RhythmicVR {
                 }
                 var rt = button.GetComponent<RectTransform>();
                 button.GetComponent<RectTransform>().anchoredPosition = new Vector2(rt.anchoredPosition.x, -i * (rt.rect.height));
+                button.GetComponent<Button>().onClick.RemoveAllListeners();
                 button.GetComponent<Button>().onClick.AddListener(delegate { DisplaySongInfo(song); });
                 loadedSongs.Add(button);
                 
@@ -252,6 +256,17 @@ namespace RhythmicVR {
         public void DisplaySongInfo(Song song) {
             Debug.Log("Displaying Song " + song.songName + " by " + song.songAuthorName);
 
+            if (lastSelectedSong != null) {
+                var oldColors = lastSelectedSong.GetComponent<Button>().colors;
+                oldColors.normalColor = new Color32(0, 255, 255, 38);
+                lastSelectedSong.GetComponent<Button>().colors = oldColors;
+            }
+            lastSelectedSong = song.uiPanel;
+            
+            var colors = lastSelectedSong.GetComponent<Button>().colors;
+            colors.normalColor = new Color32(0, 255, 255, 85);
+            lastSelectedSong.GetComponent<Button>().colors = colors;
+            
             core.currentlyPlayingSong = song;
 
             float closestDifficultyDistance = 1000;
@@ -286,15 +301,14 @@ namespace RhythmicVR {
                 var button = Instantiate(difficultyButton, beatmapDifficultyPanel);
                 button.GetComponentInChildren<Text>().text = song.difficulties[i].name;
                 button.GetComponent<Button>().onClick.AddListener(delegate {
-                    SetPlayButtonListener(delegate {
-                        core.currentGamemode.StartBeatmap(song, song.difficulties[i1], null);
-                    });
-                    core.config.lastSelectedDifficulty = song.difficulties[i1].difficulty;
-                    Debug.Log("Selected Difficulty " + i1);
+                    SelectDifficulty(i1, song, button);
                 });
                 var rt = button.GetComponent<RectTransform>();
                 rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -i * difButHeight);
                 button.GetComponent<RectTransform>().sizeDelta = new Vector2(rt.sizeDelta.x, difButHeight);
+                if (difficultyClosestToSelectedDifficultyRankingIndex == i) {
+                    SelectDifficulty(i, song, button);
+                }
             }
             
             displayedProperties.Clear();
@@ -305,6 +319,25 @@ namespace RhythmicVR {
             }
 
             SetDisplayedProperties();
+        }
+
+        private void SelectDifficulty(int i, Song song, GameObject button) {
+            if (lastSelectedDifficulty != null) {
+                var oldColors = lastSelectedDifficulty.GetComponent<Button>().colors;
+                oldColors.normalColor = new Color32(0, 255, 255, 38);
+                lastSelectedDifficulty.GetComponent<Button>().colors = oldColors;
+            }
+            lastSelectedDifficulty = button;
+            
+            var colors = lastSelectedDifficulty.GetComponent<Button>().colors;
+            colors.normalColor = new Color32(0, 255, 255, 85);
+            lastSelectedDifficulty.GetComponent<Button>().colors = colors;
+                    
+            SetPlayButtonListener(delegate {
+                core.currentGamemode.StartBeatmap(song, song.difficulties[i], null);
+            });
+            core.config.lastSelectedDifficulty = song.difficulties[i].difficulty;
+            Debug.Log("Selected Difficulty " + i);
         }
 
         public void SetDisplayedProperties() {
