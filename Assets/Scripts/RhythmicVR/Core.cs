@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using BeatSaber;
 using UnityEngine;
-using Valve.VR;
+//using Valve.VR;
+using BlockSong = BlockSong.BlockSong;
 using Random = UnityEngine.Random;
 
 namespace RhythmicVR {
@@ -38,9 +39,9 @@ namespace RhythmicVR {
         [NonSerialized] public Config config;
         public PluginManager pluginManager;
         public SongList songList = new SongList();
-        public SteamVR_Action_Boolean pauseButton;
-        public SteamVR_Action_Pose pointerOffset;
-        public SteamVR_Action_Pose gripPosition;
+        //public SteamVR_Action_Boolean pauseButton;
+        //public SteamVR_Action_Pose pointerOffset;
+        //public SteamVR_Action_Pose gripPosition;
         [NonSerialized]  public SettingsManager settingsManager;
         [NonSerialized] public AudioSource audioSource;
         private List<GameObject> trackedObjects = new List<GameObject>();
@@ -92,8 +93,8 @@ namespace RhythmicVR {
 
             //SetControllerPointerOffset();
 
-            Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand), leftHand.Find("pointerOffset"), "tip"); 
-            Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("pointerOffset"), "tip"); 
+            //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.LeftHand), leftHand.Find("pointerOffset"), "tip"); 
+            //Util.FetchPoseOffset(OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand), rightHand.Find("pointerOffset"), "tip"); 
             
             uiManager.ListSongs(songList.GetAllSongs());
 
@@ -108,18 +109,18 @@ namespace RhythmicVR {
             playerTransform.rotation = Quaternion.Euler(config.playspaceRotation[0], config.playspaceRotation[1], config.playspaceRotation[2]);
         }
 
-        private void SetControllerPointerOffset() {
+        /*private void SetControllerPointerOffset() {
             var l = leftHand.Find("pointerOffset");
             var r = rightHand.Find("pointerOffset");
 
             pointerOffset.UpdateTransform(SteamVR_Input_Sources.LeftHand, l);
             pointerOffset.UpdateTransform(SteamVR_Input_Sources.RightHand, r);
-        }
+        }*/
 
         /// <summary>
         /// handle pause button
         /// </summary>
-        private void Update() {
+        /*private void Update() {
             if (allowPause) {
                 if (pauseButton.stateUp) {
                     if (isPaused) {
@@ -131,7 +132,7 @@ namespace RhythmicVR {
                     }
                 }
             }
-        }
+        }*/
 
         /// <summary>
         /// Set all static values, this is a really jank way of doing and should never be done...

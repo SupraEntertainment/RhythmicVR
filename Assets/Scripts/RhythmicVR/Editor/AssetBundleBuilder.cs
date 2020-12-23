@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using Valve.Newtonsoft.Json.Utilities;
+//using Valve.Newtonsoft.Json.Utilities;
 
 namespace RhythmicVR.Editor {
     
@@ -11,8 +11,8 @@ namespace RhythmicVR.Editor {
 
         public static void BuildAssetBundles(GameObject conentes) {
             AssetBundleBuild[] builds = new AssetBundleBuild[]{};
-            var abb = new AssetBundleBuild();
-            builds.AddDistinct(abb);
+            AssetBundleBuild abb = new AssetBundleBuild();
+            builds[0] = abb;
             
             var uniqueID = GUID.Generate();
             var prefab = PrefabUtility.SaveAsPrefabAsset(conentes, $"Assets/Asset_{uniqueID}.prefab", out bool succeeded);

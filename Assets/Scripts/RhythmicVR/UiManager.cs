@@ -8,14 +8,14 @@ using SFB;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Valve.VR;
+//using Valve.VR;
 
 namespace RhythmicVR {
     public class UiManager : MonoBehaviour {
 
         public Core core;
         public RectTransform songListParent;
-        public SteamVR_ActionSet uiActionSet;
+        //public SteamVR_ActionSet uiActionSet;
 
         [Header("Menus")] 
         public GameObject songList;
@@ -75,7 +75,7 @@ namespace RhythmicVR {
             catch (Exception e) {
                 Debug.Log(e);
             }
-            uiActionSet.Activate();
+            //uiActionSet.Activate();
             ToMainMenu();
             PopulateInGamePanels();
         }

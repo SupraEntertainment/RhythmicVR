@@ -127,10 +127,10 @@ namespace RhythmicVR
                 EditorUtility.ClearProgressBar();
                 Debug.Log($"Building bundles");
                 List<AssetBundleManifest> buildManifests = new List<AssetBundleManifest>();
-                buildManifests.Add(BuildPipeline.BuildAssetBundles(ModFolder + "/win64", new AssetBundleBuild[] { abb, sbb },
-                     BuildAssetBundleOptions.None,
-                     BuildTarget.StandaloneWindows64));
-                buildManifests.Add(BuildPipeline.BuildAssetBundles(ModFolder + "/lin64", new AssetBundleBuild[] { abb, sbb },
+                buildManifests.Add(BuildPipeline.BuildAssetBundles(ModFolder + "/win64", new AssetBundleBuild[] { abb, sbb }, 
+                                                                   BuildAssetBundleOptions.None, 
+                                                                   BuildTarget.StandaloneWindows64));
+                buildManifests.Add(BuildPipeline.BuildAssetBundles(ModFolder + "/lin64", new AssetBundleBuild[] { abb, sbb }, 
                                                                    BuildAssetBundleOptions.None,
                                                                    BuildTarget.StandaloneLinux64));
 

@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using Valve.VR;
+//using Valve.VR;
 
 namespace RhythmicVR {
 	/// <summary>
@@ -111,7 +111,7 @@ namespace RhythmicVR {
 	        return true;
         }
         
-        public static void FetchPoseOffset(uint index, Transform pointer, string poseString) {
+        /*public static void FetchPoseOffset(uint index, Transform pointer, string poseString) {
 	        StringBuilder renderModelName = new StringBuilder(50);
 
 	        ETrackedPropertyError pError = new ETrackedPropertyError();
@@ -129,7 +129,7 @@ namespace RhythmicVR {
 	        var pose = new SteamVR_Utils.RigidTransform(compState.mTrackingToComponentLocal);
 	        pointer.localPosition = pose.pos;
 	        pointer.localRotation = pose.rot;
-        }
+        }*/
 
         public static string ParseSeconds(float seconds) {
 	        int sec = (int)Math.Floor(seconds);
