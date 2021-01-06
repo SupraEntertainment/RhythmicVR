@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de993716e042c6499d0c18eed3a773c, type: 3}
   m_Name: MockRuntime Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 1
+  m_enabled: 0
   nameUi: Mock Runtime
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.mockruntime
@@ -286,17 +286,17 @@ MonoBehaviour:
   m_Name: Standalone
   m_EditorClassIdentifier: 
   features:
-  - {fileID: 8541763619411786255}
   - {fileID: 2471171840158791620}
   - {fileID: -2497956389396341509}
   - {fileID: 8295721131543073340}
   - {fileID: -3809987166349423810}
   - {fileID: -608362002882851692}
   - {fileID: -5226761141366968355}
+  - {fileID: 8541763619411786255}
+  - {fileID: 834512254411458268}
   - {fileID: -947419874237930140}
   - {fileID: 5417286884950864677}
-  - {fileID: 834512254411458268}
-  m_renderMode: 1
+  m_renderMode: 0
   m_depthSubmissionMode: 0
 --- !u!114 &4047043398088060353
 MonoBehaviour:

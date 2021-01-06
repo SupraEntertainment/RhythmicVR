@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using BeatSaber;
 using UnityEngine;
+using UnityEngine.XR.Management;
 //using Valve.VR;
-using BlockSong = BlockSong.BlockSong;
-using Random = UnityEngine.Random;
 
 namespace RhythmicVR {
     public class Core : MonoBehaviour {
@@ -64,6 +63,8 @@ namespace RhythmicVR {
         public float currentScore = 0;
 
         private void Start() {
+	        XRGeneralSettings settings = XRGeneralSettings.Instance;
+	        settings.Manager.activeLoader.Start();
 
             if (GetComponent<AudioSource>()) {
                 audioSource = GetComponent<AudioSource>();

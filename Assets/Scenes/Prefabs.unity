@@ -1089,11 +1089,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1146658358885889987, guid: 4438a2b2bda5f4d4686617319e824f71,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9039626477198497573, guid: 4438a2b2bda5f4d4686617319e824f71,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1203,11 +1198,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KeyboardCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 9039626477198497574, guid: 4438a2b2bda5f4d4686617319e824f71,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4438a2b2bda5f4d4686617319e824f71, type: 3}

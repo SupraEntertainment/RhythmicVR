@@ -1,0 +1,191 @@
+{
+    "name": "Default",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "0e7c516b-236b-4d62-a3f6-db001b648b9e",
+            "actions": [
+                {
+                    "name": "click_ui",
+                    "type": "Button",
+                    "id": "6635163b-74e5-4e68-8337-2f971a2a1f49",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "scroll",
+                    "type": "Value",
+                    "id": "2e3213da-fe19-4d13-bae6-2fee63fc4d95",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Hold"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2d9dfdaf-c31b-45ba-ac97-9582e576d4d8",
+                    "path": "<XRController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "click_ui",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0dfbe098-9b94-4cf6-a928-2c7b98cc639c",
+                    "path": "<XRController>/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02d25e6d-c9a5-4a1a-a7dd-64291b28badb",
+                    "path": "<XRController>/touchpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Tracking",
+            "id": "e8c01aa9-0929-4067-96b1-44cfd336dd3c",
+            "actions": [
+                {
+                    "name": "LeftControllerPosition",
+                    "type": "Value",
+                    "id": "a0ed3016-f373-451c-ac17-61a04c7b9f2c",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftControllerRotation",
+                    "type": "Value",
+                    "id": "aadf5181-f5cc-4a15-a70a-66918076c672",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightControllerPosition",
+                    "type": "Value",
+                    "id": "03e56336-1167-47e4-9087-92658a0027c5",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightControllerRotation",
+                    "type": "Value",
+                    "id": "09c7d600-e3e6-4050-87ed-7a5aa8c3daf2",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "WaistTrackerPosition",
+                    "type": "Value",
+                    "id": "e08e55bc-d265-4fa7-b2c8-140488e93b9b",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "WaistTrackerRotation",
+                    "type": "Value",
+                    "id": "0238a2e3-b4dd-4f02-90c3-1eb76a55fa70",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a03ba4e1-2fff-4633-b248-13653f7597c9",
+                    "path": "<XRController>{LeftHand}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftControllerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47729890-17f1-4d60-964b-4693789e2b0e",
+                    "path": "<XRController>{LeftHand}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftControllerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a607d86a-a580-4d96-9cf8-a380f07ab20a",
+                    "path": "<XRController>{RightHand}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightControllerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff7f4e1e-805f-4f8b-a8dc-cbebe65542ab",
+                    "path": "<XRController>{RightHand}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightControllerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f066a5ca-25a3-46ff-87a5-2607702aecb4",
+                    "path": "<TrackedDevice>/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WaistTrackerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ddd2146-a8fe-4424-86c6-f3211a4af57d",
+                    "path": "<TrackedDevice>/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WaistTrackerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Default",
+            "bindingGroup": "Default",
+            "devices": []
+        }
+    ]
+}
