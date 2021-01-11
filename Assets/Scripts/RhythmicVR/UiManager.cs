@@ -104,6 +104,8 @@ namespace RhythmicVR {
         
         // pause and unpause
         public void ShowPauseMenu(int reason) {
+	        core.leftControllerRayInteractor.enabled = true;
+	        core.rightControllerRayInteractor.enabled = true;
             switch (reason) {
                 case 0: // paused
                     pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(true);
@@ -119,6 +121,8 @@ namespace RhythmicVR {
         }
         
         public void HidePauseMenu() {
+	        core.leftControllerRayInteractor.enabled = false;
+	        core.rightControllerRayInteractor.enabled = false;
             pauseMenu.SetActive(false);
         }
 
@@ -128,7 +132,9 @@ namespace RhythmicVR {
         /// Go in game, sets all ingame menus (score, etc) active, disables all other UI
         /// </summary>
         public void InBeatmap() {
-            songList.SetActive(false);
+	        core.leftControllerRayInteractor.enabled = false;
+	        core.rightControllerRayInteractor.enabled = false;
+	        songList.SetActive(false);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);
             inGame.SetActive(true);
@@ -139,6 +145,8 @@ namespace RhythmicVR {
         /// Go to main menu
         /// </summary>
         public void ToMainMenu() {
+	        core.leftControllerRayInteractor.enabled = true;
+	        core.rightControllerRayInteractor.enabled = true;
             songList.SetActive(false);
             mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
@@ -150,6 +158,8 @@ namespace RhythmicVR {
         /// Go to settings menu
         /// </summary>
         public void ToSettingsMenu() {
+	        core.leftControllerRayInteractor.enabled = true;
+	        core.rightControllerRayInteractor.enabled = true;
             songList.SetActive(false);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(true);
@@ -161,6 +171,8 @@ namespace RhythmicVR {
         /// Go to song list menu, also refreshes song list
         /// </summary>
         public void ToSongListMenu() {
+	        core.leftControllerRayInteractor.enabled = true;
+	        core.rightControllerRayInteractor.enabled = true;
             songList.SetActive(true);
             mainMenu.SetActive(false);
             settingsMenu.SetActive(false);

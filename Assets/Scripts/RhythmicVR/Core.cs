@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using BeatSaber;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Management;
 //using Valve.VR;
 
@@ -47,6 +50,10 @@ namespace RhythmicVR {
         private List<GameObject> visualTrackedObjects = new List<GameObject>();
         private List<GameObject> menuTrackedObjects = new List<GameObject>();
 
+        private XRIDefaultInputActions actions;
+        public XRInteractorLineVisual leftControllerRayInteractor;
+        public XRInteractorLineVisual rightControllerRayInteractor;
+
         [NonSerialized] public bool allowPause;
         [NonSerialized] public bool isPaused;
         [NonSerialized] public bool songIsPlaying;
@@ -63,8 +70,6 @@ namespace RhythmicVR {
         public float currentScore = 0;
 
         private void Start() {
-	        XRGeneralSettings settings = XRGeneralSettings.Instance;
-	        settings.Manager.activeLoader.Start();
 
             if (GetComponent<AudioSource>()) {
                 audioSource = GetComponent<AudioSource>();
@@ -91,6 +96,12 @@ namespace RhythmicVR {
             LoadSongsIntoSongList();
 
             InitializeSettings();
+
+            leftControllerRayInteractor = leftHand.GetComponent<XRInteractorLineVisual>();
+            rightControllerRayInteractor = rightHand.GetComponent<XRInteractorLineVisual>();
+
+            actions = new XRIDefaultInputActions();
+            actions.XRIBothHands.Menu.performed += MenuButtonPressed;
 
             //SetControllerPointerOffset();
 
@@ -121,19 +132,18 @@ namespace RhythmicVR {
         /// <summary>
         /// handle pause button
         /// </summary>
-        /*private void Update() {
-            if (allowPause) {
-                if (pauseButton.stateUp) {
-                    if (isPaused) {
-                        ContinueBeatmap();
-                        isPaused = false;
-                    } else {
-                        StopBeatmap(0);
-                        isPaused = true;
-                    }
-                }
-            }
-        }*/
+        private void MenuButtonPressed(InputAction.CallbackContext context) {
+	        Debug.Log("Menu Button was pressed: " + context.action.bindings);
+	        if (allowPause) {
+		        if (isPaused) {
+			        ContinueBeatmap();
+			        isPaused = false;
+		        } else {
+			        StopBeatmap(0);
+			        isPaused = true;
+		        }
+	        }
+        }
 
         /// <summary>
         /// Set all static values, this is a really jank way of doing and should never be done...
@@ -503,6 +513,8 @@ namespace RhythmicVR {
                     default:
                         return;
                 }
+
+                //tracker.GetComponent<XRController>().modelTransform
 
                 var to = Instantiate(trackedDevicePair.prefab, tracker.Find("itemOffset"));
                 to.GetComponent<GenericTrackedObject>().role = trackedDevicePair.role;
