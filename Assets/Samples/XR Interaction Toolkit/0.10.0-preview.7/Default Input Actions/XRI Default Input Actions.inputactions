@@ -639,30 +639,8 @@
                 },
                 {
                     "name": "",
-                    "id": "92b04e35-c375-4265-b2eb-f57dc53f704d",
-                    "path": "<XRController>/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "aaab7c8e-220a-4ea3-96c2-ca21f734ecbe",
-                    "path": "<ValveIndexController>/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "682e60c8-b7f9-4db4-8f46-042a10361d52",
-                    "path": "<ValveIndexController>/secondaryButton",
+                    "id": "6eedca0d-3e52-4c0d-b7df-37f2056e945d",
+                    "path": "<XRController>/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

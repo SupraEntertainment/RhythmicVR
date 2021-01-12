@@ -1461,6 +1461,20 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   spawnDistance: 10
   uiManager: {fileID: 1576197619}
+  pauseButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pause Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 6c2af5a4-1b47-4154-8403-305e6adee106
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: -8016886256061742679, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  leftControllerRayInteractor: {fileID: 0}
+  rightControllerRayInteractor: {fileID: 0}
   currentScore: 0
 --- !u!4 &263707703
 Transform:

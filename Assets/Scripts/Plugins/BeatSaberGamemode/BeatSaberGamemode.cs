@@ -61,7 +61,7 @@ namespace BeatSaber {
 			}
 
 			Debug.Log("Finished placing target objects");
-			core.StopBeatmap(1);
+			core.StopBeatmap(Core.BeatmapPauseReason.COMPLETED);
 		}
 	
 	}

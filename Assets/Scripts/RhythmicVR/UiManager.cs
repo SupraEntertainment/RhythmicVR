@@ -103,27 +103,27 @@ namespace RhythmicVR {
         // menu navigation
         
         // pause and unpause
-        public void ShowPauseMenu(int reason) {
-	        core.leftControllerRayInteractor.enabled = true;
-	        core.rightControllerRayInteractor.enabled = true;
+        public void ShowPauseMenu(Core.BeatmapPauseReason reason) {
             switch (reason) {
-                case 0: // paused
+                case Core.BeatmapPauseReason.PAUSED:
                     pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(true);
                     break;
-                case 1: // completed
-                case 2: // failed
-                    pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(false);
-                    break;
+                case Core.BeatmapPauseReason.COMPLETED:
+                case Core.BeatmapPauseReason.FAILED:
+	                pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(false);
+	                break;
                 default:
-                    break;
+	                throw new ArgumentOutOfRangeException(nameof(reason), reason, null);
             }
             pauseMenu.SetActive(true);
+            core.leftControllerRayInteractor.enabled = true;
+            core.rightControllerRayInteractor.enabled = true;
         }
         
         public void HidePauseMenu() {
+	        pauseMenu.SetActive(false);
 	        core.leftControllerRayInteractor.enabled = false;
 	        core.rightControllerRayInteractor.enabled = false;
-            pauseMenu.SetActive(false);
         }
 
         // general menu states

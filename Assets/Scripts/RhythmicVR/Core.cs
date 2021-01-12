@@ -41,18 +41,17 @@ namespace RhythmicVR {
         [NonSerialized] public Config config;
         public PluginManager pluginManager;
         public SongList songList = new SongList();
-        //public SteamVR_Action_Boolean pauseButton;
-        //public SteamVR_Action_Pose pointerOffset;
-        //public SteamVR_Action_Pose gripPosition;
         [NonSerialized]  public SettingsManager settingsManager;
         [NonSerialized] public AudioSource audioSource;
         private List<GameObject> trackedObjects = new List<GameObject>();
         private List<GameObject> visualTrackedObjects = new List<GameObject>();
         private List<GameObject> menuTrackedObjects = new List<GameObject>();
 
-        private XRIDefaultInputActions actions;
-        public XRInteractorLineVisual leftControllerRayInteractor;
-        public XRInteractorLineVisual rightControllerRayInteractor;
+        public InputActionProperty pauseButton;
+        //public InputActionProperty pointerPose;
+        //public InputActionProperty gripPose;
+        public XRRayInteractor leftControllerRayInteractor;
+        public XRRayInteractor rightControllerRayInteractor;
 
         [NonSerialized] public bool allowPause;
         [NonSerialized] public bool isPaused;
@@ -97,11 +96,10 @@ namespace RhythmicVR {
 
             InitializeSettings();
 
-            leftControllerRayInteractor = leftHand.GetComponent<XRInteractorLineVisual>();
-            rightControllerRayInteractor = rightHand.GetComponent<XRInteractorLineVisual>();
-
-            actions = new XRIDefaultInputActions();
-            actions.XRIBothHands.Menu.performed += MenuButtonPressed;
+            leftControllerRayInteractor = leftHand.GetComponent<XRRayInteractor>();
+            rightControllerRayInteractor = rightHand.GetComponent<XRRayInteractor>();
+            
+            pauseButton.action.performed += MenuButtonPressed;
 
             //SetControllerPointerOffset();
 
@@ -133,13 +131,13 @@ namespace RhythmicVR {
         /// handle pause button
         /// </summary>
         private void MenuButtonPressed(InputAction.CallbackContext context) {
-	        Debug.Log("Menu Button was pressed: " + context.action.bindings);
+	        Debug.Log("Menu Button was pressed: " + context.control.path);
 	        if (allowPause) {
 		        if (isPaused) {
 			        ContinueBeatmap();
 			        isPaused = false;
 		        } else {
-			        StopBeatmap(0);
+			        StopBeatmap(BeatmapPauseReason.PAUSED);
 			        isPaused = true;
 		        }
 	        }
@@ -393,20 +391,22 @@ namespace RhythmicVR {
         /// 0 = paused<br/>
         /// 1 = completed<br/>
         /// 2 = failed</param>
-        public void StopBeatmap(int reason) {
+        public void StopBeatmap(BeatmapPauseReason reason) {
             songIsPlaying = false;
             audioSource.Pause();
             switch (reason) {
-                case 0: // paused
-                    Time.timeScale = 0;
-                    uiManager.ShowPauseMenu(reason);
-                    break;
-                case 1: // completed
-                    uiManager.ShowPauseMenu(reason);
-                    break;
-                case 2: // failed
-                    uiManager.ShowPauseMenu(reason);
-                    break;
+	            case BeatmapPauseReason.PAUSED:
+		            Time.timeScale = 0;
+		            uiManager.ShowPauseMenu(reason);
+		            break;
+	            case BeatmapPauseReason.COMPLETED:
+		            uiManager.ShowPauseMenu(reason);
+		            break;
+	            case BeatmapPauseReason.FAILED:
+		            uiManager.ShowPauseMenu(reason);
+		            break;
+	            default:
+		            throw new ArgumentOutOfRangeException(nameof(reason), reason, null);
             }
         }
 
@@ -525,6 +525,12 @@ namespace RhythmicVR {
 
         public GameObject SimpleInstantiate(GameObject prefab) {
             return Instantiate(prefab);
+        }
+
+        public enum BeatmapPauseReason {
+	        PAUSED = 0,
+	        COMPLETED = 1,
+	        FAILED = 2,
         }
         
     }
