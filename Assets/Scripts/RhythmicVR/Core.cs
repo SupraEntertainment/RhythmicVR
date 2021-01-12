@@ -50,8 +50,8 @@ namespace RhythmicVR {
         public InputActionProperty pauseButton;
         //public InputActionProperty pointerPose;
         //public InputActionProperty gripPose;
-        public XRRayInteractor leftControllerRayInteractor;
-        public XRRayInteractor rightControllerRayInteractor;
+        [NonSerialized] public XRRayInteractor leftControllerRayInteractor;
+        [NonSerialized] public XRRayInteractor rightControllerRayInteractor;
 
         [NonSerialized] public bool allowPause;
         [NonSerialized] public bool isPaused;

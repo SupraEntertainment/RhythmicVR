@@ -1473,8 +1473,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
     m_Reference: {fileID: -8016886256061742679, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  leftControllerRayInteractor: {fileID: 0}
-  rightControllerRayInteractor: {fileID: 0}
   currentScore: 0
 --- !u!4 &263707703
 Transform:
@@ -2739,19 +2737,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 506991480}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 263707702}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ExitBeatmap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &506991480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2872,19 +2858,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 520670768}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 263707701}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &520670768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6484,6 +6458,9 @@ MonoBehaviour:
   pauseMenu: {fileID: 1222346176}
   titleText: {fileID: 283526236}
   inGame: {fileID: 1523260796}
+  pauseResumeButton: {fileID: 1808882659}
+  pauseRestartButton: {fileID: 520670765}
+  pauseExitButton: {fileID: 506991477}
   playBeatmapButton: {fileID: 268996277}
   deleteBeatmapButton: {fileID: 1367272300}
   practiceBeatmapButton: {fileID: 2138663254}
@@ -7437,19 +7414,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1808882662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 263707702}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ContinueBeatmap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1808882662
 MonoBehaviour:
   m_ObjectHideFlags: 0

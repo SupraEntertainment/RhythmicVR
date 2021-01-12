@@ -25,6 +25,11 @@ namespace RhythmicVR {
         public GameObject titleText;
         public GameObject inGame;
 
+        [Header("Pause Menu Buttons")] 
+        public GameObject pauseResumeButton;
+        public GameObject pauseRestartButton;
+        public GameObject pauseExitButton;
+
         [Header("Song Info Panel elements")]
         public Button playBeatmapButton;
         public Button deleteBeatmapButton;
@@ -69,7 +74,12 @@ namespace RhythmicVR {
         private GameObject lastSelectedDifficultyCategory;
 
         public void Start() {
-            try {
+	        
+	        pauseResumeButton.GetComponent<Button>().onClick.AddListener(core.ContinueBeatmap);
+	        //pauseRestartButton.GetComponent<Button>().onClick.AddListener(core.ContinueBeatmap);
+	        pauseExitButton.GetComponent<Button>().onClick.AddListener(core.ExitBeatmap);
+	        
+	        try {
                 scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("score_manager");
             }
             catch (Exception e) {
@@ -104,26 +114,26 @@ namespace RhythmicVR {
         
         // pause and unpause
         public void ShowPauseMenu(Core.BeatmapPauseReason reason) {
+	        core.leftControllerRayInteractor.enabled = true;
+	        core.rightControllerRayInteractor.enabled = true;
             switch (reason) {
                 case Core.BeatmapPauseReason.PAUSED:
-                    pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(true);
+                    pauseResumeButton.SetActive(true);
                     break;
                 case Core.BeatmapPauseReason.COMPLETED:
                 case Core.BeatmapPauseReason.FAILED:
-	                pauseMenu.transform.Find("Canvas/Panel/Btn_resume").gameObject.SetActive(false);
+	                pauseResumeButton.SetActive(false);
 	                break;
                 default:
 	                throw new ArgumentOutOfRangeException(nameof(reason), reason, null);
             }
             pauseMenu.SetActive(true);
-            core.leftControllerRayInteractor.enabled = true;
-            core.rightControllerRayInteractor.enabled = true;
         }
         
         public void HidePauseMenu() {
-	        pauseMenu.SetActive(false);
 	        core.leftControllerRayInteractor.enabled = false;
 	        core.rightControllerRayInteractor.enabled = false;
+	        pauseMenu.SetActive(false);
         }
 
         // general menu states
