@@ -85,7 +85,6 @@ namespace RhythmicVR {
             catch (Exception e) {
                 Debug.Log(e);
             }
-            //uiActionSet.Activate();
             ToMainMenu();
             PopulateInGamePanels();
         }
