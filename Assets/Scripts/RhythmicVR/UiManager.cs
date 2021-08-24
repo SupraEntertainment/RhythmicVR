@@ -115,6 +115,7 @@ namespace RhythmicVR {
         public void ShowPauseMenu(Core.BeatmapPauseReason reason) {
 	        core.leftControllerRayInteractor.enabled = true;
 	        core.rightControllerRayInteractor.enabled = true;
+            pauseMenu.SetActive(true);
             switch (reason) {
                 case Core.BeatmapPauseReason.PAUSED:
                     pauseResumeButton.SetActive(true);

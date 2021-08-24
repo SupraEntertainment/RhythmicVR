@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
-using ICSharpCode.SharpZipLib.Zip;
 using RhythmicVR.Files;
 using UnityEditor;
 using UnityEngine;
+using CompressionLevel = System.IO.Compression.CompressionLevel;
+using Object = UnityEngine.Object;
 
 namespace RhythmicVR
 {
@@ -168,6 +171,8 @@ namespace RhythmicVR
                         File.Delete(file);
                     }
                 }
+
+                Debug.Log("Asset Bundles Done ... Packing up");
             }
             catch (System.Exception e)
             {
@@ -178,33 +183,45 @@ namespace RhythmicVR
 
                 return false;
             }
+            AssetDatabase.StartAssetEditing();
 
-            var invalidCharacters = Path.GetInvalidFileNameChars();
-            HashSet<char> invalidSet = new HashSet<char>();
-            foreach (var c in invalidCharacters)
-                invalidSet.Add(c);
-            StringBuilder cleanOutput = new StringBuilder();
-            for (int i = 0; i < bundle.Name.Length; i++)
-            {
-                if (!invalidSet.Contains(bundle.Name[i]))
-                    cleanOutput.Append(bundle.Name[i]);
+            try {
+                
+                var invalidCharacters = Path.GetInvalidFileNameChars();
+                HashSet<char> invalidSet = new HashSet<char>();
+                foreach (var c in invalidCharacters)
+                    invalidSet.Add(c);
+                StringBuilder cleanOutput = new StringBuilder();
+                for (int i = 0; i < bundle.Name.Length; i++)
+                {
+                    if (!invalidSet.Contains(bundle.Name[i]))
+                        cleanOutput.Append(bundle.Name[i]);
+                }
+
+                string name = $"{cleanOutput}.plugin";
+
+                Debug.Log($"Source Path: {Path.GetFullPath(ModFolder)}");
+                Debug.Log($"Output Path: {Path.GetFullPath(name)}");
+
+                EditorUtility.DisplayProgressBar($"Bundling up bundle", "", 0.9f);
+                ZipFile.CreateFromDirectory(ModFolder, name); //, CompressionLevel.Optimal, false, Encoding.UTF8);
+            
+                Debug.Log($"Zip Created at {Path.GetFullPath(name)}");
+
+                //Remove the temp folder
+                EditorUtility.DisplayProgressBar($"Removing temp folder", "", 0.99f);
+                Directory.Delete(ModPath, true);
+
+                EditorUtility.ClearProgressBar();
+                string message = $"Finished building bundle successfully.\nLocation:{Path.GetFullPath(name)}";
+                EditorUtility.DisplayDialog("Finished building bundle sucessfuly.", message, "Ok");
+                Debug.Log($"<b>{message}</b>");
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
             }
 
-            string name = $"{cleanOutput}.plugin";
-
-            EditorUtility.DisplayProgressBar($"Bundling up bundle", "", 0.9f);
-            var zip = new FastZip();
-            zip.CreateZip(name, ModFolder, true, "");
-
-            //Remove the temp folder
-            EditorUtility.DisplayProgressBar($"Removing temp folder", "", 0.99f);
-            Directory.Delete(ModPath, true);
-
-            EditorUtility.ClearProgressBar();
-            string message = $"Finished building bundle successfully. Your packaged bundle can now be uploaded to the lavender website.\nLocation:{Path.GetFullPath(name)}";
-            EditorUtility.DisplayDialog("Finished building bundle sucessfuly.", message, "Ok");
-            Debug.Log($"<b>{message}</b>");
-
+            AssetDatabase.StopAssetEditing();
             return true;
         }
     }

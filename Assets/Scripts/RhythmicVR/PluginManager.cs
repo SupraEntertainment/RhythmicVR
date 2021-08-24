@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -202,21 +201,6 @@ namespace RhythmicVR {
 					try {
 
 						Byte[] data = new byte[] { };
-
-						//Open the stream and read it back.
-						// Using DotNetZip
-						/*using (FileStream fs = new FileStream(pluginPath, FileMode.Open)) {
-							MemoryStream ms = new MemoryStream();
-							using (ZipFile zip = ZipFile.Read(fs)) {
-								foreach (ZipEntry entry in zip)
-								{
-									if (entry.FileName.Contains(platformDir)) {
-										entry.Extract(ms);
-										data = ms.ToArray();
-									}
-								}
-							}
-						}*/
 
 						// Using System.IO.Compression
 						var file = File.OpenRead(pluginPath);
