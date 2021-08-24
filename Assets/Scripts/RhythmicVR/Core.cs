@@ -179,6 +179,7 @@ namespace RhythmicVR {
         private void LoadPlugins() {
             //internal plugins
             pluginManager.LoadPluginsFromFolder(Application.streamingAssetsPath + "/plugins/");
+            Debug.Log($"loading Plugins from: {Application.streamingAssetsPath}/plugins/");
             
             //external plugins
             pluginManager.LoadPluginsFromFolder(config.pluginSavePath);
@@ -411,6 +412,7 @@ namespace RhythmicVR {
         }
 
         public void ExitBeatmap() {
+            Debug.Log("Exiting Beatmap");
             currentGamemode.ExitBeatmap();
         }
 
@@ -418,6 +420,7 @@ namespace RhythmicVR {
         /// Continue the paused beatmap. Hides Pause menu and sets the time scale back to 1 in order to continue.
         /// </summary>
         public void ContinueBeatmap() {
+            Debug.Log("Continuing Beatmap");
             songIsPlaying = true;
             audioSource.Play();
             Time.timeScale = 1;

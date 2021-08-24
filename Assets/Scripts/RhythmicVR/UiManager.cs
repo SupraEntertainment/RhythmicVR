@@ -75,9 +75,9 @@ namespace RhythmicVR {
 
         public void Start() {
 	        
-	        pauseResumeButton.GetComponent<Button>().onClick.AddListener(core.ContinueBeatmap);
+	        //pauseResumeButton.GetComponent<Button>().onClick.AddListener(core.ContinueBeatmap);
 	        //pauseRestartButton.GetComponent<Button>().onClick.AddListener(core.ContinueBeatmap);
-	        pauseExitButton.GetComponent<Button>().onClick.AddListener(core.ExitBeatmap);
+	        //pauseExitButton.GetComponent<Button>().onClick.AddListener(core.ExitBeatmap);
 	        
 	        try {
                 scoreManager = (ScoreManager.ScoreManager) core.pluginManager.Find("score_manager");

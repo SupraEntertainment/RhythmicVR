@@ -6,6 +6,7 @@ using System.Text;
 using RhythmicVR.Files;
 using UnityEditor;
 using UnityEngine;
+using ICSharpCode.SharpZipLib.Zip;
 using CompressionLevel = System.IO.Compression.CompressionLevel;
 using Object = UnityEngine.Object;
 
@@ -183,7 +184,6 @@ namespace RhythmicVR
 
                 return false;
             }
-            AssetDatabase.StartAssetEditing();
 
             try {
                 
@@ -204,7 +204,9 @@ namespace RhythmicVR
                 Debug.Log($"Output Path: {Path.GetFullPath(name)}");
 
                 EditorUtility.DisplayProgressBar($"Bundling up bundle", "", 0.9f);
-                ZipFile.CreateFromDirectory(ModFolder, name); //, CompressionLevel.Optimal, false, Encoding.UTF8);
+                //ZipFile.CreateFromDirectory(ModFolder, name); //, CompressionLevel.Optimal, false, Encoding.UTF8);
+                new FastZip().CreateZip(name, ModFolder, true, "");
+
             
                 Debug.Log($"Zip Created at {Path.GetFullPath(name)}");
 
@@ -220,8 +222,7 @@ namespace RhythmicVR
             catch (Exception e) {
                 Console.WriteLine(e);
             }
-
-            AssetDatabase.StopAssetEditing();
+            
             return true;
         }
     }

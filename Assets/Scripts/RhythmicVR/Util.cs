@@ -56,6 +56,7 @@ namespace RhythmicVR {
 
         public static IEnumerator SetAudioClipFromPath(string path) {
 	        var fullpath = "file://" + path;
+	        Debug.Log($"Trying to get Audio File from \"{fullpath}\"");
 	        var request = UnityWebRequestMultimedia.GetAudioClip(fullpath, AudioType.OGGVORBIS);
 	        yield return request.SendWebRequest();
 	        while (!request.isDone) {

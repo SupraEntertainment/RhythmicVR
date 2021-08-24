@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 
 namespace RhythmicVR.BeatSaber {
 	
@@ -23,6 +24,7 @@ namespace RhythmicVR.BeatSaber {
 
 		public RhythmicVR.Song ToSong() {
 			var song = new RhythmicVR.Song();
+			//song.id = GUID.Generate();
 			song.songName = _songName;
 			song.environment = _environmentName;
 			song.songAuthorName = _songAuthorName;

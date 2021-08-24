@@ -199,6 +199,7 @@ namespace RhythmicVR {
 					}	
 #endif
 					try {
+						//Debug.Log($"loading Plugin: {pluginPath}");
 
 						Byte[] data = new byte[] { };
 
@@ -223,6 +224,7 @@ namespace RhythmicVR {
 						GameObject assetObject = assetBundle.LoadAsset<GameObject>(assetName);
 						PluginBaseClass plugin = assetObject.GetComponentInChildren<PluginBaseClass>();
 
+						Debug.Log($"loaded Plugin: {plugin.pluginName}, {plugin.assetName}\nVersion: ");
 						pluginsOut.Add(plugin);
 
 					}
