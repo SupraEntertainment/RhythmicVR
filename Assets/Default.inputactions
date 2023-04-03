@@ -11,7 +11,8 @@
                     "id": "6635163b-74e5-4e68-8337-2f971a2a1f49",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "scroll",
@@ -19,7 +20,8 @@
                     "id": "2e3213da-fe19-4d13-bae6-2fee63fc4d95",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": "Hold",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -68,7 +70,8 @@
                     "id": "a0ed3016-f373-451c-ac17-61a04c7b9f2c",
                     "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "LeftControllerRotation",
@@ -76,7 +79,8 @@
                     "id": "aadf5181-f5cc-4a15-a70a-66918076c672",
                     "expectedControlType": "Quaternion",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "RightControllerPosition",
@@ -84,7 +88,8 @@
                     "id": "03e56336-1167-47e4-9087-92658a0027c5",
                     "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "RightControllerRotation",
@@ -92,7 +97,8 @@
                     "id": "09c7d600-e3e6-4050-87ed-7a5aa8c3daf2",
                     "expectedControlType": "Quaternion",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "WaistTrackerPosition",
@@ -100,7 +106,8 @@
                     "id": "e08e55bc-d265-4fa7-b2c8-140488e93b9b",
                     "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "WaistTrackerRotation",
@@ -108,7 +115,44 @@
                     "id": "0238a2e3-b4dd-4f02-90c3-1eb76a55fa70",
                     "expectedControlType": "Quaternion",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LeftFootTrackerPosition",
+                    "type": "Value",
+                    "id": "940441bb-dfe8-46dc-96fa-4b89a79c44c3",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LeftFootTrackerRotation",
+                    "type": "Value",
+                    "id": "d780c6bb-196f-4d43-a8af-e21498cd5a75",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RightFootTrackerPosition",
+                    "type": "Value",
+                    "id": "39b2fdd3-b494-4f51-a94d-b75014a1c740",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RightFootTrackerRotation",
+                    "type": "Value",
+                    "id": "9ed81906-b4aa-4034-814e-b6786b8be3cc",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -175,6 +219,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "WaistTrackerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d68f178-4621-448e-8c0c-cce717c36b2c",
+                    "path": "<TrackedDevice>/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftFootTrackerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c9eada8-eb78-428c-9ae1-50c8618705f5",
+                    "path": "<TrackedDevice>/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftFootTrackerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52da08c2-78ea-4a66-bcee-7ef934b8b7e8",
+                    "path": "<TrackedDevice>/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightFootTrackerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b096d33e-63e9-47fa-b8d0-01ca60879a6a",
+                    "path": "<TrackedDevice>/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightFootTrackerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

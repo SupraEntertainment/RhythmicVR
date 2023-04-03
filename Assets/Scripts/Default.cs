@@ -139,6 +139,42 @@ public partial class @Default: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LeftFootTrackerPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""940441bb-dfe8-46dc-96fa-4b89a79c44c3"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LeftFootTrackerRotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""d780c6bb-196f-4d43-a8af-e21498cd5a75"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightFootTrackerPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""39b2fdd3-b494-4f51-a94d-b75014a1c740"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightFootTrackerRotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""9ed81906-b4aa-4034-814e-b6786b8be3cc"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -207,6 +243,50 @@ public partial class @Default: IInputActionCollection2, IDisposable
                     ""action"": ""WaistTrackerRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d68f178-4621-448e-8c0c-cce717c36b2c"",
+                    ""path"": ""<TrackedDevice>/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftFootTrackerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c9eada8-eb78-428c-9ae1-50c8618705f5"",
+                    ""path"": ""<TrackedDevice>/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftFootTrackerRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52da08c2-78ea-4a66-bcee-7ef934b8b7e8"",
+                    ""path"": ""<TrackedDevice>/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightFootTrackerRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b096d33e-63e9-47fa-b8d0-01ca60879a6a"",
+                    ""path"": ""<TrackedDevice>/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightFootTrackerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +311,10 @@ public partial class @Default: IInputActionCollection2, IDisposable
         m_Tracking_RightControllerRotation = m_Tracking.FindAction("RightControllerRotation", throwIfNotFound: true);
         m_Tracking_WaistTrackerPosition = m_Tracking.FindAction("WaistTrackerPosition", throwIfNotFound: true);
         m_Tracking_WaistTrackerRotation = m_Tracking.FindAction("WaistTrackerRotation", throwIfNotFound: true);
+        m_Tracking_LeftFootTrackerPosition = m_Tracking.FindAction("LeftFootTrackerPosition", throwIfNotFound: true);
+        m_Tracking_LeftFootTrackerRotation = m_Tracking.FindAction("LeftFootTrackerRotation", throwIfNotFound: true);
+        m_Tracking_RightFootTrackerPosition = m_Tracking.FindAction("RightFootTrackerPosition", throwIfNotFound: true);
+        m_Tracking_RightFootTrackerRotation = m_Tracking.FindAction("RightFootTrackerRotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -352,6 +436,10 @@ public partial class @Default: IInputActionCollection2, IDisposable
     private readonly InputAction m_Tracking_RightControllerRotation;
     private readonly InputAction m_Tracking_WaistTrackerPosition;
     private readonly InputAction m_Tracking_WaistTrackerRotation;
+    private readonly InputAction m_Tracking_LeftFootTrackerPosition;
+    private readonly InputAction m_Tracking_LeftFootTrackerRotation;
+    private readonly InputAction m_Tracking_RightFootTrackerPosition;
+    private readonly InputAction m_Tracking_RightFootTrackerRotation;
     public struct TrackingActions
     {
         private @Default m_Wrapper;
@@ -362,6 +450,10 @@ public partial class @Default: IInputActionCollection2, IDisposable
         public InputAction @RightControllerRotation => m_Wrapper.m_Tracking_RightControllerRotation;
         public InputAction @WaistTrackerPosition => m_Wrapper.m_Tracking_WaistTrackerPosition;
         public InputAction @WaistTrackerRotation => m_Wrapper.m_Tracking_WaistTrackerRotation;
+        public InputAction @LeftFootTrackerPosition => m_Wrapper.m_Tracking_LeftFootTrackerPosition;
+        public InputAction @LeftFootTrackerRotation => m_Wrapper.m_Tracking_LeftFootTrackerRotation;
+        public InputAction @RightFootTrackerPosition => m_Wrapper.m_Tracking_RightFootTrackerPosition;
+        public InputAction @RightFootTrackerRotation => m_Wrapper.m_Tracking_RightFootTrackerRotation;
         public InputActionMap Get() { return m_Wrapper.m_Tracking; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -389,6 +481,18 @@ public partial class @Default: IInputActionCollection2, IDisposable
             @WaistTrackerRotation.started += instance.OnWaistTrackerRotation;
             @WaistTrackerRotation.performed += instance.OnWaistTrackerRotation;
             @WaistTrackerRotation.canceled += instance.OnWaistTrackerRotation;
+            @LeftFootTrackerPosition.started += instance.OnLeftFootTrackerPosition;
+            @LeftFootTrackerPosition.performed += instance.OnLeftFootTrackerPosition;
+            @LeftFootTrackerPosition.canceled += instance.OnLeftFootTrackerPosition;
+            @LeftFootTrackerRotation.started += instance.OnLeftFootTrackerRotation;
+            @LeftFootTrackerRotation.performed += instance.OnLeftFootTrackerRotation;
+            @LeftFootTrackerRotation.canceled += instance.OnLeftFootTrackerRotation;
+            @RightFootTrackerPosition.started += instance.OnRightFootTrackerPosition;
+            @RightFootTrackerPosition.performed += instance.OnRightFootTrackerPosition;
+            @RightFootTrackerPosition.canceled += instance.OnRightFootTrackerPosition;
+            @RightFootTrackerRotation.started += instance.OnRightFootTrackerRotation;
+            @RightFootTrackerRotation.performed += instance.OnRightFootTrackerRotation;
+            @RightFootTrackerRotation.canceled += instance.OnRightFootTrackerRotation;
         }
 
         private void UnregisterCallbacks(ITrackingActions instance)
@@ -411,6 +515,18 @@ public partial class @Default: IInputActionCollection2, IDisposable
             @WaistTrackerRotation.started -= instance.OnWaistTrackerRotation;
             @WaistTrackerRotation.performed -= instance.OnWaistTrackerRotation;
             @WaistTrackerRotation.canceled -= instance.OnWaistTrackerRotation;
+            @LeftFootTrackerPosition.started -= instance.OnLeftFootTrackerPosition;
+            @LeftFootTrackerPosition.performed -= instance.OnLeftFootTrackerPosition;
+            @LeftFootTrackerPosition.canceled -= instance.OnLeftFootTrackerPosition;
+            @LeftFootTrackerRotation.started -= instance.OnLeftFootTrackerRotation;
+            @LeftFootTrackerRotation.performed -= instance.OnLeftFootTrackerRotation;
+            @LeftFootTrackerRotation.canceled -= instance.OnLeftFootTrackerRotation;
+            @RightFootTrackerPosition.started -= instance.OnRightFootTrackerPosition;
+            @RightFootTrackerPosition.performed -= instance.OnRightFootTrackerPosition;
+            @RightFootTrackerPosition.canceled -= instance.OnRightFootTrackerPosition;
+            @RightFootTrackerRotation.started -= instance.OnRightFootTrackerRotation;
+            @RightFootTrackerRotation.performed -= instance.OnRightFootTrackerRotation;
+            @RightFootTrackerRotation.canceled -= instance.OnRightFootTrackerRotation;
         }
 
         public void RemoveCallbacks(ITrackingActions instance)
@@ -450,5 +566,9 @@ public partial class @Default: IInputActionCollection2, IDisposable
         void OnRightControllerRotation(InputAction.CallbackContext context);
         void OnWaistTrackerPosition(InputAction.CallbackContext context);
         void OnWaistTrackerRotation(InputAction.CallbackContext context);
+        void OnLeftFootTrackerPosition(InputAction.CallbackContext context);
+        void OnLeftFootTrackerRotation(InputAction.CallbackContext context);
+        void OnRightFootTrackerPosition(InputAction.CallbackContext context);
+        void OnRightFootTrackerRotation(InputAction.CallbackContext context);
     }
 }
