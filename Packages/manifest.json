@@ -16,6 +16,7 @@
     "com.unity.ugui": "1.0.0",
     "com.unity.xr.interaction.toolkit": "2.2.0",
     "com.unity.xr.openxr": "1.7.0",
+    "com.valvesoftware.unity.openvr": "https://github.com/ValveSoftware/unity-xr-plugin.git?path=/com.valve.openvr",
     "org.icsharpcode.sharpziplib": "1.4.1",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -47,14 +48,22 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.coffee.upm-git-extension": "2.0.3",
+    "com.mischief.markdownviewer": "1.1.0",
+    "online.kamishiro.externaltoolslauncher": "1.7.6",
+    "com.de-panther.webxr": "0.16.0-preview"
   },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "com.coffee.upm-git-extension",
+        "com.de-panther.webxr",
+        "com.mischief.markdownviewer",
         "com.openupm",
+        "online.kamishiro.externaltoolslauncher",
         "org.icsharpcode.sharpziplib"
       ]
     }

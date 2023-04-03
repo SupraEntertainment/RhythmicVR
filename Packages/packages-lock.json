@@ -1,5 +1,28 @@
 {
   "dependencies": {
+    "com.coffee.upm-git-extension": {
+      "version": "2.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.de-panther.webxr": {
+      "version": "0.16.0-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "3.2.13"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.mischief.markdownviewer": {
+      "version": "1.1.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -95,6 +118,13 @@
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.4",
       "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.1.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -280,6 +310,26 @@
         "com.unity.inputsystem": "1.4.4"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.valvesoftware.unity.openvr": {
+      "version": "https://github.com/ValveSoftware/unity-xr-plugin.git?path=/com.valve.openvr",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.xr.management": "3.2.13",
+        "com.unity.ugui": "1.0.0",
+        "com.unity.xr.legacyinputhelpers": "2.1.4"
+      },
+      "hash": "c8160441e8347769763f5803a56ec71898a720f0"
+    },
+    "online.kamishiro.externaltoolslauncher": {
+      "version": "1.7.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.2"
+      },
+      "url": "https://package.openupm.com"
     },
     "org.icsharpcode.sharpziplib": {
       "version": "1.4.1",

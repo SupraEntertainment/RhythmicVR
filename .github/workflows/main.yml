@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 env:
   game_name: "RhythmicVR"
+  unityVersion: "2022.2.13"
 
 jobs:
   build:
@@ -60,6 +61,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: ${{ env.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
 
       # Output
