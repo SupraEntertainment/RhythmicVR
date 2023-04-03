@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -128,6 +128,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4506513043872991681, guid: 4c693d07d3dbe9f42bd211d267aca510,
@@ -191,6 +192,9 @@ PrefabInstance:
       value: SphereTrackedObject
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c693d07d3dbe9f42bd211d267aca510, type: 3}
 --- !u!1 &715931772 stripped
 GameObject:
@@ -228,6 +232,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3827903119638515565, guid: d3514dd6aa7be03498e885799e02f95a,
@@ -291,12 +296,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3514dd6aa7be03498e885799e02f95a, type: 3}
 --- !u!1001 &24336007255761658
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 24336008260490452, guid: fc249ba197d90a34dacd7e39f32a597b,
@@ -360,12 +369,16 @@ PrefabInstance:
       value: DefaultTarget
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc249ba197d90a34dacd7e39f32a597b, type: 3}
 --- !u!1001 &1496863320737201282
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5098652987087657860, guid: 44d9436e8dfdb6e44bcd49d08b62357b,
@@ -429,12 +442,16 @@ PrefabInstance:
       value: BeatSaberImportPlugin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d9436e8dfdb6e44bcd49d08b62357b, type: 3}
 --- !u!1001 &2966985894755132413
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2966985895657643160, guid: eaaaff690c4f4964a9ba0dcf5b4bce6c,
@@ -498,12 +515,16 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaaaff690c4f4964a9ba0dcf5b4bce6c, type: 3}
 --- !u!1001 &3242301687942209991
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3242301686432151540, guid: a33471903328efe4bae979f6f3590961,
@@ -567,12 +588,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a33471903328efe4bae979f6f3590961, type: 3}
 --- !u!1001 &3496774698280818195
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3496774698518521922, guid: 21064e7406a95354b98d73fcd51557bf,
@@ -636,12 +661,16 @@ PrefabInstance:
       value: BlockSong
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21064e7406a95354b98d73fcd51557bf, type: 3}
 --- !u!1001 &4419529105503052810
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2492262632421967460, guid: 699371d936b44f340ad329fc8dd51523,
@@ -705,12 +734,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699371d936b44f340ad329fc8dd51523, type: 3}
 --- !u!1001 &5210609700576889571
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5210609699491252745, guid: 9a480a3efe3db9b4ea4e215918fdb052,
@@ -774,12 +807,16 @@ PrefabInstance:
       value: BeatSaberGamemode
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a480a3efe3db9b4ea4e215918fdb052, type: 3}
 --- !u!1001 &5392437886944734835
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3249466302979663910, guid: fe6317d0effbb944c8ce36d91eb01c5b,
@@ -843,12 +880,20 @@ PrefabInstance:
       value: DefaultEnvironment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4649811903795633606, guid: fe6317d0effbb944c8ce36d91eb01c5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715931773}
   m_SourcePrefab: {fileID: 100100000, guid: fe6317d0effbb944c8ce36d91eb01c5b, type: 3}
 --- !u!1001 &6940309055179325838
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6940309054751554120, guid: ef6b3d15d86ce274bb330646f2de879f,
@@ -912,12 +957,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef6b3d15d86ce274bb330646f2de879f, type: 3}
 --- !u!1001 &7041844000418173719
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7041844000146063168, guid: 40138ce6a6260cd4daa6e2e9c16a5bbc,
@@ -981,12 +1030,16 @@ PrefabInstance:
       value: DefaultSword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40138ce6a6260cd4daa6e2e9c16a5bbc, type: 3}
 --- !u!1001 &8809837882720524879
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8809837882599818246, guid: c52175c71c10192488d495f5fdfa9547,
@@ -1050,6 +1103,13 @@ PrefabInstance:
       value: ScoreManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8809837882599818247, guid: c52175c71c10192488d495f5fdfa9547,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8809837882720524882}
   m_SourcePrefab: {fileID: 100100000, guid: c52175c71c10192488d495f5fdfa9547, type: 3}
 --- !u!1 &8809837882720524880 stripped
 GameObject:
@@ -1087,8 +1147,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1826262753, guid: 4438a2b2bda5f4d4686617319e824f71, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9039626477198497573, guid: 4438a2b2bda5f4d4686617319e824f71,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1200,4 +1265,7 @@ PrefabInstance:
       value: KeyboardCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4438a2b2bda5f4d4686617319e824f71, type: 3}

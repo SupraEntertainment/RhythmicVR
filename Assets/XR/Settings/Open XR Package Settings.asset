@@ -383,6 +383,26 @@ MonoBehaviour:
   features: []
   m_renderMode: 1
   m_depthSubmissionMode: 0
+--- !u!114 &-4838354639704814022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b862ee14fb479fbfe5fffe655d3ed3, type: 3}
+  m_Name: MetaQuestTouchProControllerProfile WSA
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Meta Quest Touch Pro Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metaquestpro
+  openxrExtensionStrings: XR_FB_touch_controller_pro
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &-4793284511522136104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,6 +1164,7 @@ MonoBehaviour:
   - {fileID: -8820275789111704365}
   - {fileID: 8073056358336625683}
   - {fileID: -1998402864283631896}
+  - {fileID: -4838354639704814022}
   - {fileID: -6437104617070233387}
   - {fileID: -7839445135662598148}
   - {fileID: -4994937189541162588}
@@ -1218,6 +1239,7 @@ MonoBehaviour:
   - {fileID: -2497956389396341509}
   - {fileID: 8295721131543073340}
   - {fileID: -3809987166349423810}
+  - {fileID: 7923667663178173303}
   - {fileID: -608362002882851692}
   - {fileID: -5226761141366968355}
   - {fileID: 834512254411458268}
@@ -1283,6 +1305,7 @@ MonoBehaviour:
   - {fileID: -70551071265930546}
   - {fileID: -8326654066820852566}
   - {fileID: 3744943382876565190}
+  - {fileID: 7615549270600715123}
   - {fileID: -8759099641058083956}
   - {fileID: -8675485476106681729}
   - {fileID: 6343002976090685549}
@@ -1526,6 +1549,46 @@ MonoBehaviour:
   required: 0
   cacheSize: 1048576
   perThreadCacheSize: 51200
+--- !u!114 &7615549270600715123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b862ee14fb479fbfe5fffe655d3ed3, type: 3}
+  m_Name: MetaQuestTouchProControllerProfile Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Meta Quest Touch Pro Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metaquestpro
+  openxrExtensionStrings: XR_FB_touch_controller_pro
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &7923667663178173303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b862ee14fb479fbfe5fffe655d3ed3, type: 3}
+  m_Name: MetaQuestTouchProControllerProfile Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Meta Quest Touch Pro Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metaquestpro
+  openxrExtensionStrings: XR_FB_touch_controller_pro
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &8073056358336625683
 MonoBehaviour:
   m_ObjectHideFlags: 0
